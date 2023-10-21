@@ -280,6 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: a206cc4621a644531a2e05e7774616ab4d9d85eab1f3b0e255f3102937fccab1
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.0.0"
   gotrue:
     dependency: transitive
     description:
@@ -336,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  internet_connectivity_checker:
+    dependency: "direct main"
+    description:
+      name: internet_connectivity_checker
+      sha256: "31e46afc7bcb616dfdd44ad8731fee003a1eb1b3dcc12202984ef5f91886771e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   io:
     dependency: transitive
     description:

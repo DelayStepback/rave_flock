@@ -20,10 +20,11 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
+  int get token => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get mobile => throw _privateConstructorUsedError;
@@ -33,8 +34,8 @@ mixin _$UserModel {
   String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_privacy')
   UserPrivacyEnum get userPrivacy => throw _privateConstructorUsedError;
-  @JsonKey(name: 'registered_at')
-  DateTime get registeredAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
   UserPermissionEnum get permission => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,16 +50,17 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'userId') String userId,
+      {@JsonKey(name: 'user_id') String userId,
+      int token,
       String? email,
-      String username,
+      String? username,
       String? nickname,
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'user_privacy') UserPrivacyEnum userPrivacy,
-      @JsonKey(name: 'registered_at') DateTime registeredAt,
+      @JsonKey(name: 'created_at') DateTime createdAt,
       UserPermissionEnum permission});
 }
 
@@ -76,15 +78,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? userId = null,
+    Object? token = null,
     Object? email = freezed,
-    Object? username = null,
+    Object? username = freezed,
     Object? nickname = freezed,
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
     Object? imageUrl = freezed,
     Object? userPrivacy = null,
-    Object? registeredAt = null,
+    Object? createdAt = null,
     Object? permission = null,
   }) {
     return _then(_value.copyWith(
@@ -92,14 +95,18 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as int,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: null == username
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       nickname: freezed == nickname
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -124,9 +131,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.userPrivacy
           : userPrivacy // ignore: cast_nullable_to_non_nullable
               as UserPrivacyEnum,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       permission: null == permission
           ? _value.permission
@@ -145,16 +152,17 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'userId') String userId,
+      {@JsonKey(name: 'user_id') String userId,
+      int token,
       String? email,
-      String username,
+      String? username,
       String? nickname,
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'user_privacy') UserPrivacyEnum userPrivacy,
-      @JsonKey(name: 'registered_at') DateTime registeredAt,
+      @JsonKey(name: 'created_at') DateTime createdAt,
       UserPermissionEnum permission});
 }
 
@@ -170,15 +178,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? token = null,
     Object? email = freezed,
-    Object? username = null,
+    Object? username = freezed,
     Object? nickname = freezed,
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
     Object? imageUrl = freezed,
     Object? userPrivacy = null,
-    Object? registeredAt = null,
+    Object? createdAt = null,
     Object? permission = null,
   }) {
     return _then(_$UserModelImpl(
@@ -186,14 +195,18 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as int,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: null == username
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       nickname: freezed == nickname
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -218,9 +231,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.userPrivacy
           : userPrivacy // ignore: cast_nullable_to_non_nullable
               as UserPrivacyEnum,
-      registeredAt: null == registeredAt
-          ? _value.registeredAt
-          : registeredAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       permission: null == permission
           ? _value.permission
@@ -234,16 +247,17 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl extends _UserModel {
   _$UserModelImpl(
-      {@JsonKey(name: 'userId') required this.userId,
+      {@JsonKey(name: 'user_id') required this.userId,
+      required this.token,
       this.email,
-      required this.username,
+      this.username,
       this.nickname,
       this.location,
       this.mobile,
       @JsonKey(name: 'profile_description') this.profileDescription,
       @JsonKey(name: 'image_url') this.imageUrl,
       @JsonKey(name: 'user_privacy') required this.userPrivacy,
-      @JsonKey(name: 'registered_at') required this.registeredAt,
+      @JsonKey(name: 'created_at') required this.createdAt,
       required this.permission})
       : super._();
 
@@ -251,12 +265,14 @@ class _$UserModelImpl extends _UserModel {
       _$$UserModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'user_id')
   final String userId;
+  @override
+  final int token;
   @override
   final String? email;
   @override
-  final String username;
+  final String? username;
   @override
   final String? nickname;
   @override
@@ -273,14 +289,14 @@ class _$UserModelImpl extends _UserModel {
   @JsonKey(name: 'user_privacy')
   final UserPrivacyEnum userPrivacy;
   @override
-  @JsonKey(name: 'registered_at')
-  final DateTime registeredAt;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
   @override
   final UserPermissionEnum permission;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, email: $email, username: $username, nickname: $nickname, location: $location, mobile: $mobile, profileDescription: $profileDescription, imageUrl: $imageUrl, userPrivacy: $userPrivacy, registeredAt: $registeredAt, permission: $permission)';
+    return 'UserModel(userId: $userId, token: $token, email: $email, username: $username, nickname: $nickname, location: $location, mobile: $mobile, profileDescription: $profileDescription, imageUrl: $imageUrl, userPrivacy: $userPrivacy, createdAt: $createdAt, permission: $permission)';
   }
 
   @override
@@ -289,6 +305,7 @@ class _$UserModelImpl extends _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.token, token) || other.token == token) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -303,8 +320,8 @@ class _$UserModelImpl extends _UserModel {
                 other.imageUrl == imageUrl) &&
             (identical(other.userPrivacy, userPrivacy) ||
                 other.userPrivacy == userPrivacy) &&
-            (identical(other.registeredAt, registeredAt) ||
-                other.registeredAt == registeredAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.permission, permission) ||
                 other.permission == permission));
   }
@@ -314,6 +331,7 @@ class _$UserModelImpl extends _UserModel {
   int get hashCode => Object.hash(
       runtimeType,
       userId,
+      token,
       email,
       username,
       nickname,
@@ -322,7 +340,7 @@ class _$UserModelImpl extends _UserModel {
       profileDescription,
       imageUrl,
       userPrivacy,
-      registeredAt,
+      createdAt,
       permission);
 
   @JsonKey(ignore: true)
@@ -341,16 +359,17 @@ class _$UserModelImpl extends _UserModel {
 
 abstract class _UserModel extends UserModel {
   factory _UserModel(
-      {@JsonKey(name: 'userId') required final String userId,
+      {@JsonKey(name: 'user_id') required final String userId,
+      required final int token,
       final String? email,
-      required final String username,
+      final String? username,
       final String? nickname,
       final String? location,
       final String? mobile,
       @JsonKey(name: 'profile_description') final String? profileDescription,
       @JsonKey(name: 'image_url') final String? imageUrl,
       @JsonKey(name: 'user_privacy') required final UserPrivacyEnum userPrivacy,
-      @JsonKey(name: 'registered_at') required final DateTime registeredAt,
+      @JsonKey(name: 'created_at') required final DateTime createdAt,
       required final UserPermissionEnum permission}) = _$UserModelImpl;
   _UserModel._() : super._();
 
@@ -358,12 +377,14 @@ abstract class _UserModel extends UserModel {
       _$UserModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'user_id')
   String get userId;
+  @override
+  int get token;
   @override
   String? get email;
   @override
-  String get username;
+  String? get username;
   @override
   String? get nickname;
   @override
@@ -380,8 +401,8 @@ abstract class _UserModel extends UserModel {
   @JsonKey(name: 'user_privacy')
   UserPrivacyEnum get userPrivacy;
   @override
-  @JsonKey(name: 'registered_at')
-  DateTime get registeredAt;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
   @override
   UserPermissionEnum get permission;
   @override

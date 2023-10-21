@@ -1,10 +1,10 @@
 enum UserFieldsEnum{
   email,
-  username,
-  nickname,
+  fullName,
   location,
   mobile,
   profileDescription,
-  imageUrl,
+  avatarUrl,
   userPrivacy,
+  permission,
 }
