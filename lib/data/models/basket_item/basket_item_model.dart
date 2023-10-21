@@ -8,13 +8,14 @@ class BasketItemModel with _$BasketItemModel {
   const BasketItemModel._();
 
   factory BasketItemModel({
-    required String id,
+    int? id,
+    @JsonKey(name: 'meet_id') required int meetId,
     required String title,
     String? cost,
     @JsonKey(name: 'created_by_user_id') required String createdByUserId,
-    @JsonKey(name: 'grabbed_by_user_id') required String? grabbedByUserId,
-    @JsonKey(name: 'who_will_use_ids') required List<String>? whoWillUseIds,
-    @JsonKey(name: 'image_url') required String? imageUrl,
+    @JsonKey(name: 'grabbed_by_user_id') String? grabbedByUserId,
+    @JsonKey(name: 'who_will_use_ids') List<String>? whoWillUseIds,
+    @JsonKey(name: 'image_url') String? imageUrl,
   }) = _BasketItemModel;
 
 

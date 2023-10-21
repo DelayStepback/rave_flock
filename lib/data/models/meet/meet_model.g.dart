@@ -8,8 +8,7 @@ part of 'meet_model.dart';
 
 _$MeetModelImpl _$$MeetModelImplFromJson(Map<String, dynamic> json) =>
     _$MeetModelImpl(
-      meet_id: json['meet_id'] as String,
-      token: json['token'] as int,
+      meetId: json['meet_id'] as int?,
       meetOwnerId: json['meet_owner_id'] as String,
       title: json['title'] as String,
       description: json['description'] as String?,
@@ -18,7 +17,9 @@ _$MeetModelImpl _$$MeetModelImplFromJson(Map<String, dynamic> json) =>
       meetIsPublic: json['meet_is_public'] as bool,
       containsBasket: json['contains_basket'] as bool,
       meetAt: DateTime.parse(json['meet_at'] as String),
-      createdAt: DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
       basketEndTime: json['basket_end_time'] == null
           ? null
           : DateTime.parse(json['basket_end_time'] as String),
@@ -26,8 +27,7 @@ _$MeetModelImpl _$$MeetModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MeetModelImplToJson(_$MeetModelImpl instance) =>
     <String, dynamic>{
-      'meet_id': instance.meet_id,
-      'token': instance.token,
+      'meet_id': instance.meetId,
       'meet_owner_id': instance.meetOwnerId,
       'title': instance.title,
       'description': instance.description,
@@ -36,7 +36,7 @@ Map<String, dynamic> _$$MeetModelImplToJson(_$MeetModelImpl instance) =>
       'meet_is_public': instance.meetIsPublic,
       'contains_basket': instance.containsBasket,
       'meet_at': instance.meetAt.toIso8601String(),
-      'created_at': instance.createdAt.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
       'basket_end_time': instance.basketEndTime?.toIso8601String(),
     };
 

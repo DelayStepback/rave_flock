@@ -9,7 +9,8 @@ part of 'basket_item_model.dart';
 _$BasketItemModelImpl _$$BasketItemModelImplFromJson(
         Map<String, dynamic> json) =>
     _$BasketItemModelImpl(
-      id: json['id'] as String,
+      id: json['id'] as int?,
+      meetId: json['meet_id'] as int,
       title: json['title'] as String,
       cost: json['cost'] as String?,
       createdByUserId: json['created_by_user_id'] as String,
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$BasketItemModelImplToJson(
         _$BasketItemModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'meet_id': instance.meetId,
       'title': instance.title,
       'cost': instance.cost,
       'created_by_user_id': instance.createdByUserId,

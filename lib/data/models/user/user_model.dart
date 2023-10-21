@@ -13,7 +13,7 @@ class UserModel with _$UserModel {
 
   factory UserModel({
     @JsonKey(name: 'user_id') required String userId,
-    required int token,
+    int? token,
     String? email,
     String? username,
     String? nickname,

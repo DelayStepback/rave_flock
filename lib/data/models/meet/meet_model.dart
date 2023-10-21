@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../common/constants/enums/meet_status_enum.dart';
 import '../../../common/constants/enums/user_privacy_enum.dart';
-import '../basket/basket_model.dart';
 
 part 'meet_model.freezed.dart';
 
@@ -14,8 +13,7 @@ class MeetModel with _$MeetModel {
 
   factory MeetModel({
 
-    required String meet_id,
-    required int token,
+    @JsonKey(name: 'meet_id') int? meetId,
     @JsonKey(name: 'meet_owner_id') required String meetOwnerId,
     required String title,
     String? description,
@@ -24,7 +22,7 @@ class MeetModel with _$MeetModel {
     @JsonKey(name: 'meet_is_public') required bool meetIsPublic,
     @JsonKey(name: 'contains_basket') required bool containsBasket,
     @JsonKey(name: 'meet_at') required DateTime meetAt,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'basket_end_time') DateTime? basketEndTime,
   }) = _MeetModel;
 

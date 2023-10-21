@@ -20,8 +20,8 @@ MeetModel _$MeetModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MeetModel {
-  String get meet_id => throw _privateConstructorUsedError;
-  int get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'meet_id')
+  int? get meetId => throw _privateConstructorUsedError;
   @JsonKey(name: 'meet_owner_id')
   String get meetOwnerId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ mixin _$MeetModel {
   @JsonKey(name: 'meet_at')
   DateTime get meetAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'basket_end_time')
   DateTime? get basketEndTime => throw _privateConstructorUsedError;
 
@@ -51,8 +51,7 @@ abstract class $MeetModelCopyWith<$Res> {
       _$MeetModelCopyWithImpl<$Res, MeetModel>;
   @useResult
   $Res call(
-      {String meet_id,
-      int token,
+      {@JsonKey(name: 'meet_id') int? meetId,
       @JsonKey(name: 'meet_owner_id') String meetOwnerId,
       String title,
       String? description,
@@ -61,7 +60,7 @@ abstract class $MeetModelCopyWith<$Res> {
       @JsonKey(name: 'meet_is_public') bool meetIsPublic,
       @JsonKey(name: 'contains_basket') bool containsBasket,
       @JsonKey(name: 'meet_at') DateTime meetAt,
-      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'basket_end_time') DateTime? basketEndTime});
 }
 
@@ -78,8 +77,7 @@ class _$MeetModelCopyWithImpl<$Res, $Val extends MeetModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? meet_id = null,
-    Object? token = null,
+    Object? meetId = freezed,
     Object? meetOwnerId = null,
     Object? title = null,
     Object? description = freezed,
@@ -88,18 +86,14 @@ class _$MeetModelCopyWithImpl<$Res, $Val extends MeetModel>
     Object? meetIsPublic = null,
     Object? containsBasket = null,
     Object? meetAt = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? basketEndTime = freezed,
   }) {
     return _then(_value.copyWith(
-      meet_id: null == meet_id
-          ? _value.meet_id
-          : meet_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as int,
+      meetId: freezed == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int?,
       meetOwnerId: null == meetOwnerId
           ? _value.meetOwnerId
           : meetOwnerId // ignore: cast_nullable_to_non_nullable
@@ -132,10 +126,10 @@ class _$MeetModelCopyWithImpl<$Res, $Val extends MeetModel>
           ? _value.meetAt
           : meetAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       basketEndTime: freezed == basketEndTime
           ? _value.basketEndTime
           : basketEndTime // ignore: cast_nullable_to_non_nullable
@@ -153,8 +147,7 @@ abstract class _$$MeetModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String meet_id,
-      int token,
+      {@JsonKey(name: 'meet_id') int? meetId,
       @JsonKey(name: 'meet_owner_id') String meetOwnerId,
       String title,
       String? description,
@@ -163,7 +156,7 @@ abstract class _$$MeetModelImplCopyWith<$Res>
       @JsonKey(name: 'meet_is_public') bool meetIsPublic,
       @JsonKey(name: 'contains_basket') bool containsBasket,
       @JsonKey(name: 'meet_at') DateTime meetAt,
-      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'basket_end_time') DateTime? basketEndTime});
 }
 
@@ -178,8 +171,7 @@ class __$$MeetModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? meet_id = null,
-    Object? token = null,
+    Object? meetId = freezed,
     Object? meetOwnerId = null,
     Object? title = null,
     Object? description = freezed,
@@ -188,18 +180,14 @@ class __$$MeetModelImplCopyWithImpl<$Res>
     Object? meetIsPublic = null,
     Object? containsBasket = null,
     Object? meetAt = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? basketEndTime = freezed,
   }) {
     return _then(_$MeetModelImpl(
-      meet_id: null == meet_id
-          ? _value.meet_id
-          : meet_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as int,
+      meetId: freezed == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int?,
       meetOwnerId: null == meetOwnerId
           ? _value.meetOwnerId
           : meetOwnerId // ignore: cast_nullable_to_non_nullable
@@ -232,10 +220,10 @@ class __$$MeetModelImplCopyWithImpl<$Res>
           ? _value.meetAt
           : meetAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       basketEndTime: freezed == basketEndTime
           ? _value.basketEndTime
           : basketEndTime // ignore: cast_nullable_to_non_nullable
@@ -248,8 +236,7 @@ class __$$MeetModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MeetModelImpl extends _MeetModel {
   _$MeetModelImpl(
-      {required this.meet_id,
-      required this.token,
+      {@JsonKey(name: 'meet_id') this.meetId,
       @JsonKey(name: 'meet_owner_id') required this.meetOwnerId,
       required this.title,
       this.description,
@@ -258,7 +245,7 @@ class _$MeetModelImpl extends _MeetModel {
       @JsonKey(name: 'meet_is_public') required this.meetIsPublic,
       @JsonKey(name: 'contains_basket') required this.containsBasket,
       @JsonKey(name: 'meet_at') required this.meetAt,
-      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'basket_end_time') this.basketEndTime})
       : super._();
 
@@ -266,9 +253,8 @@ class _$MeetModelImpl extends _MeetModel {
       _$$MeetModelImplFromJson(json);
 
   @override
-  final String meet_id;
-  @override
-  final int token;
+  @JsonKey(name: 'meet_id')
+  final int? meetId;
   @override
   @JsonKey(name: 'meet_owner_id')
   final String meetOwnerId;
@@ -291,14 +277,14 @@ class _$MeetModelImpl extends _MeetModel {
   final DateTime meetAt;
   @override
   @JsonKey(name: 'created_at')
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
   @JsonKey(name: 'basket_end_time')
   final DateTime? basketEndTime;
 
   @override
   String toString() {
-    return 'MeetModel(meet_id: $meet_id, token: $token, meetOwnerId: $meetOwnerId, title: $title, description: $description, status: $status, location: $location, meetIsPublic: $meetIsPublic, containsBasket: $containsBasket, meetAt: $meetAt, createdAt: $createdAt, basketEndTime: $basketEndTime)';
+    return 'MeetModel(meetId: $meetId, meetOwnerId: $meetOwnerId, title: $title, description: $description, status: $status, location: $location, meetIsPublic: $meetIsPublic, containsBasket: $containsBasket, meetAt: $meetAt, createdAt: $createdAt, basketEndTime: $basketEndTime)';
   }
 
   @override
@@ -306,8 +292,7 @@ class _$MeetModelImpl extends _MeetModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MeetModelImpl &&
-            (identical(other.meet_id, meet_id) || other.meet_id == meet_id) &&
-            (identical(other.token, token) || other.token == token) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
             (identical(other.meetOwnerId, meetOwnerId) ||
                 other.meetOwnerId == meetOwnerId) &&
             (identical(other.title, title) || other.title == title) &&
@@ -331,8 +316,7 @@ class _$MeetModelImpl extends _MeetModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      meet_id,
-      token,
+      meetId,
       meetOwnerId,
       title,
       description,
@@ -360,8 +344,7 @@ class _$MeetModelImpl extends _MeetModel {
 
 abstract class _MeetModel extends MeetModel {
   factory _MeetModel(
-          {required final String meet_id,
-          required final int token,
+          {@JsonKey(name: 'meet_id') final int? meetId,
           @JsonKey(name: 'meet_owner_id') required final String meetOwnerId,
           required final String title,
           final String? description,
@@ -370,7 +353,7 @@ abstract class _MeetModel extends MeetModel {
           @JsonKey(name: 'meet_is_public') required final bool meetIsPublic,
           @JsonKey(name: 'contains_basket') required final bool containsBasket,
           @JsonKey(name: 'meet_at') required final DateTime meetAt,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
           @JsonKey(name: 'basket_end_time') final DateTime? basketEndTime}) =
       _$MeetModelImpl;
   _MeetModel._() : super._();
@@ -379,9 +362,8 @@ abstract class _MeetModel extends MeetModel {
       _$MeetModelImpl.fromJson;
 
   @override
-  String get meet_id;
-  @override
-  int get token;
+  @JsonKey(name: 'meet_id')
+  int? get meetId;
   @override
   @JsonKey(name: 'meet_owner_id')
   String get meetOwnerId;
@@ -404,7 +386,7 @@ abstract class _MeetModel extends MeetModel {
   DateTime get meetAt;
   @override
   @JsonKey(name: 'created_at')
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   @JsonKey(name: 'basket_end_time')
   DateTime? get basketEndTime;

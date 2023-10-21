@@ -22,7 +22,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
-  int get token => throw _privateConstructorUsedError;
+  int? get token => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user_id') String userId,
-      int token,
+      int? token,
       String? email,
       String? username,
       String? nickname,
@@ -78,7 +78,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? userId = null,
-    Object? token = null,
+    Object? token = freezed,
     Object? email = freezed,
     Object? username = freezed,
     Object? nickname = freezed,
@@ -95,10 +95,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user_id') String userId,
-      int token,
+      int? token,
       String? email,
       String? username,
       String? nickname,
@@ -178,7 +178,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
-    Object? token = null,
+    Object? token = freezed,
     Object? email = freezed,
     Object? username = freezed,
     Object? nickname = freezed,
@@ -195,10 +195,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -248,7 +248,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 class _$UserModelImpl extends _UserModel {
   _$UserModelImpl(
       {@JsonKey(name: 'user_id') required this.userId,
-      required this.token,
+      this.token,
       this.email,
       this.username,
       this.nickname,
@@ -268,7 +268,7 @@ class _$UserModelImpl extends _UserModel {
   @JsonKey(name: 'user_id')
   final String userId;
   @override
-  final int token;
+  final int? token;
   @override
   final String? email;
   @override
@@ -360,7 +360,7 @@ class _$UserModelImpl extends _UserModel {
 abstract class _UserModel extends UserModel {
   factory _UserModel(
       {@JsonKey(name: 'user_id') required final String userId,
-      required final int token,
+      final int? token,
       final String? email,
       final String? username,
       final String? nickname,
@@ -380,7 +380,7 @@ abstract class _UserModel extends UserModel {
   @JsonKey(name: 'user_id')
   String get userId;
   @override
-  int get token;
+  int? get token;
   @override
   String? get email;
   @override

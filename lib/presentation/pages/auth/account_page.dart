@@ -1,7 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart';
+import 'package:rave_flock/common/constants/enums/meet_status_enum.dart';
 import 'package:rave_flock/common/constants/enums/user_fields_enum.dart';
+import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
+import 'package:rave_flock/data/models/guest/guest_model.dart';
+import 'package:rave_flock/data/models/meet/meet_model.dart';
+import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/auth_service.dart';
 import 'package:rave_flock/main.dart';
@@ -47,15 +52,31 @@ class _AccountPageState extends State<AccountPage> {
           ),
           TextButton(
             onPressed: () async {
-              UserRepositorySupabaseImpl us = UserRepositorySupabaseImpl();
-
-              us.updateUserField(UserFieldsEnum.mobile, '8999999999', userId);
+              MeetModel meetModel = MeetModel(
+                meetOwnerId: userId,
+                title: 'Первый сбор :000',
+                status: MeetStatusEnum.willBe,
+                meetIsPublic: false,
+                containsBasket: false,
+                meetAt: DateTime.now(),
+              );
+              MeetRepositorySupabaseImpl meetRepositorySupabaseImpl =
+                  MeetRepositorySupabaseImpl();
+              meetRepositorySupabaseImpl.addMeet(meetModel);
               // us.updateUsername('username11111', userId);
               // final data = await supabase.from('users').select('*').eq('user_id', '08d2cff0-2e3c-47e8-8927-59c56dbe286f').maybeSingle();
 
               // print(UserModel.fromJson(data));
             },
-            child: Text('testing button'),
+            child: Text('create meet mock'),
+          ),
+          TextButton(
+            onPressed: () async {
+              MeetRepositorySupabaseImpl meetRepositorySupabaseImpl =
+                  MeetRepositorySupabaseImpl();
+              meetRepositorySupabaseImpl.userUseThisItem(true, 5, userId);
+            },
+            child: Text('userUseThisItem'),
           ),
           TextButton(
             onPressed: () async {
