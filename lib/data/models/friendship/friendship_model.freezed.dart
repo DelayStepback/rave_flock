@@ -20,15 +20,11 @@ FriendshipModel _$FriendshipModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FriendshipModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_source_id')
   String get userSourceId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_target_id')
   String get userTargetId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_source_tags')
-  List<String> get userSourceTags => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_target_tags')
-  List<String> get userTargetTags => throw _privateConstructorUsedError;
   @JsonKey(name: 'request_date')
   DateTime get requestDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'approve_date')
@@ -48,11 +44,9 @@ abstract class $FriendshipModelCopyWith<$Res> {
       _$FriendshipModelCopyWithImpl<$Res, FriendshipModel>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       @JsonKey(name: 'user_source_id') String userSourceId,
       @JsonKey(name: 'user_target_id') String userTargetId,
-      @JsonKey(name: 'user_source_tags') List<String> userSourceTags,
-      @JsonKey(name: 'user_target_tags') List<String> userTargetTags,
       @JsonKey(name: 'request_date') DateTime requestDate,
       @JsonKey(name: 'approve_date') DateTime? approveDate,
       FriendshipStatusEnum status});
@@ -74,8 +68,6 @@ class _$FriendshipModelCopyWithImpl<$Res, $Val extends FriendshipModel>
     Object? id = null,
     Object? userSourceId = null,
     Object? userTargetId = null,
-    Object? userSourceTags = null,
-    Object? userTargetTags = null,
     Object? requestDate = null,
     Object? approveDate = freezed,
     Object? status = null,
@@ -84,7 +76,7 @@ class _$FriendshipModelCopyWithImpl<$Res, $Val extends FriendshipModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       userSourceId: null == userSourceId
           ? _value.userSourceId
           : userSourceId // ignore: cast_nullable_to_non_nullable
@@ -93,14 +85,6 @@ class _$FriendshipModelCopyWithImpl<$Res, $Val extends FriendshipModel>
           ? _value.userTargetId
           : userTargetId // ignore: cast_nullable_to_non_nullable
               as String,
-      userSourceTags: null == userSourceTags
-          ? _value.userSourceTags
-          : userSourceTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      userTargetTags: null == userTargetTags
-          ? _value.userTargetTags
-          : userTargetTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       requestDate: null == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -126,11 +110,9 @@ abstract class _$$FriendshipModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       @JsonKey(name: 'user_source_id') String userSourceId,
       @JsonKey(name: 'user_target_id') String userTargetId,
-      @JsonKey(name: 'user_source_tags') List<String> userSourceTags,
-      @JsonKey(name: 'user_target_tags') List<String> userTargetTags,
       @JsonKey(name: 'request_date') DateTime requestDate,
       @JsonKey(name: 'approve_date') DateTime? approveDate,
       FriendshipStatusEnum status});
@@ -150,8 +132,6 @@ class __$$FriendshipModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? userSourceId = null,
     Object? userTargetId = null,
-    Object? userSourceTags = null,
-    Object? userTargetTags = null,
     Object? requestDate = null,
     Object? approveDate = freezed,
     Object? status = null,
@@ -160,7 +140,7 @@ class __$$FriendshipModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       userSourceId: null == userSourceId
           ? _value.userSourceId
           : userSourceId // ignore: cast_nullable_to_non_nullable
@@ -169,14 +149,6 @@ class __$$FriendshipModelImplCopyWithImpl<$Res>
           ? _value.userTargetId
           : userTargetId // ignore: cast_nullable_to_non_nullable
               as String,
-      userSourceTags: null == userSourceTags
-          ? _value._userSourceTags
-          : userSourceTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      userTargetTags: null == userTargetTags
-          ? _value._userTargetTags
-          : userTargetTags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       requestDate: null == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -200,46 +172,22 @@ class _$FriendshipModelImpl extends _FriendshipModel {
       {required this.id,
       @JsonKey(name: 'user_source_id') required this.userSourceId,
       @JsonKey(name: 'user_target_id') required this.userTargetId,
-      @JsonKey(name: 'user_source_tags')
-      final List<String> userSourceTags = const [],
-      @JsonKey(name: 'user_target_tags')
-      final List<String> userTargetTags = const [],
       @JsonKey(name: 'request_date') required this.requestDate,
       @JsonKey(name: 'approve_date') this.approveDate,
       required this.status})
-      : _userSourceTags = userSourceTags,
-        _userTargetTags = userTargetTags,
-        super._();
+      : super._();
 
   factory _$FriendshipModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FriendshipModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   @JsonKey(name: 'user_source_id')
   final String userSourceId;
   @override
   @JsonKey(name: 'user_target_id')
   final String userTargetId;
-  final List<String> _userSourceTags;
-  @override
-  @JsonKey(name: 'user_source_tags')
-  List<String> get userSourceTags {
-    if (_userSourceTags is EqualUnmodifiableListView) return _userSourceTags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userSourceTags);
-  }
-
-  final List<String> _userTargetTags;
-  @override
-  @JsonKey(name: 'user_target_tags')
-  List<String> get userTargetTags {
-    if (_userTargetTags is EqualUnmodifiableListView) return _userTargetTags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userTargetTags);
-  }
-
   @override
   @JsonKey(name: 'request_date')
   final DateTime requestDate;
@@ -251,7 +199,7 @@ class _$FriendshipModelImpl extends _FriendshipModel {
 
   @override
   String toString() {
-    return 'FriendshipModel(id: $id, userSourceId: $userSourceId, userTargetId: $userTargetId, userSourceTags: $userSourceTags, userTargetTags: $userTargetTags, requestDate: $requestDate, approveDate: $approveDate, status: $status)';
+    return 'FriendshipModel(id: $id, userSourceId: $userSourceId, userTargetId: $userTargetId, requestDate: $requestDate, approveDate: $approveDate, status: $status)';
   }
 
   @override
@@ -264,10 +212,6 @@ class _$FriendshipModelImpl extends _FriendshipModel {
                 other.userSourceId == userSourceId) &&
             (identical(other.userTargetId, userTargetId) ||
                 other.userTargetId == userTargetId) &&
-            const DeepCollectionEquality()
-                .equals(other._userSourceTags, _userSourceTags) &&
-            const DeepCollectionEquality()
-                .equals(other._userTargetTags, _userTargetTags) &&
             (identical(other.requestDate, requestDate) ||
                 other.requestDate == requestDate) &&
             (identical(other.approveDate, approveDate) ||
@@ -277,16 +221,8 @@ class _$FriendshipModelImpl extends _FriendshipModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      userSourceId,
-      userTargetId,
-      const DeepCollectionEquality().hash(_userSourceTags),
-      const DeepCollectionEquality().hash(_userTargetTags),
-      requestDate,
-      approveDate,
-      status);
+  int get hashCode => Object.hash(runtimeType, id, userSourceId, userTargetId,
+      requestDate, approveDate, status);
 
   @JsonKey(ignore: true)
   @override
@@ -305,11 +241,9 @@ class _$FriendshipModelImpl extends _FriendshipModel {
 
 abstract class _FriendshipModel extends FriendshipModel {
   factory _FriendshipModel(
-      {required final String id,
+      {required final int id,
       @JsonKey(name: 'user_source_id') required final String userSourceId,
       @JsonKey(name: 'user_target_id') required final String userTargetId,
-      @JsonKey(name: 'user_source_tags') final List<String> userSourceTags,
-      @JsonKey(name: 'user_target_tags') final List<String> userTargetTags,
       @JsonKey(name: 'request_date') required final DateTime requestDate,
       @JsonKey(name: 'approve_date') final DateTime? approveDate,
       required final FriendshipStatusEnum status}) = _$FriendshipModelImpl;
@@ -319,19 +253,13 @@ abstract class _FriendshipModel extends FriendshipModel {
       _$FriendshipModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   @JsonKey(name: 'user_source_id')
   String get userSourceId;
   @override
   @JsonKey(name: 'user_target_id')
   String get userTargetId;
-  @override
-  @JsonKey(name: 'user_source_tags')
-  List<String> get userSourceTags;
-  @override
-  @JsonKey(name: 'user_target_tags')
-  List<String> get userTargetTags;
   @override
   @JsonKey(name: 'request_date')
   DateTime get requestDate;

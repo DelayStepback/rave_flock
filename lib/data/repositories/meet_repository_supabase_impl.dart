@@ -87,8 +87,6 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
 
   @override
   Future<void> deleteMeet(int meetId) async {
-    await supabase.from('basket_items').delete().eq('meet_id', meetId);
-    await supabase.from('guests').delete().eq('meet_id', meetId);
     await supabase.from('meets').delete().eq('meet_id', meetId);
   }
 
@@ -158,11 +156,11 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
     }
   }
 
-  String makeStringForIdArray(List<String> array){
+  String makeStringForIdArray(List<String> array) {
     String total = '';
-    for (var i = 0; i < array.length; i++){
+    for (var i = 0; i < array.length; i++) {
       total += array[i];
-      if (i != array.length - 1){
+      if (i != array.length - 1) {
         total += ',';
       }
     }
@@ -172,7 +170,18 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<void> userUseThisItem(
       bool isTake, int basketItemId, String userId) async {
-
-
+    if (isTake) {
+      await supabase
+          .from('basket_using_item_user_relationship')
+          .upsert({'item_id': basketItemId, 'user_id': userId});
+    } else {
+      if (isTake) {
+        await supabase
+            .from('basket_using_item_user_relationship')
+            .delete()
+            .eq('item_id', basketItemId)
+            .eq('user_id', userId);
+      }
+    }
   }
 }

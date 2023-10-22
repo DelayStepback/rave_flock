@@ -10,11 +10,9 @@ class FriendshipModel with _$FriendshipModel {
   const FriendshipModel._();
 
   factory FriendshipModel({
-    required String id,
+    required int id,
     @JsonKey(name: 'user_source_id') required String userSourceId,
     @JsonKey(name: 'user_target_id') required String userTargetId,
-    @JsonKey(name: 'user_source_tags') @Default([]) List<String> userSourceTags,
-    @JsonKey(name: 'user_target_tags') @Default([]) List<String> userTargetTags,
     @JsonKey(name: 'request_date') required DateTime requestDate,
     @JsonKey(name: 'approve_date') DateTime? approveDate,
     required FriendshipStatusEnum status,

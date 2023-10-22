@@ -6,6 +6,7 @@ import 'package:rave_flock/common/constants/enums/user_fields_enum.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/data/models/guest/guest_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
+import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/auth_service.dart';
@@ -72,11 +73,11 @@ class _AccountPageState extends State<AccountPage> {
           ),
           TextButton(
             onPressed: () async {
-              MeetRepositorySupabaseImpl meetRepositorySupabaseImpl =
-                  MeetRepositorySupabaseImpl();
-              meetRepositorySupabaseImpl.userUseThisItem(true, 5, userId);
+              FriendsRepositorySupabaseImpl friendsRepositorySupabaseImpl =
+              FriendsRepositorySupabaseImpl();
+              print( await friendsRepositorySupabaseImpl.fetchUserFriendships(userId));
             },
-            child: Text('userUseThisItem'),
+            child: Text('fetchUserFriends!!!!!!!'),
           ),
           TextButton(
             onPressed: () async {
