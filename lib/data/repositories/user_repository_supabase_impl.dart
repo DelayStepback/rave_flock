@@ -1,3 +1,4 @@
+import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
 import 'package:rave_flock/common/constants/enums/user_fields_enum.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/domain/repositories/user_repository.dart';
@@ -13,8 +14,7 @@ class UserRepositorySupabaseImpl implements UserRepository {
           .from('users')
           .update({'username': username}).eq('user_id', userId);
     } else {
-      // TODO: exception username already using
-      print('имя уже занято');
+      throw ExceptionsEnum.usernameExists;
     }
   }
 

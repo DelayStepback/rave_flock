@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/constants/enums/user_permission_enum.dart';
 import 'package:rave_flock/common/constants/enums/user_privacy_enum.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
+import 'package:rave_flock/presentation/pages/SetUsernameScreen.dart';
 import 'package:rave_flock/presentation/pages/auth/account_page.dart';
 import 'package:rave_flock/presentation/pages/auth/login_page.dart';
 import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
@@ -43,6 +44,10 @@ final GoRouter _router = GoRouter(
       path: "/homepage",
       builder: (context, state) => const HomePage(),
     ),
+    GoRoute(path: "/setUsername",
+      builder: (context, state) => const SetUsernameScreen(),
+
+    )
   ],
 );
 
