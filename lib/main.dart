@@ -5,6 +5,7 @@ import 'package:rave_flock/common/constants/enums/user_privacy_enum.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/presentation/pages/auth/account_page.dart';
 import 'package:rave_flock/presentation/pages/auth/login_page.dart';
+import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
 import 'package:rave_flock/presentation/pages/splash/splash_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -37,6 +38,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: "/account",
       builder: (context, state) => const AccountPage(),
+    ),
+    GoRoute(
+      path: "/homepage",
+      builder: (context, state) => const HomePage(),
     ),
   ],
 );

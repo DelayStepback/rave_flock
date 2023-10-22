@@ -19,6 +19,11 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   void dispose() {
     _emailController.dispose();
@@ -59,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         final email = _emailController.text.trim();
                         final password = _passwordController.text.trim();
 
-                        await AuthService.signUpWithEmail(email, password).then((value) => context.go("/account"));
+                        await AuthService.signUpWithEmail(email, password).then((value) => context.go("/homepage"));
 
                       } on AuthException catch (error) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -82,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         final email = _emailController.text.trim();
                         final password = _passwordController.text.trim();
 
-                        await AuthService.signInWithEmail(email, password).then((value) => context.go("/account"));
+                        await AuthService.signInWithEmail(email, password).then((value) => context.go("/homepage"));
 
                       } on AuthException catch (error) {
                         ScaffoldMessenger.of(context).showSnackBar(
