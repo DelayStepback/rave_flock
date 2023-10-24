@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
 
 import '../../../main.dart';
+import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
 import '../../bloc/friends_data_bloc/friends_data_state.dart';
 
@@ -12,9 +13,9 @@ class FriendsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context
-        .read<FriendsDataBloc>()
-        .add(FriendsDataEvent.initialize(supabase.auth.currentUser!.id));
+    final userId = AuthService.getUserId();
+
+    context.read<FriendsDataBloc>().add(FriendsDataEvent.initialize(userId!));
     return Scaffold(
       appBar: AppBar(
         title: const Text('my friends'),
@@ -22,22 +23,26 @@ class FriendsPage extends StatelessWidget {
       body: Center(
           child: Column(
         children: [
-          ElevatedButton(onPressed: (){
-            context.push('/homepage/friendsPage/addNewFriendScreen');
-          }, child: Text('add new friend')),
+          ElevatedButton(
+              onPressed: () {
+                context.push('/homepage/friendsPage/addNewFriendScreen');
+              },
+              child: Text('add new friend')),
           BlocBuilder<FriendsDataBloc, FriendsDataState>(
             builder: (context, state) {
               return state.when(init: () {
-                context.read<FriendsDataBloc>().add(
-                    FriendsDataEvent.initialize(supabase.auth.currentUser!.id));
+                context
+                    .read<FriendsDataBloc>()
+                    .add(FriendsDataEvent.initialize(AuthService.getUserId()!));
                 return Text('LOADING');
               }, loaded: (friends) {
                 return Expanded(
                   child: ListView.builder(
-                      itemCount: friends.length,
-                      itemBuilder: (context, index) {
-                        return Text('${friends[index].username}');
-                      }),
+                    itemCount: friends.length,
+                    itemBuilder: (context, index) {
+                      return Text('${friends[index].username}');
+                    },
+                  ),
                 );
               }, error: (e) {
                 return Text('error $e');

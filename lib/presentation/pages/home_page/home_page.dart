@@ -3,13 +3,12 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
-import 'package:rave_flock/main.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import '../../../data/models/meet/meet_model.dart';
-import '../../../domain/auth_service.dart';
+import '../../../services/auth_service.dart';
 import '../../bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,9 +29,10 @@ class HomePage extends StatelessWidget {
 class _HomePageView extends StatelessWidget {
   _HomePageView({super.key});
 
-  String? userIdAuth = supabase.auth.currentUser?.id;
+  final String? userIdAuth = AuthService.getUserId();
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -40,13 +40,6 @@ class _HomePageView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ElevatedButton(
-              onPressed: () {
-                final UserRepositorySupabaseImpl us =
-                UserRepositorySupabaseImpl();
-                us.isUserHaveUsername(userIdAuth!);
-              },
-              child: const Text('test')),
           IconButton(
               onPressed: () {
                 context

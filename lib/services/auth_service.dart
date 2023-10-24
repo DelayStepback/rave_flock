@@ -15,7 +15,11 @@ class AuthService{
         password: password
     );
   }
-  static Future<void> signOut() async{
+  static void signOut() async{
     supabase.auth.signOut();
+  }
+
+  static String? getUserId(){
+    return supabase.auth.currentUser?.id;
   }
 }

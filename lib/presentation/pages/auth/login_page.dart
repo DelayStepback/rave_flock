@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
-import 'package:rave_flock/domain/auth_service.dart';
+import 'package:rave_flock/services/auth_service.dart';
 import 'package:rave_flock/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                               .then(
                             (value) async {
                               final userRep = UserRepositorySupabaseImpl();
-                              final userId = supabase.auth.currentUser?.id;
+                              final userId = AuthService.getUserId();
                               if (userId == null) {
                                 context.go("/login");
                               } else {

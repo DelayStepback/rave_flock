@@ -23,9 +23,6 @@ class FriendRequestsScreen extends StatelessWidget {
 class _FriendRequestsScreen extends StatelessWidget {
   _FriendRequestsScreen({super.key});
 
-
-  final FriendsRepositorySupabaseImpl friendsRepositorySupabaseImpl = FriendsRepositorySupabaseImpl();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +32,7 @@ class _FriendRequestsScreen extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                   init: () {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   },
                   loaded: (friendRequestsEntities) {
                     return Column(
@@ -44,7 +41,7 @@ class _FriendRequestsScreen extends StatelessWidget {
                           onPressed: () {
                             context.pop();
                           },
-                          child: Text('back'),
+                          child: const Text('back'),
                         ),
                         ListView.builder(
                             shrinkWrap: true,
@@ -53,21 +50,19 @@ class _FriendRequestsScreen extends StatelessWidget {
                               final frienshipEntity = friendRequestsEntities[index];
                               return Row(
                                 children: [
-                                  Text('${frienshipEntity.sourceUserUsername}'),
+                                  Text(frienshipEntity.sourceUserUsername),
                                   ElevatedButton(onPressed: () {
                                     BlocProvider.of<FriendRequestsBloc>(context)
                                         .add(FriendRequestsAcceptEvent(
                                         frienshipEntity.id));
-                                    // TODO:
-
-                                  }, child: Text('Accept')),
+                                  }, child: const Text('Accept')),
                                   ElevatedButton(
                                       onPressed: () {
                                         BlocProvider.of<FriendRequestsBloc>(
                                             context).add(
                                             FriendRequestsDenyEvent(
                                                 frienshipEntity.id));
-                                      }, child: Text('Deny')),
+                                      }, child: const Text('Deny')),
 
                                 ],
                               );

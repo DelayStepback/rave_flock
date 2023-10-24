@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
 import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
-import 'package:rave_flock/main.dart';
+import 'package:rave_flock/domain/repositories/friends_repository.dart';
+import 'package:rave_flock/services/auth_service.dart';
 
 class AddNewFriendScreen extends StatefulWidget {
   const AddNewFriendScreen({super.key});
@@ -19,28 +21,26 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('add new friend'),
+        title: const Text('add new friend'),
       ),
       body: Column(
         children: [
           TextFormField(
             controller: _usernameController,
-            decoration: InputDecoration(label: Text('New friend username')),
+            decoration: const InputDecoration(label: Text('New friend username')),
           ),
-          fetching? CircularProgressIndicator() :ElevatedButton(
+          fetching? const CircularProgressIndicator() :ElevatedButton(
               onPressed: () async {
-                FriendsRepositorySupabaseImpl friendsRep =
-                    FriendsRepositorySupabaseImpl();
                 try{
                   setState(() {
                     fetching = true;
                   });
-                  await friendsRep
-                      .sendARequest(supabase.auth.currentUser!.id,
+                  await GetIt.I<FriendsRepository>()
+                      .sendARequest(AuthService.getUserId()!,
                       _usernameController.text.trim())
                       .then((value) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('заявка отправлена'),
                       ),
                     );
@@ -56,29 +56,30 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                  });
                   switch(e){
                     case ExceptionsEnum.usernameNotFound:
+                      // TODO: SHOW DIALOG instead SnackBar
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text('username not found'),
                         ),
                       );
                       break;
                     case ExceptionsEnum.requestAlreadySend:
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text('request already send'),
                         ),
                       );
                       break;
                     case ExceptionsEnum.alreadyYourFriend:
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text('already your friend'),
                         ),
                       );
                       break;
                     case ExceptionsEnum.cannotAddYourself:
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text('cannot add yourself'),
                         ),
                       );
@@ -86,7 +87,7 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                   }
                }
               },
-              child: Text('добавить в друзья'))
+              child: const Text('добавить в друзья'))
         ],
       ),
     );
