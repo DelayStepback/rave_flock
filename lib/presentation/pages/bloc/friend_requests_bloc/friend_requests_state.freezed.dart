@@ -19,21 +19,22 @@ mixin _$FriendRequestsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<FriendshipModel> allFriendRequests) loaded,
+    required TResult Function(List<FriendshipRequestEntity> friendshipRequests)
+        loaded,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult? Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -119,7 +120,8 @@ class _$FriendRequestsInitImpl implements _FriendRequestsInit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<FriendshipModel> allFriendRequests) loaded,
+    required TResult Function(List<FriendshipRequestEntity> friendshipRequests)
+        loaded,
     required TResult Function(String error) error,
   }) {
     return init();
@@ -129,7 +131,7 @@ class _$FriendRequestsInitImpl implements _FriendRequestsInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult? Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult? Function(String error)? error,
   }) {
     return init?.call();
@@ -139,7 +141,7 @@ class _$FriendRequestsInitImpl implements _FriendRequestsInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -194,7 +196,7 @@ abstract class _$$FriendRequestsLoadedImplCopyWith<$Res> {
           $Res Function(_$FriendRequestsLoadedImpl) then) =
       __$$FriendRequestsLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<FriendshipModel> allFriendRequests});
+  $Res call({List<FriendshipRequestEntity> friendshipRequests});
 }
 
 /// @nodoc
@@ -208,13 +210,13 @@ class __$$FriendRequestsLoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? allFriendRequests = null,
+    Object? friendshipRequests = null,
   }) {
     return _then(_$FriendRequestsLoadedImpl(
-      allFriendRequests: null == allFriendRequests
-          ? _value._allFriendRequests
-          : allFriendRequests // ignore: cast_nullable_to_non_nullable
-              as List<FriendshipModel>,
+      friendshipRequests: null == friendshipRequests
+          ? _value._friendshipRequests
+          : friendshipRequests // ignore: cast_nullable_to_non_nullable
+              as List<FriendshipRequestEntity>,
     ));
   }
 }
@@ -223,21 +225,21 @@ class __$$FriendRequestsLoadedImplCopyWithImpl<$Res>
 
 class _$FriendRequestsLoadedImpl implements _FriendRequestsLoaded {
   const _$FriendRequestsLoadedImpl(
-      {required final List<FriendshipModel> allFriendRequests})
-      : _allFriendRequests = allFriendRequests;
+      {required final List<FriendshipRequestEntity> friendshipRequests})
+      : _friendshipRequests = friendshipRequests;
 
-  final List<FriendshipModel> _allFriendRequests;
+  final List<FriendshipRequestEntity> _friendshipRequests;
   @override
-  List<FriendshipModel> get allFriendRequests {
-    if (_allFriendRequests is EqualUnmodifiableListView)
-      return _allFriendRequests;
+  List<FriendshipRequestEntity> get friendshipRequests {
+    if (_friendshipRequests is EqualUnmodifiableListView)
+      return _friendshipRequests;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_allFriendRequests);
+    return EqualUnmodifiableListView(_friendshipRequests);
   }
 
   @override
   String toString() {
-    return 'FriendRequestsState.loaded(allFriendRequests: $allFriendRequests)';
+    return 'FriendRequestsState.loaded(friendshipRequests: $friendshipRequests)';
   }
 
   @override
@@ -246,12 +248,12 @@ class _$FriendRequestsLoadedImpl implements _FriendRequestsLoaded {
         (other.runtimeType == runtimeType &&
             other is _$FriendRequestsLoadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._allFriendRequests, _allFriendRequests));
+                .equals(other._friendshipRequests, _friendshipRequests));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_allFriendRequests));
+      runtimeType, const DeepCollectionEquality().hash(_friendshipRequests));
 
   @JsonKey(ignore: true)
   @override
@@ -265,32 +267,33 @@ class _$FriendRequestsLoadedImpl implements _FriendRequestsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<FriendshipModel> allFriendRequests) loaded,
+    required TResult Function(List<FriendshipRequestEntity> friendshipRequests)
+        loaded,
     required TResult Function(String error) error,
   }) {
-    return loaded(allFriendRequests);
+    return loaded(friendshipRequests);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult? Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult? Function(String error)? error,
   }) {
-    return loaded?.call(allFriendRequests);
+    return loaded?.call(friendshipRequests);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(allFriendRequests);
+      return loaded(friendshipRequests);
     }
     return orElse();
   }
@@ -332,10 +335,10 @@ class _$FriendRequestsLoadedImpl implements _FriendRequestsLoaded {
 
 abstract class _FriendRequestsLoaded implements FriendRequestsState {
   const factory _FriendRequestsLoaded(
-          {required final List<FriendshipModel> allFriendRequests}) =
+          {required final List<FriendshipRequestEntity> friendshipRequests}) =
       _$FriendRequestsLoadedImpl;
 
-  List<FriendshipModel> get allFriendRequests;
+  List<FriendshipRequestEntity> get friendshipRequests;
   @JsonKey(ignore: true)
   _$$FriendRequestsLoadedImplCopyWith<_$FriendRequestsLoadedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -407,7 +410,8 @@ class _$FriendRequestsErrorImpl implements _FriendRequestsError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<FriendshipModel> allFriendRequests) loaded,
+    required TResult Function(List<FriendshipRequestEntity> friendshipRequests)
+        loaded,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -417,7 +421,7 @@ class _$FriendRequestsErrorImpl implements _FriendRequestsError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult? Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -427,7 +431,7 @@ class _$FriendRequestsErrorImpl implements _FriendRequestsError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<FriendshipModel> allFriendRequests)? loaded,
+    TResult Function(List<FriendshipRequestEntity> friendshipRequests)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {

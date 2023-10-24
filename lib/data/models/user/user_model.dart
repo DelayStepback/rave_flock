@@ -20,7 +20,7 @@ class UserModel with _$UserModel {
     String? location,
     String? mobile,
     @JsonKey(name: 'profile_description') String? profileDescription,
-    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
     @JsonKey(name: 'user_privacy')
     required UserPrivacyEnum userPrivacy,
     @JsonKey(name: 'created_at') required DateTime createdAt,

@@ -14,6 +14,7 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     on<MeetDataInitializeEvent>(_onMeetDataInitializeEvent);
   }
   Future<void> _onMeetDataInitializeEvent(MeetDataInitializeEvent event, emit) async {
+    // TODO: delete
     await Future.delayed(Duration(seconds: 5));
     try{
       final meets = await _meetRepository.fetchUserMeets(event.userId);

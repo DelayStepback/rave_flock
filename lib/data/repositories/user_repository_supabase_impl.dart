@@ -83,4 +83,16 @@ class UserRepositorySupabaseImpl implements UserRepository {
         break;
     }
   }
+
+  @override
+  Future<bool> isUserHaveUsername(String userId) async{
+    try {
+      final data = await supabase.from('users').select('username').eq('user_id', userId).maybeSingle();
+      return data['username'] != null;
+    }
+    catch(e){
+      throw ExceptionsEnum.usernameNotFound;
+    }
+
+  }
 }

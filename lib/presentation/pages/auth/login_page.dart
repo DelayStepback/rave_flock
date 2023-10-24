@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
+import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/auth_service.dart';
 import 'package:rave_flock/main.dart';
-import 'package:rave_flock/presentation/check_connectivity_screen/check_connectivity_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../screens/check_connectivity_screen/check_connectivity_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -91,7 +93,23 @@ class _LoginPageState extends State<LoginPage> {
                           final password = _passwordController.text.trim();
 
                           await AuthService.signInWithEmail(email, password)
-                              .then((value) => context.go("/homepage"));
+                              .then(
+                            (value) async {
+                              final userRep = UserRepositorySupabaseImpl();
+                              final userId = supabase.auth.currentUser?.id;
+                              if (userId == null) {
+                                context.go("/login");
+                              } else {
+                                bool checkIfUserHaveUsername =
+                                    await userRep.isUserHaveUsername(userId);
+                                if (checkIfUserHaveUsername) {
+                                  context.go("/homepage");
+                                } else {
+                                  context.go("/setUsername");
+                                }
+                              }
+                            },
+                          );
                         } on AuthException catch (error) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

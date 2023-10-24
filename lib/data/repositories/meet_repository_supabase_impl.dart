@@ -43,7 +43,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
 
   @override
   Future<List<MeetModel>> fetchUserMeets(String userId) async {
-    final data = await supabase.from('guests').select('meets(*)');
+    final data = await supabase.from('guests').select('meets(*)').eq('user_id', userId);
     List<MeetModel> userMeets = [];
     for (var json in data) {
       userMeets.add(MeetModel.fromJson(json['meets']));

@@ -30,8 +30,8 @@ mixin _$UserModel {
   String? get mobile => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_description')
   String? get profileDescription => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image_url')
-  String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
+  String? get avatarUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_privacy')
   UserPrivacyEnum get userPrivacy => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
@@ -58,7 +58,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
-      @JsonKey(name: 'image_url') String? imageUrl,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
       @JsonKey(name: 'user_privacy') UserPrivacyEnum userPrivacy,
       @JsonKey(name: 'created_at') DateTime createdAt,
       UserPermissionEnum permission});
@@ -85,7 +85,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
-    Object? imageUrl = freezed,
+    Object? avatarUrl = freezed,
     Object? userPrivacy = null,
     Object? createdAt = null,
     Object? permission = null,
@@ -123,9 +123,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.profileDescription
           : profileDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       userPrivacy: null == userPrivacy
           ? _value.userPrivacy
@@ -160,7 +160,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
-      @JsonKey(name: 'image_url') String? imageUrl,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
       @JsonKey(name: 'user_privacy') UserPrivacyEnum userPrivacy,
       @JsonKey(name: 'created_at') DateTime createdAt,
       UserPermissionEnum permission});
@@ -185,7 +185,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
-    Object? imageUrl = freezed,
+    Object? avatarUrl = freezed,
     Object? userPrivacy = null,
     Object? createdAt = null,
     Object? permission = null,
@@ -223,9 +223,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.profileDescription
           : profileDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       userPrivacy: null == userPrivacy
           ? _value.userPrivacy
@@ -255,7 +255,7 @@ class _$UserModelImpl extends _UserModel {
       this.location,
       this.mobile,
       @JsonKey(name: 'profile_description') this.profileDescription,
-      @JsonKey(name: 'image_url') this.imageUrl,
+      @JsonKey(name: 'avatar_url') this.avatarUrl,
       @JsonKey(name: 'user_privacy') required this.userPrivacy,
       @JsonKey(name: 'created_at') required this.createdAt,
       required this.permission})
@@ -283,8 +283,8 @@ class _$UserModelImpl extends _UserModel {
   @JsonKey(name: 'profile_description')
   final String? profileDescription;
   @override
-  @JsonKey(name: 'image_url')
-  final String? imageUrl;
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
   @override
   @JsonKey(name: 'user_privacy')
   final UserPrivacyEnum userPrivacy;
@@ -296,7 +296,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, token: $token, email: $email, username: $username, nickname: $nickname, location: $location, mobile: $mobile, profileDescription: $profileDescription, imageUrl: $imageUrl, userPrivacy: $userPrivacy, createdAt: $createdAt, permission: $permission)';
+    return 'UserModel(userId: $userId, token: $token, email: $email, username: $username, nickname: $nickname, location: $location, mobile: $mobile, profileDescription: $profileDescription, avatarUrl: $avatarUrl, userPrivacy: $userPrivacy, createdAt: $createdAt, permission: $permission)';
   }
 
   @override
@@ -316,8 +316,8 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
             (identical(other.profileDescription, profileDescription) ||
                 other.profileDescription == profileDescription) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl) &&
             (identical(other.userPrivacy, userPrivacy) ||
                 other.userPrivacy == userPrivacy) &&
             (identical(other.createdAt, createdAt) ||
@@ -338,7 +338,7 @@ class _$UserModelImpl extends _UserModel {
       location,
       mobile,
       profileDescription,
-      imageUrl,
+      avatarUrl,
       userPrivacy,
       createdAt,
       permission);
@@ -367,7 +367,7 @@ abstract class _UserModel extends UserModel {
       final String? location,
       final String? mobile,
       @JsonKey(name: 'profile_description') final String? profileDescription,
-      @JsonKey(name: 'image_url') final String? imageUrl,
+      @JsonKey(name: 'avatar_url') final String? avatarUrl,
       @JsonKey(name: 'user_privacy') required final UserPrivacyEnum userPrivacy,
       @JsonKey(name: 'created_at') required final DateTime createdAt,
       required final UserPermissionEnum permission}) = _$UserModelImpl;
@@ -395,8 +395,8 @@ abstract class _UserModel extends UserModel {
   @JsonKey(name: 'profile_description')
   String? get profileDescription;
   @override
-  @JsonKey(name: 'image_url')
-  String? get imageUrl;
+  @JsonKey(name: 'avatar_url')
+  String? get avatarUrl;
   @override
   @JsonKey(name: 'user_privacy')
   UserPrivacyEnum get userPrivacy;

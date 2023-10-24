@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
+import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/main.dart';
 import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_event.dart';
@@ -22,13 +23,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FriendRequestsBloc(FriendsRepositorySupabaseImpl()),
-      child: BlocProvider(
-        create: (context) => MeetDataBloc(MeetRepositorySupabaseImpl()),
-        child: _HomePageView(),
-      ),
-    );
+    return _HomePageView();
   }
 }
 
@@ -39,24 +34,33 @@ class _HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(userIdAuth);
     return Scaffold(
       appBar: AppBar(
-        title: Text('home page'),
+        title: const Text('home page'),
       ),
       body: Column(
         children: [
-          IconButton(onPressed: (){
-            context
-                .read<FriendRequestsBloc>()
-                .add(FriendRequestsInitializeEvent(userIdAuth!));
-            context
-                .read<MeetDataBloc>()
-                .add(MeetDataInitializeEvent(userIdAuth!));
-          }, icon: Icon(Icons.refresh)),
+          ElevatedButton(
+              onPressed: () {
+                final UserRepositorySupabaseImpl us =
+                UserRepositorySupabaseImpl();
+                us.isUserHaveUsername(userIdAuth!);
+              },
+              child: const Text('test')),
+          IconButton(
+              onPressed: () {
+                context
+                    .read<FriendRequestsBloc>()
+                    .add(FriendRequestsInitializeEvent(userIdAuth!));
+                context
+                    .read<MeetDataBloc>()
+                    .add(MeetDataInitializeEvent(userIdAuth!));
+              },
+              icon: const Icon(Icons.refresh)),
           Row(
             children: [
-
-              Icon(Icons.notification_important),
+              const Icon(Icons.notification_important),
               BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
                 builder: (context, state) {
                   return state.when(
@@ -70,7 +74,7 @@ class _HomePageView extends StatelessWidget {
                           'LOADING',
                         );
                       },
-                      loaded: (List<FriendshipModel> friendships) {
+                      loaded: (List<FriendshipRequestEntity> friendships) {
                         return Text(friendships.length.toString());
                       },
                       error: (e) => Text('error $e'));
@@ -78,7 +82,7 @@ class _HomePageView extends StatelessWidget {
               )
             ],
           ),
-          Icon(Icons.ac_unit_rounded),
+          const Icon(Icons.ac_unit_rounded),
           BlocBuilder<MeetDataBloc, MeetDataState>(builder: (context, state) {
             return state.when(init: () {
               if (userIdAuth != null) {
@@ -95,21 +99,26 @@ class _HomePageView extends StatelessWidget {
             }, loaded: (List<MeetModel> allMeetData) {
               return Text('$allMeetData');
             }, error: (String error) {
-              return Text('error');
+              return const Text('error');
             });
           }),
-          TextButton(
+          ElevatedButton(
               onPressed: () {
                 context.go('/login');
               },
-              child: Text('login route')),
+              child: const Text('login route')),
+          ElevatedButton(
+              onPressed: () {
+                context.go('/friendRequestsScreen', extra: BlocProvider.of<FriendRequestsBloc>(context));
+              },
+              child: const Text('friend requests screen route')),
           TextButton(
               onPressed: () {
                 AuthService.signOut();
 
                 context.go('/login');
               },
-              child: Text('signOut')),
+              child: const Text('signOut')),
         ],
       ),
     );
