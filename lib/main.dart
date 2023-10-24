@@ -1,60 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rave_flock/presentation/pages/auth/set_username_screen.dart';
-import 'package:rave_flock/presentation/pages/auth/login_page.dart';
-import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_bloc.dart';
-import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_state.dart';
-import 'package:rave_flock/presentation/pages/bloc/meet_data_bloc/meet_data_bloc.dart';
-import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
-import 'package:rave_flock/presentation/pages/splash_page/splash_page.dart';
-import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
+import 'package:get_it/get_it.dart';
+import 'package:rave_flock/injection_container.dart';
+import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'data/repositories/friends_repository_supabase_impl.dart';
-import 'data/repositories/meet_repository_supabase_impl.dart';
-import 'data/repositories/user_repository_supabase_impl.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://clorjymfqklxrzmvkfij.supabase.co',
     anonKey:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsb3JqeW1mcWtseHJ6bXZrZmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc4MjAyOTYsImV4cCI6MjAxMzM5NjI5Nn0.LaA4aIavRjKTxlzez-CvbM3iF56JYHx77XWiR54Lwc0',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsb3JqeW1mcWtseHJ6bXZrZmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc4MjAyOTYsImV4cCI6MjAxMzM5NjI5Nn0.LaA4aIavRjKTxlzez-CvbM3iF56JYHx77XWiR54Lwc0',
     authFlowType: AuthFlowType.pkce,
   );
+
+  initializeDependencies(); // get_it
 
   runApp(const MyApp());
 }
 
 final supabase = Supabase.instance.client;
-
-final GoRouter _router = GoRouter(
-  initialLocation: '/',
-  routes: [
-    GoRoute(
-      path: "/",
-      builder: (context, state) => const SplashPage(),
-    ),
-    GoRoute(
-      path: "/login",
-      builder: (context, state) => const LoginPage(),
-    ),
-    GoRoute(
-      path: "/homepage",
-      builder: (context, state) => const HomePage(),
-    ),
-    GoRoute(
-      path: "/setUsername",
-      builder: (context, state) => const SetUsernameScreen(),
-    ),
-    GoRoute(
-        path: "/friendRequestsScreen",
-        builder: (context, state) {
-          return FriendRequestsScreen();
-        })
-  ],
-);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -64,17 +32,18 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-
-          create: (context) =>
-              FriendRequestsBloc(
-                  FriendsRepositorySupabaseImpl(),
-                  UserRepositorySupabaseImpl()),),
+          create: (context) => GetIt.I<FriendsDataBloc>(),
+        ),
+        // BlocProvider(
+        //   create: (context) => GetIt.I<FriendRequestsBloc>(),
+        // ),
         BlocProvider(
-          create: (context) => MeetDataBloc(MeetRepositorySupabaseImpl()),
+          create: (context) => GetIt.I<MeetDataBloc>(),
         )
       ],
       child: MaterialApp.router(
-        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+        routerConfig: router,
         title: 'Rave Flock',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

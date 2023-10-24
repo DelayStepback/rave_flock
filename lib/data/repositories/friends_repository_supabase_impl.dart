@@ -18,16 +18,13 @@ class FriendsRepositorySupabaseImpl implements FriendsRepository {
       throw ExceptionsEnum.usernameNotFound;
     } else {
       String newFriendId = data['user_id'];
-      final checkIfUserAlreadyRequest = await supabase
-          .from('friendships')
-          .select('status')
-          .eq('user_source_id', userId)
-          .eq('user_target_id', newFriendId)
-          .maybeSingle();
-      if (checkIfUserAlreadyRequest != null) {
-        throw ExceptionsEnum.requestAlreadySend;
+
+      // throw if you add yourself
+      if (userId == newFriendId){
+        throw ExceptionsEnum.cannotAddYourself;
       }
 
+      // fetch if user be requested
       final checkIfUserRequested = await supabase
           .from('friendships')
           .select('status')
@@ -41,6 +38,22 @@ class FriendsRepositorySupabaseImpl implements FriendsRepository {
             .eq('user_source_id', newFriendId)
             .eq('user_target_id', userId);
         throw ExceptionsEnum.alreadyYourFriend;
+      }
+
+      // fetch if user request
+      final checkIfUserAlreadyRequest = await supabase
+          .from('friendships')
+          .select('status')
+          .eq('user_source_id', userId)
+          .eq('user_target_id', newFriendId)
+          .maybeSingle();
+      if (checkIfUserAlreadyRequest != null) {
+        if (checkIfUserAlreadyRequest['status'] == FriendshipStatusEnum.accepted.name){
+          throw ExceptionsEnum.alreadyYourFriend;
+        }
+        else{
+          throw ExceptionsEnum.requestAlreadySend;
+        }
       }
 
       if (checkIfUserRequested == null && checkIfUserAlreadyRequest == null) {
@@ -80,19 +93,27 @@ class FriendsRepositorySupabaseImpl implements FriendsRepository {
   }
 
   @override
-  Future<List<FriendshipModel>> fetchUserFriendships(String userId) async {
-
-    // 1. он соурс, он таргет
+  Future<List<FriendshipModel>> fetchUserAcceptedFriendships(String userId) async {
+    // user is source
     final data = await supabase
         .from('friendships')
         .select('')
-        .eq('user_source_id', userId);
-    List<FriendshipModel> friendsModels= [];
+        .eq('user_source_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
+    List<FriendshipModel> friendsModels = [];
     for (var f in data) {
       friendsModels.add(FriendshipModel.fromJson(f));
     }
+
+    // user is target
+    final data2 = await supabase
+        .from('friendships')
+        .select('')
+        .eq('user_target_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
+    for (var f in data2) {
+      friendsModels.add(FriendshipModel.fromJson(f));
+    }
+
     return friendsModels;
-    // todo:
   }
 
   @override

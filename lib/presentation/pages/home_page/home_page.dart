@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/main.dart';
-import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_bloc.dart';
-import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_event.dart';
-import 'package:rave_flock/presentation/pages/bloc/friend_requests_bloc/friend_requests_state.dart';
-import 'package:rave_flock/presentation/pages/bloc/meet_data_bloc/meet_data_state.dart';
-
-import '../../../data/models/friendship/friendship_model.dart';
+import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
+import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
+import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import '../../../data/models/meet/meet_model.dart';
-import '../../../data/repositories/meet_repository_supabase_impl.dart';
 import '../../../domain/auth_service.dart';
-import '../bloc/meet_data_bloc/meet_data_bloc.dart';
+import '../../bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/meet_data_bloc/meet_data_event.dart';
+import '../../bloc/meet_data_bloc/meet_data_event.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _HomePageView();
+    return BlocProvider(
+      create: (context) => GetIt.I<FriendRequestsBloc>(),
+      child: _HomePageView(),
+    );
   }
 }
 
@@ -34,7 +34,6 @@ class _HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(userIdAuth);
     return Scaffold(
       appBar: AppBar(
         title: const Text('home page'),
@@ -109,9 +108,14 @@ class _HomePageView extends StatelessWidget {
               child: const Text('login route')),
           ElevatedButton(
               onPressed: () {
-                context.go('/friendRequestsScreen', extra: BlocProvider.of<FriendRequestsBloc>(context));
+                context.push('/homepage/friendRequestsScreen');
               },
               child: const Text('friend requests screen route')),
+          ElevatedButton(
+              onPressed: () {
+                context.push('/homepage/friendsPage');
+              },
+              child: const Text('My friends')),
           TextButton(
               onPressed: () {
                 AuthService.signOut();
