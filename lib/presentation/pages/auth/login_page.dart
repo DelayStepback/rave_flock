@@ -1,9 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
+import 'package:rave_flock/common/validation/validation.dart';
+import 'package:rave_flock/common/widget/text_input.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
+import 'package:rave_flock/presentation/pages/auth/widgets/login_button.dart';
+import 'package:rave_flock/presentation/pages/auth/widgets/signup_button.dart';
 import 'package:rave_flock/services/auth_service.dart';
 import 'package:rave_flock/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,6 +23,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Timer? emailDebounceTimer;
+  Timer? passwordDebounceTimer;
+
+  bool _emailValid = true;
+  bool _passwordValid = true;
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -28,108 +39,104 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
+    emailDebounceTimer?.cancel();
+    passwordDebounceTimer?.cancel();
+
     _emailController.dispose();
     _passwordController.dispose();
 
     super.dispose();
   }
 
+  void _onChangePassword(String value) {
+    if (passwordDebounceTimer?.isActive ?? false) {
+      passwordDebounceTimer?.cancel();
+    }
+    passwordDebounceTimer = Timer(
+      const Duration(milliseconds: 500),
+          () {
+        setState(
+              () {
+            _passwordValid =
+                Validation.validatePassword(value) == null;
+          },
+        );
+      },
+    );
+  }
+  void _onChangeEmail(String value) {
+    if (emailDebounceTimer?.isActive ?? false) {
+      emailDebounceTimer?.cancel();
+    }
+    emailDebounceTimer = Timer(
+      const Duration(milliseconds: 500),
+          () {
+        setState(
+              () {
+            _emailValid = Validation.validateEmail(value) == null;
+          },
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return ConnectivityBuilder(builder: (status) {
-      return status != ConnectivityStatus.online
-          ? const CheckConnectivityScreen()
-          : Scaffold(
-              appBar: AppBar(
-                title: const Text('Login'),
+      return
+          // TODO;
+          // status != ConnectivityStatus.online
+          //   ? const CheckConnectivityScreen()
+          //   :
+          Scaffold(
+        appBar: AppBar(
+          title: const Text('Login'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(
+            children: [
+              TextInput(
+                label: 'Email',
+                controller: _emailController,
+                valid: _emailValid,
+                errorText: "Please enter a valid email",
+                onChanged: _onChangeEmail,
+                keyboardType: TextInputType.emailAddress,
+                maxLine: 1,
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ListView(
-                  children: [
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(label: Text('Email')),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration:
-                          const InputDecoration(label: Text('Password')),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        try {
-                          final email = _emailController.text.trim();
-                          final password = _passwordController.text.trim();
-
-                          await AuthService.signUpWithEmail(email, password)
-                              .then((value) => context.go("/setUsername"));
-                        } on AuthException catch (error) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(error.message),
-                            ),
-                          );
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Error, try again'),
-                            ),
-                          );
-                        }
-                      },
-                      child: const Text('sign up'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        try {
-                          final email = _emailController.text.trim();
-                          final password = _passwordController.text.trim();
-
-                          await AuthService.signInWithEmail(email, password)
-                              .then(
-                            (value) async {
-                              final userRep = UserRepositorySupabaseImpl();
-                              final userId = AuthService.getUserId();
-                              if (userId == null) {
-                                context.go("/login");
-                              } else {
-                                bool checkIfUserHaveUsername =
-                                    await userRep.isUserHaveUsername(userId);
-                                if (checkIfUserHaveUsername) {
-                                  context.go("/homepage");
-                                } else {
-                                  context.go("/setUsername");
-                                }
-                              }
-                            },
-                          );
-                        } on AuthException catch (error) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(error.message),
-                            ),
-                          );
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Error, try again'),
-                            ),
-                          );
-                        }
-                      },
-                      child: const Text('login'),
-                    ),
-                  ],
-                ),
+              const SizedBox(
+                height: 12,
               ),
-            );
+              TextInput(
+                label: 'Password',
+                controller: _passwordController,
+                valid: _passwordValid,
+                errorText: "Password must be greater than 5 symbols",
+                onChanged: _onChangePassword,
+                keyboardType: TextInputType.visiblePassword,
+                maxLine: 1,
+              ),
+
+              const SizedBox(
+                height: 12,
+              ),
+              SignUpButton(
+                  emailValid: _emailValid,
+                  passwordValid: _passwordValid,
+                  emailController: _emailController,
+                  passwordController: _passwordController),
+              LoginButton(
+                  emailValid: _emailValid,
+                  passwordValid: _passwordValid,
+                  emailController: _emailController,
+                  passwordController: _passwordController),
+            ],
+          ),
+        ),
+      );
     });
   }
 }
+
+
+

@@ -1,11 +1,15 @@
-
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/presentation/pages/auth/login_page.dart';
 import 'package:rave_flock/presentation/pages/auth/set_username_screen.dart';
 import 'package:rave_flock/presentation/pages/friends_page/friends_page.dart';
 import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
+import 'package:rave_flock/presentation/pages/meet_page/meet_page.dart';
+import 'package:rave_flock/presentation/pages/profile_page/profile_page.dart';
 import 'package:rave_flock/presentation/pages/splash_page/splash_page.dart';
 import 'package:rave_flock/presentation/screens/add_new_friend_screen/add_new_friend_screen.dart';
+import 'package:rave_flock/presentation/screens/create_new_meet_screen/create_new_meet_screen.dart';
+import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -24,12 +28,16 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const SetUsernameScreen(),
     ),
     GoRoute(
+      path: '/errorScreen',
+      builder: (context, state) => const ErrorScreen(),
+    ),
+    GoRoute(
         path: "/homepage",
         builder: (context, state) => const HomePage(),
         routes: [
           GoRoute(
             path: "friendRequestsScreen",
-            builder: (context, state) => FriendRequestsScreen(),
+            builder: (context, state) => const FriendRequestsScreen(),
           ),
           GoRoute(
               path: "friendsPage",
@@ -39,7 +47,26 @@ final GoRouter router = GoRouter(
                   path: "addNewFriendScreen",
                   builder: (context, state) => const AddNewFriendScreen(),
                 ),
-              ])
+              ]),
+          GoRoute(
+            name: 'meetPage',
+            path: "meetPage/:meetId",
+            builder: (context, state) => MeetPage(
+                meetId: int.tryParse(state.pathParameters['meetId']!) ??
+                    0 // TODO 0 не есть хорошо
+                ),
+          ),
+          GoRoute(
+            path: "profilePage",
+            builder: (context, state) => const ProfilePage(),
+          ),
+          GoRoute(
+            path: "createNewMeetScreen",
+            //TODO: для update meet
+            builder: (context, state) => CreateNewMeetScreen(
+              meetModel: state.extra as MeetModel,
+            ),
+          ),
         ]),
   ],
 );

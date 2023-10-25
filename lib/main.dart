@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:rave_flock/common/themes/custom_default_input_theme.dart';
 import 'package:rave_flock/injection_container.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
@@ -10,6 +12,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Supabase.initialize(
     url: 'https://clorjymfqklxrzmvkfij.supabase.co',
     anonKey:
@@ -18,37 +21,40 @@ Future<void> main() async {
   );
 
   initializeDependencies(); // get_it
-
-  runApp(const MyApp());
+  runApp(const ScreenUtilApp());
 }
 
 final supabase = Supabase.instance.client;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ScreenUtilApp extends StatelessWidget {
+  const ScreenUtilApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => GetIt.I<FriendsDataBloc>(),
-        ),
-        // BlocProvider(
-        //   create: (context) => GetIt.I<FriendRequestsBloc>(),
-        // ),
-        BlocProvider(
-          create: (context) => GetIt.I<MeetDataBloc>(),
-        )
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
-        title: 'Rave Flock',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+    return const ScreenUtilInit(
+      designSize: Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MyApp(),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+      title: 'Rave Flock',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        inputDecorationTheme: CustomDefaultInputTheme().theme(),
+        useMaterial3: true,
       ),
     );
   }

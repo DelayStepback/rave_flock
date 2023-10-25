@@ -29,7 +29,9 @@ class FriendRequestsBloc
       List<FriendshipModel> friendships =
           await _friendsRepository.fetchActiveRequests(event.userId);
       // TODO: DELETE THIS
-      await Future.delayed(Duration(seconds:1));
+      await Future.delayed(Duration(seconds:5));
+      print('BLOC: friends requests fetching');
+
 
       List<FriendshipRequestEntity> friendshipRequestsEntities = [];
       for (var friendship in friendships) {
@@ -45,7 +47,7 @@ class FriendRequestsBloc
       emit(FriendRequestsState.loaded(
           friendshipRequests: friendshipRequestsEntities));
     } catch (e) {
-      emit(FriendRequestsState.error(error: e.toString()));
+      // emit(FriendRequestsState.error(error: e.toString()));
     }
   }
 

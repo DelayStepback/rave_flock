@@ -9,6 +9,7 @@ import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_request
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import '../../../data/models/meet/meet_model.dart';
 import '../../../services/auth_service.dart';
+import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
 import '../../bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,10 +20,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I<FriendRequestsBloc>(),
-      child: _HomePageView(),
-    );
+    return MultiBlocProvider(providers: [
+      BlocProvider(
+        create: (context) => GetIt.I<FriendRequestsBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => GetIt.I<MeetDataBloc>(),
+      )
+    ], child: _HomePageView());
   }
 }
 
@@ -32,7 +37,6 @@ class _HomePageView extends StatelessWidget {
   final String? userIdAuth = AuthService.getUserId();
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -56,20 +60,23 @@ class _HomePageView extends StatelessWidget {
               BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
                 builder: (context, state) {
                   return state.when(
-                      init: () {
-                        if (userIdAuth != null) {
-                          context
-                              .read<FriendRequestsBloc>()
-                              .add(FriendRequestsInitializeEvent(userIdAuth!));
-                        }
-                        return const Text(
-                          'LOADING',
-                        );
-                      },
-                      loaded: (List<FriendshipRequestEntity> friendships) {
-                        return Text(friendships.length.toString());
-                      },
-                      error: (e) => Text('error $e'));
+                    init: () {
+                      if (userIdAuth != null) {
+                        context
+                            .read<FriendRequestsBloc>()
+                            .add(FriendRequestsInitializeEvent(userIdAuth!));
+                      }
+                      return const Text(
+                        'LOADING',
+                      );
+                    },
+                    loaded: (List<FriendshipRequestEntity> friendships) {
+                      return Text(friendships.length.toString());
+                    },
+                    error: (e) {
+                      return Text('$e');
+                    },
+                  );
                 },
               )
             ],
@@ -81,19 +88,54 @@ class _HomePageView extends StatelessWidget {
                 context
                     .read<MeetDataBloc>()
                     .add(MeetDataInitializeEvent(userIdAuth!));
-              } else {
-                return const Text('you are not logged! ERROR'); // fix
               }
 
               return const Text(
                 'LOADING',
               );
-            }, loaded: (List<MeetModel> allMeetData) {
-              return Text('$allMeetData');
+            }, loaded: (List<MeetModel> meets) {
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: meets.length,
+                  itemBuilder: (_, index) {
+                    return InkWell(
+                      onTap: () {
+                        context.goNamed('meetPage', pathParameters: {
+                          'meetId': meets[index].meetId.toString()
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            color: Colors.blueGrey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            Text('id: ${meets[index].meetId}'),
+                            Text('title: ${meets[index].title}'),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
             }, error: (String error) {
               return const Text('error');
             });
           }),
+          ElevatedButton(
+              onPressed: () {
+                context.push('/homepage/createNewMeetScreen');
+              },
+              child: const Text('createNewMeetScreen')),
+          ElevatedButton(
+              onPressed: () {
+                context.push('/homepage/profilePage');
+              },
+              child: const Text('profile page')),
           ElevatedButton(
               onPressed: () {
                 context.go('/login');

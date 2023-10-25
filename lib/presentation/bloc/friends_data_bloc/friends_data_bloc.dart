@@ -20,7 +20,9 @@ class FriendsDataBloc
 
   Future<void> _onFriendsDataInitializeEvent(
       FriendsDataInitializeEvent event, emit) async {
-    emit(FriendsDataState.init());
+
+    print('BLOC: friends data data Init + fetching');
+
     try {
       List<FriendshipModel> friendships =
       await _friendsRepository.fetchUserAcceptedFriendships(event.userId);
@@ -32,7 +34,7 @@ class FriendsDataBloc
       }
       emit(FriendsDataState.loaded(friends: friends));
     } catch (e) {
-      emit(FriendsDataState.error(error: e.toString()));
+      // emit(FriendsDataState.error(error: e.toString()));
     }
   }
 

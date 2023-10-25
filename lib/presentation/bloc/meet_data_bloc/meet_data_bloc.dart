@@ -16,12 +16,14 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
   Future<void> _onMeetDataInitializeEvent(MeetDataInitializeEvent event, emit) async {
     // TODO: delete
     await Future.delayed(Duration(seconds: 5));
+    print('BLOC: meet data fetching');
+
     try{
       final meets = await _meetRepository.fetchUserMeets(event.userId);
       emit(MeetDataState.loaded(allMeetData: meets));
     }
     catch(e){
-      emit(MeetDataState.error(error: e.toString()));
+      // emit(MeetDataState.error(error: e.toString()));
     }
   }
 
