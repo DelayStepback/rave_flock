@@ -39,15 +39,7 @@ class FriendsDataBloc
   }
 
   Future<void> _onDeleteFriendEvent(DeleteFriendEvent event, emit) async{
-    // _friendsRepository.denyRequest(event.userId);
-    // final state = this.state;
-    // state.when(init: (){}, loaded: (loaded){
-    //   List<FriendshipRequestEntity> newLoaded = [];
-    //   for (var v in loaded){
-    //     if (v.id != event.id) newLoaded.add(v);
-    //   }
-    //   emit(FriendsDataState.loaded(friendshipRequests: newLoaded));
-    // }, error: (e){});
+
   }
 
 }

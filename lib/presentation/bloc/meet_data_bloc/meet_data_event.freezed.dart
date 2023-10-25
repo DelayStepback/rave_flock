@@ -16,42 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MeetDataEvent {
-  String get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(MeetModel meetModel) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(MeetModel meetModel)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(MeetModel meetModel)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MeetDataEventCopyWith<MeetDataEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +67,6 @@ abstract class $MeetDataEventCopyWith<$Res> {
   factory $MeetDataEventCopyWith(
           MeetDataEvent value, $Res Function(MeetDataEvent) then) =
       _$MeetDataEventCopyWithImpl<$Res, MeetDataEvent>;
-  @useResult
-  $Res call({String userId});
 }
 
 /// @nodoc
@@ -73,29 +78,14 @@ class _$MeetDataEventCopyWithImpl<$Res, $Val extends MeetDataEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$MeetDataInitializeEventImplCopyWith<$Res>
-    implements $MeetDataEventCopyWith<$Res> {
+abstract class _$$MeetDataInitializeEventImplCopyWith<$Res> {
   factory _$$MeetDataInitializeEventImplCopyWith(
           _$MeetDataInitializeEventImpl value,
           $Res Function(_$MeetDataInitializeEventImpl) then) =
       __$$MeetDataInitializeEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String userId});
 }
@@ -158,6 +148,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(MeetModel meetModel) delete,
   }) {
     return initialize(userId);
   }
@@ -166,6 +158,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(MeetModel meetModel)? delete,
   }) {
     return initialize?.call(userId);
   }
@@ -174,6 +168,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(MeetModel meetModel)? delete,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -186,6 +182,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
   }) {
     return initialize(this);
   }
@@ -194,6 +192,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
   }) {
     return initialize?.call(this);
   }
@@ -202,6 +202,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -215,10 +217,312 @@ abstract class MeetDataInitializeEvent implements MeetDataEvent {
   const factory MeetDataInitializeEvent(final String userId) =
       _$MeetDataInitializeEventImpl;
 
-  @override
   String get userId;
-  @override
   @JsonKey(ignore: true)
   _$$MeetDataInitializeEventImplCopyWith<_$MeetDataInitializeEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataAddEventImplCopyWith<$Res> {
+  factory _$$MeetDataAddEventImplCopyWith(_$MeetDataAddEventImpl value,
+          $Res Function(_$MeetDataAddEventImpl) then) =
+      __$$MeetDataAddEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MeetModel meetModel});
+
+  $MeetModelCopyWith<$Res> get meetModel;
+}
+
+/// @nodoc
+class __$$MeetDataAddEventImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataAddEventImpl>
+    implements _$$MeetDataAddEventImplCopyWith<$Res> {
+  __$$MeetDataAddEventImplCopyWithImpl(_$MeetDataAddEventImpl _value,
+      $Res Function(_$MeetDataAddEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meetModel = null,
+  }) {
+    return _then(_$MeetDataAddEventImpl(
+      null == meetModel
+          ? _value.meetModel
+          : meetModel // ignore: cast_nullable_to_non_nullable
+              as MeetModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MeetModelCopyWith<$Res> get meetModel {
+    return $MeetModelCopyWith<$Res>(_value.meetModel, (value) {
+      return _then(_value.copyWith(meetModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataAddEventImpl implements MeetDataAddEvent {
+  const _$MeetDataAddEventImpl(this.meetModel);
+
+  @override
+  final MeetModel meetModel;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.add(meetModel: $meetModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataAddEventImpl &&
+            (identical(other.meetModel, meetModel) ||
+                other.meetModel == meetModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, meetModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataAddEventImplCopyWith<_$MeetDataAddEventImpl> get copyWith =>
+      __$$MeetDataAddEventImplCopyWithImpl<_$MeetDataAddEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(MeetModel meetModel) delete,
+  }) {
+    return add(meetModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(MeetModel meetModel)? delete,
+  }) {
+    return add?.call(meetModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(MeetModel meetModel)? delete,
+    required TResult orElse(),
+  }) {
+    if (add != null) {
+      return add(meetModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+  }) {
+    return add(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+  }) {
+    return add?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    required TResult orElse(),
+  }) {
+    if (add != null) {
+      return add(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataAddEvent implements MeetDataEvent {
+  const factory MeetDataAddEvent(final MeetModel meetModel) =
+      _$MeetDataAddEventImpl;
+
+  MeetModel get meetModel;
+  @JsonKey(ignore: true)
+  _$$MeetDataAddEventImplCopyWith<_$MeetDataAddEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataDeleteEventImplCopyWith<$Res> {
+  factory _$$MeetDataDeleteEventImplCopyWith(_$MeetDataDeleteEventImpl value,
+          $Res Function(_$MeetDataDeleteEventImpl) then) =
+      __$$MeetDataDeleteEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MeetModel meetModel});
+
+  $MeetModelCopyWith<$Res> get meetModel;
+}
+
+/// @nodoc
+class __$$MeetDataDeleteEventImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataDeleteEventImpl>
+    implements _$$MeetDataDeleteEventImplCopyWith<$Res> {
+  __$$MeetDataDeleteEventImplCopyWithImpl(_$MeetDataDeleteEventImpl _value,
+      $Res Function(_$MeetDataDeleteEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meetModel = null,
+  }) {
+    return _then(_$MeetDataDeleteEventImpl(
+      null == meetModel
+          ? _value.meetModel
+          : meetModel // ignore: cast_nullable_to_non_nullable
+              as MeetModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MeetModelCopyWith<$Res> get meetModel {
+    return $MeetModelCopyWith<$Res>(_value.meetModel, (value) {
+      return _then(_value.copyWith(meetModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
+  const _$MeetDataDeleteEventImpl(this.meetModel);
+
+  @override
+  final MeetModel meetModel;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.delete(meetModel: $meetModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataDeleteEventImpl &&
+            (identical(other.meetModel, meetModel) ||
+                other.meetModel == meetModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, meetModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataDeleteEventImplCopyWith<_$MeetDataDeleteEventImpl> get copyWith =>
+      __$$MeetDataDeleteEventImplCopyWithImpl<_$MeetDataDeleteEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(MeetModel meetModel) delete,
+  }) {
+    return delete(meetModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(MeetModel meetModel)? delete,
+  }) {
+    return delete?.call(meetModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(MeetModel meetModel)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(meetModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataDeleteEvent implements MeetDataEvent {
+  const factory MeetDataDeleteEvent(final MeetModel meetModel) =
+      _$MeetDataDeleteEventImpl;
+
+  MeetModel get meetModel;
+  @JsonKey(ignore: true)
+  _$$MeetDataDeleteEventImplCopyWith<_$MeetDataDeleteEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

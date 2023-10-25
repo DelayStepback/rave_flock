@@ -115,6 +115,8 @@ class _HomePageView extends StatelessWidget {
                           children: [
                             Text('id: ${meets[index].meetId}'),
                             Text('title: ${meets[index].title}'),
+                            Text('description: ${meets[index].description}'),
+
                           ],
                         ),
                       ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/services/auth_service.dart';
 
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key, required this.meetId});
@@ -44,7 +46,14 @@ class _MeetPageView extends StatelessWidget {
             appBar: AppBar(
               title: Text('${currMeet.title}'),
             ),
-            body: Text("$currMeet"),
+            body: Column(
+              children: [
+                Text("$currMeet"),
+                currMeet.meetOwnerId == AuthService.getUserId() ? ElevatedButton(onPressed: (){
+                  context.push('/homepage/createNewMeetScreen', extra: currMeet);
+                }, child: Text('update this meet')) : SizedBox.shrink()
+              ],
+            ),
           );
         }, error: (e) {
           return Text('error $e');

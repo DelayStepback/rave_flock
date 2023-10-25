@@ -64,7 +64,7 @@ final GoRouter router = GoRouter(
             path: "createNewMeetScreen",
             //TODO: для update meet
             builder: (context, state) => CreateNewMeetScreen(
-              meetModel: state.extra as MeetModel,
+              meetModel: state.extra == null ? null: state.extra! as MeetModel,
             ),
           ),
         ]),

@@ -15,6 +15,7 @@ class TextInput extends StatelessWidget {
     this.keyboardType,
     this.errorText,
     this.valid,
+    this.readOnly = false,
     required this.label,
   }) : super(key: key);
 
@@ -30,6 +31,7 @@ class TextInput extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? valid;
   final String? errorText;
+  final bool readOnly;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -40,6 +42,7 @@ class TextInput extends StatelessWidget {
       cursorColor: Colors.grey,
       initialValue: initialValue,
       maxLines: maxLine,
+      readOnly: readOnly,
       decoration: InputDecoration(
           label: Text(label), prefixIcon: icon, errorText: valid?? true ? null: errorText ),
       onChanged: onChanged,

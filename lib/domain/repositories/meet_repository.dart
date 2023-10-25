@@ -14,7 +14,7 @@ abstract class MeetRepository {
 
   Future<List<UserModel>> fetchGuests(int meetId);
 
-  Future<void> addMeet(MeetModel meetModel);
+  Future<MeetModel> addMeet(MeetModel meetModel);
 
   Future<void> updateMeet(MeetModel meetModel);
 

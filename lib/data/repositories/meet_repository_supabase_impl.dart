@@ -11,7 +11,7 @@ import '../../main.dart';
 
 class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
-  Future<void> addMeet(MeetModel meetModel) async {
+  Future<MeetModel> addMeet(MeetModel meetModel) async {
     final json = meetModel.toJson();
 
     if (json['meet_id'] == null) {
@@ -28,6 +28,8 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
         meetId: newMeet.meetId ?? -1,
         userId: meetModel.meetOwnerId,
         status: DefaultEnums.defaultGuestStatusAfterCreatingMeet));
+
+    return newMeet;
   }
 
   @override
