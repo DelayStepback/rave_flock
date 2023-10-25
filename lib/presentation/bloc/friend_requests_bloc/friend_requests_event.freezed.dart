@@ -21,6 +21,7 @@ mixin _$FriendRequestsEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(int id) acceptRequest,
     required TResult Function(int id) denyRequest,
+    required TResult Function() dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$FriendRequestsEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(int id)? acceptRequest,
     TResult? Function(int id)? denyRequest,
+    TResult? Function()? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$FriendRequestsEvent {
     TResult Function(String userId)? initialize,
     TResult Function(int id)? acceptRequest,
     TResult Function(int id)? denyRequest,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$FriendRequestsEvent {
     required TResult Function(FriendRequestsInitializeEvent value) initialize,
     required TResult Function(FriendRequestsAcceptEvent value) acceptRequest,
     required TResult Function(FriendRequestsDenyEvent value) denyRequest,
+    required TResult Function(FriendRequestsDisposeEvent value) dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$FriendRequestsEvent {
     TResult? Function(FriendRequestsInitializeEvent value)? initialize,
     TResult? Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult? Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult? Function(FriendRequestsDisposeEvent value)? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$FriendRequestsEvent {
     TResult Function(FriendRequestsInitializeEvent value)? initialize,
     TResult Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult Function(FriendRequestsDisposeEvent value)? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +159,7 @@ class _$FriendRequestsInitializeEventImpl
     required TResult Function(String userId) initialize,
     required TResult Function(int id) acceptRequest,
     required TResult Function(int id) denyRequest,
+    required TResult Function() dispose,
   }) {
     return initialize(userId);
   }
@@ -163,6 +170,7 @@ class _$FriendRequestsInitializeEventImpl
     TResult? Function(String userId)? initialize,
     TResult? Function(int id)? acceptRequest,
     TResult? Function(int id)? denyRequest,
+    TResult? Function()? dispose,
   }) {
     return initialize?.call(userId);
   }
@@ -173,6 +181,7 @@ class _$FriendRequestsInitializeEventImpl
     TResult Function(String userId)? initialize,
     TResult Function(int id)? acceptRequest,
     TResult Function(int id)? denyRequest,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -187,6 +196,7 @@ class _$FriendRequestsInitializeEventImpl
     required TResult Function(FriendRequestsInitializeEvent value) initialize,
     required TResult Function(FriendRequestsAcceptEvent value) acceptRequest,
     required TResult Function(FriendRequestsDenyEvent value) denyRequest,
+    required TResult Function(FriendRequestsDisposeEvent value) dispose,
   }) {
     return initialize(this);
   }
@@ -197,6 +207,7 @@ class _$FriendRequestsInitializeEventImpl
     TResult? Function(FriendRequestsInitializeEvent value)? initialize,
     TResult? Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult? Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult? Function(FriendRequestsDisposeEvent value)? dispose,
   }) {
     return initialize?.call(this);
   }
@@ -207,6 +218,7 @@ class _$FriendRequestsInitializeEventImpl
     TResult Function(FriendRequestsInitializeEvent value)? initialize,
     TResult Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult Function(FriendRequestsDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -298,6 +310,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(int id) acceptRequest,
     required TResult Function(int id) denyRequest,
+    required TResult Function() dispose,
   }) {
     return acceptRequest(id);
   }
@@ -308,6 +321,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(int id)? acceptRequest,
     TResult? Function(int id)? denyRequest,
+    TResult? Function()? dispose,
   }) {
     return acceptRequest?.call(id);
   }
@@ -318,6 +332,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     TResult Function(String userId)? initialize,
     TResult Function(int id)? acceptRequest,
     TResult Function(int id)? denyRequest,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (acceptRequest != null) {
@@ -332,6 +347,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     required TResult Function(FriendRequestsInitializeEvent value) initialize,
     required TResult Function(FriendRequestsAcceptEvent value) acceptRequest,
     required TResult Function(FriendRequestsDenyEvent value) denyRequest,
+    required TResult Function(FriendRequestsDisposeEvent value) dispose,
   }) {
     return acceptRequest(this);
   }
@@ -342,6 +358,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     TResult? Function(FriendRequestsInitializeEvent value)? initialize,
     TResult? Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult? Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult? Function(FriendRequestsDisposeEvent value)? dispose,
   }) {
     return acceptRequest?.call(this);
   }
@@ -352,6 +369,7 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     TResult Function(FriendRequestsInitializeEvent value)? initialize,
     TResult Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult Function(FriendRequestsDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (acceptRequest != null) {
@@ -442,6 +460,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(int id) acceptRequest,
     required TResult Function(int id) denyRequest,
+    required TResult Function() dispose,
   }) {
     return denyRequest(id);
   }
@@ -452,6 +471,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(int id)? acceptRequest,
     TResult? Function(int id)? denyRequest,
+    TResult? Function()? dispose,
   }) {
     return denyRequest?.call(id);
   }
@@ -462,6 +482,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     TResult Function(String userId)? initialize,
     TResult Function(int id)? acceptRequest,
     TResult Function(int id)? denyRequest,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (denyRequest != null) {
@@ -476,6 +497,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     required TResult Function(FriendRequestsInitializeEvent value) initialize,
     required TResult Function(FriendRequestsAcceptEvent value) acceptRequest,
     required TResult Function(FriendRequestsDenyEvent value) denyRequest,
+    required TResult Function(FriendRequestsDisposeEvent value) dispose,
   }) {
     return denyRequest(this);
   }
@@ -486,6 +508,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     TResult? Function(FriendRequestsInitializeEvent value)? initialize,
     TResult? Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult? Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult? Function(FriendRequestsDisposeEvent value)? dispose,
   }) {
     return denyRequest?.call(this);
   }
@@ -496,6 +519,7 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     TResult Function(FriendRequestsInitializeEvent value)? initialize,
     TResult Function(FriendRequestsAcceptEvent value)? acceptRequest,
     TResult Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult Function(FriendRequestsDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (denyRequest != null) {
@@ -513,4 +537,122 @@ abstract class FriendRequestsDenyEvent implements FriendRequestsEvent {
   @JsonKey(ignore: true)
   _$$FriendRequestsDenyEventImplCopyWith<_$FriendRequestsDenyEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FriendRequestsDisposeEventImplCopyWith<$Res> {
+  factory _$$FriendRequestsDisposeEventImplCopyWith(
+          _$FriendRequestsDisposeEventImpl value,
+          $Res Function(_$FriendRequestsDisposeEventImpl) then) =
+      __$$FriendRequestsDisposeEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FriendRequestsDisposeEventImplCopyWithImpl<$Res>
+    extends _$FriendRequestsEventCopyWithImpl<$Res,
+        _$FriendRequestsDisposeEventImpl>
+    implements _$$FriendRequestsDisposeEventImplCopyWith<$Res> {
+  __$$FriendRequestsDisposeEventImplCopyWithImpl(
+      _$FriendRequestsDisposeEventImpl _value,
+      $Res Function(_$FriendRequestsDisposeEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FriendRequestsDisposeEventImpl implements FriendRequestsDisposeEvent {
+  const _$FriendRequestsDisposeEventImpl();
+
+  @override
+  String toString() {
+    return 'FriendRequestsEvent.dispose()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FriendRequestsDisposeEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(int id) acceptRequest,
+    required TResult Function(int id) denyRequest,
+    required TResult Function() dispose,
+  }) {
+    return dispose();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(int id)? acceptRequest,
+    TResult? Function(int id)? denyRequest,
+    TResult? Function()? dispose,
+  }) {
+    return dispose?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(int id)? acceptRequest,
+    TResult Function(int id)? denyRequest,
+    TResult Function()? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FriendRequestsInitializeEvent value) initialize,
+    required TResult Function(FriendRequestsAcceptEvent value) acceptRequest,
+    required TResult Function(FriendRequestsDenyEvent value) denyRequest,
+    required TResult Function(FriendRequestsDisposeEvent value) dispose,
+  }) {
+    return dispose(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FriendRequestsInitializeEvent value)? initialize,
+    TResult? Function(FriendRequestsAcceptEvent value)? acceptRequest,
+    TResult? Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult? Function(FriendRequestsDisposeEvent value)? dispose,
+  }) {
+    return dispose?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FriendRequestsInitializeEvent value)? initialize,
+    TResult Function(FriendRequestsAcceptEvent value)? acceptRequest,
+    TResult Function(FriendRequestsDenyEvent value)? denyRequest,
+    TResult Function(FriendRequestsDisposeEvent value)? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FriendRequestsDisposeEvent implements FriendRequestsEvent {
+  const factory FriendRequestsDisposeEvent() = _$FriendRequestsDisposeEventImpl;
 }

@@ -14,6 +14,12 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
       : super(const MeetDataState.init()) {
     on<MeetDataInitializeEvent>(_onMeetDataInitializeEvent);
     on<MeetDataAddEvent>(_onMeetDataAddEvent);
+    on<MeetDataDisposeEvent>(_onMeetDataDisposeEvent);
+  }
+
+  Future<void>_onMeetDataDisposeEvent(event,emit)async {
+    emit(const MeetDataState.init());
+    print('Meet disposed $state');
   }
 
   Future<void> _onMeetDataInitializeEvent(MeetDataInitializeEvent event,
@@ -58,6 +64,12 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
       }
     }, error: (e) {});
     emit(MeetDataState.loaded(allMeetData: _meets));
+  }
+
+  @override
+  Future<void> close() {
+    print('meet bloc closed');
+    return super.close();
   }
 
 }

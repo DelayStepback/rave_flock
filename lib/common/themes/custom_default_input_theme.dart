@@ -27,7 +27,7 @@ class CustomDefaultInputTheme{
     contentPadding: const EdgeInsets.all(16).r,
     isDense: true,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
-    constraints: BoxConstraints(maxWidth: 150.w),
+    constraints: BoxConstraints(maxWidth: 300.w),
 
 
     // TODO:

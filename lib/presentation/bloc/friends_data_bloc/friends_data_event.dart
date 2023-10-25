@@ -6,4 +6,5 @@ part 'friends_data_event.freezed.dart';
 class FriendsDataEvent with _$FriendsDataEvent {
   const factory FriendsDataEvent.initialize(String userId) = FriendsDataInitializeEvent;
   const factory FriendsDataEvent.removeFriend(String userId, String friendId) = DeleteFriendEvent;
+  const factory FriendsDataEvent.dispose() = FriendsDataDisposeEvent;
 }

@@ -21,6 +21,7 @@ mixin _$MeetDataEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(MeetModel meetModel) add,
     required TResult Function(MeetModel meetModel) delete,
+    required TResult Function() dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$MeetDataEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(MeetModel meetModel)? add,
     TResult? Function(MeetModel meetModel)? delete,
+    TResult? Function()? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$MeetDataEvent {
     TResult Function(String userId)? initialize,
     TResult Function(MeetModel meetModel)? add,
     TResult Function(MeetModel meetModel)? delete,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$MeetDataEvent {
     required TResult Function(MeetDataInitializeEvent value) initialize,
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$MeetDataEvent {
     TResult? Function(MeetDataInitializeEvent value)? initialize,
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$MeetDataEvent {
     TResult Function(MeetDataInitializeEvent value)? initialize,
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(MeetModel meetModel) add,
     required TResult Function(MeetModel meetModel) delete,
+    required TResult Function() dispose,
   }) {
     return initialize(userId);
   }
@@ -160,6 +167,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(MeetModel meetModel)? add,
     TResult? Function(MeetModel meetModel)? delete,
+    TResult? Function()? dispose,
   }) {
     return initialize?.call(userId);
   }
@@ -170,6 +178,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(String userId)? initialize,
     TResult Function(MeetModel meetModel)? add,
     TResult Function(MeetModel meetModel)? delete,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -184,6 +193,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(MeetDataInitializeEvent value) initialize,
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
   }) {
     return initialize(this);
   }
@@ -194,6 +204,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(MeetDataInitializeEvent value)? initialize,
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
   }) {
     return initialize?.call(this);
   }
@@ -204,6 +215,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(MeetDataInitializeEvent value)? initialize,
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -302,6 +314,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(MeetModel meetModel) add,
     required TResult Function(MeetModel meetModel) delete,
+    required TResult Function() dispose,
   }) {
     return add(meetModel);
   }
@@ -312,6 +325,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(MeetModel meetModel)? add,
     TResult? Function(MeetModel meetModel)? delete,
+    TResult? Function()? dispose,
   }) {
     return add?.call(meetModel);
   }
@@ -322,6 +336,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(String userId)? initialize,
     TResult Function(MeetModel meetModel)? add,
     TResult Function(MeetModel meetModel)? delete,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -336,6 +351,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(MeetDataInitializeEvent value) initialize,
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
   }) {
     return add(this);
   }
@@ -346,6 +362,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(MeetDataInitializeEvent value)? initialize,
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
   }) {
     return add?.call(this);
   }
@@ -356,6 +373,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(MeetDataInitializeEvent value)? initialize,
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -454,6 +472,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(String userId) initialize,
     required TResult Function(MeetModel meetModel) add,
     required TResult Function(MeetModel meetModel) delete,
+    required TResult Function() dispose,
   }) {
     return delete(meetModel);
   }
@@ -464,6 +483,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(String userId)? initialize,
     TResult? Function(MeetModel meetModel)? add,
     TResult? Function(MeetModel meetModel)? delete,
+    TResult? Function()? dispose,
   }) {
     return delete?.call(meetModel);
   }
@@ -474,6 +494,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(String userId)? initialize,
     TResult Function(MeetModel meetModel)? add,
     TResult Function(MeetModel meetModel)? delete,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -488,6 +509,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(MeetDataInitializeEvent value) initialize,
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
   }) {
     return delete(this);
   }
@@ -498,6 +520,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(MeetDataInitializeEvent value)? initialize,
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
   }) {
     return delete?.call(this);
   }
@@ -508,6 +531,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(MeetDataInitializeEvent value)? initialize,
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -525,4 +549,119 @@ abstract class MeetDataDeleteEvent implements MeetDataEvent {
   @JsonKey(ignore: true)
   _$$MeetDataDeleteEventImplCopyWith<_$MeetDataDeleteEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataDisposeEventImplCopyWith<$Res> {
+  factory _$$MeetDataDisposeEventImplCopyWith(_$MeetDataDisposeEventImpl value,
+          $Res Function(_$MeetDataDisposeEventImpl) then) =
+      __$$MeetDataDisposeEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeetDataDisposeEventImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataDisposeEventImpl>
+    implements _$$MeetDataDisposeEventImplCopyWith<$Res> {
+  __$$MeetDataDisposeEventImplCopyWithImpl(_$MeetDataDisposeEventImpl _value,
+      $Res Function(_$MeetDataDisposeEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
+  const _$MeetDataDisposeEventImpl();
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.dispose()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataDisposeEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(MeetModel meetModel) delete,
+    required TResult Function() dispose,
+  }) {
+    return dispose();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(MeetModel meetModel)? delete,
+    TResult? Function()? dispose,
+  }) {
+    return dispose?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(MeetModel meetModel)? delete,
+    TResult Function()? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+  }) {
+    return dispose(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+  }) {
+    return dispose?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataDisposeEvent implements MeetDataEvent {
+  const factory MeetDataDisposeEvent() = _$MeetDataDisposeEventImpl;
 }

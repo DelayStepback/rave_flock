@@ -21,11 +21,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider(
-        create: (context) => GetIt.I<FriendRequestsBloc>(),
+      BlocProvider.value(
+        value: GetIt.I<FriendRequestsBloc>(),
       ),
-      BlocProvider(
-        create: (context) => GetIt.I<MeetDataBloc>(),
+      BlocProvider.value(
+        value: GetIt.I<MeetDataBloc>(),
       )
     ], child: _HomePageView());
   }

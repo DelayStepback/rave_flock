@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
 import 'package:rave_flock/common/validation/validation.dart';
 import 'package:rave_flock/common/widget/text_input.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
 import 'package:rave_flock/presentation/pages/auth/widgets/login_button.dart';
 import 'package:rave_flock/presentation/pages/auth/widgets/signup_button.dart';
 import 'package:rave_flock/services/auth_service.dart';
@@ -15,14 +18,24 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../screens/check_connectivity_screen/check_connectivity_screen.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return _LoginPage();
+  }
 }
 
-class _LoginPageState extends State<LoginPage> {
+
+class _LoginPage extends StatefulWidget {
+  const _LoginPage({super.key});
+
+  @override
+  State<_LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<_LoginPage> {
   Timer? emailDebounceTimer;
   Timer? passwordDebounceTimer;
 

@@ -15,7 +15,11 @@ class FriendsDataBloc
       : super(const FriendsDataState.init()) {
     on<FriendsDataInitializeEvent>(_onFriendsDataInitializeEvent);
     on<DeleteFriendEvent>(_onDeleteFriendEvent);
+    on<FriendsDataDisposeEvent>(_onFriendsDataDisposeEvent);
+  }
 
+  Future<void>_onFriendsDataDisposeEvent(event,emit)async{
+    emit(const FriendsDataState.init());
   }
 
   Future<void> _onFriendsDataInitializeEvent(

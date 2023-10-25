@@ -23,41 +23,43 @@ class _SetUsernameScreenState extends State<SetUsernameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextFormField(
-            controller: _usernameController,
-            decoration: const InputDecoration(label: Text('Username')),
-          ),
-          ElevatedButton(
-              onPressed: () async {
-                final username = _usernameController.text.trim();
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextFormField(
+              controller: _usernameController,
+              decoration: const InputDecoration(label: Text('Username')),
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  final username = _usernameController.text.trim();
 
-                String? userId = AuthService.getUserId();
-                if (userId != null) {
-                  try{
-                    await GetIt.I<UserRepository>()
-                        .updateUsername(username, userId)
-                        .then((value) => context.go("/homepage"));
-                  }
-                  catch (e){
-                    if (e == ExceptionsEnum.usernameExists){
-                      setState(() {
-                        usernameExists = true;
-                      });
+                  String? userId = AuthService.getUserId();
+                  if (userId != null) {
+                    try{
+                      await GetIt.I<UserRepository>()
+                          .updateUsername(username, userId)
+                          .then((value) => context.go("/homepage"));
                     }
-                  }
+                    catch (e){
+                      if (e == ExceptionsEnum.usernameExists){
+                        setState(() {
+                          usernameExists = true;
+                        });
+                      }
+                    }
 
-                } else {
-                  context.go('/login');
-                }
-              },
-              child: Text('set username')),
-          Visibility(
-              visible: usernameExists,
-              child: Text('username exists'))
-        ],
+                  } else {
+                    context.go('/login');
+                  }
+                },
+                child: Text('set username')),
+            Visibility(
+                visible: usernameExists,
+                child: Text('username exists'))
+          ],
+        ),
       ),
     );
   }

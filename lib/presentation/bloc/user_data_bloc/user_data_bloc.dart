@@ -11,6 +11,10 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState> {
   UserDataBloc(this._userRepository)
       : super(const UserDataState.init()) {
     on<UserDataInitializeEvent>(_onUserDataInitializeEvent);
+    on<UserDataDisposeEvent>(_onUserDataDisposeEvent);
+  }
+  Future<void> _onUserDataDisposeEvent(event,emit)async{
+    emit(const UserDataState.init());
   }
   Future<void> _onUserDataInitializeEvent(UserDataInitializeEvent event, emit) async {
     // TODO: delete delay

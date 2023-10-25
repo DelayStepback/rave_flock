@@ -1,3 +1,7 @@
+import 'package:get_it/get_it.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/services/blocs_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../main.dart';
@@ -16,6 +20,7 @@ class AuthService{
     );
   }
   static void signOut() async{
+    BlocService.resetBlocs();
     supabase.auth.signOut();
   }
 

@@ -9,4 +9,6 @@ class MeetDataEvent with _$MeetDataEvent {
   const factory MeetDataEvent.initialize(String userId) = MeetDataInitializeEvent;
   const factory MeetDataEvent.add(MeetModel meetModel) = MeetDataAddEvent;
   const factory MeetDataEvent.delete(MeetModel meetModel) = MeetDataDeleteEvent;
+  const factory MeetDataEvent.dispose() = MeetDataDisposeEvent;
+
 }

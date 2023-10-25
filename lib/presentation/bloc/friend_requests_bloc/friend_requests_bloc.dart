@@ -20,7 +20,11 @@ class FriendRequestsBloc
     on<FriendRequestsInitializeEvent>(_onFriendRequestsInitializeEvent);
     on<FriendRequestsAcceptEvent>(_onFriendRequestsAcceptEvent);
     on<FriendRequestsDenyEvent>(_onFriendRequestsDenyEvent);
+    on<FriendRequestsDisposeEvent>(_onFriendRequestsDisposeEvent);
+  }
 
+  Future<void> _onFriendRequestsDisposeEvent(event,emit)async{
+    emit(const FriendRequestsState.init());
   }
 
   Future<void> _onFriendRequestsInitializeEvent(
@@ -29,9 +33,8 @@ class FriendRequestsBloc
       List<FriendshipModel> friendships =
           await _friendsRepository.fetchActiveRequests(event.userId);
       // TODO: DELETE THIS
-      await Future.delayed(Duration(seconds:5));
+      await Future.delayed(Duration(seconds: 5));
       print('BLOC: friends requests fetching');
-
 
       List<FriendshipRequestEntity> friendshipRequestsEntities = [];
       for (var friendship in friendships) {
@@ -51,30 +54,37 @@ class FriendRequestsBloc
     }
   }
 
-  Future<void> _onFriendRequestsAcceptEvent(FriendRequestsAcceptEvent event, emit) async{
+  Future<void> _onFriendRequestsAcceptEvent(
+      FriendRequestsAcceptEvent event, emit) async {
     _friendsRepository.acceptRequest(event.id);
     final state = this.state;
-    state.when(init: (){}, loaded: (loaded){
-      List<FriendshipRequestEntity> newLoaded = [];
-      for (var v in loaded){
-        if (v.id != event.id) newLoaded.add(v);
-      }
-      emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
-    }, error: (e){});
+    state.when(
+        init: () {},
+        loaded: (loaded) {
+          List<FriendshipRequestEntity> newLoaded = [];
+          for (var v in loaded) {
+            if (v.id != event.id) newLoaded.add(v);
+          }
+          emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
+        },
+        error: (e) {});
   }
 
-  Future<void> _onFriendRequestsDenyEvent(FriendRequestsDenyEvent event, emit) async{
+  Future<void> _onFriendRequestsDenyEvent(
+      FriendRequestsDenyEvent event, emit) async {
     _friendsRepository.denyRequest(event.id);
     final state = this.state;
-    state.when(init: (){}, loaded: (loaded){
-      List<FriendshipRequestEntity> newLoaded = [];
-      for (var v in loaded){
-        if (v.id != event.id) newLoaded.add(v);
-      }
-      emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
-    }, error: (e){});
+    state.when(
+        init: () {},
+        loaded: (loaded) {
+          List<FriendshipRequestEntity> newLoaded = [];
+          for (var v in loaded) {
+            if (v.id != event.id) newLoaded.add(v);
+          }
+          emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
+        },
+        error: (e) {});
   }
-
 
   @override
   Future<void> close() {

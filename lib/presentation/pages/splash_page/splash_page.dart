@@ -10,6 +10,7 @@ import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_even
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/services/auth_service.dart';
+import 'package:rave_flock/services/blocs_service.dart';
 
 import '../../../common/app_string.dart';
 import '../../../main.dart';
@@ -41,12 +42,15 @@ class _SplashPageState extends State<SplashPage> {
     if (!mounted) return;
     if (session != null) {
       // отправляем запросы
-      GetIt.I<FriendRequestsBloc>()
-          .add(FriendRequestsEvent.initialize(session.user.id));
-      GetIt.I<FriendsDataBloc>()
-          .add(FriendsDataEvent.initialize(session.user.id));
-      GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(session.user.id));
-      GetIt.I<UserDataBloc>().add(UserDataEvent.initialize(session.user.id));
+
+      BlocService.initAllBlocs();
+
+      // GetIt.I<FriendRequestsBloc>()
+      //     .add(FriendRequestsEvent.initialize(session.user.id));
+      // GetIt.I<FriendsDataBloc>()
+      //     .add(FriendsDataEvent.initialize(session.user.id));
+      // GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(session.user.id));
+      // GetIt.I<UserDataBloc>().add(UserDataEvent.initialize(session.user.id));
 
       // context.go("/homepage");
     } else {

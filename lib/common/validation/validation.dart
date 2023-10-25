@@ -19,6 +19,15 @@ class Validation {
     }
     return null;
   }
+  static String? validateTitle(String value) {
+    if (value.isEmpty) {
+      return 'Please enter meet title';
+    }
+    if (value.length < 6) {
+      return 'Title must be at least 3 characters longg';
+    }
+    return null;
+  }
 
 
 }

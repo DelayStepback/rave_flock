@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +10,7 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart
 import 'package:rave_flock/services/auth_service.dart';
 
 import '../../../common/constants/enums/meet_status_enum.dart';
+import '../../../common/validation/validation.dart';
 
 class CreateNewMeetScreen extends StatefulWidget {
   const CreateNewMeetScreen({super.key, this.meetModel});
@@ -20,7 +23,8 @@ class CreateNewMeetScreen extends StatefulWidget {
 
 class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
   MeetModel? meetModel;
-
+  Timer? titleDebounceTimer;
+  bool _titleValid = true;
   @override
   void initState() {
     super.initState();
@@ -37,6 +41,35 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
   bool _containsBasket = false;
   DateTime? _basketEndTime;
   DateTime _meetAtDateTime = DateTime.now();
+
+
+  void _onChangeTitle(String value) {
+    if (titleDebounceTimer?.isActive ?? false) {
+      titleDebounceTimer?.cancel();
+    }
+    titleDebounceTimer = Timer(
+      const Duration(milliseconds: 500),
+          () {
+        setState(
+              () {
+                _titleValid =
+                Validation.validateTitle(value) == null;
+                print(_titleValid);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    titleDebounceTimer?.cancel();
+
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
 
   void initControllers(MeetModel meetModel) {
     _meetIsPublic = meetModel.meetIsPublic;
@@ -73,9 +106,12 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
               ),
               TextInput(
                 label: 'Title',
+                valid: _titleValid,
+                errorText: 'Слишком короткое название',
                 controller: _titleController,
                 readOnly: meetModel == null ? false : true,
                 maxLine: 1,
+                onChanged: _onChangeTitle,
               ),
               SizedBox(
                 height: 25,
@@ -145,35 +181,7 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    print(_descriptionController.text.trim());
-                    MeetModel _meet;
-                    if (meetModel == null) {
-                      _meet = MeetModel(
-                          meetOwnerId: AuthService.getUserId()!,
-                          title: _titleController.text.trim(),
-                          description: _descriptionController.text.trim(),
-                          location: _locationController.text.trim(),
-                          status: MeetStatusEnum.willBe,
-                          meetIsPublic: _meetIsPublic,
-                          containsBasket: _containsBasket,
-                          basketEndTime: _basketEndTime,
-                          meetAt: _meetAtDateTime);
-                    } else {
-                      _meet = MeetModel(
-                        createdAt: meetModel!.createdAt,
-                          meetId: meetModel!.meetId,
-                          meetOwnerId: meetModel!.meetOwnerId,
-                          title: meetModel!.title,
-                          status: meetModel!.status,
-                          meetIsPublic: _meetIsPublic,
-                          containsBasket: _containsBasket,
-                          description: _descriptionController.text.trim(),
-                          location: _locationController.text.trim(),
-                          basketEndTime: _basketEndTime,
-                          meetAt: _meetAtDateTime);
-                    }
-                    GetIt.I<MeetDataBloc>().add(MeetDataEvent.add(_meet));
-                    context.pop();
+                    createOrUpdateMeetAction(context);
                   },
                   child: meetModel == null ? Text('create') : Text('update'))
             ],
@@ -181,5 +189,36 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
         ),
       ),
     );
+  }
+
+  void createOrUpdateMeetAction(BuildContext context) {
+    MeetModel _meet;
+    if (meetModel == null) {
+      _meet = MeetModel(
+          meetOwnerId: AuthService.getUserId()!,
+          title: _titleController.text.trim(),
+          description: _descriptionController.text.trim(),
+          location: _locationController.text.trim(),
+          status: MeetStatusEnum.willBe,
+          meetIsPublic: _meetIsPublic,
+          containsBasket: _containsBasket,
+          basketEndTime: _basketEndTime,
+          meetAt: _meetAtDateTime);
+    } else {
+      _meet = MeetModel(
+        createdAt: meetModel!.createdAt,
+          meetId: meetModel!.meetId,
+          meetOwnerId: meetModel!.meetOwnerId,
+          title: meetModel!.title,
+          status: meetModel!.status,
+          meetIsPublic: _meetIsPublic,
+          containsBasket: _containsBasket,
+          description: _descriptionController.text.trim(),
+          location: _locationController.text.trim(),
+          basketEndTime: _basketEndTime,
+          meetAt: _meetAtDateTime);
+    }
+    GetIt.I<MeetDataBloc>().add(MeetDataEvent.add(_meet));
+    context.pop();
   }
 }

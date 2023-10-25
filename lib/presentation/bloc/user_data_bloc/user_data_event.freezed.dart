@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserDataEvent {
-  String get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function() dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function()? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserDataInitializeEvent value) initialize,
+    required TResult Function(UserDataDisposeEvent value) dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserDataInitializeEvent value)? initialize,
+    TResult? Function(UserDataDisposeEvent value)? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserDataInitializeEvent value)? initialize,
+    TResult Function(UserDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserDataEventCopyWith<UserDataEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $UserDataEventCopyWith<$Res> {
   factory $UserDataEventCopyWith(
           UserDataEvent value, $Res Function(UserDataEvent) then) =
       _$UserDataEventCopyWithImpl<$Res, UserDataEvent>;
-  @useResult
-  $Res call({String userId});
 }
 
 /// @nodoc
@@ -73,29 +72,14 @@ class _$UserDataEventCopyWithImpl<$Res, $Val extends UserDataEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$UserDataInitializeEventImplCopyWith<$Res>
-    implements $UserDataEventCopyWith<$Res> {
+abstract class _$$UserDataInitializeEventImplCopyWith<$Res> {
   factory _$$UserDataInitializeEventImplCopyWith(
           _$UserDataInitializeEventImpl value,
           $Res Function(_$UserDataInitializeEventImpl) then) =
       __$$UserDataInitializeEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String userId});
 }
@@ -158,6 +142,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function() dispose,
   }) {
     return initialize(userId);
   }
@@ -166,6 +151,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function()? dispose,
   }) {
     return initialize?.call(userId);
   }
@@ -174,6 +160,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -186,6 +173,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserDataInitializeEvent value) initialize,
+    required TResult Function(UserDataDisposeEvent value) dispose,
   }) {
     return initialize(this);
   }
@@ -194,6 +182,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserDataInitializeEvent value)? initialize,
+    TResult? Function(UserDataDisposeEvent value)? dispose,
   }) {
     return initialize?.call(this);
   }
@@ -202,6 +191,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserDataInitializeEvent value)? initialize,
+    TResult Function(UserDataDisposeEvent value)? dispose,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -215,10 +205,111 @@ abstract class UserDataInitializeEvent implements UserDataEvent {
   const factory UserDataInitializeEvent(final String userId) =
       _$UserDataInitializeEventImpl;
 
-  @override
   String get userId;
-  @override
   @JsonKey(ignore: true)
   _$$UserDataInitializeEventImplCopyWith<_$UserDataInitializeEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserDataDisposeEventImplCopyWith<$Res> {
+  factory _$$UserDataDisposeEventImplCopyWith(_$UserDataDisposeEventImpl value,
+          $Res Function(_$UserDataDisposeEventImpl) then) =
+      __$$UserDataDisposeEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserDataDisposeEventImplCopyWithImpl<$Res>
+    extends _$UserDataEventCopyWithImpl<$Res, _$UserDataDisposeEventImpl>
+    implements _$$UserDataDisposeEventImplCopyWith<$Res> {
+  __$$UserDataDisposeEventImplCopyWithImpl(_$UserDataDisposeEventImpl _value,
+      $Res Function(_$UserDataDisposeEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
+  const _$UserDataDisposeEventImpl();
+
+  @override
+  String toString() {
+    return 'UserDataEvent.dispose()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserDataDisposeEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function() dispose,
+  }) {
+    return dispose();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function()? dispose,
+  }) {
+    return dispose?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function()? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserDataInitializeEvent value) initialize,
+    required TResult Function(UserDataDisposeEvent value) dispose,
+  }) {
+    return dispose(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserDataInitializeEvent value)? initialize,
+    TResult? Function(UserDataDisposeEvent value)? dispose,
+  }) {
+    return dispose?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserDataInitializeEvent value)? initialize,
+    TResult Function(UserDataDisposeEvent value)? dispose,
+    required TResult orElse(),
+  }) {
+    if (dispose != null) {
+      return dispose(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserDataDisposeEvent implements UserDataEvent {
+  const factory UserDataDisposeEvent() = _$UserDataDisposeEventImpl;
 }

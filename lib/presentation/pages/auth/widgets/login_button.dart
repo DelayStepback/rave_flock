@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../data/repositories/user_repository_supabase_impl.dart';
 import '../../../../services/auth_service.dart';
+import '../../../../services/blocs_service.dart';
+
+
+
 class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
@@ -33,11 +38,16 @@ class LoginButton extends StatelessWidget {
                   (value) async {
                 final userRep = UserRepositorySupabaseImpl();
                 final userId = AuthService.getUserId();
+                // такого быть не может, но на всякий случай
                 if (userId == null) {
                   context.go("/login");
                 } else {
                   bool checkIfUserHaveUsername =
                   await userRep.isUserHaveUsername(userId);
+
+                  BlocService.initAllBlocs();
+
+
                   if (checkIfUserHaveUsername) {
                     context.go("/homepage");
                   } else {
@@ -54,8 +64,8 @@ class LoginButton extends StatelessWidget {
             );
           } catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Error, try again'),
+               SnackBar(
+                content: Text('Error, $e'),
               ),
             );
           }
