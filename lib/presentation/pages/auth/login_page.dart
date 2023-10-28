@@ -8,6 +8,7 @@ import 'package:internet_connectivity_checker/internet_connectivity_checker.dart
 import 'package:rave_flock/common/validation/validation.dart';
 import 'package:rave_flock/common/widget/text_input.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
+import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
 import 'package:rave_flock/presentation/pages/auth/widgets/login_button.dart';
@@ -16,6 +17,7 @@ import 'package:rave_flock/services/auth_service.dart';
 import 'package:rave_flock/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import '../../screens/check_connectivity_screen/check_connectivity_screen.dart';
 
 class LoginPage extends StatelessWidget {
@@ -23,7 +25,15 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LoginPage();
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+              value:  GetIt.I<FriendRequestsBloc>()),
+          BlocProvider.value(value:GetIt.I<FriendsDataBloc>()),
+          BlocProvider.value(value: GetIt.I<MeetDataBloc>()),
+          BlocProvider.value(value: GetIt.I<UserDataBloc>()),
+        ],
+        child: _LoginPage());
   }
 }
 
@@ -44,11 +54,6 @@ class _LoginPageState extends State<_LoginPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -143,6 +148,10 @@ class _LoginPageState extends State<_LoginPage> {
                   passwordValid: _passwordValid,
                   emailController: _emailController,
                   passwordController: _passwordController),
+
+              Text('${BlocProvider.of<FriendRequestsBloc>(context).state}'),
+              Text('${BlocProvider.of<FriendsDataBloc>(context).state}'),
+
             ],
           ),
         ),

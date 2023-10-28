@@ -14,8 +14,7 @@ class MeetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: GetIt.I<MeetDataBloc>(),
+    return BlocProvider.value(value: GetIt.I<MeetDataBloc>(),
       child: _MeetPageView(
         meetId: meetId,
       ),

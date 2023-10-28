@@ -7,6 +7,7 @@ import 'package:rave_flock/injection_container.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
 import 'package:rave_flock/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -47,15 +48,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: router,
-      title: 'Rave Flock',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        inputDecorationTheme: CustomDefaultInputTheme().theme(),
-        useMaterial3: true,
-      ),
+    return
+      MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: router,
+        title: 'Rave Flock',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          inputDecorationTheme: CustomDefaultInputTheme().theme(),
+          useMaterial3: true,
+        ),
+
     );
   }
 }

@@ -20,14 +20,28 @@ import '../../bloc/user_data_bloc/user_data_bloc.dart';
 import '../../bloc/user_data_bloc/user_data_event.dart';
 import '../../bloc/user_data_bloc/user_data_state.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => GetIt.I<FriendRequestsBloc>()),
+      BlocProvider(create: (_) => GetIt.I<FriendsDataBloc>()),
+      BlocProvider(create: (_) => GetIt.I<MeetDataBloc>()),
+      BlocProvider(create: (_) => GetIt.I<UserDataBloc>()),
+    ], child: _SplashPage());
+  }
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPage extends StatefulWidget {
+  const _SplashPage({super.key});
+
+  @override
+  State<_SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<_SplashPage> {
   @override
   void initState() {
     super.initState();
@@ -44,16 +58,8 @@ class _SplashPageState extends State<SplashPage> {
       // отправляем запросы
 
       BlocService.initAllBlocs();
-
-      // GetIt.I<FriendRequestsBloc>()
-      //     .add(FriendRequestsEvent.initialize(session.user.id));
-      // GetIt.I<FriendsDataBloc>()
-      //     .add(FriendsDataEvent.initialize(session.user.id));
-      // GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(session.user.id));
-      // GetIt.I<UserDataBloc>().add(UserDataEvent.initialize(session.user.id));
-
-      // context.go("/homepage");
     } else {
+      BlocService.resetBlocs();
       context.go("/login");
     }
   }
@@ -77,12 +83,12 @@ class _SplashPageState extends State<SplashPage> {
   bool userDataAreInitState = true;
 
   String processTitle = '';
-  void setProcessTitle(String title){
+
+  void setProcessTitle(String title) {
     setState(() {
       processTitle = title;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -91,23 +97,36 @@ class _SplashPageState extends State<SplashPage> {
         BlocListener<FriendRequestsBloc, FriendRequestsState>(
           bloc: GetIt.I<FriendRequestsBloc>(),
           listener: (BuildContext context, state) {
-
             setProcessTitle(AppStrings.splashLoadedFriendRequests);
 
-            state.when(init: (){}, loaded: (_){
-              friendsRequestAreInitState = false;
-              checkLoadingThenRouteHome(friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            }, error: (e) => context.go('/errorScreen', extra: {'error': e}));
+            state.when(
+                init: () {},
+                loaded: (_) {
+                  friendsRequestAreInitState = false;
+                  checkLoadingThenRouteHome(
+                      friendsRequestAreInitState,
+                      friendsDataAreInitState,
+                      meetDataAreInitState,
+                      userDataAreInitState);
+                },
+                error: (e) => context.go('/errorScreen', extra: {'error': e}));
           },
         ),
         BlocListener<FriendsDataBloc, FriendsDataState>(
           bloc: GetIt.I<FriendsDataBloc>(),
           listener: (BuildContext context, state) {
             setProcessTitle(AppStrings.splashLoadedFriendsData);
-            state.when(init: (){}, loaded: (_){
-              friendsDataAreInitState = false;
-              checkLoadingThenRouteHome(friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            }, error: (e) => context.go('/errorScreen', extra: {'error': e}));
+            state.when(
+                init: () {},
+                loaded: (_) {
+                  friendsDataAreInitState = false;
+                  checkLoadingThenRouteHome(
+                      friendsRequestAreInitState,
+                      friendsDataAreInitState,
+                      meetDataAreInitState,
+                      userDataAreInitState);
+                },
+                error: (e) => context.go('/errorScreen', extra: {'error': e}));
           },
         ),
         BlocListener<MeetDataBloc, MeetDataState>(
@@ -115,10 +134,17 @@ class _SplashPageState extends State<SplashPage> {
           listener: (BuildContext context, state) {
             setProcessTitle(AppStrings.splashLoadedMeetData);
 
-            state.when(init: (){}, loaded: (_){
-              meetDataAreInitState = false;
-              checkLoadingThenRouteHome(friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            }, error: (e) => context.go('/errorScreen', extra: {'error': e}));
+            state.when(
+                init: () {},
+                loaded: (_) {
+                  meetDataAreInitState = false;
+                  checkLoadingThenRouteHome(
+                      friendsRequestAreInitState,
+                      friendsDataAreInitState,
+                      meetDataAreInitState,
+                      userDataAreInitState);
+                },
+                error: (e) => context.go('/errorScreen', extra: {'error': e}));
           },
         ),
         BlocListener<UserDataBloc, UserDataState>(
@@ -126,11 +152,17 @@ class _SplashPageState extends State<SplashPage> {
           listener: (BuildContext context, state) {
             setProcessTitle(AppStrings.splashLoadedUserData);
 
-            state.when(init: (){}, loaded: (_){
-              userDataAreInitState = false;
-              checkLoadingThenRouteHome(friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            }, error: (e) => context.go('/errorScreen', extra: {'error': e}));
-
+            state.when(
+                init: () {},
+                loaded: (_) {
+                  userDataAreInitState = false;
+                  checkLoadingThenRouteHome(
+                      friendsRequestAreInitState,
+                      friendsDataAreInitState,
+                      meetDataAreInitState,
+                      userDataAreInitState);
+                },
+                error: (e) => context.go('/errorScreen', extra: {'error': e}));
           },
         ),
       ],

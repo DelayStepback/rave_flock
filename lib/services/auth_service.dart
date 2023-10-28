@@ -20,7 +20,6 @@ class AuthService{
     );
   }
   static void signOut() async{
-    BlocService.resetBlocs();
     supabase.auth.signOut();
   }
 

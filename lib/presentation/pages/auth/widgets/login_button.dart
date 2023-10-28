@@ -44,9 +44,8 @@ class LoginButton extends StatelessWidget {
                 } else {
                   bool checkIfUserHaveUsername =
                   await userRep.isUserHaveUsername(userId);
-
+                  BlocService.resetBlocs();
                   BlocService.initAllBlocs();
-
 
                   if (checkIfUserHaveUsername) {
                     context.go("/homepage");

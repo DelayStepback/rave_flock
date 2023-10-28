@@ -14,20 +14,22 @@ import '../../bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/meet_data_bloc/meet_data_event.dart';
+import '../../bloc/user_data_bloc/user_data_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider.value(
-        value: GetIt.I<FriendRequestsBloc>(),
-      ),
-      BlocProvider.value(
-        value: GetIt.I<MeetDataBloc>(),
-      )
-    ], child: _HomePageView());
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+              value:  GetIt.I<FriendRequestsBloc>()),
+          BlocProvider.value(value:GetIt.I<FriendsDataBloc>()),
+          BlocProvider.value(value: GetIt.I<MeetDataBloc>()),
+          BlocProvider.value(value: GetIt.I<UserDataBloc>()),
+        ],
+        child: _HomePageView());
   }
 }
 
@@ -61,14 +63,7 @@ class _HomePageView extends StatelessWidget {
                 builder: (context, state) {
                   return state.when(
                     init: () {
-                      if (userIdAuth != null) {
-                        context
-                            .read<FriendRequestsBloc>()
-                            .add(FriendRequestsInitializeEvent(userIdAuth!));
-                      }
-                      return const Text(
-                        'LOADING',
-                      );
+                      return Text('loading');
                     },
                     loaded: (List<FriendshipRequestEntity> friendships) {
                       return Text(friendships.length.toString());
@@ -156,8 +151,7 @@ class _HomePageView extends StatelessWidget {
           TextButton(
               onPressed: () {
                 AuthService.signOut();
-
-                context.go('/login');
+                context.go('/');
               },
               child: const Text('signOut')),
         ],

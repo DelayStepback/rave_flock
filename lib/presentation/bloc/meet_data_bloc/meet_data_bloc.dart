@@ -24,6 +24,7 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
 
   Future<void> _onMeetDataInitializeEvent(MeetDataInitializeEvent event,
       emit) async {
+    await Future.delayed(Duration(seconds: 4));
     try {
       final meets = await _meetRepository.fetchUserMeets(event.userId);
       emit(MeetDataState.loaded(allMeetData: meets));
@@ -36,15 +37,17 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
   Future<void> _onMeetDataAddEvent(MeetDataAddEvent event, emit) async {
     List<MeetModel> _meets = [];
 
-    state.when(init: () {}, loaded: (meets) async {
+    await state.when(init: () {}, loaded: (meets) async {
       for (var m in meets) {
         _meets.add(m);
       }
       // такого мероприятия нет
       if (event.meetModel.meetId == null) {
         try {
-          final newMeet = await _meetRepository.addMeet(event.meetModel);
-          _meets.add(newMeet);
+          await _meetRepository.addMeet(event.meetModel).then((value){
+              _meets.add(value);
+          }
+          );
         }
         catch (e) {
           print('error: $e');
@@ -53,17 +56,21 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
       // если уже создано, обновляем
       else {
         try {
-          int index = _meets.indexWhere((e) =>
-          e.meetId == event.meetModel.meetId);
-          _meets[index] = event.meetModel;
-          await _meetRepository.updateMeet(event.meetModel);
+          await _meetRepository.updateMeet(event.meetModel).whenComplete(() {
+            int index = _meets.indexWhere((e) =>
+            e.meetId == event.meetModel.meetId);
+            _meets[index] = event.meetModel;
+          }
+          );
+
         }
         catch (e) {
           print('error: $e');
         }
       }
-    }, error: (e) {});
-    emit(MeetDataState.loaded(allMeetData: _meets));
+    }, error: (e) {})?.whenComplete(() {
+      emit(MeetDataState.loaded(allMeetData: _meets));
+    });
   }
 
   @override

@@ -38,6 +38,7 @@ class FriendsDataBloc
       }
       emit(FriendsDataState.loaded(friends: friends));
     } catch (e) {
+      print('error init friends data: $e');
       // emit(FriendsDataState.error(error: e.toString()));
     }
   }

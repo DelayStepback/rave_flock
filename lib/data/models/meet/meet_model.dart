@@ -12,7 +12,6 @@ class MeetModel with _$MeetModel {
   const MeetModel._();
 
   factory MeetModel({
-
     @JsonKey(name: 'meet_id') int? meetId,
     @JsonKey(name: 'meet_owner_id') required String meetOwnerId,
     required String title,

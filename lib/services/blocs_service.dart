@@ -12,6 +12,7 @@ import '../presentation/bloc/user_data_bloc/user_data_event.dart';
 
 class BlocService{
   static void initAllBlocs(){
+    print('initinal ${AuthService.getUserId()??null}');
     GetIt.I<FriendRequestsBloc>()
         .add(FriendRequestsEvent.initialize(AuthService.getUserId()!));
     GetIt.I<FriendsDataBloc>()
@@ -21,6 +22,9 @@ class BlocService{
   }
 
   static void resetBlocs() {
+    GetIt.I<FriendRequestsBloc>().add(const FriendRequestsEvent.dispose());
+    GetIt.I<FriendsDataBloc>().add(const FriendsDataEvent.dispose());
     GetIt.I<MeetDataBloc>().add(const MeetDataEvent.dispose());
+    GetIt.I<UserDataBloc>().add(const UserDataEvent.dispose());
   }
 }

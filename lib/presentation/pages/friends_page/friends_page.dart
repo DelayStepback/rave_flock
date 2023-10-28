@@ -15,7 +15,7 @@ class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-        value: GetIt.I<FriendsDataBloc>(),
+      value: GetIt.I<FriendsDataBloc>(),
         child: const _FriendsPageView());
   }
 }

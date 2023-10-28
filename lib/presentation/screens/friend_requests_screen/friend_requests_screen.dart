@@ -6,6 +6,9 @@ import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.da
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
+import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
+import 'package:rave_flock/services/auth_service.dart';
 
 class FriendRequestsScreen extends StatelessWidget {
   const FriendRequestsScreen({super.key});
@@ -13,8 +16,11 @@ class FriendRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: GetIt.I<FriendRequestsBloc>(),
-      child: _FriendRequestsScreen(),
+      value: GetIt.I<FriendsDataBloc>(),
+      child: BlocProvider.value(
+        value: GetIt.I<FriendRequestsBloc>(),
+        child: _FriendRequestsScreen(),
+      ),
     );
   }
 }
@@ -55,6 +61,9 @@ class _FriendRequestsScreen extends StatelessWidget {
                                     BlocProvider.of<FriendRequestsBloc>(context)
                                         .add(FriendRequestsAcceptEvent(
                                         frienshipEntity.id));
+                                    BlocProvider.of<FriendsDataBloc>(context)
+                                        .add(FriendsDataEvent.initialize(
+                                        AuthService.getUserId()!));
                                   }, child: const Text('Accept')),
                                   ElevatedButton(
                                       onPressed: () {

@@ -12,10 +12,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I<UserDataBloc>(),
-      child: const _ProfilePageView(),
-    );
+    return BlocProvider.value(
+        value: GetIt.I<UserDataBloc>(),
+        child: const _ProfilePageView());
   }
 }
 
