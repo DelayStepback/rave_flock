@@ -21,15 +21,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider.value(
-              value:  GetIt.I<FriendRequestsBloc>()),
-          BlocProvider.value(value:GetIt.I<FriendsDataBloc>()),
-          BlocProvider.value(value: GetIt.I<MeetDataBloc>()),
-          BlocProvider.value(value: GetIt.I<UserDataBloc>()),
-        ],
-        child: _HomePageView());
+    return MultiBlocProvider(providers: [
+      BlocProvider.value(value: GetIt.I<FriendRequestsBloc>()),
+      BlocProvider.value(value: GetIt.I<FriendsDataBloc>()),
+      BlocProvider.value(value: GetIt.I<MeetDataBloc>()),
+      BlocProvider.value(value: GetIt.I<UserDataBloc>()),
+    ], child: _HomePageView());
   }
 }
 
@@ -38,45 +35,58 @@ class _HomePageView extends StatelessWidget {
 
   final String? userIdAuth = AuthService.getUserId();
 
+  // context
+  //     .read<FriendRequestsBloc>()
+  //     .add(FriendRequestsInitializeEvent(userIdAuth!));
+  // context.read<MeetDataBloc>().add(MeetDataInitializeEvent(userIdAuth!));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('home page'),
+        title: const Text('Rave Flock'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
-          IconButton(
-              onPressed: () {
-                context
-                    .read<FriendRequestsBloc>()
-                    .add(FriendRequestsInitializeEvent(userIdAuth!));
-                context
-                    .read<MeetDataBloc>()
-                    .add(MeetDataInitializeEvent(userIdAuth!));
-              },
-              icon: const Icon(Icons.refresh)),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Icon(Icons.notification_important),
-              BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
-                builder: (context, state) {
-                  return state.when(
-                    init: () {
-                      return Text('loading');
-                    },
-                    loaded: (List<FriendshipRequestEntity> friendships) {
-                      return Text(friendships.length.toString());
-                    },
-                    error: (e) {
-                      return Text('$e');
-                    },
-                  );
-                },
-              )
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('/homepage/friendsPage');
+                  },
+                  child: const Text('My friends')),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('/homepage/friendRequestsScreen');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(Icons.notifications_active_outlined),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
+                        builder: (context, state) {
+                          return state.when(
+                            init: () {
+                              return const Text('loading');
+                            },
+                            loaded:
+                                (List<FriendshipRequestEntity> friendships) {
+                              return Text(friendships.length.toString());
+                            },
+                            error: (e) {
+                              return Text('$e');
+                            },
+                          );
+                        },
+                      )
+                    ],
+                  )),
             ],
           ),
-          const Icon(Icons.ac_unit_rounded),
           BlocBuilder<MeetDataBloc, MeetDataState>(builder: (context, state) {
             return state.when(init: () {
               if (userIdAuth != null) {
@@ -90,33 +100,47 @@ class _HomePageView extends StatelessWidget {
               );
             }, loaded: (List<MeetModel> meets) {
               return Expanded(
-                child: ListView.builder(
-                  itemCount: meets.length,
-                  itemBuilder: (_, index) {
-                    return InkWell(
-                      onTap: () {
-                        context.goNamed('meetPage', pathParameters: {
-                          'meetId': meets[index].meetId.toString()
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            color: Colors.blueGrey,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            Text('id: ${meets[index].meetId}'),
-                            Text('title: ${meets[index].title}'),
-                            Text('description: ${meets[index].description}'),
-
-                          ],
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: meets.length,
+                    itemBuilder: (_, index) {
+                      return InkWell(
+                        onTap: () {
+                          context.goNamed('meetPage', pathParameters: {
+                            'meetId': meets[index].meetId.toString(),
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: const BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: ListView(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            children: [
+                              Text(
+                                '#${meets[index].meetId}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              Text('title: ${meets[index].title}',
+                                  style: const TextStyle(color: Colors.white)),
+                              Text('description: ${meets[index].description}',
+                                  style: const TextStyle(color: Colors.white)),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(
+                        height: 30,
+                      );
+                    },
+                  ),
                 ),
               );
             }, error: (String error) {
@@ -124,30 +148,17 @@ class _HomePageView extends StatelessWidget {
             });
           }),
           ElevatedButton(
-              onPressed: () {
-                context.push('/homepage/createNewMeetScreen');
-              },
-              child: const Text('createNewMeetScreen')),
+            onPressed: () {
+              context.push('/homepage/createNewMeetScreen');
+            },
+            child: const Icon(Icons.add),
+          ),
           ElevatedButton(
-              onPressed: () {
-                context.push('/homepage/profilePage');
-              },
-              child: const Text('profile page')),
-          ElevatedButton(
-              onPressed: () {
-                context.go('/login');
-              },
-              child: const Text('login route')),
-          ElevatedButton(
-              onPressed: () {
-                context.push('/homepage/friendRequestsScreen');
-              },
-              child: const Text('friend requests screen route')),
-          ElevatedButton(
-              onPressed: () {
-                context.push('/homepage/friendsPage');
-              },
-              child: const Text('My friends')),
+            onPressed: () {
+              context.push('/homepage/profilePage');
+            },
+            child: const Icon(Icons.person),
+          ),
           TextButton(
               onPressed: () {
                 AuthService.signOut();

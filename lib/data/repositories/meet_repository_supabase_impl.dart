@@ -77,14 +77,16 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   }
 
   @override
-  Future<void> addToBasketItem(BasketItemModel basketItemModel) async {
+  Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel) async {
     final json = basketItemModel.toJson();
 
     if (json['id'] == null) {
       json.remove('id');
     }
 
-    await supabase.from('basket_items').insert(json);
+    final newBasketItemJson = await supabase.from('basket_items').insert(json).select();
+    final newBasketItem = BasketItemModel.fromJson(newBasketItemJson[0]);
+    return newBasketItem;
   }
 
   @override
@@ -185,5 +187,10 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
             .eq('user_id', userId);
       }
     }
+  }
+
+  @override
+  Future<void> removeBasketItem(BasketItemModel basketItemModel) async{
+    await supabase.from('basket_items').delete().eq('id', basketItemModel.id);
   }
 }

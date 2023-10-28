@@ -48,7 +48,7 @@ class LoginButton extends StatelessWidget {
                   BlocService.initAllBlocs();
 
                   if (checkIfUserHaveUsername) {
-                    context.go("/homepage");
+                    context.go("/");
                   } else {
                     context.go("/setUsername");
                   }

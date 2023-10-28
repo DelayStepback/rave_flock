@@ -40,7 +40,7 @@ class _SetUsernameScreenState extends State<SetUsernameScreen> {
                     try{
                       await GetIt.I<UserRepository>()
                           .updateUsername(username, userId)
-                          .then((value) => context.go("/homepage"));
+                          .then((value) => context.go("/"));
                     }
                     catch (e){
                       if (e == ExceptionsEnum.usernameExists){

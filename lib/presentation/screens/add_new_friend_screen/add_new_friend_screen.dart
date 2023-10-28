@@ -21,74 +21,80 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('add new friend'),
+        title: const Text('Добавить нового друга'),
+        centerTitle: true,
       ),
-      body: Column(
-        children: [
-          TextFormField(
-            controller: _usernameController,
-            decoration: const InputDecoration(label: Text('New friend username')),
-          ),
-          fetching? const CircularProgressIndicator() :ElevatedButton(
-              onPressed: () async {
-                try{
-                  setState(() {
-                    fetching = true;
-                  });
-                  await GetIt.I<FriendsRepository>()
-                      .sendARequest(AuthService.getUserId()!,
-                      _usernameController.text.trim())
-                      .then((value) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('заявка отправлена'),
-                      ),
-                    );
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextFormField(
+              controller: _usernameController,
+              decoration: const InputDecoration(label: Text('Имя нового друга')),
+            ),
+            SizedBox(height: 10,),
+            fetching? const CircularProgressIndicator() :ElevatedButton(
+                onPressed: () async {
+                  try{
                     setState(() {
-                      fetching = false;
+                      fetching = true;
                     });
+                    await GetIt.I<FriendsRepository>()
+                        .sendARequest(AuthService.getUserId()!,
+                        _usernameController.text.trim())
+                        .then((value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('заявка отправлена'),
+                        ),
+                      );
+                      setState(() {
+                        fetching = false;
+                      });
 
-                  });
-                }
-               catch(e){
-                 setState(() {
-                   fetching = false;
-                 });
-                  switch(e){
-                    case ExceptionsEnum.usernameNotFound:
-                      // TODO: SHOW DIALOG instead SnackBar
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('username not found'),
-                        ),
-                      );
-                      break;
-                    case ExceptionsEnum.requestAlreadySend:
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('request already send'),
-                        ),
-                      );
-                      break;
-                    case ExceptionsEnum.alreadyYourFriend:
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('already your friend'),
-                        ),
-                      );
-                      break;
-                    case ExceptionsEnum.cannotAddYourself:
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('cannot add yourself'),
-                        ),
-                      );
-                      break;
+                    });
                   }
-               }
-              },
-              child: const Text('добавить в друзья'))
-        ],
+                 catch(e){
+                   setState(() {
+                     fetching = false;
+                   });
+                    switch(e){
+                      case ExceptionsEnum.usernameNotFound:
+                        // TODO: SHOW DIALOG instead SnackBar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('username not found'),
+                          ),
+                        );
+                        break;
+                      case ExceptionsEnum.requestAlreadySend:
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('request already send'),
+                          ),
+                        );
+                        break;
+                      case ExceptionsEnum.alreadyYourFriend:
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('already your friend'),
+                          ),
+                        );
+                        break;
+                      case ExceptionsEnum.cannotAddYourself:
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('cannot add yourself'),
+                          ),
+                        );
+                        break;
+                    }
+                 }
+                },
+                child: const Text('добавить в друзья'))
+          ],
+        ),
       ),
     );
   }

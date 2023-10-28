@@ -29,7 +29,9 @@ abstract class MeetRepository {
 
   Future<void> createBasketToMeet(int meetId);
 
-  Future<void> addToBasketItem(BasketItemModel basketItemModel);
+  Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel);
+  Future<void> removeBasketItem(BasketItemModel basketItemModel);
+
 
   Future<void> userTakeThisItem(
       bool isTake, int basketItemId, String userId);

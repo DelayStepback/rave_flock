@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/presentation/pages/auth/login_page.dart';
 import 'package:rave_flock/presentation/pages/auth/set_username_screen.dart';
+import 'package:rave_flock/presentation/pages/basket_page/basket_page.dart';
 import 'package:rave_flock/presentation/pages/friends_page/friends_page.dart';
 import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
 import 'package:rave_flock/presentation/pages/meet_page/meet_page.dart';
@@ -55,12 +56,23 @@ final GoRouter router = GoRouter(
                 meetId: int.tryParse(state.pathParameters['meetId']!) ??
                     0 // TODO 0 не есть хорошо
                 ),
+            routes: [
+              GoRoute(
+                  name: 'basketPage',
+                  path: "basketPage/:meetIdBasket",
+                  builder: (context, state) => BasketPage(
+                      meetId: int.tryParse(state.pathParameters['meetIdBasket']!) ??
+                          0 // TODO 0 не есть хорошо
+                  ),
+              ),
+            ]
           ),
           GoRoute(
             path: "profilePage",
             builder: (context, state) => const ProfilePage(),
           ),
           GoRoute(
+            name: 'createNewMeetScreen',
             path: "createNewMeetScreen",
             //TODO: для update meet
             builder: (context, state) => CreateNewMeetScreen(
