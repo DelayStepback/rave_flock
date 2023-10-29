@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
@@ -41,12 +42,36 @@ class _SplashPage extends StatefulWidget {
   State<_SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<_SplashPage> {
+class _SplashPageState extends State<_SplashPage> with SingleTickerProviderStateMixin{
+  late AnimationController controller;
   @override
   void initState() {
     super.initState();
+    controller = AnimationController(
+      duration: Duration(seconds: 10),
+      vsync: this,
+    )
+      ..forward()
+      ..addListener(() {
+        if (controller.isCompleted) {
+          controller.repeat();
+        }
+      });
+
     _redirect();
   }
+
+  double shake(double value) {
+     return 2 * (0.5 - (0.5 - Curves.easeInOutQuad.transform(value)).abs());
+  }
+
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
 
   Future<void> _redirect() async {
     // чтобы не мерцало seconds = 2
@@ -89,6 +114,8 @@ class _SplashPageState extends State<_SplashPage> {
       processTitle = title;
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -167,18 +194,136 @@ class _SplashPageState extends State<_SplashPage> {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Colors.pinkAccent,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+        backgroundColor: Color(0xFF433383),
+
+        body: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: Stack(
+
             children: [
-              Text(
-                'ЭТО СПЛЭШИК)',
-                style: TextStyle(fontSize: 40, color: Colors.blue),
+              // TODO: это не хорошо
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 10,
+                  left: 150- shake(controller.value)*100,
+                  child: Transform.rotate(
+                    
+                    angle: shake(controller.value)*0.2,
+                    child: Container(
+
+                      child: SvgPicture.asset(
+                        'assets/images/party.svg',
+
+                      ),
+                    ),
+                  ),
+                ),
               ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 310,
+                  left: 150- shake(controller.value)*100,
+                  child: Container(
+
+                    child: SvgPicture.asset(
+                      'assets/images/party.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 200,
+                  left: 120- shake(controller.value)*50,
+                  child: Container(
+
+                    child: SvgPicture.asset(
+                      'assets/images/party.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 500,
+                  left: 60- shake(controller.value)*200,
+                  child: Container(
+
+                    child: SvgPicture.asset(
+                      'assets/images/party.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  left: -40 + shake(controller.value)*270,
+                  child: Container(
+                    child: SvgPicture.asset(
+                      'assets/images/phone.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 250,
+                  left: 70 + shake(controller.value)*180,
+                  child: Container(
+                    child: SvgPicture.asset(
+                      'assets/images/phone.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 200,
+                  left: - shake(controller.value)*300,
+                  child: Container(
+                    child: SvgPicture.asset(
+                      'assets/images/phone.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: controller,
+
+                builder: (context, child) =>  Positioned(
+                  top: 500,
+                  left: 200- shake(controller.value)*300,
+                  child: Container(
+                    child: SvgPicture.asset(
+                      'assets/images/phone.svg',
+
+                    ),
+                  ),
+                ),
+              ),
+
               Text(processTitle),
-              CircularProgressIndicator(),
             ],
           ),
         ),

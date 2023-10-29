@@ -17,7 +17,7 @@ class BasketPage extends StatelessWidget {
     return BlocProvider.value(
       // TODO: обновляет каждый раз
       value: GetIt.I<BasketDataBloc>()
-        ..add(BasketDataDisposeEvent())
+        ..add(const BasketDataDisposeEvent())
         ..add(BasketDataInitializeEvent(meetId)),
       child: _BasketPage(
         meetId: meetId,
@@ -42,7 +42,7 @@ class _BasketPage extends StatelessWidget {
             BlocBuilder<BasketDataBloc, BasketDataState>(builder: (_, state) {
               return state.when(
                   init: () {
-                    return Text('loading');
+                    return const Text('loading');
                   },
                   loaded: (basketItems) {
                     return Expanded(
@@ -58,11 +58,11 @@ class _BasketPage extends StatelessWidget {
             IconButton(onPressed: (){
               final basketMock = BasketItemModel(meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
               GetIt.I<BasketDataBloc>().add(BasketDataEvent.add(basketMock));
-            }, icon: Icon(Icons.add)),
+            }, icon: const Icon(Icons.add)),
             IconButton(onPressed: (){
               final basketMock = BasketItemModel(id: 51, meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
               GetIt.I<BasketDataBloc>().add(BasketDataEvent.delete(basketMock));
-            }, icon: Icon(Icons.remove))
+            }, icon: const Icon(Icons.remove))
           ],
         ),
       )

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
-import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/presentation/pages/friends_page/widgets/add_new_friend_widget.dart';
+import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
+import 'package:rave_flock/presentation/pages/home_page/widgets/notification_button_widget.dart';
+import 'package:rave_flock/presentation/screens/create_new_meet_screen/create_new_meet_screen.dart';
+import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../../../data/models/meet/meet_model.dart';
 import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
@@ -29,7 +33,6 @@ class HomePage extends StatelessWidget {
     ], child: _HomePageView());
   }
 }
-
 class _HomePageView extends StatelessWidget {
   _HomePageView({super.key});
 
@@ -42,130 +45,78 @@ class _HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rave Flock'),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    context.push('/homepage/friendsPage');
-                  },
-                  child: const Text('My friends')),
-              ElevatedButton(
-                  onPressed: () {
-                    context.push('/homepage/friendRequestsScreen');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Icon(Icons.notifications_active_outlined),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
-                        builder: (context, state) {
-                          return state.when(
-                            init: () {
-                              return const Text('loading');
-                            },
-                            loaded:
-                                (List<FriendshipRequestEntity> friendships) {
-                              return Text(friendships.length.toString());
-                            },
-                            error: (e) {
-                              return Text('$e');
-                            },
+      backgroundColor: const Color(0xFF433383),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SvgPicture.asset(
+              'assets/images/phone.svg',
+            ),
+            IconButton(
+              onPressed: () {
+                context.pushNamed('routingPage');
+              },
+              icon: const Icon(Icons.line_weight_sharp),
+            ),
+            const NotificationButtonWidget(),
+            Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: CustomScrollView(
+                slivers: [
+                  BlocBuilder<MeetDataBloc, MeetDataState>(
+                    builder: (context, state) {
+                      return state.when(
+                        init: () {
+                          if (userIdAuth != null) {
+                            context
+                                .read<MeetDataBloc>()
+                                .add(MeetDataInitializeEvent(userIdAuth!));
+                          }
+                          return const SliverToBoxAdapter(
+                            child: Text(
+                              'LOADING',
+                            ),
                           );
                         },
-                      )
-                    ],
-                  )),
-            ],
-          ),
-          BlocBuilder<MeetDataBloc, MeetDataState>(builder: (context, state) {
-            return state.when(init: () {
-              if (userIdAuth != null) {
-                context
-                    .read<MeetDataBloc>()
-                    .add(MeetDataInitializeEvent(userIdAuth!));
-              }
-
-              return const Text(
-                'LOADING',
-              );
-            }, loaded: (List<MeetModel> meets) {
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: meets.length,
-                    itemBuilder: (_, index) {
-                      return InkWell(
-                        onTap: () {
-                          context.goNamed('meetPage', pathParameters: {
-                            'meetId': meets[index].meetId.toString(),
-                          });
+                        loaded: (List<MeetModel> meets) {
+                          return SliverToBoxAdapter(
+                              child: MeetRollWidget(
+                            meets: meets,
+                          ));
                         },
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: const BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: ListView(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            children: [
-                              Text(
-                                '#${meets[index].meetId}',
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              Text('title: ${meets[index].title}',
-                                  style: const TextStyle(color: Colors.white)),
-                              Text('description: ${meets[index].description}',
-                                  style: const TextStyle(color: Colors.white)),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(
-                        height: 30,
+                        error: (String error) {
+                          return const SliverToBoxAdapter(child: Text('error'));
+                        },
                       );
                     },
                   ),
-                ),
-              );
-            }, error: (String error) {
-              return const Text('error');
-            });
-          }),
-          ElevatedButton(
-            onPressed: () {
-              context.push('/homepage/createNewMeetScreen');
-            },
-            child: const Icon(Icons.add),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.push('/homepage/profilePage');
-            },
-            child: const Icon(Icons.person),
-          ),
-          TextButton(
-              onPressed: () {
-                AuthService.signOut();
-                context.go('/');
-              },
-              child: const Text('signOut')),
-        ],
+
+                  SliverList(
+                      delegate: SliverChildListDelegate([
+                    UnconstrainedBox(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (context) {
+                                return const FractionallySizedBox(
+                                  heightFactor: 0.9,
+                                  child: CreateNewMeetScreen(),
+                                );
+                              });
+                          // context.pushNamed('createNewMeetScreen');
+
+                        },
+                        child: const Icon(Icons.add),
+                      ),
+                    ),
+                  ]))
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

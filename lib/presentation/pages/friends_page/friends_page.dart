@@ -8,6 +8,7 @@ import '../../../main.dart';
 import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
 import '../../bloc/friends_data_bloc/friends_data_state.dart';
+import 'widgets/add_new_friend_widget.dart';
 
 class FriendsPage extends StatelessWidget {
   const FriendsPage({super.key});
@@ -42,10 +43,14 @@ class _FriendsPageView extends StatelessWidget {
               },
               icon: const Icon(Icons.refresh)),
           ElevatedButton(
-              onPressed: () {
-                context.push('/homepage/friendsPage/addNewFriendScreen');
-              },
-              child: const Text('Добавить нового друга')),
+            onPressed: () {
+              // context.push('/homepage/createNewMeetScreen');
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) => AddNewFriendWidget());
+            },
+            child: const Icon(Icons.add),
+          ),
           BlocBuilder<FriendsDataBloc, FriendsDataState>(
             builder: (context, state) {
               return state.when(init: () {

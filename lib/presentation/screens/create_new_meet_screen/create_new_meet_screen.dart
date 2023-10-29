@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/widget/text_input.dart';
@@ -91,103 +92,96 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: meetModel == null
-            ? Text('CreateNewMeetScreen')
-            : Text('update exist meet'),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              TextInput(
-                label: 'Title',
-                valid: _titleValid,
-                errorText: 'Слишком короткое название',
-                controller: _titleController,
-                readOnly: meetModel == null ? false : true,
-                maxLine: 1,
-                onChanged: _onChangeTitle,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              TextInput(
-                label: 'description',
-                controller: _descriptionController,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              TextInput(
-                label: 'Location',
-                controller: _locationController,
-                maxLine: 1,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'PRIVATE',
-                    style: TextStyle(
-                        color: !_meetIsPublic ? Colors.purple : Colors.black),
-                  ),
-                  Switch(
-                      value: _meetIsPublic,
-                      onChanged: (value) {
-                        setState(() {
-                          _meetIsPublic = value;
-                        });
-                      }),
-                  Text(
-                    'PUBLIC',
-                    style: TextStyle(
-                        color: _meetIsPublic ? Colors.purple : Colors.black),
-                  ),
-                ],
-              ),
-              Text(
-                'BASKET CREATE?',
-                style: TextStyle(color: Colors.black),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'NO',
-                    style: TextStyle(
-                        color: !_containsBasket ? Colors.purple : Colors.black),
-                  ),
-                  Switch(
-                      value: _containsBasket,
-                      onChanged: (value) {
-                        setState(() {
-                          _containsBasket = value;
-                        });
-                      }),
-                  Text(
-                    'YES',
-                    style: TextStyle(
-                        color: _containsBasket ? Colors.purple : Colors.black),
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    createOrUpdateMeetAction(context);
-                  },
-                  child: meetModel == null ? Text('create') : Text('update'))
-            ],
-          ),
+    return  Center(
+        child: ListView(
+          physics: NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.all(20).r,
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            TextInput(
+              label: 'Title',
+              valid: _titleValid,
+              errorText: 'Слишком короткое название',
+              controller: _titleController,
+              readOnly: meetModel == null ? false : true,
+              maxLine: 1,
+              onChanged: _onChangeTitle,
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            TextInput(
+              label: 'description',
+              controller: _descriptionController,
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            TextInput(
+              label: 'Location',
+              controller: _locationController,
+              maxLine: 1,
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'PRIVATE',
+                  style: TextStyle(
+                      color: !_meetIsPublic ? Colors.purple : Colors.black),
+                ),
+                Switch(
+                    value: _meetIsPublic,
+                    onChanged: (value) {
+                      setState(() {
+                        _meetIsPublic = value;
+                      });
+                    }),
+                Text(
+                  'PUBLIC',
+                  style: TextStyle(
+                      color: _meetIsPublic ? Colors.purple : Colors.black),
+                ),
+              ],
+            ),
+            Text(
+              'BASKET CREATE?',
+              style: TextStyle(color: Colors.black),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'NO',
+                  style: TextStyle(
+                      color: !_containsBasket ? Colors.purple : Colors.black),
+                ),
+                Switch(
+                    value: _containsBasket,
+                    onChanged: (value) {
+                      setState(() {
+                        _containsBasket = value;
+                      });
+                    }),
+                Text(
+                  'YES',
+                  style: TextStyle(
+                      color: _containsBasket ? Colors.purple : Colors.black),
+                ),
+              ],
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  createOrUpdateMeetAction(context);
+                },
+                child: meetModel == null ? Text('create') : Text('update'))
+          ],
         ),
-      ),
     );
   }
 

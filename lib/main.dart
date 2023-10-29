@@ -8,7 +8,7 @@ import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
-import 'package:rave_flock/router.dart';
+import 'package:rave_flock/presentation/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
