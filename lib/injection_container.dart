@@ -7,7 +7,6 @@ import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart'
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 import 'package:rave_flock/domain/repositories/meet_repository.dart';
 import 'package:rave_flock/domain/repositories/user_repository.dart';
-import 'package:rave_flock/presentation/bloc/basket_data_bloc/basket_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
@@ -26,7 +25,6 @@ Future<void> initializeDependencies() async{
   sl.registerSingleton<FriendsDataBloc>(FriendsDataBloc(sl(), sl()));
   sl.registerSingleton<MeetDataBloc>(MeetDataBloc(sl()));
   sl.registerSingleton<UserDataBloc>(UserDataBloc(sl()));
-  sl.registerSingleton<BasketDataBloc>(BasketDataBloc(sl()));
 
 
 }

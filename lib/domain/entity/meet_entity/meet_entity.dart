@@ -1,14 +1,11 @@
-import '../../../data/models/meet/meet_model.dart';
+import 'package:rave_flock/data/models/meet/meet_model.dart';
+import 'package:rave_flock/data/models/user/user_model.dart';
 
-class GuestInfo {
-  String username;
-  String avatarUrl;
+import '../../../data/models/basket_item/basket_item_model.dart';
 
-  GuestInfo(this.username, this.avatarUrl);
-}
-
-class MeetAdditionallyEntity {
+class MeetEntity {
   MeetModel meetModel;
-  List<GuestInfo> guestsInfo;
-  MeetAdditionallyEntity(this.meetModel, this.guestsInfo);
+  List<UserModel>? usersGuests;
+  List<BasketItemModel>? allBasketData;
+  MeetEntity(this.meetModel, this.usersGuests, this.allBasketData);
 }

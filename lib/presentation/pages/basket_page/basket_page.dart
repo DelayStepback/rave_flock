@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
-import 'package:rave_flock/presentation/bloc/basket_data_bloc/basket_data_bloc.dart';
-
-import '../../bloc/basket_data_bloc/basket_data_event.dart';
-import '../../bloc/basket_data_bloc/basket_data_state.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import '../../bloc/meet_data_bloc/meet_data_state.dart';
 
 class BasketPage extends StatelessWidget {
   const BasketPage({super.key, required this.meetId});
@@ -16,9 +14,7 @@ class BasketPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       // TODO: обновляет каждый раз
-      value: GetIt.I<BasketDataBloc>()
-        ..add(const BasketDataDisposeEvent())
-        ..add(BasketDataInitializeEvent(meetId)),
+      value: GetIt.I<MeetDataBloc>(),
       child: _BasketPage(
         meetId: meetId,
       ),
@@ -39,30 +35,32 @@ class _BasketPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            BlocBuilder<BasketDataBloc, BasketDataState>(builder: (_, state) {
+            BlocBuilder<MeetDataBloc, MeetDataState>(builder: (_, state) {
               return state.when(
                   init: () {
                     return const Text('loading');
                   },
-                  loaded: (basketItems) {
+                  loaded: (meetEntities) {
+                    List<BasketItemModel>? currMeetBasketItems = meetEntities.firstWhere((element) => element.meetModel.meetId == meetId).allBasketData;
+                    print(currMeetBasketItems);
                     return Expanded(
                       child: ListView.builder(
-                          itemCount: basketItems.length,
+                          itemCount: currMeetBasketItems?.length,
                           itemBuilder: (_, index) {
-                            return Text('#${basketItems[index].id} ${basketItems[index].title}');
+                            return Text('#${currMeetBasketItems?[index].id} ${currMeetBasketItems?[index].title}');
                           }),
                     );
                   },
                   error: (e) => Text('error: $e'));
             }),
-            IconButton(onPressed: (){
-              final basketMock = BasketItemModel(meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
-              GetIt.I<BasketDataBloc>().add(BasketDataEvent.add(basketMock));
-            }, icon: const Icon(Icons.add)),
-            IconButton(onPressed: (){
-              final basketMock = BasketItemModel(id: 51, meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
-              GetIt.I<BasketDataBloc>().add(BasketDataEvent.delete(basketMock));
-            }, icon: const Icon(Icons.remove))
+            // IconButton(onPressed: (){
+            //   final basketMock = BasketItemModel(meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
+            //   GetIt.I<BasketDataBloc>().add(BasketDataEvent.add(basketMock));
+            // }, icon: const Icon(Icons.add)),
+            // IconButton(onPressed: (){
+            //   final basketMock = BasketItemModel(id: 51, meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
+            //   GetIt.I<BasketDataBloc>().add(BasketDataEvent.delete(basketMock));
+            // }, icon: const Icon(Icons.remove))
           ],
         ),
       )

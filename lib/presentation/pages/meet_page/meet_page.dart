@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rave_flock/data/models/meet/meet_model.dart';
-import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
-import 'package:rave_flock/presentation/bloc/basket_data_bloc/basket_data_event.dart';
+import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/services/auth_service.dart';
-
-import '../../bloc/basket_data_bloc/basket_data_bloc.dart';
 
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key, required this.meetId});
@@ -41,37 +37,37 @@ class _MeetPageView extends StatelessWidget {
       builder: (context, state) {
         return state.when(init: () {
           return CircularProgressIndicator();
-        }, loaded: (meets) {
-          MeetModel currMeet =
-          meets.firstWhere((element) => element.meetId == meetId);
+        }, loaded: (List<MeetEntity> meetsEntities) {
+          MeetEntity currMeetEntity =
+          meetsEntities.firstWhere((element) => element.meetModel.meetId == meetId);
           return Scaffold(
             appBar: AppBar(
-              title: Text('${currMeet.title}'),
+              title: Text(currMeetEntity.meetModel.title),
             ),
             body: ListView(
               padding: EdgeInsets.all(20),
               children: [
-                Text("#${currMeet.meetId}"),
-                Text("Owner: ${currMeet.meetOwnerId}"),
-                Text("Description: ${currMeet.description}"),
-                Text("Location: ${currMeet.location}"),
-                Text("Status: ${currMeet.status}"),
+                Text("#${currMeetEntity.meetModel.meetId}"),
+                Text("Owner: ${currMeetEntity.meetModel.meetOwnerId}"),
+                Text("Description: ${currMeetEntity.meetModel.description}"),
+                Text("Location: ${currMeetEntity.meetModel.location}"),
+                Text("Status: ${currMeetEntity.meetModel.status}"),
 
-                currMeet.containsBasket ? ElevatedButton(
+                currMeetEntity.meetModel.containsBasket ? ElevatedButton(
                   onPressed: () {
                     context.pushNamed('basketPage', pathParameters: {
-                      'meetId': currMeet.meetId.toString(),
-                      'meetIdBasket': currMeet.meetId.toString()
+                      'meetId': currMeetEntity.meetModel.meetId.toString(),
+                      'meetIdBasket': currMeetEntity.meetModel.meetId.toString()
 
                     });
                   },
                   child: Text('go to basket'),
                 ) : SizedBox.shrink(),
-                currMeet.meetOwnerId == AuthService.getUserId()
+                currMeetEntity.meetModel.meetOwnerId == AuthService.getUserId()
                     ? ElevatedButton(
                     onPressed: () {
                       context.pushNamed('createNewMeetScreen',
-                          extra: currMeet);
+                          extra: currMeetEntity.meetModel);
                     },
                     child: Text('update this meet'))
                     : SizedBox.shrink()

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
+import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
@@ -78,10 +79,10 @@ class _HomePageView extends StatelessWidget {
                             ),
                           );
                         },
-                        loaded: (List<MeetModel> meets) {
+                        loaded: (List<MeetEntity> meetsEntities) {
                           return SliverToBoxAdapter(
                               child: MeetRollWidget(
-                            meets: meets,
+                                meetsEntities: meetsEntities,
                           ));
                         },
                         error: (String error) {

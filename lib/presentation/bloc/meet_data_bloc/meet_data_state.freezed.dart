@@ -19,21 +19,21 @@ mixin _$MeetDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<MeetModel> allMeetData) loaded,
+    required TResult Function(List<MeetEntity> allMeetData) loaded,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<MeetModel> allMeetData)? loaded,
+    TResult? Function(List<MeetEntity> allMeetData)? loaded,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<MeetModel> allMeetData)? loaded,
+    TResult Function(List<MeetEntity> allMeetData)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -119,7 +119,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<MeetModel> allMeetData) loaded,
+    required TResult Function(List<MeetEntity> allMeetData) loaded,
     required TResult Function(String error) error,
   }) {
     return init();
@@ -129,7 +129,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<MeetModel> allMeetData)? loaded,
+    TResult? Function(List<MeetEntity> allMeetData)? loaded,
     TResult? Function(String error)? error,
   }) {
     return init?.call();
@@ -139,7 +139,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<MeetModel> allMeetData)? loaded,
+    TResult Function(List<MeetEntity> allMeetData)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -194,7 +194,7 @@ abstract class _$$MeetDataLoadedImplCopyWith<$Res> {
           $Res Function(_$MeetDataLoadedImpl) then) =
       __$$MeetDataLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<MeetModel> allMeetData});
+  $Res call({List<MeetEntity> allMeetData});
 }
 
 /// @nodoc
@@ -214,7 +214,7 @@ class __$$MeetDataLoadedImplCopyWithImpl<$Res>
       allMeetData: null == allMeetData
           ? _value._allMeetData
           : allMeetData // ignore: cast_nullable_to_non_nullable
-              as List<MeetModel>,
+              as List<MeetEntity>,
     ));
   }
 }
@@ -222,12 +222,12 @@ class __$$MeetDataLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MeetDataLoadedImpl implements _MeetDataLoaded {
-  const _$MeetDataLoadedImpl({required final List<MeetModel> allMeetData})
+  const _$MeetDataLoadedImpl({required final List<MeetEntity> allMeetData})
       : _allMeetData = allMeetData;
 
-  final List<MeetModel> _allMeetData;
+  final List<MeetEntity> _allMeetData;
   @override
-  List<MeetModel> get allMeetData {
+  List<MeetEntity> get allMeetData {
     if (_allMeetData is EqualUnmodifiableListView) return _allMeetData;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allMeetData);
@@ -262,7 +262,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<MeetModel> allMeetData) loaded,
+    required TResult Function(List<MeetEntity> allMeetData) loaded,
     required TResult Function(String error) error,
   }) {
     return loaded(allMeetData);
@@ -272,7 +272,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<MeetModel> allMeetData)? loaded,
+    TResult? Function(List<MeetEntity> allMeetData)? loaded,
     TResult? Function(String error)? error,
   }) {
     return loaded?.call(allMeetData);
@@ -282,7 +282,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<MeetModel> allMeetData)? loaded,
+    TResult Function(List<MeetEntity> allMeetData)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -328,10 +328,10 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
 }
 
 abstract class _MeetDataLoaded implements MeetDataState {
-  const factory _MeetDataLoaded({required final List<MeetModel> allMeetData}) =
+  const factory _MeetDataLoaded({required final List<MeetEntity> allMeetData}) =
       _$MeetDataLoadedImpl;
 
-  List<MeetModel> get allMeetData;
+  List<MeetEntity> get allMeetData;
   @JsonKey(ignore: true)
   _$$MeetDataLoadedImplCopyWith<_$MeetDataLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -402,7 +402,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<MeetModel> allMeetData) loaded,
+    required TResult Function(List<MeetEntity> allMeetData) loaded,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -412,7 +412,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<MeetModel> allMeetData)? loaded,
+    TResult? Function(List<MeetEntity> allMeetData)? loaded,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -422,7 +422,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<MeetModel> allMeetData)? loaded,
+    TResult Function(List<MeetEntity> allMeetData)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
