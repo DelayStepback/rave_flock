@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
@@ -92,7 +93,19 @@ class _MeetPageView extends StatelessWidget {
                           );
                         },
                         child: Text('update this meet'))
-                    : SizedBox.shrink()
+                    : SizedBox.shrink(),
+
+                ElevatedButton(onPressed: (){
+                  context.goNamed('home');
+                  GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
+
+                }, child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.remove_circle_outline_outlined),
+                    Text('delete this meet'),
+                  ],
+                ))
               ],
             ),
           );

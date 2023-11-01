@@ -14,6 +14,7 @@ import 'package:rave_flock/presentation/router/scaffold_with_nav_bar.dart';
 import 'package:rave_flock/presentation/screens/create_new_meet_screen/create_new_meet_screen.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
+import 'package:rave_flock/presentation/screens/friend_screen/friend_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _rootNavigatorHome = GlobalKey<NavigatorState>(debugLabel: 'shellHome');
@@ -48,6 +49,17 @@ final GoRouter router = GoRouter(
               path: "/friendsPage",
               name: "friendsPage",
               builder: (context, state) => const FriendsPage(),
+           routes: [
+             GoRoute(
+               name: "friendScreen",
+               path: "friendScreen/:friendId",
+               builder: (context, state) =>FriendScreen(
+                   friendId:
+                   state.pathParameters['friendId'] ?? '' // TODO: '' - не есть хорошо
+               ),
+             ),
+           ]
+
             ),
           ],
         ),

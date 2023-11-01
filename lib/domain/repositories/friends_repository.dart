@@ -7,6 +7,7 @@ abstract class FriendsRepository{
     Future<void> sendARequest(String userId,String newFriendsUsername);
     Future<void> acceptRequest(int friendshipId);
     Future<void> denyRequest(int friendshipId);
+    Future<void> deleteFriend(String userId, String friendId);
     // TODO: работа с тегами не сделана
     Future<void> addTag(int friendshipId, String tag, String thisUserId);
     Future<void> deleteTag(int friendshipId, String tag, String thisUserId);

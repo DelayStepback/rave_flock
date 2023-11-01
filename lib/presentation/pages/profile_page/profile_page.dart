@@ -57,7 +57,7 @@ class _ProfilePageView extends StatelessWidget {
               return state.when(
                   init: () {
                     context.read<UserDataBloc>().add(
-                        UserDataEvent.initialize(AuthService.getUserId()!));
+                        UserDataEvent.initialize(AuthService.getUserId() ?? ''));
                     return const CircularProgressIndicator();
                   },
                   loaded: (user) {

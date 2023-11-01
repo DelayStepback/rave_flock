@@ -63,7 +63,7 @@ class _FriendRequestsScreen extends StatelessWidget {
                                         frienshipEntity.id));
                                     BlocProvider.of<FriendsDataBloc>(context)
                                         .add(FriendsDataEvent.initialize(
-                                        AuthService.getUserId()!));
+                                        AuthService.getUserId() ?? ''));
                                   }, child: const Text('Accept')),
                                   ElevatedButton(
                                       onPressed: () {

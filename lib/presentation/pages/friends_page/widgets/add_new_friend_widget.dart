@@ -34,7 +34,7 @@ class _AddNewFriendWidgetState extends State<AddNewFriendWidget> {
                     fetching = true;
                   });
                   await GetIt.I<FriendsRepository>()
-                      .sendARequest(AuthService.getUserId()!,
+                      .sendARequest(AuthService.getUserId() ?? '',
                       _usernameController.text.trim())
                       .then((value) {
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -190,7 +190,7 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
     MeetModel _meet;
     if (meetModel == null) {
       _meet = MeetModel(
-          meetOwnerId: AuthService.getUserId()!,
+          meetOwnerId: AuthService.getUserId() ?? '',
           title: _titleController.text.trim(),
           description: _descriptionController.text.trim(),
           location: _locationController.text.trim(),

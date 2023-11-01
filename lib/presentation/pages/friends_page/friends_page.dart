@@ -56,7 +56,7 @@ class _FriendsPageView extends StatelessWidget {
               return state.when(init: () {
                 context
                     .read<FriendsDataBloc>()
-                    .add(FriendsDataEvent.initialize(AuthService.getUserId()!));
+                    .add(FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
                 return const Text('LOADING');
               }, loaded: (friends) {
                 return Expanded(
@@ -67,41 +67,48 @@ class _FriendsPageView extends StatelessWidget {
                     padding: EdgeInsets.only(left: 20, right: 20),
                     itemCount: friends.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: const BoxDecoration(
-                            color: Colors.indigo,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Имя пользователя: ${friends[index].username}',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Text(
-                                  'Местоположение: ${friends[index].location ?? 'скрыто'}',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Text(
-                                  'Кличка: ${friends[index].nickname ?? 'не задана'}',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                      return GestureDetector(
+                        onTap: (){
+                          context.goNamed('friendScreen', pathParameters: {
+                            'friendId': friends[index].userId,
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: const BoxDecoration(
+                              color: Colors.indigo,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Имя пользователя: ${friends[index].username}',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    'Местоположение: ${friends[index].location ?? 'скрыто'}',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    'Кличка: ${friends[index].nickname ?? 'не задана'}',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
 
-                              ],
-                            ),
-                            friends[index].avatarUrl == null? CircleAvatar(
-                              minRadius: 40,
-                              backgroundColor: Colors.blue,):
-                            CircleAvatar(
-                              minRadius: 40,
-                              backgroundColor: Colors.red, backgroundImage: NetworkImage(friends[index].avatarUrl!),)
-                          ],
+                                ],
+                              ),
+                              friends[index].avatarUrl == null? CircleAvatar(
+                                minRadius: 40,
+                                backgroundColor: Colors.blue,):
+                              CircleAvatar(
+                                minRadius: 40,
+                                backgroundColor: Colors.red, backgroundImage: NetworkImage(friends[index].avatarUrl!),)
+                            ],
+                          ),
                         ),
                       );
                     },

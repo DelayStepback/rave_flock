@@ -74,8 +74,20 @@ class FriendsRepositorySupabaseImpl implements FriendsRepository {
 
   @override
   Future<void> denyRequest(int friendshipId) async {
-    await supabase.from('friendships').update(
-        {'status': FriendshipStatusEnum.denied.name}).eq('id', friendshipId);
+    await supabase.from('friendships').delete().eq('id', friendshipId);
+  }
+
+  @override
+  Future<void> deleteFriend(String userId, String friendId) async{
+    List<Map<String,dynamic>> checkIfUserIsSource = await supabase.from('friendships').delete().eq('user_source_id', userId).eq(
+        'user_target_id', friendId).eq('status', FriendshipStatusEnum.accepted.name).select();
+
+    print('checkIfUserIsSource: $checkIfUserIsSource');
+    if (checkIfUserIsSource.isEmpty){
+      print('1');
+      await supabase.from('friendships').delete().eq( 'user_source_id', friendId).eq(
+          'user_target_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
+    }
   }
 
   @override

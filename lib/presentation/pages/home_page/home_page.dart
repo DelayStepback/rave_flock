@@ -118,7 +118,7 @@ class _HomePageView extends StatelessWidget {
               child: IconButton(
                   onPressed: () {
                     GetIt.I<MeetDataBloc>().add(
-                        MeetDataEvent.initialize(AuthService.getUserId()!));
+                        MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
                   },
                   icon: Icon(
                     Icons.refresh,

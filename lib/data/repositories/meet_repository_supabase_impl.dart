@@ -115,7 +115,6 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
     final data =
     await supabase.from('guests').select('users(*), status').eq(
         'meet_id', meetId);
-    print('data: $data');
     List<GuestEntity> guestsOfMeet = [];
     for (var json in data) {
       var userData = UserModel.fromJson(json['users']);
