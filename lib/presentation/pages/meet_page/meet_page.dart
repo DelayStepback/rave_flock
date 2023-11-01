@@ -7,6 +7,8 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart'
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
+import '../../screens/create_new_meet_screen/create_new_meet_screen.dart';
+
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key, required this.meetId});
 
@@ -17,8 +19,8 @@ class MeetPage extends StatelessWidget {
     return BlocProvider.value(
       value: GetIt.I<MeetDataBloc>(),
       child: _MeetPageView(
-          meetId: meetId,
-        ),
+        meetId: meetId,
+      ),
     );
   }
 }
@@ -38,11 +40,17 @@ class _MeetPageView extends StatelessWidget {
         return state.when(init: () {
           return CircularProgressIndicator();
         }, loaded: (List<MeetEntity> meetsEntities) {
-          MeetEntity currMeetEntity =
-          meetsEntities.firstWhere((element) => element.meetModel.meetId == meetId);
+          MeetEntity currMeetEntity = meetsEntities
+              .firstWhere((element) => element.meetModel.meetId == meetId);
           return Scaffold(
             appBar: AppBar(
               title: Text(currMeetEntity.meetModel.title),
+              leading: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  context.goNamed('home');
+                },
+              ),
             ),
             body: ListView(
               padding: EdgeInsets.all(20),
@@ -52,24 +60,38 @@ class _MeetPageView extends StatelessWidget {
                 Text("Description: ${currMeetEntity.meetModel.description}"),
                 Text("Location: ${currMeetEntity.meetModel.location}"),
                 Text("Status: ${currMeetEntity.meetModel.status}"),
-
-                currMeetEntity.meetModel.containsBasket ? ElevatedButton(
-                  onPressed: () {
-                    context.pushNamed('basketPage', pathParameters: {
-                      'meetId': currMeetEntity.meetModel.meetId.toString(),
-                      'meetIdBasket': currMeetEntity.meetModel.meetId.toString()
-
-                    });
-                  },
-                  child: Text('go to basket'),
-                ) : SizedBox.shrink(),
+                currMeetEntity.meetModel.containsBasket
+                    ? ElevatedButton(
+                        onPressed: () {
+                          context.pushNamed('basketPage', pathParameters: {
+                            'meetId':
+                                currMeetEntity.meetModel.meetId.toString(),
+                            'meetIdBasket':
+                                currMeetEntity.meetModel.meetId.toString()
+                          });
+                        },
+                        child: Text('go to basket'),
+                      )
+                    : SizedBox.shrink(),
                 currMeetEntity.meetModel.meetOwnerId == AuthService.getUserId()
                     ? ElevatedButton(
-                    onPressed: () {
-                      context.pushNamed('createNewMeetScreen',
-                          extra: currMeetEntity.meetModel);
-                    },
-                    child: Text('update this meet'))
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (context) {
+                              return SafeArea(
+                                child: FractionallySizedBox(
+                                  heightFactor: 1,
+                                  child: CreateNewMeetScreen(
+                                    meetModel: currMeetEntity.meetModel,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text('update this meet'))
                     : SizedBox.shrink()
               ],
             ),

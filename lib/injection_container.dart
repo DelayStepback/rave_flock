@@ -1,6 +1,5 @@
 
 import 'package:get_it/get_it.dart';
-import 'package:rave_flock/common/validation/validation.dart';
 import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
 import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
@@ -23,7 +22,7 @@ Future<void> initializeDependencies() async{
   // blocs
   sl.registerSingleton<FriendRequestsBloc>(FriendRequestsBloc(sl(), sl()));
   sl.registerSingleton<FriendsDataBloc>(FriendsDataBloc(sl(), sl()));
-  sl.registerSingleton<MeetDataBloc>(MeetDataBloc(sl()));
+  sl.registerSingleton<MeetDataBloc>(MeetDataBloc(sl(), sl()));
   sl.registerSingleton<UserDataBloc>(UserDataBloc(sl()));
 
 

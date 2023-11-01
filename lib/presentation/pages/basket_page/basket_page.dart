@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import '../../bloc/meet_data_bloc/meet_data_state.dart';
 
 class BasketPage extends StatelessWidget {
@@ -35,6 +36,7 @@ class _BasketPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
+
             BlocBuilder<MeetDataBloc, MeetDataState>(builder: (_, state) {
               return state.when(
                   init: () {
@@ -53,6 +55,10 @@ class _BasketPage extends StatelessWidget {
                   },
                   error: (e) => Text('error: $e'));
             }),
+            IconButton(onPressed: (){
+              GetIt.I<MeetDataBloc>().add(MeetDataEvent.updateCurrMeetBasket(meetId));
+
+            }, icon: Icon(Icons.refresh)),
             // IconButton(onPressed: (){
             //   final basketMock = BasketItemModel(meetId: 29, title: 'pivo', createdByUserId: 'ad6d73af-cc00-4ec8-95ce-dfc3eef7f601');
             //   GetIt.I<BasketDataBloc>().add(BasketDataEvent.add(basketMock));

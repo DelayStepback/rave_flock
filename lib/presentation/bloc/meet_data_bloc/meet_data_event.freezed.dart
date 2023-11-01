@@ -24,6 +24,7 @@ mixin _$MeetDataEvent {
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$MeetDataEvent {
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$MeetDataEvent {
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,10 +56,12 @@ mixin _$MeetDataEvent {
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,9 +70,9 @@ mixin _$MeetDataEvent {
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,8 +81,9 @@ mixin _$MeetDataEvent {
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,6 +180,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return initialize(userId);
   }
@@ -187,6 +194,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return initialize?.call(userId);
   }
@@ -200,6 +208,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -215,10 +224,12 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return initialize(this);
   }
@@ -230,9 +241,9 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return initialize?.call(this);
   }
@@ -244,8 +255,9 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -347,6 +359,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return add(meetModel);
   }
@@ -360,6 +373,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return add?.call(meetModel);
   }
@@ -373,6 +387,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -388,10 +403,12 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return add(this);
   }
@@ -403,9 +420,9 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return add?.call(this);
   }
@@ -417,8 +434,9 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -509,6 +527,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return delete(meetId);
   }
@@ -522,6 +541,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return delete?.call(meetId);
   }
@@ -535,6 +555,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -550,10 +571,12 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return delete(this);
   }
@@ -565,9 +588,9 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return delete?.call(this);
   }
@@ -579,8 +602,9 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -645,6 +669,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return dispose();
   }
@@ -658,6 +683,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return dispose?.call();
   }
@@ -671,6 +697,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -686,10 +713,12 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return dispose(this);
   }
@@ -701,9 +730,9 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return dispose?.call(this);
   }
@@ -715,8 +744,9 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -731,23 +761,22 @@ abstract class MeetDataDisposeEvent implements MeetDataEvent {
 }
 
 /// @nodoc
-abstract class _$$MeetDataUpdateCurrMeetInfoEventImplCopyWith<$Res> {
-  factory _$$MeetDataUpdateCurrMeetInfoEventImplCopyWith(
-          _$MeetDataUpdateCurrMeetInfoEventImpl value,
-          $Res Function(_$MeetDataUpdateCurrMeetInfoEventImpl) then) =
-      __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl<$Res>;
+abstract class _$$MeetDataUpdateCurrMeetInfoImplCopyWith<$Res> {
+  factory _$$MeetDataUpdateCurrMeetInfoImplCopyWith(
+          _$MeetDataUpdateCurrMeetInfoImpl value,
+          $Res Function(_$MeetDataUpdateCurrMeetInfoImpl) then) =
+      __$$MeetDataUpdateCurrMeetInfoImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int meetId});
 }
 
 /// @nodoc
-class __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl<$Res>
-    extends _$MeetDataEventCopyWithImpl<$Res,
-        _$MeetDataUpdateCurrMeetInfoEventImpl>
-    implements _$$MeetDataUpdateCurrMeetInfoEventImplCopyWith<$Res> {
-  __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl(
-      _$MeetDataUpdateCurrMeetInfoEventImpl _value,
-      $Res Function(_$MeetDataUpdateCurrMeetInfoEventImpl) _then)
+class __$$MeetDataUpdateCurrMeetInfoImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUpdateCurrMeetInfoImpl>
+    implements _$$MeetDataUpdateCurrMeetInfoImplCopyWith<$Res> {
+  __$$MeetDataUpdateCurrMeetInfoImplCopyWithImpl(
+      _$MeetDataUpdateCurrMeetInfoImpl _value,
+      $Res Function(_$MeetDataUpdateCurrMeetInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -755,7 +784,7 @@ class __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl<$Res>
   $Res call({
     Object? meetId = null,
   }) {
-    return _then(_$MeetDataUpdateCurrMeetInfoEventImpl(
+    return _then(_$MeetDataUpdateCurrMeetInfoImpl(
       null == meetId
           ? _value.meetId
           : meetId // ignore: cast_nullable_to_non_nullable
@@ -766,9 +795,8 @@ class __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MeetDataUpdateCurrMeetInfoEventImpl
-    implements MeetDataUpdateCurrMeetInfoEvent {
-  const _$MeetDataUpdateCurrMeetInfoEventImpl(this.meetId);
+class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
+  const _$MeetDataUpdateCurrMeetInfoImpl(this.meetId);
 
   @override
   final int meetId;
@@ -782,7 +810,7 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MeetDataUpdateCurrMeetInfoEventImpl &&
+            other is _$MeetDataUpdateCurrMeetInfoImpl &&
             (identical(other.meetId, meetId) || other.meetId == meetId));
   }
 
@@ -792,10 +820,9 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MeetDataUpdateCurrMeetInfoEventImplCopyWith<
-          _$MeetDataUpdateCurrMeetInfoEventImpl>
-      get copyWith => __$$MeetDataUpdateCurrMeetInfoEventImplCopyWithImpl<
-          _$MeetDataUpdateCurrMeetInfoEventImpl>(this, _$identity);
+  _$$MeetDataUpdateCurrMeetInfoImplCopyWith<_$MeetDataUpdateCurrMeetInfoImpl>
+      get copyWith => __$$MeetDataUpdateCurrMeetInfoImplCopyWithImpl<
+          _$MeetDataUpdateCurrMeetInfoImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -806,6 +833,7 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return updateCurrMeetInfo(meetId);
   }
@@ -819,6 +847,7 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return updateCurrMeetInfo?.call(meetId);
   }
@@ -832,6 +861,7 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -847,10 +877,12 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return updateCurrMeetInfo(this);
   }
@@ -862,9 +894,9 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return updateCurrMeetInfo?.call(this);
   }
@@ -876,8 +908,9 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -887,14 +920,13 @@ class _$MeetDataUpdateCurrMeetInfoEventImpl
   }
 }
 
-abstract class MeetDataUpdateCurrMeetInfoEvent implements MeetDataEvent {
-  const factory MeetDataUpdateCurrMeetInfoEvent(final int meetId) =
-      _$MeetDataUpdateCurrMeetInfoEventImpl;
+abstract class MeetDataUpdateCurrMeetInfo implements MeetDataEvent {
+  const factory MeetDataUpdateCurrMeetInfo(final int meetId) =
+      _$MeetDataUpdateCurrMeetInfoImpl;
 
   int get meetId;
   @JsonKey(ignore: true)
-  _$$MeetDataUpdateCurrMeetInfoEventImplCopyWith<
-          _$MeetDataUpdateCurrMeetInfoEventImpl>
+  _$$MeetDataUpdateCurrMeetInfoImplCopyWith<_$MeetDataUpdateCurrMeetInfoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -974,6 +1006,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function() dispose,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
   }) {
     return updateCurrMeetBasket(meetId);
   }
@@ -987,6 +1020,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function()? dispose,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
   }) {
     return updateCurrMeetBasket?.call(meetId);
   }
@@ -1000,6 +1034,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function()? dispose,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1015,10 +1050,12 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function(MeetDataAddEvent value) add,
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataUpdateCurrMeetInfoEvent value)
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
   }) {
     return updateCurrMeetBasket(this);
   }
@@ -1030,9 +1067,9 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(MeetDataAddEvent value)? add,
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataUpdateCurrMeetInfoEvent value)?
-        updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
   }) {
     return updateCurrMeetBasket?.call(this);
   }
@@ -1044,8 +1081,9 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(MeetDataAddEvent value)? add,
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataUpdateCurrMeetInfoEvent value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1063,5 +1101,179 @@ abstract class MeetDataUpdateCurrMeetBasket implements MeetDataEvent {
   @JsonKey(ignore: true)
   _$$MeetDataUpdateCurrMeetBasketImplCopyWith<
           _$MeetDataUpdateCurrMeetBasketImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<$Res> {
+  factory _$$MeetDataUpdateCurrMeetGuestsImplCopyWith(
+          _$MeetDataUpdateCurrMeetGuestsImpl value,
+          $Res Function(_$MeetDataUpdateCurrMeetGuestsImpl) then) =
+      __$$MeetDataUpdateCurrMeetGuestsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int meetId});
+}
+
+/// @nodoc
+class __$$MeetDataUpdateCurrMeetGuestsImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res,
+        _$MeetDataUpdateCurrMeetGuestsImpl>
+    implements _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<$Res> {
+  __$$MeetDataUpdateCurrMeetGuestsImplCopyWithImpl(
+      _$MeetDataUpdateCurrMeetGuestsImpl _value,
+      $Res Function(_$MeetDataUpdateCurrMeetGuestsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meetId = null,
+  }) {
+    return _then(_$MeetDataUpdateCurrMeetGuestsImpl(
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUpdateCurrMeetGuestsImpl
+    implements MeetDataUpdateCurrMeetGuests {
+  const _$MeetDataUpdateCurrMeetGuestsImpl(this.meetId);
+
+  @override
+  final int meetId;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.updateCurrMeetGuests(meetId: $meetId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUpdateCurrMeetGuestsImpl &&
+            (identical(other.meetId, meetId) || other.meetId == meetId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, meetId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<
+          _$MeetDataUpdateCurrMeetGuestsImpl>
+      get copyWith => __$$MeetDataUpdateCurrMeetGuestsImplCopyWithImpl<
+          _$MeetDataUpdateCurrMeetGuestsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+  }) {
+    return updateCurrMeetGuests(meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+  }) {
+    return updateCurrMeetGuests?.call(meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    required TResult orElse(),
+  }) {
+    if (updateCurrMeetGuests != null) {
+      return updateCurrMeetGuests(meetId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+  }) {
+    return updateCurrMeetGuests(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+  }) {
+    return updateCurrMeetGuests?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    required TResult orElse(),
+  }) {
+    if (updateCurrMeetGuests != null) {
+      return updateCurrMeetGuests(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUpdateCurrMeetGuests implements MeetDataEvent {
+  const factory MeetDataUpdateCurrMeetGuests(final int meetId) =
+      _$MeetDataUpdateCurrMeetGuestsImpl;
+
+  int get meetId;
+  @JsonKey(ignore: true)
+  _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<
+          _$MeetDataUpdateCurrMeetGuestsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

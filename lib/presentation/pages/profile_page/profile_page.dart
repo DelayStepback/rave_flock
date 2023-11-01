@@ -42,6 +42,15 @@ class _ProfilePageView extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
+          child: TextButton(
+            onPressed: (){
+              AuthService.signOut();
+              context.go('/');
+            },
+            child: Text('log out'),
+          ),
+        ),
+        SliverToBoxAdapter(
           child: Center(
             child: BlocBuilder<UserDataBloc, UserDataState>(
                 builder: (context, state) {

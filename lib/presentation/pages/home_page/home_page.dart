@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
     ], child: _HomePageView());
   }
 }
+
 class _HomePageView extends StatelessWidget {
   _HomePageView({super.key});
 
@@ -46,19 +47,14 @@ class _HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF433383),
+      backgroundColor: Colors.black, //const Color(0xFF433383),
       body: SafeArea(
         child: Stack(
           children: [
-            SvgPicture.asset(
-              'assets/images/phone.svg',
-            ),
-            IconButton(
-              onPressed: () {
-                context.pushNamed('routingPage');
-              },
-              icon: const Icon(Icons.line_weight_sharp),
-            ),
+            // SvgPicture.asset(
+            //   'assets/images/phone.svg',
+            // ),
+
             const NotificationButtonWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 100),
@@ -82,7 +78,7 @@ class _HomePageView extends StatelessWidget {
                         loaded: (List<MeetEntity> meetsEntities) {
                           return SliverToBoxAdapter(
                               child: MeetRollWidget(
-                                meetsEntities: meetsEntities,
+                            meetsEntities: meetsEntities,
                           ));
                         },
                         error: (String error) {
@@ -91,31 +87,45 @@ class _HomePageView extends StatelessWidget {
                       );
                     },
                   ),
-
                   SliverList(
-                      delegate: SliverChildListDelegate([
-                    UnconstrainedBox(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              builder: (context) {
-                                return const FractionallySizedBox(
-                                  heightFactor: 0.9,
-                                  child: CreateNewMeetScreen(),
-                                );
-                              });
-                          // context.pushNamed('createNewMeetScreen');
-
-                        },
-                        child: const Icon(Icons.add),
-                      ),
+                    delegate: SliverChildListDelegate(
+                      [
+                        UnconstrainedBox(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return FractionallySizedBox(
+                                    heightFactor: 0.9,
+                                    child: CreateNewMeetScreen(),
+                                  );
+                                },
+                              );
+                            },
+                            child: const Icon(Icons.add),
+                          ),
+                        ),
+                      ],
                     ),
-                  ]))
+                  )
                 ],
               ),
             ),
+            Positioned(
+              left: 40,
+              child: IconButton(
+                  onPressed: () {
+                    GetIt.I<MeetDataBloc>().add(
+                        MeetDataEvent.initialize(AuthService.getUserId()!));
+                  },
+                  icon: Icon(
+                    Icons.refresh,
+                    size: 40,
+                    color: Colors.white,
+                  )),
+            )
           ],
         ),
       ),

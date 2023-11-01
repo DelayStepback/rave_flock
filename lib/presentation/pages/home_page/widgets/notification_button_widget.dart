@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
 
 import '../../../../domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import '../../../bloc/friend_requests_bloc/friend_requests_bloc.dart';
@@ -20,6 +21,7 @@ class NotificationButtonWidget extends StatelessWidget {
             child: UnconstrainedBox(
               child: ElevatedButton(
                 onPressed: () {
+
                   context.pushNamed('friendRequestsScreen');
                 },
                 child: Row(

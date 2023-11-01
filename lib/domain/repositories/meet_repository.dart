@@ -4,15 +4,18 @@ import 'package:rave_flock/data/models/guest/guest_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 
 import '../../data/models/user/user_model.dart';
+import '../entity/guest_entity/guest_entity.dart';
 
 abstract class MeetRepository {
   Future<List<MeetModel>> fetchUserOwnerMeets(String userId);
 
   Future<List<MeetModel>> fetchUserMeets(String userId);
 
+  Future<MeetModel> fetchMeet(int meetId);
+
   Future<List<MeetModel>> fetchPublicMeets();
 
-  Future<List<UserModel>> fetchGuests(int meetId);
+  Future<List<GuestEntity>> fetchGuests(int meetId);
 
   Future<MeetModel> addMeet(MeetModel meetModel);
 
@@ -22,20 +25,18 @@ abstract class MeetRepository {
 
   Future<void> createGuest(GuestModel guestModel);
 
-  Future<void> changeGuestStatus(int meetId,
-      String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
+  Future<void> changeGuestStatus(
+      int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
 
   Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId);
 
   Future<void> createBasketToMeet(int meetId);
 
   Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel);
+
   Future<void> removeBasketItem(BasketItemModel basketItemModel);
 
+  Future<void> userTakeThisItem(bool isTake, int basketItemId, String userId);
 
-  Future<void> userTakeThisItem(
-      bool isTake, int basketItemId, String userId);
-
-  Future<void> userUseThisItem(
-      bool isTake, int basketItemId, String userId);
+  Future<void> userUseThisItem(bool isTake, int basketItemId, String userId);
 }

@@ -14,8 +14,9 @@ class MeetDataEvent with _$MeetDataEvent {
 
 
   // TODO:
-  const factory MeetDataEvent.updateCurrMeetInfo(int meetId) = MeetDataUpdateCurrMeetInfoEvent;
+  const factory MeetDataEvent.updateCurrMeetInfo(int meetId) = MeetDataUpdateCurrMeetInfo;
   const factory MeetDataEvent.updateCurrMeetBasket(int meetId) = MeetDataUpdateCurrMeetBasket;
+  const factory MeetDataEvent.updateCurrMeetGuests(int meetId) = MeetDataUpdateCurrMeetGuests;
 
 
 }
