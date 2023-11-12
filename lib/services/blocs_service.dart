@@ -12,13 +12,14 @@ import '../presentation/bloc/user_data_bloc/user_data_event.dart';
 
 class BlocService{
   static void initAllBlocs(){
-    print('initinal ${AuthService.getUserId()??null}');
-    GetIt.I<FriendRequestsBloc>()
-        .add(FriendRequestsEvent.initialize(AuthService.getUserId()!));
-    GetIt.I<FriendsDataBloc>()
-        .add(FriendsDataEvent.initialize(AuthService.getUserId()!));
-    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId()!));
-    GetIt.I<UserDataBloc>().add(UserDataEvent.initialize(AuthService.getUserId()!));
+    if (AuthService.getUserId() != null){
+      GetIt.I<FriendRequestsBloc>()
+          .add(FriendRequestsEvent.initialize(AuthService.getUserId()!));
+      GetIt.I<FriendsDataBloc>()
+          .add(FriendsDataEvent.initialize(AuthService.getUserId()!));
+      GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId()!));
+      GetIt.I<UserDataBloc>().add(UserDataEvent.initialize(AuthService.getUserId()!));
+    }
   }
 
   static void resetBlocs() {

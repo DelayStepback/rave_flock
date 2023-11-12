@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
-import 'package:rave_flock/presentation/pages/auth/login_page.dart';
+import 'package:rave_flock/presentation/pages/auth/welcome_page.dart';
 import 'package:rave_flock/presentation/pages/auth/set_username_screen.dart';
 import 'package:rave_flock/presentation/pages/basket_page/basket_page.dart';
 import 'package:rave_flock/presentation/pages/friends_page/friends_page.dart';
@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/login",
-      builder: (context, state) => const LoginPage(),
+      builder: (context, state) => const WelcomePage(),
     ),
     GoRoute(
       path: "/setUsername",

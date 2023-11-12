@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:rave_flock/common/themes/custom_default_input_theme.dart';
 import 'package:rave_flock/injection_container.dart';
-import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
-import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
-import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
-import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
 import 'package:rave_flock/presentation/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // initialize supabase
   await Supabase.initialize(
     url: 'https://clorjymfqklxrzmvkfij.supabase.co',
     anonKey:

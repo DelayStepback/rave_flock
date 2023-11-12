@@ -206,118 +206,17 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
               AnimatedBuilder(
                 animation: controller,
 
-                builder: (context, child) =>  Positioned(
-                  top: 10,
-                  left: 150- shake(controller.value)*100,
+                builder: (context, child) =>  Align(
+                  alignment: Alignment.center,
                   child: Transform.rotate(
                     
                     angle: shake(controller.value)*0.2,
                     child: Container(
 
                       child: SvgPicture.asset(
-                        'assets/images/party.svg',
+                        'assets/images/phone.svg',
 
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 310,
-                  left: 150- shake(controller.value)*100,
-                  child: Container(
-
-                    child: SvgPicture.asset(
-                      'assets/images/party.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 200,
-                  left: 120- shake(controller.value)*50,
-                  child: Container(
-
-                    child: SvgPicture.asset(
-                      'assets/images/party.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 500,
-                  left: 60- shake(controller.value)*200,
-                  child: Container(
-
-                    child: SvgPicture.asset(
-                      'assets/images/party.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  left: -40 + shake(controller.value)*270,
-                  child: Container(
-                    child: SvgPicture.asset(
-                      'assets/images/phone.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 250,
-                  left: 70 + shake(controller.value)*180,
-                  child: Container(
-                    child: SvgPicture.asset(
-                      'assets/images/phone.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 200,
-                  left: - shake(controller.value)*300,
-                  child: Container(
-                    child: SvgPicture.asset(
-                      'assets/images/phone.svg',
-
-                    ),
-                  ),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: controller,
-
-                builder: (context, child) =>  Positioned(
-                  top: 500,
-                  left: 200- shake(controller.value)*300,
-                  child: Container(
-                    child: SvgPicture.asset(
-                      'assets/images/phone.svg',
-
                     ),
                   ),
                 ),
