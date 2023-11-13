@@ -6,9 +6,10 @@ import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
-import '../../screens/create_new_meet_screen/create_new_meet_screen.dart';
+import '../home_page/widgets/create_new_meet_screen.dart';
 
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key, required this.meetId});
@@ -39,7 +40,7 @@ class _MeetPageView extends StatelessWidget {
     return BlocBuilder<MeetDataBloc, MeetDataState>(
       builder: (context, state) {
         return state.when(init: () {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }, loaded: (List<MeetEntity> meetsEntities) {
           MeetEntity currMeetEntity = meetsEntities
               .firstWhere((element) => element.meetModel.meetId == meetId);
@@ -47,14 +48,14 @@ class _MeetPageView extends StatelessWidget {
             appBar: AppBar(
               title: Text(currMeetEntity.meetModel.title),
               leading: IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () {
                   context.goNamed('home');
                 },
               ),
             ),
             body: ListView(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               children: [
                 Text("#${currMeetEntity.meetModel.meetId}"),
                 Text("Owner: ${currMeetEntity.meetModel.meetOwnerId}"),
@@ -71,9 +72,9 @@ class _MeetPageView extends StatelessWidget {
                                 currMeetEntity.meetModel.meetId.toString()
                           });
                         },
-                        child: Text('go to basket'),
+                        child: const Text('go to basket'),
                       )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
                 currMeetEntity.meetModel.meetOwnerId == AuthService.getUserId()
                     ? ElevatedButton(
                         onPressed: () {
@@ -92,25 +93,25 @@ class _MeetPageView extends StatelessWidget {
                             },
                           );
                         },
-                        child: Text('update this meet'))
-                    : SizedBox.shrink(),
-
-                ElevatedButton(onPressed: (){
-                  context.goNamed('home');
-                  GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
-
-                }, child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.remove_circle_outline_outlined),
-                    Text('delete this meet'),
-                  ],
-                ))
+                        child: const Text('update this meet'))
+                    : const SizedBox.shrink(),
+                ElevatedButton(
+                    onPressed: () {
+                      context.goNamed('home');
+                      GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.remove_circle_outline_outlined),
+                        Text('delete this meet'),
+                      ],
+                    ))
               ],
             ),
           );
         }, error: (e) {
-          return Text('error $e');
+          return ErrorScreen(error: e);
         });
       },
     );

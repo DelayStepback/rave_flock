@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomDefaultInputTheme{
+class CustomDefaultInputThemeDark{
 
   TextStyle _builtTextStyle(Color color, {double size = 16.0}){
     return TextStyle(color: color, fontSize: size.sp);
@@ -40,16 +40,16 @@ class CustomDefaultInputTheme{
     disabledBorder: _buildBorder(Colors.grey[400]!),
 
     // TextStyles
-    suffixStyle: _builtTextStyle(Colors.black),
+    suffixStyle: _builtTextStyle(Colors.white),
     counterStyle: _builtTextStyle(Colors.grey, size:12.0),
-    floatingLabelStyle: _builtTextStyle(Colors.black),
+    floatingLabelStyle: _builtTextStyle(Colors.white),
 
     errorStyle: _builtTextStyle(Colors.red, size: 12.0),
     helperStyle: _builtTextStyle(Colors.red, size: 12.0),
     hintStyle: _builtTextStyle(Colors.grey),
 
-    labelStyle: _builtTextStyle(Colors.black),
-    prefixStyle: _builtTextStyle(Colors.black),
+    labelStyle: _builtTextStyle(Colors.white),
+    prefixStyle: _builtTextStyle(Colors.white),
 
   );
 }

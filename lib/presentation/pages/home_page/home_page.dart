@@ -10,7 +10,7 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart
 import 'package:rave_flock/presentation/pages/friends_page/widgets/add_new_friend_widget.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/notification_button_widget.dart';
-import 'package:rave_flock/presentation/screens/create_new_meet_screen/create_new_meet_screen.dart';
+import 'package:rave_flock/presentation/pages/home_page/widgets/create_new_meet_screen.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../../../data/models/meet/meet_model.dart';
 import '../../../services/auth_service.dart';
@@ -40,10 +40,6 @@ class _HomePageView extends StatelessWidget {
 
   final String? userIdAuth = AuthService.getUserId();
 
-  // context
-  //     .read<FriendRequestsBloc>()
-  //     .add(FriendRequestsInitializeEvent(userIdAuth!));
-  // context.read<MeetDataBloc>().add(MeetDataInitializeEvent(userIdAuth!));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,32 +56,42 @@ class _HomePageView extends StatelessWidget {
               padding: const EdgeInsets.only(top: 100),
               child: CustomScrollView(
                 slivers: [
-                  BlocBuilder<MeetDataBloc, MeetDataState>(
-                    builder: (context, state) {
-                      return state.when(
-                        init: () {
-                          if (userIdAuth != null) {
-                            context
-                                .read<MeetDataBloc>()
-                                .add(MeetDataInitializeEvent(userIdAuth!));
-                          }
-                          return const SliverToBoxAdapter(
-                            child: Text(
-                              'LOADING',
-                            ),
-                          );
-                        },
-                        loaded: (List<MeetEntity> meetsEntities) {
-                          return SliverToBoxAdapter(
-                              child: MeetRollWidget(
-                            meetsEntities: meetsEntities,
-                          ));
-                        },
-                        error: (String error) {
-                          return const SliverToBoxAdapter(child: Text('error'));
-                        },
-                      );
+                  BlocListener<MeetDataBloc, MeetDataState>(
+                    listener: (context, state) {
+                      state.when(
+                          init: () {},
+                          loaded: (_) {},
+                          // impl for auto route if error
+                          error: (e) =>
+                              context.go('/errorScreen', extra: {'error': e}));
                     },
+                    child: BlocBuilder<MeetDataBloc, MeetDataState>(
+                      builder: (context, state) {
+                        return state.when(
+                          init: () {
+                            if (userIdAuth != null) {
+                              context
+                                  .read<MeetDataBloc>()
+                                  .add(MeetDataInitializeEvent(userIdAuth!));
+                            }
+                            return const SliverToBoxAdapter(
+                              child: Text(
+                                'LOADING',
+                              ),
+                            );
+                          },
+                          loaded: (List<MeetEntity> meetsEntities) {
+                            return SliverToBoxAdapter(
+                                child: MeetRollWidget(
+                              meetsEntities: meetsEntities,
+                            ));
+                          },
+                          error: (String error) {
+                            return Container();
+                          },
+                        );
+                      },
+                    ),
                   ),
                   SliverList(
                     delegate: SliverChildListDelegate(
@@ -97,7 +103,7 @@ class _HomePageView extends StatelessWidget {
                                 context: context,
                                 isScrollControlled: true,
                                 builder: (context) {
-                                  return FractionallySizedBox(
+                                  return const FractionallySizedBox(
                                     heightFactor: 0.9,
                                     child: CreateNewMeetScreen(),
                                   );
@@ -117,10 +123,10 @@ class _HomePageView extends StatelessWidget {
               left: 40,
               child: IconButton(
                   onPressed: () {
-                    GetIt.I<MeetDataBloc>().add(
-                        MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
+                    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(
+                        AuthService.getUserId() ?? ''));
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.refresh,
                     size: 40,
                     color: Colors.white,

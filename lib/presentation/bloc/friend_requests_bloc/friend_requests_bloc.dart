@@ -1,11 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:rave_flock/data/models/friendship/friendship_model.dart';
-import 'package:rave_flock/data/models/user/user_model.dart';
-import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
-import 'package:rave_flock/domain/repositories/meet_repository.dart';
-
 import '../../../../domain/repositories/user_repository.dart';
 import 'friend_requests_event.dart';
 import 'friend_requests_state.dart';

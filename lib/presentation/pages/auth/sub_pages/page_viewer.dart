@@ -19,7 +19,6 @@ class PageViewerState extends State<PageViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Stack(
         children: [
           PageView(

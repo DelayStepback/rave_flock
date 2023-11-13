@@ -10,8 +10,8 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart'
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
-import '../../../common/constants/enums/meet_status_enum.dart';
-import '../../../common/validation/validation.dart';
+import '../../../../common/constants/enums/meet_status_enum.dart';
+import '../../../../common/validation/validation.dart';
 
 class CreateNewMeetScreen extends StatefulWidget {
   const CreateNewMeetScreen({super.key, this.meetModel});
@@ -149,7 +149,7 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
           ),
           Text(
             'BASKET CREATE?',
-            style: TextStyle(color: Colors.black),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

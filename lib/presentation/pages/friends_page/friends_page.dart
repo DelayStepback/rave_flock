@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
+import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 
 import '../../../main.dart';
 import '../../../services/auth_service.dart';
@@ -115,7 +116,7 @@ class _FriendsPageView extends StatelessWidget {
                   ),
                 );
               }, error: (e) {
-                return Text('error $e');
+                return ErrorScreen(error: e);
               });
             },
           ),
