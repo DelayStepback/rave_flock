@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../common/themes/theme_constants.dart';
 import '../../../../data/repositories/user_repository_supabase_impl.dart';
 import '../../../../services/auth_service.dart';
 import '../../../../services/blocs_service.dart';
@@ -30,9 +31,15 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
+
+    bool checkValid =
+        _emailValid && _passwordValid && (email != '' && password != '');
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor:
+          checkValid ? Colors.green : kButtonBackgroundColorDark),
       onPressed: () async {
-        if (_emailValid && _passwordValid && (email != '' && password != '')) {
+        if (checkValid) {
           try {
             await AuthService.signInWithEmail(email, password).then(
                   (value) async {
@@ -70,7 +77,12 @@ class LoginButton extends StatelessWidget {
           }
         }
       },
-      child: const Text('login'),
+      child: !checkValid
+          ? Text('Далее')
+          : Text(
+        'Далее',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }

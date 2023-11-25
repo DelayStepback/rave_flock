@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
-import 'package:rave_flock/presentation/pages/auth/sub_pages/page_viewer.dart';
+import 'package:rave_flock/presentation/pages/welcome/sub_pages/page_viewer.dart';
 
 import '../../bloc/friend_requests_bloc/friend_requests_bloc.dart';
 

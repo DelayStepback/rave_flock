@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/themes/theme_constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../data/repositories/user_repository_supabase_impl.dart';
 import '../../../../services/auth_service.dart';
+
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
     super.key,
@@ -26,9 +28,14 @@ class SignUpButton extends StatelessWidget {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
+    bool checkValid =
+        _emailValid && _passwordValid && (email != '' && password != '');
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor:
+              checkValid ? Colors.green : kButtonBackgroundColorDark),
       onPressed: () async {
-        if (_emailValid && _passwordValid && (email != '' && password != '')) {
+        if (checkValid) {
           try {
             await AuthService.signUpWithEmail(email, password)
                 .then((value) => context.go("/setUsername"));
@@ -47,7 +54,12 @@ class SignUpButton extends StatelessWidget {
           }
         }
       },
-      child: const Text('sign up'),
+      child: !checkValid
+          ? Text('Далее')
+          : Text(
+              'Далее',
+              style: TextStyle(color: Colors.white),
+            ),
     );
   }
 }

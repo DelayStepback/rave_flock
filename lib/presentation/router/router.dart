@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
-import 'package:rave_flock/presentation/pages/auth/welcome_page.dart';
-import 'package:rave_flock/presentation/pages/auth/set_username_screen.dart';
+import 'package:rave_flock/presentation/pages/welcome/welcome_page.dart';
+import 'package:rave_flock/presentation/pages/welcome/set_username_screen.dart';
 import 'package:rave_flock/presentation/pages/basket_page/basket_page.dart';
 import 'package:rave_flock/presentation/pages/friends_page/friends_page.dart';
 import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
@@ -17,7 +17,6 @@ import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_re
 import 'package:rave_flock/presentation/screens/friend_screen/friend_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _rootNavigatorHome = GlobalKey<NavigatorState>(debugLabel: 'shellHome');
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,

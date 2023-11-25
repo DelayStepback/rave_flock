@@ -6,8 +6,10 @@ class WelcomePage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Text('Привет.', style: TextStyle(color: Colors.white),),
-
+      child: Text(
+        'Привет.',
+        style: Theme.of(context).textTheme.displayLarge?.copyWith(color: Colors.white),
+      ),
     );
   }
 }

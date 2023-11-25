@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
+import 'package:rave_flock/presentation/pages/friends_page/widgets/notification_button_widget.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 
 import '../../../main.dart';
@@ -17,7 +19,10 @@ class FriendsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-        value: GetIt.I<FriendsDataBloc>(), child: const _FriendsPageView());
+      value: GetIt.I<FriendRequestsBloc>(),
+      child: BlocProvider.value(
+          value: GetIt.I<FriendsDataBloc>(), child: const _FriendsPageView()),
+    );
   }
 }
 
@@ -36,28 +41,31 @@ class _FriendsPageView extends StatelessWidget {
       body: Center(
           child: Column(
         children: [
-          IconButton(
-              onPressed: () {
-                context
-                    .read<FriendsDataBloc>()
-                    .add(FriendsDataEvent.initialize(userId!));
-              },
-              icon: const Icon(Icons.refresh)),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    context
+                        .read<FriendsDataBloc>()
+                        .add(FriendsDataEvent.initialize(userId!));
+                  },
+                  icon: const Icon(Icons.refresh)),
+              NotificationButtonWidget(),
+            ],
+          ),
           ElevatedButton(
             onPressed: () {
               // context.push('/homepage/createNewMeetScreen');
               showModalBottomSheet(
-                  context: context,
-                  builder: (context) => AddNewFriendWidget());
+                  context: context, builder: (context) => AddNewFriendWidget());
             },
             child: const Icon(Icons.add),
           ),
           BlocBuilder<FriendsDataBloc, FriendsDataState>(
             builder: (context, state) {
               return state.when(init: () {
-                context
-                    .read<FriendsDataBloc>()
-                    .add(FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
+                context.read<FriendsDataBloc>().add(
+                    FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
                 return const Text('LOADING');
               }, loaded: (friends) {
                 return Expanded(
@@ -69,7 +77,7 @@ class _FriendsPageView extends StatelessWidget {
                     itemCount: friends.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           context.goNamed('friendScreen', pathParameters: {
                             'friendId': friends[index].userId,
                           });
@@ -99,15 +107,19 @@ class _FriendsPageView extends StatelessWidget {
                                     'Кличка: ${friends[index].nickname ?? 'не задана'}',
                                     style: TextStyle(color: Colors.white),
                                   ),
-
                                 ],
                               ),
-                              friends[index].avatarUrl == null? CircleAvatar(
-                                minRadius: 40,
-                                backgroundColor: Colors.blue,):
-                              CircleAvatar(
-                                minRadius: 40,
-                                backgroundColor: Colors.red, backgroundImage: NetworkImage(friends[index].avatarUrl!),)
+                              friends[index].avatarUrl == null
+                                  ? CircleAvatar(
+                                      minRadius: 40,
+                                      backgroundColor: Colors.blue,
+                                    )
+                                  : CircleAvatar(
+                                      minRadius: 40,
+                                      backgroundColor: Colors.red,
+                                      backgroundImage: NetworkImage(
+                                          friends[index].avatarUrl!),
+                                    )
                             ],
                           ),
                         ),

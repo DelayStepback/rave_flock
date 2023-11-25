@@ -16,7 +16,7 @@ class CustomDefaultInputThemeDark{
       ),
       borderSide: BorderSide(
         color: color,
-        width: 1.0,
+        width: 2.0,
       )
     );
   }
@@ -32,11 +32,11 @@ class CustomDefaultInputThemeDark{
 
     // TODO:
     // Borders
-    enabledBorder: _buildBorder(Colors.greenAccent),
+    enabledBorder: _buildBorder(Colors.white),
     errorBorder: _buildBorder(Colors.red),
-    border: _buildBorder(Colors.yellow),
     focusedErrorBorder: _buildBorder(Colors.red[200]!),
-    focusedBorder: _buildBorder(Colors.blue),
+    focusedBorder: _buildBorder(Colors.blueGrey),
+
     disabledBorder: _buildBorder(Colors.grey[400]!),
 
     // TextStyles

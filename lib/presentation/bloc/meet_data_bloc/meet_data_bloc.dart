@@ -36,6 +36,8 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
 
   Future<void> _onMeetDataInitializeEvent(
       MeetDataInitializeEvent event, emit) async {
+    emit(const MeetDataState.init());
+
     await Future.delayed(Duration(seconds: 4));
     try {
       List<MeetEntity> _meetsEntities = [];

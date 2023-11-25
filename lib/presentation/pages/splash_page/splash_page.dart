@@ -163,12 +163,18 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
           state.when(
               init: () {},
               loaded: (_) {
-                userDataAreInitState = false;
-                checkLoadingThenRouteHome(
-                    friendsRequestAreInitState,
-                    friendsDataAreInitState,
-                    meetDataAreInitState,
-                    userDataAreInitState);
+                if (_.username == null){
+                  context.go("/setUsername");
+                }
+                else{
+                  userDataAreInitState = false;
+                  checkLoadingThenRouteHome(
+                      friendsRequestAreInitState,
+                      friendsDataAreInitState,
+                      meetDataAreInitState,
+                      userDataAreInitState);
+                }
+
               },
               error: (e) => context.go('/errorScreen', extra: {'error': e}));
         },

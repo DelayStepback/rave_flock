@@ -9,7 +9,7 @@ import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_request
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/presentation/pages/friends_page/widgets/add_new_friend_widget.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
-import 'package:rave_flock/presentation/pages/home_page/widgets/notification_button_widget.dart';
+import 'package:rave_flock/presentation/pages/friends_page/widgets/notification_button_widget.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/create_new_meet_screen.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../../../data/models/meet/meet_model.dart';
@@ -50,8 +50,6 @@ class _HomePageView extends StatelessWidget {
             // SvgPicture.asset(
             //   'assets/images/phone.svg',
             // ),
-
-            const NotificationButtonWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: CustomScrollView(
@@ -99,16 +97,7 @@ class _HomePageView extends StatelessWidget {
                         UnconstrainedBox(
                           child: ElevatedButton(
                             onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) {
-                                  return const FractionallySizedBox(
-                                    heightFactor: 0.9,
-                                    child: CreateNewMeetScreen(),
-                                  );
-                                },
-                              );
+                             context.goNamed('createNewMeetScreen');
                             },
                             child: const Icon(Icons.add),
                           ),
