@@ -11,5 +11,9 @@ class MeetDataState with _$MeetDataState {
   const factory MeetDataState.loaded(
       {required List<MeetEntity> allMeetData}) = _MeetDataLoaded;
 
+  const factory MeetDataState.search(
+      {required List<MeetEntity> allMeetData, required List<MeetEntity> meetsSearched}
+      ) = _MeetDataSearch;
+
   const factory MeetDataState.error({required String error}) = _MeetDataError;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
+import 'package:rave_flock/presentation/pages/routing_page/routing_page.dart';
 import 'package:rave_flock/presentation/pages/welcome/welcome_page.dart';
 import 'package:rave_flock/presentation/pages/welcome/set_username_screen.dart';
 import 'package:rave_flock/presentation/pages/basket_page/basket_page.dart';
@@ -9,8 +10,6 @@ import 'package:rave_flock/presentation/pages/home_page/home_page.dart';
 import 'package:rave_flock/presentation/pages/meet_page/meet_page.dart';
 import 'package:rave_flock/presentation/pages/profile_page/profile_page.dart';
 import 'package:rave_flock/presentation/pages/splash_page/splash_page.dart';
-import 'package:rave_flock/presentation/router/routing_page.dart';
-import 'package:rave_flock/presentation/router/scaffold_with_nav_bar.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/create_new_meet_screen.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
@@ -43,48 +42,36 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) =>
-          ScaffoldWithNavBar(navigationShell: navigationShell),
-      branches: [
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-                path: "/friendsPage",
-                name: "friendsPage",
-                builder: (context, state) => const FriendsPage(),
-                routes: [
-                  GoRoute(
-                    name: "friendScreen",
-                    path: "friendScreen/:friendId",
-                    builder: (context, state) => FriendScreen(
-                        friendId: state.pathParameters['friendId'] ??
-                            '' // TODO: '' - не есть хорошо
-                        ),
-                  ),
-                ]),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              name: 'home',
-              path: "/homepage",
-              builder: (context, state) => const HomePage(),
-              routes: [],
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: "/profilePage",
-              name: "profilePage",
-              builder: (context, state) => const ProfilePage(),
-            ),
-          ],
-        ),
-      ],
+    GoRoute(
+        path: "/friendsPage",
+        name: "friendsPage",
+        builder: (context, state) => const FriendsPage(),
+        routes: [
+          GoRoute(
+            name: "friendScreen",
+            path: "friendScreen/:friendId",
+            builder: (context, state) => FriendScreen(
+                friendId: state.pathParameters['friendId'] ??
+                    '' // TODO: '' - не есть хорошо
+                ),
+          ),
+        ]),
+    GoRoute(
+      name: 'homePage',
+      path: "/homePage",
+      builder: (context, state) => const HomePage(),
+      routes: [],
+    ),
+    GoRoute(
+      name: 'routingPage',
+      path: "/routingPage",
+      builder: (context, state) => const RoutingPage(),
+      routes: [],
+    ),
+    GoRoute(
+      path: "/profilePage",
+      name: "profilePage",
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       name: "friendRequestsScreen",

@@ -98,7 +98,7 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
           children: [
             IconButton(
                 onPressed: () {
-                  context.goNamed('home');
+                  context.goNamed('homePage');
                 },
                 icon: Icon(Icons.close)),
             SizedBox(

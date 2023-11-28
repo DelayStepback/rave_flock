@@ -55,7 +55,6 @@ class _FriendsPageView extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // context.push('/homepage/createNewMeetScreen');
               showModalBottomSheet(
                   context: context, builder: (context) => AddNewFriendWidget());
             },

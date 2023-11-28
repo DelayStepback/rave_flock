@@ -20,6 +20,9 @@ mixin _$MeetDataState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(List<MeetEntity> allMeetData) loaded,
+    required TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)
+        search,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +30,9 @@ mixin _$MeetDataState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(List<MeetEntity> allMeetData)? loaded,
+    TResult? Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +40,9 @@ mixin _$MeetDataState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(List<MeetEntity> allMeetData)? loaded,
+    TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -42,6 +51,7 @@ mixin _$MeetDataState {
   TResult map<TResult extends Object?>({
     required TResult Function(_MeetDataInit value) init,
     required TResult Function(_MeetDataLoaded value) loaded,
+    required TResult Function(_MeetDataSearch value) search,
     required TResult Function(_MeetDataError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +59,7 @@ mixin _$MeetDataState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MeetDataInit value)? init,
     TResult? Function(_MeetDataLoaded value)? loaded,
+    TResult? Function(_MeetDataSearch value)? search,
     TResult? Function(_MeetDataError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +67,7 @@ mixin _$MeetDataState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MeetDataInit value)? init,
     TResult Function(_MeetDataLoaded value)? loaded,
+    TResult Function(_MeetDataSearch value)? search,
     TResult Function(_MeetDataError value)? error,
     required TResult orElse(),
   }) =>
@@ -120,6 +132,9 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(List<MeetEntity> allMeetData) loaded,
+    required TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)
+        search,
     required TResult Function(String error) error,
   }) {
     return init();
@@ -130,6 +145,9 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(List<MeetEntity> allMeetData)? loaded,
+    TResult? Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult? Function(String error)? error,
   }) {
     return init?.call();
@@ -140,6 +158,9 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(List<MeetEntity> allMeetData)? loaded,
+    TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -154,6 +175,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult map<TResult extends Object?>({
     required TResult Function(_MeetDataInit value) init,
     required TResult Function(_MeetDataLoaded value) loaded,
+    required TResult Function(_MeetDataSearch value) search,
     required TResult Function(_MeetDataError value) error,
   }) {
     return init(this);
@@ -164,6 +186,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MeetDataInit value)? init,
     TResult? Function(_MeetDataLoaded value)? loaded,
+    TResult? Function(_MeetDataSearch value)? search,
     TResult? Function(_MeetDataError value)? error,
   }) {
     return init?.call(this);
@@ -174,6 +197,7 @@ class _$MeetDataInitImpl implements _MeetDataInit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MeetDataInit value)? init,
     TResult Function(_MeetDataLoaded value)? loaded,
+    TResult Function(_MeetDataSearch value)? search,
     TResult Function(_MeetDataError value)? error,
     required TResult orElse(),
   }) {
@@ -263,6 +287,9 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(List<MeetEntity> allMeetData) loaded,
+    required TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)
+        search,
     required TResult Function(String error) error,
   }) {
     return loaded(allMeetData);
@@ -273,6 +300,9 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(List<MeetEntity> allMeetData)? loaded,
+    TResult? Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult? Function(String error)? error,
   }) {
     return loaded?.call(allMeetData);
@@ -283,6 +313,9 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(List<MeetEntity> allMeetData)? loaded,
+    TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -297,6 +330,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_MeetDataInit value) init,
     required TResult Function(_MeetDataLoaded value) loaded,
+    required TResult Function(_MeetDataSearch value) search,
     required TResult Function(_MeetDataError value) error,
   }) {
     return loaded(this);
@@ -307,6 +341,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MeetDataInit value)? init,
     TResult? Function(_MeetDataLoaded value)? loaded,
+    TResult? Function(_MeetDataSearch value)? search,
     TResult? Function(_MeetDataError value)? error,
   }) {
     return loaded?.call(this);
@@ -317,6 +352,7 @@ class _$MeetDataLoadedImpl implements _MeetDataLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MeetDataInit value)? init,
     TResult Function(_MeetDataLoaded value)? loaded,
+    TResult Function(_MeetDataSearch value)? search,
     TResult Function(_MeetDataError value)? error,
     required TResult orElse(),
   }) {
@@ -334,6 +370,189 @@ abstract class _MeetDataLoaded implements MeetDataState {
   List<MeetEntity> get allMeetData;
   @JsonKey(ignore: true)
   _$$MeetDataLoadedImplCopyWith<_$MeetDataLoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataSearchImplCopyWith<$Res> {
+  factory _$$MeetDataSearchImplCopyWith(_$MeetDataSearchImpl value,
+          $Res Function(_$MeetDataSearchImpl) then) =
+      __$$MeetDataSearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched});
+}
+
+/// @nodoc
+class __$$MeetDataSearchImplCopyWithImpl<$Res>
+    extends _$MeetDataStateCopyWithImpl<$Res, _$MeetDataSearchImpl>
+    implements _$$MeetDataSearchImplCopyWith<$Res> {
+  __$$MeetDataSearchImplCopyWithImpl(
+      _$MeetDataSearchImpl _value, $Res Function(_$MeetDataSearchImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? allMeetData = null,
+    Object? meetsSearched = null,
+  }) {
+    return _then(_$MeetDataSearchImpl(
+      allMeetData: null == allMeetData
+          ? _value._allMeetData
+          : allMeetData // ignore: cast_nullable_to_non_nullable
+              as List<MeetEntity>,
+      meetsSearched: null == meetsSearched
+          ? _value._meetsSearched
+          : meetsSearched // ignore: cast_nullable_to_non_nullable
+              as List<MeetEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataSearchImpl implements _MeetDataSearch {
+  const _$MeetDataSearchImpl(
+      {required final List<MeetEntity> allMeetData,
+      required final List<MeetEntity> meetsSearched})
+      : _allMeetData = allMeetData,
+        _meetsSearched = meetsSearched;
+
+  final List<MeetEntity> _allMeetData;
+  @override
+  List<MeetEntity> get allMeetData {
+    if (_allMeetData is EqualUnmodifiableListView) return _allMeetData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allMeetData);
+  }
+
+  final List<MeetEntity> _meetsSearched;
+  @override
+  List<MeetEntity> get meetsSearched {
+    if (_meetsSearched is EqualUnmodifiableListView) return _meetsSearched;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_meetsSearched);
+  }
+
+  @override
+  String toString() {
+    return 'MeetDataState.search(allMeetData: $allMeetData, meetsSearched: $meetsSearched)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataSearchImpl &&
+            const DeepCollectionEquality()
+                .equals(other._allMeetData, _allMeetData) &&
+            const DeepCollectionEquality()
+                .equals(other._meetsSearched, _meetsSearched));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_allMeetData),
+      const DeepCollectionEquality().hash(_meetsSearched));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataSearchImplCopyWith<_$MeetDataSearchImpl> get copyWith =>
+      __$$MeetDataSearchImplCopyWithImpl<_$MeetDataSearchImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(List<MeetEntity> allMeetData) loaded,
+    required TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)
+        search,
+    required TResult Function(String error) error,
+  }) {
+    return search(allMeetData, meetsSearched);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(List<MeetEntity> allMeetData)? loaded,
+    TResult? Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
+    TResult? Function(String error)? error,
+  }) {
+    return search?.call(allMeetData, meetsSearched);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(List<MeetEntity> allMeetData)? loaded,
+    TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(allMeetData, meetsSearched);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MeetDataInit value) init,
+    required TResult Function(_MeetDataLoaded value) loaded,
+    required TResult Function(_MeetDataSearch value) search,
+    required TResult Function(_MeetDataError value) error,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MeetDataInit value)? init,
+    TResult? Function(_MeetDataLoaded value)? loaded,
+    TResult? Function(_MeetDataSearch value)? search,
+    TResult? Function(_MeetDataError value)? error,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MeetDataInit value)? init,
+    TResult Function(_MeetDataLoaded value)? loaded,
+    TResult Function(_MeetDataSearch value)? search,
+    TResult Function(_MeetDataError value)? error,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MeetDataSearch implements MeetDataState {
+  const factory _MeetDataSearch(
+      {required final List<MeetEntity> allMeetData,
+      required final List<MeetEntity> meetsSearched}) = _$MeetDataSearchImpl;
+
+  List<MeetEntity> get allMeetData;
+  List<MeetEntity> get meetsSearched;
+  @JsonKey(ignore: true)
+  _$$MeetDataSearchImplCopyWith<_$MeetDataSearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -403,6 +622,9 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(List<MeetEntity> allMeetData) loaded,
+    required TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)
+        search,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -413,6 +635,9 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(List<MeetEntity> allMeetData)? loaded,
+    TResult? Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -423,6 +648,9 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(List<MeetEntity> allMeetData)? loaded,
+    TResult Function(
+            List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched)?
+        search,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -437,6 +665,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult map<TResult extends Object?>({
     required TResult Function(_MeetDataInit value) init,
     required TResult Function(_MeetDataLoaded value) loaded,
+    required TResult Function(_MeetDataSearch value) search,
     required TResult Function(_MeetDataError value) error,
   }) {
     return error(this);
@@ -447,6 +676,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MeetDataInit value)? init,
     TResult? Function(_MeetDataLoaded value)? loaded,
+    TResult? Function(_MeetDataSearch value)? search,
     TResult? Function(_MeetDataError value)? error,
   }) {
     return error?.call(this);
@@ -457,6 +687,7 @@ class _$MeetDataErrorImpl implements _MeetDataError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MeetDataInit value)? init,
     TResult Function(_MeetDataLoaded value)? loaded,
+    TResult Function(_MeetDataSearch value)? search,
     TResult Function(_MeetDataError value)? error,
     required TResult orElse(),
   }) {

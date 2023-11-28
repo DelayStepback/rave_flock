@@ -17,7 +17,8 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
   final MeetRepository _meetRepository;
   final UserRepository _userRepository;
 
-  MeetDataBloc(this._meetRepository, this._userRepository) : super(const MeetDataState.init()) {
+  MeetDataBloc(this._meetRepository, this._userRepository)
+      : super(const MeetDataState.init()) {
     on<MeetDataInitializeEvent>(_onMeetDataInitializeEvent);
     on<MeetDataAddEvent>(_onMeetDataAddEvent);
     on<MeetDataDeleteEvent>(_onMeetDataDeleteEvent);
@@ -26,7 +27,35 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     on<MeetDataUpdateCurrMeetInfo>(_onMeetDataUpdateCurrMeetInfo);
     on<MeetDataUpdateCurrMeetBasket>(_onMeetDataUpdateCurrMeetBasket);
     on<MeetDataUpdateCurrMeetGuests>(_onMeetDataUpdateCurrMeetGuests);
+    on<MeetDataSearchEvent>(_onMeetDataSearchEvent);
+  }
 
+  Future<void> _onMeetDataSearchEvent(MeetDataSearchEvent event, emit) async {
+    print('search');
+    state.when(init: (){}, loaded: (meets){
+      List<MeetEntity> _newMeets = [];
+      print('1');
+      for (var meet in meets){
+        if (meet.meetModel.title.toLowerCase().contains(event.titleLike.toLowerCase())){
+          _newMeets.add(meet);
+
+        }
+      }
+
+      emit(MeetDataState.search(allMeetData: meets, meetsSearched: _newMeets));
+    }, search: (meets, searchMeets){
+      List<MeetEntity> _newMeets = [];
+      for (var meet in meets){
+        if (meet.meetModel.title.toLowerCase().contains(event.titleLike.toLowerCase())){
+        _newMeets.add(meet);
+
+        }
+
+      }
+      emit(MeetDataState.search(allMeetData: meets, meetsSearched: _newMeets));
+    }, error: (error){
+      emit(MeetDataState.error(error: error));
+    });
   }
 
   Future<void> _onMeetDataDisposeEvent(event, emit) async {
@@ -70,49 +99,53 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
         .when(
             init: () {},
             loaded: (meets) async {
-              for (var m in meets) {
-                _meets.add(m);
-              }
-              // такого мероприятия нет
-              if (event.meetModel.meetId == null) {
-                try {
-                  await _meetRepository.addMeet(event.meetModel).then(
-                    (value) async {
-
-                      // необходимо добавить себя как гостя
-                      List<GuestEntity> newGuests =await _meetRepository.fetchGuests(value.meetId!);
-                      print(newGuests);
-                      _meets.add(MeetEntity(
-                          meetModel: value,
-                          usersGuests: newGuests,
-                          allBasketData: []));
-
-                      },
-                  );
-                } catch (e) {
-                  print('error: $e');
-                }
-              }
-              // если уже создано, обновляем
-              else {
-                try {
-                  await _meetRepository
-                      .updateMeet(event.meetModel)
-                      .whenComplete(() {
-                    // _meets - loaded meet entities
-                    int index = _meets.indexWhere(
-                        (e) => e.meetModel.meetId == event.meetModel.meetId);
-                    _meets[index].meetModel = event.meetModel;
-                  });
-                } catch (e) {
-                  print('error: $e');
-                }
-              }
+              await _meetDataAddLoaded(meets, _meets, event);
             },
-            error: (e) {})
+            error: (e) {},
+            search:
+                (List<MeetEntity> meets, List<MeetEntity> meetsSearched) async {
+              await _meetDataAddLoaded(meets, _meets, event);
+            })
         ?.whenComplete(() {
       emit(MeetDataState.loaded(allMeetData: _meets));
     });
+  }
+
+  Future<void> _meetDataAddLoaded(List<MeetEntity> meets,
+      List<MeetEntity> _meets, MeetDataAddEvent event) async {
+    for (var m in meets) {
+      _meets.add(m);
+    }
+    // такого мероприятия нет
+    if (event.meetModel.meetId == null) {
+      try {
+        await _meetRepository.addMeet(event.meetModel).then(
+          (value) async {
+            // необходимо добавить себя как гостя
+            List<GuestEntity> newGuests =
+                await _meetRepository.fetchGuests(value.meetId!);
+            print(newGuests);
+            _meets.add(MeetEntity(
+                meetModel: value, usersGuests: newGuests, allBasketData: []));
+          },
+        );
+      } catch (e) {
+        print('error: $e');
+      }
+    }
+    // если уже создано, обновляем
+    else {
+      try {
+        await _meetRepository.updateMeet(event.meetModel).whenComplete(() {
+          // _meets - loaded meet entities
+          int index = _meets
+              .indexWhere((e) => e.meetModel.meetId == event.meetModel.meetId);
+          _meets[index].meetModel = event.meetModel;
+        });
+      } catch (e) {
+        print('error: $e');
+      }
+    }
   }
 
   Future<void> _onMeetDataDeleteEvent(MeetDataDeleteEvent event, emit) async {
@@ -122,25 +155,33 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
         .when(
             init: () {},
             loaded: (meets) async {
-              for (var m in meets) {
-                _meets.add(m);
-              }
-
-              try {
-                await _meetRepository.deleteMeet(event.meetId).then(
-                  (value) {
-                    _meets.removeWhere(
-                        (element) => element.meetModel.meetId == event.meetId);
-                  },
-                );
-              } catch (e) {
-                print('error: $e');
-              }
+              await _meetDataDeleteLoaded(meets, _meets, event);
+            },
+            search: (meets, searchMeets) async {
+              await _meetDataDeleteLoaded(meets, _meets, event);
             },
             error: (e) {})
         ?.whenComplete(() {
       emit(MeetDataState.loaded(allMeetData: _meets));
     });
+  }
+
+  Future<void> _meetDataDeleteLoaded(List<MeetEntity> meets,
+      List<MeetEntity> _meets, MeetDataDeleteEvent event) async {
+    for (var m in meets) {
+      _meets.add(m);
+    }
+
+    try {
+      await _meetRepository.deleteMeet(event.meetId).then(
+        (value) {
+          _meets.removeWhere(
+              (element) => element.meetModel.meetId == event.meetId);
+        },
+      );
+    } catch (e) {
+      print('error: $e');
+    }
   }
 
   Future<void> _onMeetDataUpdateCurrMeetInfo(
@@ -157,7 +198,16 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
               newMeetEntities[ind] =
                   newMeetEntities[ind].copyWith(meetModel: newMeet);
             },
-            error: (e) {})
+            error: (e) {},
+            search: (List<MeetEntity> meetEntities,
+                List<MeetEntity> meetsSearched) async {
+              int ind = meetEntities.indexWhere(
+                  (element) => element.meetModel.meetId == event.meetId);
+              final newMeet = await _meetRepository.fetchMeet(event.meetId);
+              newMeetEntities.addAll(meetEntities);
+              newMeetEntities[ind] =
+                  newMeetEntities[ind].copyWith(meetModel: newMeet);
+            })
         ?.whenComplete(
             () => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
   }
@@ -167,17 +217,29 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     List<MeetEntity> newMeetEntities = [];
     await state
         .when(
-        init: () {},
-        loaded: (meetEntities) async {
-          int ind = meetEntities.indexWhere(
+            init: () {},
+            loaded: (meetEntities) async {
+              int ind = meetEntities.indexWhere(
                   (element) => element.meetModel.meetId == event.meetId);
-          final newBasketItems = await _meetRepository.fetchBasketItemsOfMeet(event.meetId);
-          newMeetEntities.addAll(meetEntities);
+              final newBasketItems =
+                  await _meetRepository.fetchBasketItemsOfMeet(event.meetId);
+              newMeetEntities.addAll(meetEntities);
 
-          newMeetEntities[ind] =
-              newMeetEntities[ind].copyWith(allBasketData: newBasketItems);
-        },
-        error: (e) {})
+              newMeetEntities[ind] =
+                  newMeetEntities[ind].copyWith(allBasketData: newBasketItems);
+            },
+            error: (e) {},
+            search: (List<MeetEntity> meetEntities,
+                List<MeetEntity> meetsSearched) async {
+              int ind = meetEntities.indexWhere(
+                  (element) => element.meetModel.meetId == event.meetId);
+              final newBasketItems =
+                  await _meetRepository.fetchBasketItemsOfMeet(event.meetId);
+              newMeetEntities.addAll(meetEntities);
+
+              newMeetEntities[ind] =
+                  newMeetEntities[ind].copyWith(allBasketData: newBasketItems);
+            })
         ?.whenComplete(
             () => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
   }
@@ -187,16 +249,25 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     List<MeetEntity> newMeetEntities = [];
     await state
         .when(
-        init: () {},
-        loaded: (meetEntities) async {
-          int ind = meetEntities.indexWhere(
+            init: () {},
+            loaded: (meetEntities) async {
+              int ind = meetEntities.indexWhere(
                   (element) => element.meetModel.meetId == event.meetId);
-          final newGuests = await _meetRepository.fetchGuests(event.meetId);
-          newMeetEntities.addAll(meetEntities);
-          newMeetEntities[ind] =
-              newMeetEntities[ind].copyWith(usersGuests: newGuests);
-        },
-        error: (e) {})
+              final newGuests = await _meetRepository.fetchGuests(event.meetId);
+              newMeetEntities.addAll(meetEntities);
+              newMeetEntities[ind] =
+                  newMeetEntities[ind].copyWith(usersGuests: newGuests);
+            },
+            error: (e) {},
+            search: (List<MeetEntity> meetEntities,
+                List<MeetEntity> meetsSearched) async {
+              int ind = meetEntities.indexWhere(
+                  (element) => element.meetModel.meetId == event.meetId);
+              final newGuests = await _meetRepository.fetchGuests(event.meetId);
+              newMeetEntities.addAll(meetEntities);
+              newMeetEntities[ind] =
+                  newMeetEntities[ind].copyWith(usersGuests: newGuests);
+            })
         ?.whenComplete(
             () => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
   }

@@ -32,17 +32,16 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
     super.initState();
   }
 
-  static const double heightContainerSize = 210;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: heightContainerSize.h,
+      height: 286.h,
       child: PageView.builder(
-        physics: const RangeMaintainingScrollPhysics(),
+        // physics: const RangeMaintainingScrollPhysics(),
         controller: PageController(
             initialPage: widget.meetsEntities.length - 1,
-            viewportFraction: 0.66.r),
+            viewportFraction: 0.88.r),
         onPageChanged: (val) {
           setState(() {
             _index = val;
@@ -82,10 +81,8 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(30)),
                       child: AnimatedContainer(
-                          width: index == _index ? 260.0.w : 200.w,
-                          height: index == _index
-                              ? heightContainerSize.h
-                              : heightContainerSize.h - 50.h,
+                          width:  286.r ,
+                          height: 286.r,
                           padding: EdgeInsets.only(top: 20, left: 30),
                           curve: Curves.easeInOutQuad,
                           duration: const Duration(seconds: 1),

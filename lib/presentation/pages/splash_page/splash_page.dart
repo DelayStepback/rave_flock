@@ -94,7 +94,7 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
         !friendsDataAreInitState &&
         !meetDataAreInitState &&
         !userDataAreInitState) {
-      context.go("/homepage");
+      context.go("/routingPage");
     }
   }
 
@@ -196,7 +196,7 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
                     meetDataAreInitState,
                     userDataAreInitState);
               },
-              error: (e) => context.go('/errorScreen', extra: {'error': e}));
+              error: (e) => context.go('/errorScreen', extra: {'error': e}), search: ( allMeetData, meetsSearched) {  });
         },
       );
   }

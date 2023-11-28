@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
@@ -12,6 +14,8 @@ import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget
 import 'package:rave_flock/presentation/pages/friends_page/widgets/notification_button_widget.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/create_new_meet_screen.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import '../../../common/validation/validation.dart';
+import '../../../common/widget/text_input.dart';
 import '../../../data/models/meet/meet_model.dart';
 import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
@@ -35,11 +39,50 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomePageView extends StatelessWidget {
+class _HomePageView extends StatefulWidget {
   _HomePageView({super.key});
 
+  @override
+  State<_HomePageView> createState() => _HomePageViewState();
+}
+
+class _HomePageViewState extends State<_HomePageView> {
   final String? userIdAuth = AuthService.getUserId();
 
+  final _titleController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleDebounceTimer?.cancel();
+
+    _titleController.dispose();
+    super.dispose();
+  }
+  bool _titleValid = true;
+
+
+  Timer? titleDebounceTimer;
+
+
+  void _onChangeTitle(String value) {
+    if (titleDebounceTimer?.isActive ?? false) {
+      titleDebounceTimer?.cancel();
+    }
+    titleDebounceTimer = Timer(
+      const Duration(milliseconds: 500),
+          () {
+        setState(
+              () {
+            _titleValid = Validation.validateTitle(value) == null;
+            print(_titleValid);
+            if (_titleValid == true){
+              BlocProvider.of<MeetDataBloc>(context).add(MeetDataEvent.search(AuthService.getUserId() ?? '', value));
+            }
+          },
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +93,28 @@ class _HomePageView extends StatelessWidget {
             // SvgPicture.asset(
             //   'assets/images/phone.svg',
             // ),
+            TextButton(
+              onPressed: () {
+                AuthService.signOut();
+                context.go('/');
+              },
+              child: Text('logout'),
+            ),
+            Padding(padding: const EdgeInsets.only(top: 70),
+              child: TextInput(
+                label: 'Title',
+                valid: _titleValid,
+                errorText: 'Слишком короткое название',
+                controller: _titleController,
+                readOnly: false,
+                maxLine: 1,
+                onChanged: _onChangeTitle,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 100),
-              child: CustomScrollView(
-                slivers: [
+              child: Column(
+                children: [
                   BlocListener<MeetDataBloc, MeetDataState>(
                     listener: (context, state) {
                       state.when(
@@ -61,50 +122,46 @@ class _HomePageView extends StatelessWidget {
                           loaded: (_) {},
                           // impl for auto route if error
                           error: (e) =>
-                              context.go('/errorScreen', extra: {'error': e}));
+                              context.go('/errorScreen', extra: {'error': e}), search: (List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched) {  });
                     },
                     child: BlocBuilder<MeetDataBloc, MeetDataState>(
                       builder: (context, state) {
                         return state.when(
                           init: () {
                             if (userIdAuth != null) {
-                              context
-                                  .read<MeetDataBloc>()
-                                  .add(MeetDataInitializeEvent(userIdAuth!));
+                              // context
+                              //     .read<MeetDataBloc>()
+                              //     .add(MeetDataInitializeEvent(userIdAuth!));
                             }
-                            return const SliverToBoxAdapter(
-                              child: Text(
-                                'LOADING',
-                              ),
+                            return Text(
+                              'LOADING',
                             );
                           },
                           loaded: (List<MeetEntity> meetsEntities) {
-                            return SliverToBoxAdapter(
-                                child: MeetRollWidget(
+                            return MeetRollWidget(
                               meetsEntities: meetsEntities,
-                            ));
+                            );
                           },
                           error: (String error) {
                             return Container();
-                          },
+                          }, search: (List<MeetEntity> meetsEntities, List<MeetEntity> meetsSearched) {
+                          return MeetRollWidget(
+                            meetsEntities: meetsSearched,
+                          );
+
+                        },
                         );
                       },
                     ),
                   ),
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        UnconstrainedBox(
-                          child: ElevatedButton(
-                            onPressed: () {
-                             context.goNamed('createNewMeetScreen');
-                            },
-                            child: const Icon(Icons.add),
-                          ),
-                        ),
-                      ],
+                  UnconstrainedBox(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.goNamed('createNewMeetScreen');
+                      },
+                      child: const Icon(Icons.add),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

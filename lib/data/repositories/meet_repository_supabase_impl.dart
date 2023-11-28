@@ -36,7 +36,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<List<MeetModel>> fetchUserOwnerMeets(String userId) async {
     final data =
-    await supabase.from('meets').select().eq('meet_owner_id', userId);
+        await supabase.from('meets').select().eq('meet_owner_id', userId);
     List<MeetModel> meetsByOwnerId = [];
     for (var json in data) {
       meetsByOwnerId.add(MeetModel.fromJson(json));
@@ -46,14 +46,16 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
 
   @override
   Future<List<MeetModel>> fetchUserMeets(String userId) async {
-    final data = await supabase.from('guests').select('meets(*)').eq(
-        'user_id', userId);
+    print('fetchUserMeets');
+    final data =
+        await supabase.from('guests').select('meets(*)').eq('user_id', userId);
     List<MeetModel> userMeets = [];
     for (var json in data) {
       userMeets.add(MeetModel.fromJson(json['meets']));
     }
     return userMeets;
   }
+
 
   @override
   Future<void> createGuest(GuestModel guestModel) async {
@@ -87,9 +89,8 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
       json.remove('id');
     }
 
-    final newBasketItemJson = await supabase.from('basket_items')
-        .insert(json)
-        .select();
+    final newBasketItemJson =
+        await supabase.from('basket_items').insert(json).select();
     final newBasketItem = BasketItemModel.fromJson(newBasketItemJson[0]);
     return newBasketItem;
   }
@@ -102,7 +103,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId) async {
     final data =
-    await supabase.from('basket_items').select().eq('meet_id', meetId);
+        await supabase.from('basket_items').select().eq('meet_id', meetId);
     List<BasketItemModel> basketItems = [];
     for (var json in data) {
       basketItems.add(BasketItemModel.fromJson(json));
@@ -112,9 +113,10 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
 
   @override
   Future<List<GuestEntity>> fetchGuests(int meetId) async {
-    final data =
-    await supabase.from('guests').select('users(*), status').eq(
-        'meet_id', meetId);
+    final data = await supabase
+        .from('guests')
+        .select('users(*), status')
+        .eq('meet_id', meetId);
     List<GuestEntity> guestsOfMeet = [];
     for (var json in data) {
       var userData = UserModel.fromJson(json['users']);
@@ -132,7 +134,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<List<MeetModel>> fetchPublicMeets() async {
     final data =
-    await supabase.from('meets').select().eq('meet_is_public', true);
+        await supabase.from('meets').select().eq('meet_is_public', true);
     List<MeetModel> meets = [];
     for (var json in data) {
       meets.add(MeetModel.fromJson(json));
@@ -151,8 +153,8 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   }
 
   @override
-  Future<void> userTakeThisItem(bool isTake, int basketItemId,
-      String userId) async {
+  Future<void> userTakeThisItem(
+      bool isTake, int basketItemId, String userId) async {
     final data = await supabase
         .from('basket_items')
         .select('grabbed_by_user_id')
@@ -184,8 +186,8 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   }
 
   @override
-  Future<void> userUseThisItem(bool isTake, int basketItemId,
-      String userId) async {
+  Future<void> userUseThisItem(
+      bool isTake, int basketItemId, String userId) async {
     if (isTake) {
       await supabase
           .from('basket_using_item_user_relationship')
@@ -209,7 +211,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<MeetModel> fetchMeet(int meetId) async {
     final data =
-    await supabase.from('meets').select().eq('meet_id', meetId).single();
+        await supabase.from('meets').select().eq('meet_id', meetId).single();
     MeetModel meetModel = MeetModel.fromJson(data);
     print('meetFetched IN MEET_IMPL: $meetModel');
     return meetModel;

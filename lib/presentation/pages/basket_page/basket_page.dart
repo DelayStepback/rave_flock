@@ -54,7 +54,18 @@ class _BasketPage extends StatelessWidget {
                           }),
                     );
                   },
-                  error: (e) => ErrorScreen(error: e));
+                  error: (e) => ErrorScreen(error: e),
+                  search: (meetEntities, meetsSearched) {
+                    List<BasketItemModel>? currMeetBasketItems = meetEntities.firstWhere((element) => element.meetModel.meetId == meetId).allBasketData;
+                    print(currMeetBasketItems);
+                    return Expanded(
+                      child: ListView.builder(
+                          itemCount: currMeetBasketItems?.length,
+                          itemBuilder: (_, index) {
+                            return Text('#${currMeetBasketItems?[index].id} ${currMeetBasketItems?[index].title}');
+                          }),
+                    );
+                  });
             }),
             IconButton(onPressed: (){
               GetIt.I<MeetDataBloc>().add(MeetDataEvent.updateCurrMeetBasket(meetId));
