@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -121,7 +122,7 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
         listenerLoadingUserDataBloc(),
       ],
       child: Scaffold(
-        backgroundColor: const Color(0xFF433383),
+        backgroundColor: const Color(0xFF7A2525),
 
         body: SizedBox(
           width: double.infinity,
@@ -146,7 +147,9 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
                   ),
                 ),
               ),
-              Text(processTitle),
+              Align(
+                  alignment: Alignment.center,
+                  child: Text(processTitle, style: TextStyle(fontSize: 20.sp),)),
             ],
           ),
         ),

@@ -46,17 +46,28 @@ class _MeetPageView extends StatelessWidget {
         }, error: (e) {
           return ErrorScreen(error: e);
         }, search: (List<MeetEntity> allMeetData, List<MeetEntity> meetsSearched) {
-          return _loadedMeetsEntities(allMeetData, context);
+            return _loadedMeetsEntities(allMeetData, context);
 
 
         });
       },
     );
+
   }
 
-  Scaffold _loadedMeetsEntities(List<MeetEntity> meetsEntities, BuildContext context) {
-     MeetEntity currMeetEntity = meetsEntities
-        .firstWhere((element) => element.meetModel.meetId == meetId);
+  Widget _loadedMeetsEntities(List<MeetEntity> meetsEntities, BuildContext context) {
+
+    MeetEntity? currMeetEntity;
+    String? error;
+
+    try{
+      currMeetEntity = meetsEntities
+          .firstWhere((element) => element.meetModel.meetId == meetId);
+    }
+    catch(e){
+      error = e.toString();
+    }
+    if (currMeetEntity != null){
     return Scaffold(
       appBar: AppBar(
         title: Text(currMeetEntity.meetModel.title),
@@ -80,9 +91,9 @@ class _MeetPageView extends StatelessWidget {
                   onPressed: () {
                     context.pushNamed('basketPage', pathParameters: {
                       'meetId':
-                          currMeetEntity.meetModel.meetId.toString(),
+                          currMeetEntity!.meetModel.meetId.toString(),
                       'meetIdBasket':
-                          currMeetEntity.meetModel.meetId.toString()
+                          currMeetEntity!.meetModel.meetId.toString()
                     });
                   },
                   child: const Text('go to basket'),
@@ -99,7 +110,7 @@ class _MeetPageView extends StatelessWidget {
                           child: FractionallySizedBox(
                             heightFactor: 1,
                             child: CreateNewMeetScreen(
-                              meetModel: currMeetEntity.meetModel,
+                              meetModel: currMeetEntity!.meetModel,
                             ),
                           ),
                         );
@@ -110,8 +121,8 @@ class _MeetPageView extends StatelessWidget {
               : const SizedBox.shrink(),
           ElevatedButton(
               onPressed: () {
-                context.goNamed('homePage');
                 GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
+                context.goNamed('homePage');
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -122,6 +133,9 @@ class _MeetPageView extends StatelessWidget {
               ))
         ],
       ),
-    );
+    );}
+    else{
+      return ErrorScreen(error: error??'');
+    }
   }
 }

@@ -42,67 +42,73 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    GoRoute(
-        path: "/friendsPage",
-        name: "friendsPage",
-        builder: (context, state) => const FriendsPage(),
-        routes: [
-          GoRoute(
-            name: "friendScreen",
-            path: "friendScreen/:friendId",
-            builder: (context, state) => FriendScreen(
-                friendId: state.pathParameters['friendId'] ??
-                    '' // TODO: '' - не есть хорошо
-                ),
-          ),
-        ]),
-    GoRoute(
-      name: 'homePage',
-      path: "/homePage",
-      builder: (context, state) => const HomePage(),
-      routes: [],
-    ),
+
     GoRoute(
       name: 'routingPage',
       path: "/routingPage",
       builder: (context, state) => const RoutingPage(),
-      routes: [],
-    ),
-    GoRoute(
-      path: "/profilePage",
-      name: "profilePage",
-      builder: (context, state) => const ProfilePage(),
+      routes: [
+
+        GoRoute(
+          name: 'homePage',
+          path: "homePage",
+          builder: (context, state) => const HomePage(),
+          routes: [
+            GoRoute(
+              name: 'createNewMeetScreen',
+              path: "createNewMeetScreen",
+              //TODO: для update meet
+              builder: (context, state) => CreateNewMeetScreen(
+                meetModel:
+                    state.extra == null ? null : state.extra! as MeetModel,
+              ),
+            ),
+            GoRoute(
+              name: 'meetPage',
+              path: "meetPage/:meetId",
+              builder: (context, state) => MeetPage(
+                  meetId: int.tryParse(state.pathParameters['meetId']!) ??
+                      0 // TODO 0 не есть хорошо
+              ),
+              routes: [
+                GoRoute(
+                  name: 'basketPage',
+                  path: "basketPage/:meetIdBasket",
+                  builder: (context, state) => BasketPage(
+                      meetId: int.tryParse(state.pathParameters['meetIdBasket']!) ??
+                          0 // TODO 0 не есть хорошо
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        GoRoute(
+          path: "friendsPage",
+          name: "friendsPage",
+          builder: (context, state) => const FriendsPage(),
+          routes: [
+            GoRoute(
+              name: "friendScreen",
+              path: "friendScreen/:friendId",
+              builder: (context, state) => FriendScreen(
+                  friendId: state.pathParameters['friendId'] ??
+                      '' // TODO: '' - не есть хорошо
+              ),
+            ),
+          ],),
+        GoRoute(
+          path: "profilePage",
+          name: "profilePage",
+          builder: (context, state) => const ProfilePage(),
+        ),
+      ],
     ),
     GoRoute(
       name: "friendRequestsScreen",
       path: "/friendRequestsScreen",
       builder: (context, state) => const FriendRequestsScreen(),
     ),
-    GoRoute(
-      name: 'createNewMeetScreen',
-      path: "/createNewMeetScreen",
-      //TODO: для update meet
-      builder: (context, state) => CreateNewMeetScreen(
-        meetModel: state.extra == null ? null : state.extra! as MeetModel,
-      ),
-    ),
-    GoRoute(
-      name: 'meetPage',
-      path: "/meetPage/:meetId",
-      builder: (context, state) => MeetPage(
-          meetId: int.tryParse(state.pathParameters['meetId']!) ??
-              0 // TODO 0 не есть хорошо
-          ),
-      routes: [
-        GoRoute(
-          name: 'basketPage',
-          path: "basketPage/:meetIdBasket",
-          builder: (context, state) => BasketPage(
-              meetId: int.tryParse(state.pathParameters['meetIdBasket']!) ??
-                  0 // TODO 0 не есть хорошо
-              ),
-        ),
-      ],
-    ),
+
   ],
 );

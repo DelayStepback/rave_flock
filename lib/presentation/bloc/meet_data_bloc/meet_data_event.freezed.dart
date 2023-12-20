@@ -23,6 +23,7 @@ mixin _$MeetDataEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -35,6 +36,7 @@ mixin _$MeetDataEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -47,6 +49,7 @@ mixin _$MeetDataEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -60,6 +63,7 @@ mixin _$MeetDataEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -75,6 +79,7 @@ mixin _$MeetDataEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -87,6 +92,7 @@ mixin _$MeetDataEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -185,6 +191,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -200,6 +207,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -215,6 +223,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -234,6 +243,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -252,6 +262,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -267,6 +278,7 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -370,6 +382,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -385,6 +398,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -400,6 +414,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -419,6 +434,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -437,6 +453,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -452,6 +469,7 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -544,6 +562,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -559,6 +578,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -574,6 +594,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -593,6 +614,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -611,6 +633,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -626,6 +649,7 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -692,6 +716,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -707,6 +732,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -722,6 +748,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -741,6 +768,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -759,6 +787,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -774,6 +803,7 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -869,6 +899,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -884,6 +915,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -899,6 +931,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -918,6 +951,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -936,6 +970,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -951,6 +986,7 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -972,6 +1008,155 @@ abstract class MeetDataSearchEvent implements MeetDataEvent {
   @JsonKey(ignore: true)
   _$$MeetDataSearchEventImplCopyWith<_$MeetDataSearchEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUnSearchEventImplCopyWith<$Res> {
+  factory _$$MeetDataUnSearchEventImplCopyWith(
+          _$MeetDataUnSearchEventImpl value,
+          $Res Function(_$MeetDataUnSearchEventImpl) then) =
+      __$$MeetDataUnSearchEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeetDataUnSearchEventImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUnSearchEventImpl>
+    implements _$$MeetDataUnSearchEventImplCopyWith<$Res> {
+  __$$MeetDataUnSearchEventImplCopyWithImpl(_$MeetDataUnSearchEventImpl _value,
+      $Res Function(_$MeetDataUnSearchEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
+  const _$MeetDataUnSearchEventImpl();
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.unSearch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUnSearchEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+  }) {
+    return unSearch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+  }) {
+    return unSearch?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    required TResult orElse(),
+  }) {
+    if (unSearch != null) {
+      return unSearch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+  }) {
+    return unSearch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+  }) {
+    return unSearch?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    required TResult orElse(),
+  }) {
+    if (unSearch != null) {
+      return unSearch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUnSearchEvent implements MeetDataEvent {
+  const factory MeetDataUnSearchEvent() = _$MeetDataUnSearchEventImpl;
 }
 
 /// @nodoc
@@ -1046,6 +1231,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -1061,6 +1247,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -1076,6 +1263,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -1095,6 +1283,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -1113,6 +1302,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -1128,6 +1318,7 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -1225,6 +1416,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -1240,6 +1432,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -1255,6 +1448,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -1274,6 +1468,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -1292,6 +1487,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -1307,6 +1503,7 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -1405,6 +1602,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     required TResult Function(int meetId) delete,
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
@@ -1420,6 +1618,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function(int meetId)? delete,
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
@@ -1435,6 +1634,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function(int meetId)? delete,
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
@@ -1454,6 +1654,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     required TResult Function(MeetDataDeleteEvent value) delete,
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
@@ -1472,6 +1673,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function(MeetDataDeleteEvent value)? delete,
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
@@ -1487,6 +1689,7 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function(MeetDataDeleteEvent value)? delete,
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,

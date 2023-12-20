@@ -13,7 +13,7 @@ class MeetDataEvent with _$MeetDataEvent {
   const factory MeetDataEvent.dispose() = MeetDataDisposeEvent;
 
   const factory MeetDataEvent.search(String userId, String titleLike) = MeetDataSearchEvent;
-
+  const factory MeetDataEvent.unSearch() = MeetDataUnSearchEvent;
   // TODO:
   const factory MeetDataEvent.updateCurrMeetInfo(int meetId) = MeetDataUpdateCurrMeetInfo;
   const factory MeetDataEvent.updateCurrMeetBasket(int meetId) = MeetDataUpdateCurrMeetBasket;
