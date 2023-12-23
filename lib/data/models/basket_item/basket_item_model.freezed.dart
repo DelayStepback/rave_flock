@@ -20,7 +20,9 @@ BasketItemModel _$BasketItemModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BasketItemModel {
-  String get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'meet_id')
+  int get meetId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get cost => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_by_user_id')
@@ -45,7 +47,8 @@ abstract class $BasketItemModelCopyWith<$Res> {
       _$BasketItemModelCopyWithImpl<$Res, BasketItemModel>;
   @useResult
   $Res call(
-      {String id,
+      {int? id,
+      @JsonKey(name: 'meet_id') int meetId,
       String title,
       String? cost,
       @JsonKey(name: 'created_by_user_id') String createdByUserId,
@@ -67,7 +70,8 @@ class _$BasketItemModelCopyWithImpl<$Res, $Val extends BasketItemModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? meetId = null,
     Object? title = null,
     Object? cost = freezed,
     Object? createdByUserId = null,
@@ -76,10 +80,14 @@ class _$BasketItemModelCopyWithImpl<$Res, $Val extends BasketItemModel>
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
+      meetId: null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -117,7 +125,8 @@ abstract class _$$BasketItemModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int? id,
+      @JsonKey(name: 'meet_id') int meetId,
       String title,
       String? cost,
       @JsonKey(name: 'created_by_user_id') String createdByUserId,
@@ -137,7 +146,8 @@ class __$$BasketItemModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? meetId = null,
     Object? title = null,
     Object? cost = freezed,
     Object? createdByUserId = null,
@@ -146,10 +156,14 @@ class __$$BasketItemModelImplCopyWithImpl<$Res>
     Object? imageUrl = freezed,
   }) {
     return _then(_$BasketItemModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
+      meetId: null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -182,14 +196,14 @@ class __$$BasketItemModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BasketItemModelImpl extends _BasketItemModel {
   _$BasketItemModelImpl(
-      {required this.id,
+      {this.id,
+      @JsonKey(name: 'meet_id') required this.meetId,
       required this.title,
       this.cost,
       @JsonKey(name: 'created_by_user_id') required this.createdByUserId,
-      @JsonKey(name: 'grabbed_by_user_id') required this.grabbedByUserId,
-      @JsonKey(name: 'who_will_use_ids')
-      required final List<String>? whoWillUseIds,
-      @JsonKey(name: 'image_url') required this.imageUrl})
+      @JsonKey(name: 'grabbed_by_user_id') this.grabbedByUserId,
+      @JsonKey(name: 'who_will_use_ids') final List<String>? whoWillUseIds,
+      @JsonKey(name: 'image_url') this.imageUrl})
       : _whoWillUseIds = whoWillUseIds,
         super._();
 
@@ -197,7 +211,10 @@ class _$BasketItemModelImpl extends _BasketItemModel {
       _$$BasketItemModelImplFromJson(json);
 
   @override
-  final String id;
+  final int? id;
+  @override
+  @JsonKey(name: 'meet_id')
+  final int meetId;
   @override
   final String title;
   @override
@@ -225,7 +242,7 @@ class _$BasketItemModelImpl extends _BasketItemModel {
 
   @override
   String toString() {
-    return 'BasketItemModel(id: $id, title: $title, cost: $cost, createdByUserId: $createdByUserId, grabbedByUserId: $grabbedByUserId, whoWillUseIds: $whoWillUseIds, imageUrl: $imageUrl)';
+    return 'BasketItemModel(id: $id, meetId: $meetId, title: $title, cost: $cost, createdByUserId: $createdByUserId, grabbedByUserId: $grabbedByUserId, whoWillUseIds: $whoWillUseIds, imageUrl: $imageUrl)';
   }
 
   @override
@@ -234,6 +251,7 @@ class _$BasketItemModelImpl extends _BasketItemModel {
         (other.runtimeType == runtimeType &&
             other is _$BasketItemModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -251,6 +269,7 @@ class _$BasketItemModelImpl extends _BasketItemModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      meetId,
       title,
       cost,
       createdByUserId,
@@ -275,16 +294,15 @@ class _$BasketItemModelImpl extends _BasketItemModel {
 
 abstract class _BasketItemModel extends BasketItemModel {
   factory _BasketItemModel(
-          {required final String id,
+          {final int? id,
+          @JsonKey(name: 'meet_id') required final int meetId,
           required final String title,
           final String? cost,
           @JsonKey(name: 'created_by_user_id')
           required final String createdByUserId,
-          @JsonKey(name: 'grabbed_by_user_id')
-          required final String? grabbedByUserId,
-          @JsonKey(name: 'who_will_use_ids')
-          required final List<String>? whoWillUseIds,
-          @JsonKey(name: 'image_url') required final String? imageUrl}) =
+          @JsonKey(name: 'grabbed_by_user_id') final String? grabbedByUserId,
+          @JsonKey(name: 'who_will_use_ids') final List<String>? whoWillUseIds,
+          @JsonKey(name: 'image_url') final String? imageUrl}) =
       _$BasketItemModelImpl;
   _BasketItemModel._() : super._();
 
@@ -292,7 +310,10 @@ abstract class _BasketItemModel extends BasketItemModel {
       _$BasketItemModelImpl.fromJson;
 
   @override
-  String get id;
+  int? get id;
+  @override
+  @JsonKey(name: 'meet_id')
+  int get meetId;
   @override
   String get title;
   @override

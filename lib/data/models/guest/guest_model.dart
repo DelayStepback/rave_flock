@@ -10,8 +10,8 @@ class GuestModel with _$GuestModel {
   const GuestModel._();
 
   factory GuestModel({
-    @JsonKey(name: 'meet_id') required String meetId,
-    @JsonKey(name: 'guest_id') required String guestId,
+    @JsonKey(name: 'meet_id') required int meetId,
+    @JsonKey(name: 'user_id') required String userId,
     required GuestChooseAtMeetEnum status,
   }) = _GuestModel;
 

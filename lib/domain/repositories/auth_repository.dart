@@ -12,8 +12,6 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<void> signInWithGoogle();
-
   Future<void> signOut();
 
   bool isUserSignedIn();

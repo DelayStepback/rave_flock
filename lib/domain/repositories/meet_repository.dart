@@ -1,38 +1,42 @@
 import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart';
-import 'package:rave_flock/data/models/basket/basket_model.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/data/models/guest/guest_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 
 import '../../data/models/user/user_model.dart';
+import '../entity/guest_entity/guest_entity.dart';
 
 abstract class MeetRepository {
+  Future<List<MeetModel>> fetchUserOwnerMeets(String userId);
+
   Future<List<MeetModel>> fetchUserMeets(String userId);
+
+  Future<MeetModel> fetchMeet(int meetId);
 
   Future<List<MeetModel>> fetchPublicMeets();
 
-  Future<List<UserModel>> fetchGuests(String meetId);
+  Future<List<GuestEntity>> fetchGuests(int meetId);
 
-  Future<void> addMeet(MeetModel meetModel);
+  Future<MeetModel> addMeet(MeetModel meetModel);
 
   Future<void> updateMeet(MeetModel meetModel);
 
-  Future<void> deleteMeet(String id);
+  Future<void> deleteMeet(int meetId);
 
   Future<void> createGuest(GuestModel guestModel);
 
   Future<void> changeGuestStatus(
-      String guestId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
+      int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
 
-  Future<BasketModel> fetchBasketOfMeet(String meetId);
+  Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId);
 
-  Future<void> createBasketToMeet(String meetId);
+  Future<void> createBasketToMeet(int meetId);
 
-  Future<void> addToBasketItem(BasketItemModel basketItemModel, String meetId);
+  Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel);
 
-  Future<void> userTakeThisItem(
-      bool isTake, String basketItemId, String meetId, String userId);
+  Future<void> removeBasketItem(BasketItemModel basketItemModel);
 
-  Future<void> userUseThisItem(
-      bool isTake, String basketItemId, String meetId, String userId);
+  Future<void> userTakeThisItem(bool isTake, int basketItemId, String userId);
+
+  Future<void> userUseThisItem(bool isTake, int basketItemId, String userId);
 }

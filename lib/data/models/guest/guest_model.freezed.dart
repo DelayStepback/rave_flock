@@ -21,9 +21,9 @@ GuestModel _$GuestModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GuestModel {
   @JsonKey(name: 'meet_id')
-  String get meetId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'guest_id')
-  String get guestId => throw _privateConstructorUsedError;
+  int get meetId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String get userId => throw _privateConstructorUsedError;
   GuestChooseAtMeetEnum get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,8 +39,8 @@ abstract class $GuestModelCopyWith<$Res> {
       _$GuestModelCopyWithImpl<$Res, GuestModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'meet_id') String meetId,
-      @JsonKey(name: 'guest_id') String guestId,
+      {@JsonKey(name: 'meet_id') int meetId,
+      @JsonKey(name: 'user_id') String userId,
       GuestChooseAtMeetEnum status});
 }
 
@@ -58,17 +58,17 @@ class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
   @override
   $Res call({
     Object? meetId = null,
-    Object? guestId = null,
+    Object? userId = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
       meetId: null == meetId
           ? _value.meetId
           : meetId // ignore: cast_nullable_to_non_nullable
-              as String,
-      guestId: null == guestId
-          ? _value.guestId
-          : guestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
@@ -87,8 +87,8 @@ abstract class _$$GuestModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'meet_id') String meetId,
-      @JsonKey(name: 'guest_id') String guestId,
+      {@JsonKey(name: 'meet_id') int meetId,
+      @JsonKey(name: 'user_id') String userId,
       GuestChooseAtMeetEnum status});
 }
 
@@ -104,17 +104,17 @@ class __$$GuestModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? meetId = null,
-    Object? guestId = null,
+    Object? userId = null,
     Object? status = null,
   }) {
     return _then(_$GuestModelImpl(
       meetId: null == meetId
           ? _value.meetId
           : meetId // ignore: cast_nullable_to_non_nullable
-              as String,
-      guestId: null == guestId
-          ? _value.guestId
-          : guestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
@@ -129,7 +129,7 @@ class __$$GuestModelImplCopyWithImpl<$Res>
 class _$GuestModelImpl extends _GuestModel {
   _$GuestModelImpl(
       {@JsonKey(name: 'meet_id') required this.meetId,
-      @JsonKey(name: 'guest_id') required this.guestId,
+      @JsonKey(name: 'user_id') required this.userId,
       required this.status})
       : super._();
 
@@ -138,16 +138,16 @@ class _$GuestModelImpl extends _GuestModel {
 
   @override
   @JsonKey(name: 'meet_id')
-  final String meetId;
+  final int meetId;
   @override
-  @JsonKey(name: 'guest_id')
-  final String guestId;
+  @JsonKey(name: 'user_id')
+  final String userId;
   @override
   final GuestChooseAtMeetEnum status;
 
   @override
   String toString() {
-    return 'GuestModel(meetId: $meetId, guestId: $guestId, status: $status)';
+    return 'GuestModel(meetId: $meetId, userId: $userId, status: $status)';
   }
 
   @override
@@ -156,13 +156,13 @@ class _$GuestModelImpl extends _GuestModel {
         (other.runtimeType == runtimeType &&
             other is _$GuestModelImpl &&
             (identical(other.meetId, meetId) || other.meetId == meetId) &&
-            (identical(other.guestId, guestId) || other.guestId == guestId) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, meetId, guestId, status);
+  int get hashCode => Object.hash(runtimeType, meetId, userId, status);
 
   @JsonKey(ignore: true)
   @override
@@ -180,8 +180,8 @@ class _$GuestModelImpl extends _GuestModel {
 
 abstract class _GuestModel extends GuestModel {
   factory _GuestModel(
-      {@JsonKey(name: 'meet_id') required final String meetId,
-      @JsonKey(name: 'guest_id') required final String guestId,
+      {@JsonKey(name: 'meet_id') required final int meetId,
+      @JsonKey(name: 'user_id') required final String userId,
       required final GuestChooseAtMeetEnum status}) = _$GuestModelImpl;
   _GuestModel._() : super._();
 
@@ -190,10 +190,10 @@ abstract class _GuestModel extends GuestModel {
 
   @override
   @JsonKey(name: 'meet_id')
-  String get meetId;
+  int get meetId;
   @override
-  @JsonKey(name: 'guest_id')
-  String get guestId;
+  @JsonKey(name: 'user_id')
+  String get userId;
   @override
   GuestChooseAtMeetEnum get status;
   @override

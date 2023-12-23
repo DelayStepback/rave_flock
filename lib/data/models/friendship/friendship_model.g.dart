@@ -9,17 +9,9 @@ part of 'friendship_model.dart';
 _$FriendshipModelImpl _$$FriendshipModelImplFromJson(
         Map<String, dynamic> json) =>
     _$FriendshipModelImpl(
-      id: json['id'] as String,
+      id: json['id'] as int,
       userSourceId: json['user_source_id'] as String,
       userTargetId: json['user_target_id'] as String,
-      userSourceTags: (json['user_source_tags'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      userTargetTags: (json['user_target_tags'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
       requestDate: DateTime.parse(json['request_date'] as String),
       approveDate: json['approve_date'] == null
           ? null
@@ -33,8 +25,6 @@ Map<String, dynamic> _$$FriendshipModelImplToJson(
       'id': instance.id,
       'user_source_id': instance.userSourceId,
       'user_target_id': instance.userTargetId,
-      'user_source_tags': instance.userSourceTags,
-      'user_target_tags': instance.userTargetTags,
       'request_date': instance.requestDate.toIso8601String(),
       'approve_date': instance.approveDate?.toIso8601String(),
       'status': _$FriendshipStatusEnumEnumMap[instance.status]!,

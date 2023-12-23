@@ -1,0 +1,88 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_event.dart';
+import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
+
+import '../../../services/auth_service.dart';
+import '../../bloc/user_data_bloc/user_data_state.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider.value(
+        value: GetIt.I<UserDataBloc>(), child: const _ProfilePageView());
+  }
+}
+
+class _ProfilePageView extends StatelessWidget {
+  const _ProfilePageView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: CustomScrollView(
+      slivers: [
+        const _SliverAppBar(),
+        SliverToBoxAdapter(
+          child: TextButton(
+            onPressed: (){
+              AuthService.signOut();
+              context.go('/');
+            },
+            child: const Text('log out'),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Center(
+            child: BlocBuilder<UserDataBloc, UserDataState>(
+                builder: (context, state) {
+              return state.when(
+                  init: () {
+                    context.read<UserDataBloc>().add(
+                        UserDataEvent.initialize(AuthService.getUserId() ?? ''));
+                    return const CircularProgressIndicator();
+                  },
+                  loaded: (user) {
+                    return Text(
+                      '$user',
+                      style: const TextStyle(fontSize: 40),
+                    );
+                  },
+                  error: (e) => ErrorScreen(error: e));
+            }),
+          ),
+        )
+      ],
+    ));
+  }
+}
+
+class _SliverAppBar extends StatelessWidget {
+  const _SliverAppBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      backgroundColor: Colors.blueAccent,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios),
+        onPressed: () => context.pop(),
+      ),
+      // title: Text('Your Profile :)'),
+      centerTitle: true,
+      expandedHeight: 300,
+      flexibleSpace: FlexibleSpaceBar(
+        title: const Text('Your Profile :)'),
+
+        background: Container(color: Colors.pink),
+      ),
+    );
+  }
+}
