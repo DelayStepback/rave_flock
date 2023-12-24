@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_requests_screen.dart';
-
+import 'package:rave_flock/data/models/user/user_model.dart';
 import '../../../../domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import '../../../bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import '../../../bloc/friend_requests_bloc/friend_requests_state.dart';
@@ -38,7 +37,7 @@ class NotificationButtonWidget extends StatelessWidget {
                             return const Text('loading');
                           },
                           loaded:
-                              (List<FriendshipRequestEntity> friendships) {
+                              (List<UserModel> friendships) {
                             return Text(friendships.length.toString());
                           },
                           error: (e) {

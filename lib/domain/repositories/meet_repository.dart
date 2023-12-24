@@ -2,15 +2,13 @@ import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/data/models/guest/guest_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
-
-import '../../data/models/user/user_model.dart';
 import '../entity/guest_entity/guest_entity.dart';
 
 abstract class MeetRepository {
   Future<List<MeetModel>> fetchUserOwnerMeets(String userId);
 
   Future<List<MeetModel>> fetchUserMeets(String userId);
-
+  Future<List<MeetModel>> fetchUserSearchMeets(String searchTitle, String userId);
   Future<MeetModel> fetchMeet(int meetId);
 
   Future<List<MeetModel>> fetchPublicMeets();

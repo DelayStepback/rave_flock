@@ -11,7 +11,6 @@ import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_loadin
 import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 import '../../../common/constants/enums/guest_choose_at_meet_enum.dart';
 import '../../../common/widget/text_input.dart';
-import '../../../data/models/meet/meet_model.dart';
 import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
 import '../../bloc/meet_data_bloc/meet_data_bloc.dart';
@@ -65,134 +64,109 @@ class _HomePageViewState extends State<_HomePageView> {
     titleDebounceTimer = Timer(
       const Duration(milliseconds: 500),
       () {
-        if (value != '') {
-          print('search' * 40);
-          BlocProvider.of<MeetDataBloc>(context)
-              .add(MeetDataEvent.search(AuthService.getUserId() ?? '', value));
-        } else {
-          print('trying to unsearch');
-          BlocProvider.of<MeetDataBloc>(context)
-              .add(const MeetDataEvent.unSearch());
-        }
+          BlocProvider.of<MeetDataBloc>(context).add(MeetDataEvent.search(AuthService.getUserId() ?? '', value));
       },
     );
   }
 
   Future<void> _refresh() async {
     Future block = GetIt.I<MeetDataBloc>().stream.first;
-    GetIt.I<MeetDataBloc>()
-        .add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
+    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
     await block;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          gradient: RadialGradient(
-              radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
+      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
       child: Scaffold(
-        backgroundColor: Colors.transparent, //const Color(0xFF433383),
-        body: RefreshIndicator(
-              
-              color: Colors.white,
-              backgroundColor: Color(0xFF5B1828),
-              triggerMode: RefreshIndicatorTriggerMode.onEdge,
-              onRefresh: () async {
-                await _refresh();
-              },
-              child: SafeArea(
-                child: CustomScrollView(
-                  slivers: <Widget>[
-
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 70),
-                        child: TextInput(
-                          label: 'Поиск',
-                          valid: _titleValid,
-                          errorText: 'Слишком короткое название',
-                          controller: _titleController,
-                          readOnly: false,
-                          maxLine: 1,
-                          onChanged: _onChangeTitle,
-                        ),
-                      ),
+          backgroundColor: Colors.transparent, //const Color(0xFF433383),
+          body: RefreshIndicator(
+            color: Colors.white,
+            backgroundColor: Color(0xFF5B1828),
+            triggerMode: RefreshIndicatorTriggerMode.onEdge,
+            onRefresh: () async {
+              await _refresh();
+            },
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  leading: GestureDetector(onTap: () => context.pop(), child: Icon(Icons.arrow_back_ios)),
+                  // title: Text('R A V E  F L O C K'),
+                  expandedHeight: 140,
+                  backgroundColor: Colors.transparent,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Container(
+                      color: Colors.transparent,
+                      child: Center(child: Text('RAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\n')),
                     ),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 100),
-                        child: Column(
-                          children: [
-                            _buildMeetGroup(MeetRollWidgetEnum.allAccepted),
-                            _buildMeetGroup(MeetRollWidgetEnum.invites),
-                            _buildMeetGroup(MeetRollWidgetEnum.createdByUser),
-
-                            UnconstrainedBox(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context.goNamed('createNewMeetScreen');
-                                },
-                                child: const Icon(Icons.add),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
+                    title: Text('RAVE FLOCK'),
+                    centerTitle: true
+                  ),
                 ),
-              ),
-
-        )
-      ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 40, right: 40).r,
+                    child: TextInput(
+                      label: 'Поиск',
+                      valid: _titleValid,
+                      errorText: 'Слишком короткое название',
+                      controller: _titleController,
+                      readOnly: false,
+                      maxLine: 1,
+                      onChanged: _onChangeTitle,
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      _buildMeetGroup(MeetRollWidgetEnum.allAccepted),
+                      _buildMeetGroup(MeetRollWidgetEnum.invites),
+                      _buildMeetGroup(MeetRollWidgetEnum.createdByUser),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.goNamed('createNewMeetScreen');
+                        },
+                        child: const Icon(Icons.add),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 
   BlocBuilder<MeetDataBloc, MeetDataState> _buildMeetGroup(MeetRollWidgetEnum meetRollWidgetEnum) {
-    return BlocBuilder<MeetDataBloc,MeetDataState>(builder: (_,state){
-                            return state.when(
-                              init: () {
-                                return const MeetRollLoading();
-                              },
-                              loaded: (List<MeetEntity> meetsEntities) {
-                                final filteredEntities = createMeetsThroughtGroup(meetsEntities, meetRollWidgetEnum);
-                                if (filteredEntities.isNotEmpty){
-                                  return MeetRollWidget(
-                                      meetsEntities: filteredEntities,
-                                      meetRollWidgetEnum: meetRollWidgetEnum,
-                                  );
-                                }
-                                return SizedBox.shrink();
-                              },
-                              error: (String error) {
-                                return Container();
-                              },
-                              search: (List<MeetEntity> meetsEntities,
-                                  List<MeetEntity> meetsSearched) {
-                                final filteredEntities = createMeetsThroughtGroup(meetsSearched, meetRollWidgetEnum);
-                                print(filteredEntities);
-                                if (filteredEntities.isNotEmpty){
-                                  return MeetRollWidget(
-                                      meetsEntities: filteredEntities,
-                                    meetRollWidgetEnum: meetRollWidgetEnum,
-
-                                  );
-                                }
-                                return SizedBox.shrink();
-
-                              },
-                            );
-                          });
+    return BlocBuilder<MeetDataBloc, MeetDataState>(builder: (_, state) {
+      return state.when(
+        init: () {
+          return MeetRollLoading(meetRollWidgetEnum: meetRollWidgetEnum);
+        },
+        loaded: (List<MeetEntity> meetsEntities) {
+          final filteredEntities = createMeetsThroughtGroup(meetsEntities, meetRollWidgetEnum);
+          if (filteredEntities.isNotEmpty) {
+            return MeetRollWidget(
+              meetsEntities: filteredEntities,
+              meetRollWidgetEnum: meetRollWidgetEnum,
+            );
+          }
+          return SizedBox.shrink();
+        },
+        error: (String error) {
+          return Container();
+        },
+      );
+    });
   }
 
-  List<MeetEntity> createMeetsThroughtGroup(
-      List<MeetEntity> meets, MeetRollWidgetEnum meetRollWidgetEnum) {
+  List<MeetEntity> createMeetsThroughtGroup(List<MeetEntity> meets, MeetRollWidgetEnum meetRollWidgetEnum) {
     List<MeetEntity> meetsEntities = [];
     if (meetRollWidgetEnum == MeetRollWidgetEnum.allAccepted) {
       for (var meet in meets) {
-        final myGuest = meet.usersGuests?.firstWhere(
-            (element) => element.userId == AuthService.getUserId());
+        final myGuest = meet.usersGuests?.firstWhere((element) => element.userId == AuthService.getUserId());
         if (myGuest != null) {
           if (myGuest.status == GuestChooseAtMeetEnum.accepted.name) {
             meetsEntities.add(meet);
@@ -207,8 +181,7 @@ class _HomePageViewState extends State<_HomePageView> {
       }
     } else if (meetRollWidgetEnum == MeetRollWidgetEnum.invites) {
       for (var meet in meets) {
-        final myGuest = meet.usersGuests?.firstWhere(
-            (element) => element.userId == AuthService.getUserId());
+        final myGuest = meet.usersGuests?.firstWhere((element) => element.userId == AuthService.getUserId());
         if (myGuest != null) {
           if (myGuest.status == GuestChooseAtMeetEnum.none.name) {
             meetsEntities.add(meet);

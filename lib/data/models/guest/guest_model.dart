@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart';
 

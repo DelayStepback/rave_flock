@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextInput extends StatelessWidget {
   const TextInput({
@@ -44,6 +45,8 @@ class TextInput extends StatelessWidget {
       maxLines: maxLine,
       readOnly: readOnly,
       decoration: InputDecoration(
+        labelStyle: TextStyle(fontSize: 24.sp),
+        floatingLabelStyle: TextStyle(fontSize: 24.sp, color: Color(0xFFEEF140) ),
           label: Text(label), prefixIcon: icon, errorText: valid?? true ? null: errorText ),
       onChanged: onChanged,
       validator: validator,

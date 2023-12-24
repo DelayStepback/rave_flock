@@ -9,18 +9,14 @@ import '../../main.dart';
 class FriendsRepositorySupabaseImpl implements FriendsRepository {
   @override
   Future<void> sendARequest(String userId, String newFriendsUsername) async {
-    final data = await supabase
-        .from('users')
-        .select('user_id')
-        .eq('username', newFriendsUsername)
-        .maybeSingle();
+    final data = await supabase.from('users').select('user_id').eq('username', newFriendsUsername).maybeSingle();
     if (data == null) {
       throw ExceptionsEnum.usernameNotFound;
     } else {
       String newFriendId = data['user_id'];
 
       // throw if you add yourself
-      if (userId == newFriendId){
+      if (userId == newFriendId) {
         throw ExceptionsEnum.cannotAddYourself;
       }
 
@@ -48,84 +44,159 @@ class FriendsRepositorySupabaseImpl implements FriendsRepository {
           .eq('user_target_id', newFriendId)
           .maybeSingle();
       if (checkIfUserAlreadyRequest != null) {
-        if (checkIfUserAlreadyRequest['status'] == FriendshipStatusEnum.accepted.name){
+        if (checkIfUserAlreadyRequest['status'] == FriendshipStatusEnum.accepted.name) {
           throw ExceptionsEnum.alreadyYourFriend;
-        }
-        else{
+        } else {
           throw ExceptionsEnum.requestAlreadySend;
         }
       }
 
       if (checkIfUserRequested == null && checkIfUserAlreadyRequest == null) {
-        await supabase.from('friendships').insert({
-          'user_source_id': userId,
-          'user_target_id': newFriendId,
-          'status': FriendshipStatusEnum.requested.name
-        });
+        await supabase.from('friendships').insert(
+            {'user_source_id': userId, 'user_target_id': newFriendId, 'status': FriendshipStatusEnum.requested.name});
       }
     }
   }
 
   @override
-  Future<void> acceptRequest(int friendshipId) async {
-    await supabase.from('friendships').update(
-        {'status': FriendshipStatusEnum.accepted.name}).eq('id', friendshipId);
-  }
-
-  @override
-  Future<void> denyRequest(int friendshipId) async {
-    await supabase.from('friendships').delete().eq('id', friendshipId);
-  }
-
-  @override
-  Future<void> deleteFriend(String userId, String friendId) async{
-    List<Map<String,dynamic>> checkIfUserIsSource = await supabase.from('friendships').delete().eq('user_source_id', userId).eq(
-        'user_target_id', friendId).eq('status', FriendshipStatusEnum.accepted.name).select();
-
-    print('checkIfUserIsSource: $checkIfUserIsSource');
-    if (checkIfUserIsSource.isEmpty){
-      print('1');
-      await supabase.from('friendships').delete().eq( 'user_source_id', friendId).eq(
-          'user_target_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
+  Future<void> acceptRequest(String userId, String friendId) async {
+    // TODO:
+    List<Map<String, dynamic>> checkIfUserIsSource = await supabase
+        .from('friendships')
+        .update({'status': FriendshipStatusEnum.accepted.name})
+        .eq('user_source_id', userId)
+        .eq('user_target_id', friendId)
+        .select();
+    if (checkIfUserIsSource.isEmpty) {
+      await supabase
+          .from('friendships')
+          .update({'status': FriendshipStatusEnum.accepted.name})
+          .eq('user_source_id', friendId)
+          .eq('user_target_id', userId);
     }
   }
 
   @override
-  Future<List<FriendshipModel>> fetchActiveRequests(String userId) async {
+  Future<void> denyRequest(String userId, String friendId) async {
+    // TODO:
+    List<Map<String, dynamic>> checkIfUserIsSource = await supabase
+        .from('friendships')
+        .update({'status': FriendshipStatusEnum.denied.name})
+        .eq('user_source_id', userId)
+        .eq('user_target_id', friendId)
+        .select();
+    if (checkIfUserIsSource.isEmpty) {
+      await supabase
+          .from('friendships')
+          .update({'status': FriendshipStatusEnum.denied.name})
+          .eq('user_source_id', friendId)
+          .eq('user_target_id', userId);
+    }
+  }
+
+  @override
+  Future<void> deleteFriend(String userId, String friendId) async {
+    List<Map<String, dynamic>> checkIfUserIsSource = await supabase
+        .from('friendships')
+        .delete()
+        .eq('user_source_id', userId)
+        .eq('user_target_id', friendId)
+        .eq('status', FriendshipStatusEnum.accepted.name)
+        .select();
+    if (checkIfUserIsSource.isEmpty) {
+      await supabase
+          .from('friendships')
+          .delete()
+          .eq('user_source_id', friendId)
+          .eq('user_target_id', userId)
+          .eq('status', FriendshipStatusEnum.accepted.name);
+    }
+  }
+
+  @override
+  Future<List<UserModel>> fetchActiveRequests(String userId) async {
     final data = await supabase
         .from('friendships')
-        .select()
+        .select('users!friendships_user_source_id_fkey(*)')
         .eq('user_target_id', userId)
         .eq('status', FriendshipStatusEnum.requested.name);
-    List<FriendshipModel> friendsRequested = [];
-    for (var f in data) {
-      friendsRequested.add(FriendshipModel.fromJson(f));
+    List<UserModel> friends = [];
+
+    for (var json in data) {
+      if (json['users'] != null) {
+        friends.add(UserModel.fromJson(json['users']));
+      }
     }
-    return friendsRequested;
+    return friends;
   }
 
   @override
-  Future<List<FriendshipModel>> fetchUserAcceptedFriendships(String userId) async {
+  Future<List<UserModel>> fetchUserAcceptedFriendshipsSearch(String userId, String username) async {
+    List<UserModel> friends = [];
+
     // user is source
     final data = await supabase
         .from('friendships')
-        .select('')
-        .eq('user_source_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
-    List<FriendshipModel> friendsModels = [];
-    for (var f in data) {
-      friendsModels.add(FriendshipModel.fromJson(f));
+        .select('users!friendships_user_target_id_fkey(*)')
+        .ilike('users.username', '%$username%')
+        .eq('user_source_id', userId)
+        .eq('status', FriendshipStatusEnum.accepted.name);
+
+    for (var json in data) {
+      if (json['users'] != null) {
+        friends.add(UserModel.fromJson(json['users']));
+      }
     }
 
     // user is target
+
     final data2 = await supabase
         .from('friendships')
-        .select('')
-        .eq('user_target_id', userId).eq('status', FriendshipStatusEnum.accepted.name);
-    for (var f in data2) {
-      friendsModels.add(FriendshipModel.fromJson(f));
+        .select('users!friendships_user_source_id_fkey(*)')
+        .ilike('users.username', '%$username%')
+        .eq('user_target_id', userId)
+        .eq('status', FriendshipStatusEnum.accepted.name);
+
+    for (var json in data2) {
+      if (json['users'] != null) {
+        friends.add(UserModel.fromJson(json['users']));
+      }
+    }
+    
+    return friends;
+  }
+
+  @override
+  Future<List<UserModel>> fetchUserAcceptedFriendships(String userId) async {
+    List<UserModel> friends = [];
+
+    // user is source
+    final data = await supabase
+        .from('friendships')
+        .select('users!friendships_user_target_id_fkey(*)')
+        .eq('user_source_id', userId)
+        .eq('status', FriendshipStatusEnum.accepted.name);
+
+    for (var json in data) {
+      if (json['users'] != null) {
+        friends.add(UserModel.fromJson(json['users']));
+      }
     }
 
-    return friendsModels;
+    // user is target
+
+    final data2 = await supabase
+        .from('friendships')
+        .select('users!friendships_user_source_id_fkey(*)')
+        .eq('user_target_id', userId)
+        .eq('status', FriendshipStatusEnum.accepted.name);
+
+    for (var json in data2) {
+      if (json['users'] != null) {
+        friends.add(UserModel.fromJson(json['users']));
+      }
+    }
+    return friends;
   }
 
   @override

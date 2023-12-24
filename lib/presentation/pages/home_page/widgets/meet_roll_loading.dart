@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rave_flock/common/constants/enums/meet_status_enum.dart';
+import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 
 class MeetRollLoading extends StatefulWidget {
-  const MeetRollLoading({super.key});
+  MeetRollLoading({super.key, required this.meetRollWidgetEnum});
+  MeetRollWidgetEnum meetRollWidgetEnum;
   @override
   State<MeetRollLoading> createState() => _MeetRollLoadingState();
 }
@@ -11,19 +12,28 @@ class MeetRollLoading extends StatefulWidget {
 class _MeetRollLoadingState extends State<MeetRollLoading> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 286.h,
-      child: PageView.builder(
-        // physics: ScrollPhysics(),
-        // physics: const RangeMaintainingScrollPhysics(),
-        controller: PageController(
-            initialPage: 0,
-            viewportFraction: 0.76.r),
-        scrollDirection: Axis.horizontal,
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return _buildMeetLoadingPanel(context, index);
-        },
+    return Padding(
+        padding: const EdgeInsets.only(top: 40.0),
+      child: Column(
+        children: [
+            Text(makeMeetRollGroupName(widget.meetRollWidgetEnum), style: TextStyle(fontSize: 28.sp),),
+
+          SizedBox(
+            height: 286.h,
+            child: PageView.builder(
+              // physics: ScrollPhysics(),
+              // physics: const RangeMaintainingScrollPhysics(),
+              controller: PageController(
+                  initialPage: 2,
+                  viewportFraction: 0.76.r),
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return _buildMeetLoadingPanel(context, index);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
