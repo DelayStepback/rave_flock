@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
+import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
 import 'package:rave_flock/services/auth_service.dart';
-
-import '../../../domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import '../error_screen/error_screen.dart';
 
 class FriendRequestsScreen extends StatelessWidget {
@@ -57,7 +55,7 @@ class _FriendRequestsScreen extends StatelessWidget {
 class _FriendRequestsLoadedBody extends StatelessWidget {
   const _FriendRequestsLoadedBody({required this.friendRequestsEntities});
 
-  final List<FriendshipRequestEntity> friendRequestsEntities;
+  final List<UserModel> friendRequestsEntities;
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +71,14 @@ class _FriendRequestsLoadedBody extends StatelessWidget {
           shrinkWrap: true,
           itemCount: friendRequestsEntities.length,
           itemBuilder: (context, index) {
-            final frienshipEntity = friendRequestsEntities[index];
+            final friendUserModel = friendRequestsEntities[index];
             return Row(
               children: [
-                Text(frienshipEntity.sourceUserUsername),
+                Text(friendUserModel.username ?? 'UNKNOWN'),
                 ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<FriendRequestsBloc>(context)
-                          .add(FriendRequestsAcceptEvent(frienshipEntity.id));
+                          .add(FriendRequestsAcceptEvent(AuthService.getUserId()??'', friendUserModel.userId));
                       BlocProvider.of<FriendsDataBloc>(context).add(
                         FriendsDataEvent.initialize(
                             AuthService.getUserId() ?? ''),
@@ -90,7 +88,7 @@ class _FriendRequestsLoadedBody extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<FriendRequestsBloc>(context).add(
-                      FriendRequestsDenyEvent(frienshipEntity.id),
+                      FriendRequestsDenyEvent(AuthService.getUserId()??'', friendUserModel.userId),
                     );
                   },
                   child: const Text('Deny'),

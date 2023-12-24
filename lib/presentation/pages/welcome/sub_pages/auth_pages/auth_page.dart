@@ -1,13 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rave_flock/presentation/pages/welcome/sub_pages/widgets/input_window_widget.dart';
-
-import '../../../../../common/validation/validation.dart';
-import '../../../../../common/widget/text_input.dart';
-import '../../widgets/login_button.dart';
-import '../../widgets/signup_button.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

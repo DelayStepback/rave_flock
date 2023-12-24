@@ -62,4 +62,4 @@ ThemeData darkThemeData() {
               backgroundColor: kButtonBackgroundColorDark)));
 }
 
-const appBarTheme = AppBarTheme(centerTitle: false, elevation: 0);
+const appBarTheme = AppBarTheme(centerTitle: true, elevation: 0, backgroundColor: Colors.transparent);

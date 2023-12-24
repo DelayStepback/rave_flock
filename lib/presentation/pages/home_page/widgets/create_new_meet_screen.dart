@@ -91,103 +91,114 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ListView(
-          padding: const EdgeInsets.all(20).r,
-          children: [
-            IconButton(
-                onPressed: () {
-                  context.goNamed('homePage');
-                },
-                icon: Icon(Icons.close)),
-            SizedBox(
-              height: 20,
+    return Container(
+      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(),
+          body: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                // padding: const EdgeInsets.all(20).r,
+                children: [
+                  SizedBox(height: 100.h),
+                  TextInput(
+                    label: 'Тайтл',
+                    valid: _titleValid,
+                    errorText: 'Слишком короткое название',
+                    controller: _titleController,
+                    readOnly: meetModel == null ? false : true,
+                    maxLine: 1,
+                    onChanged: _onChangeTitle,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  TextInput(
+                    label: 'Описание',
+                    controller: _descriptionController,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  TextInput(
+                    label: 'Локация',
+                    controller: _locationController,
+                    maxLine: 1,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'PRIVATE',
+                        style: TextStyle(
+                            color: !_meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                      ),
+                      Switch(
+                        activeTrackColor: Color(0xFFEEF140),
+                          value: _meetIsPublic,
+                          onChanged: (value) {
+                            setState(() {
+                              _meetIsPublic = value;
+                            });
+                          }),
+                      Text(
+                        'PUBLIC',
+                        style: TextStyle(
+                            color: _meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'ADD A CART',
+                        style: TextStyle(
+                            color: !_containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                      ),
+                      Switch(
+                        activeTrackColor: Color(0xFFEEF140),
+                          value: _containsBasket,
+                          onChanged: (value) {
+                            setState(() {
+                              _containsBasket = value;
+                            });
+                          }),
+                      Text(
+                        'CART ADDED',
+                        style: TextStyle(
+                            color: _containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  UnconstrainedBox(
+                    child: SizedBox(
+                      height: 40,
+                      width: 100,
+                      child: ElevatedButton(
+                        
+                          onPressed: () {
+                            createOrUpdateMeetAction(context);
+                          },
+                          child: meetModel == null ? const Text('create') : const Text('update')),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100.h,
+                  ),
+                ],
+              ),
             ),
-            TextInput(
-              label: 'Title',
-              valid: _titleValid,
-              errorText: 'Слишком короткое название',
-              controller: _titleController,
-              readOnly: meetModel == null ? false : true,
-              maxLine: 1,
-              onChanged: _onChangeTitle,
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            TextInput(
-              label: 'description',
-              controller: _descriptionController,
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            TextInput(
-              label: 'Location',
-              controller: _locationController,
-              maxLine: 1,
-            ),
-            SizedBox(
-              height: 300,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'PRIVATE',
-                  style: TextStyle(
-                      color: !_meetIsPublic ? Colors.purple : Colors.black),
-                ),
-                Switch(
-                    value: _meetIsPublic,
-                    onChanged: (value) {
-                      setState(() {
-                        _meetIsPublic = value;
-                      });
-                    }),
-                Text(
-                  'PUBLIC',
-                  style: TextStyle(
-                      color: _meetIsPublic ? Colors.purple : Colors.black),
-                ),
-              ],
-            ),
-            Text(
-              'BASKET CREATE?',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'NO',
-                  style: TextStyle(
-                      color: !_containsBasket ? Colors.purple : Colors.black),
-                ),
-                Switch(
-                    value: _containsBasket,
-                    onChanged: (value) {
-                      setState(() {
-                        _containsBasket = value;
-                      });
-                    }),
-                Text(
-                  'YES',
-                  style: TextStyle(
-                      color: _containsBasket ? Colors.purple : Colors.black),
-                ),
-              ],
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  createOrUpdateMeetAction(context);
-                },
-                child: meetModel == null ? Text('create') : Text('update')),
-            SizedBox(
-              height: 100.h,
-            ),
-          ],
+          ),
         ),
       ),
     );

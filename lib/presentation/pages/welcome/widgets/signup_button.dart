@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/themes/theme_constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../../data/repositories/user_repository_supabase_impl.dart';
 import '../../../../services/auth_service.dart';
 
 class SignUpButton extends StatelessWidget {

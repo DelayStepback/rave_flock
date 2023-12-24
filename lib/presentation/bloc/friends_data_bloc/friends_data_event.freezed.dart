@@ -19,6 +19,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(String userId, String username) search,
     required TResult Function(String userId, String friendId) removeFriend,
     required TResult Function() dispose,
   }) =>
@@ -26,6 +27,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(String userId, String username)? search,
     TResult? Function(String userId, String friendId)? removeFriend,
     TResult? Function()? dispose,
   }) =>
@@ -33,6 +35,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(String userId, String username)? search,
     TResult Function(String userId, String friendId)? removeFriend,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FriendsDataInitializeEvent value) initialize,
+    required TResult Function(FriendsDataSearchEvent value) search,
     required TResult Function(DeleteFriendEvent value) removeFriend,
     required TResult Function(FriendsDataDisposeEvent value) dispose,
   }) =>
@@ -48,6 +52,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FriendsDataInitializeEvent value)? initialize,
+    TResult? Function(FriendsDataSearchEvent value)? search,
     TResult? Function(DeleteFriendEvent value)? removeFriend,
     TResult? Function(FriendsDataDisposeEvent value)? dispose,
   }) =>
@@ -55,6 +60,7 @@ mixin _$FriendsDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FriendsDataInitializeEvent value)? initialize,
+    TResult Function(FriendsDataSearchEvent value)? search,
     TResult Function(DeleteFriendEvent value)? removeFriend,
     TResult Function(FriendsDataDisposeEvent value)? dispose,
     required TResult orElse(),
@@ -149,6 +155,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(String userId, String username) search,
     required TResult Function(String userId, String friendId) removeFriend,
     required TResult Function() dispose,
   }) {
@@ -159,6 +166,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(String userId, String username)? search,
     TResult? Function(String userId, String friendId)? removeFriend,
     TResult? Function()? dispose,
   }) {
@@ -169,6 +177,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(String userId, String username)? search,
     TResult Function(String userId, String friendId)? removeFriend,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -183,6 +192,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FriendsDataInitializeEvent value) initialize,
+    required TResult Function(FriendsDataSearchEvent value) search,
     required TResult Function(DeleteFriendEvent value) removeFriend,
     required TResult Function(FriendsDataDisposeEvent value) dispose,
   }) {
@@ -193,6 +203,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FriendsDataInitializeEvent value)? initialize,
+    TResult? Function(FriendsDataSearchEvent value)? search,
     TResult? Function(DeleteFriendEvent value)? removeFriend,
     TResult? Function(FriendsDataDisposeEvent value)? dispose,
   }) {
@@ -203,6 +214,7 @@ class _$FriendsDataInitializeEventImpl implements FriendsDataInitializeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FriendsDataInitializeEvent value)? initialize,
+    TResult Function(FriendsDataSearchEvent value)? search,
     TResult Function(DeleteFriendEvent value)? removeFriend,
     TResult Function(FriendsDataDisposeEvent value)? dispose,
     required TResult orElse(),
@@ -221,6 +233,166 @@ abstract class FriendsDataInitializeEvent implements FriendsDataEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$FriendsDataInitializeEventImplCopyWith<_$FriendsDataInitializeEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FriendsDataSearchEventImplCopyWith<$Res> {
+  factory _$$FriendsDataSearchEventImplCopyWith(
+          _$FriendsDataSearchEventImpl value,
+          $Res Function(_$FriendsDataSearchEventImpl) then) =
+      __$$FriendsDataSearchEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, String username});
+}
+
+/// @nodoc
+class __$$FriendsDataSearchEventImplCopyWithImpl<$Res>
+    extends _$FriendsDataEventCopyWithImpl<$Res, _$FriendsDataSearchEventImpl>
+    implements _$$FriendsDataSearchEventImplCopyWith<$Res> {
+  __$$FriendsDataSearchEventImplCopyWithImpl(
+      _$FriendsDataSearchEventImpl _value,
+      $Res Function(_$FriendsDataSearchEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? username = null,
+  }) {
+    return _then(_$FriendsDataSearchEventImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FriendsDataSearchEventImpl implements FriendsDataSearchEvent {
+  const _$FriendsDataSearchEventImpl(this.userId, this.username);
+
+  @override
+  final String userId;
+  @override
+  final String username;
+
+  @override
+  String toString() {
+    return 'FriendsDataEvent.search(userId: $userId, username: $username)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FriendsDataSearchEventImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.username, username) ||
+                other.username == username));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, username);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FriendsDataSearchEventImplCopyWith<_$FriendsDataSearchEventImpl>
+      get copyWith => __$$FriendsDataSearchEventImplCopyWithImpl<
+          _$FriendsDataSearchEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(String userId, String username) search,
+    required TResult Function(String userId, String friendId) removeFriend,
+    required TResult Function() dispose,
+  }) {
+    return search(userId, username);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(String userId, String username)? search,
+    TResult? Function(String userId, String friendId)? removeFriend,
+    TResult? Function()? dispose,
+  }) {
+    return search?.call(userId, username);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(String userId, String username)? search,
+    TResult Function(String userId, String friendId)? removeFriend,
+    TResult Function()? dispose,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(userId, username);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FriendsDataInitializeEvent value) initialize,
+    required TResult Function(FriendsDataSearchEvent value) search,
+    required TResult Function(DeleteFriendEvent value) removeFriend,
+    required TResult Function(FriendsDataDisposeEvent value) dispose,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FriendsDataInitializeEvent value)? initialize,
+    TResult? Function(FriendsDataSearchEvent value)? search,
+    TResult? Function(DeleteFriendEvent value)? removeFriend,
+    TResult? Function(FriendsDataDisposeEvent value)? dispose,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FriendsDataInitializeEvent value)? initialize,
+    TResult Function(FriendsDataSearchEvent value)? search,
+    TResult Function(DeleteFriendEvent value)? removeFriend,
+    TResult Function(FriendsDataDisposeEvent value)? dispose,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FriendsDataSearchEvent implements FriendsDataEvent {
+  const factory FriendsDataSearchEvent(
+          final String userId, final String username) =
+      _$FriendsDataSearchEventImpl;
+
+  String get userId;
+  String get username;
+  @JsonKey(ignore: true)
+  _$$FriendsDataSearchEventImplCopyWith<_$FriendsDataSearchEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -299,6 +471,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(String userId, String username) search,
     required TResult Function(String userId, String friendId) removeFriend,
     required TResult Function() dispose,
   }) {
@@ -309,6 +482,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(String userId, String username)? search,
     TResult? Function(String userId, String friendId)? removeFriend,
     TResult? Function()? dispose,
   }) {
@@ -319,6 +493,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(String userId, String username)? search,
     TResult Function(String userId, String friendId)? removeFriend,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -333,6 +508,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FriendsDataInitializeEvent value) initialize,
+    required TResult Function(FriendsDataSearchEvent value) search,
     required TResult Function(DeleteFriendEvent value) removeFriend,
     required TResult Function(FriendsDataDisposeEvent value) dispose,
   }) {
@@ -343,6 +519,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FriendsDataInitializeEvent value)? initialize,
+    TResult? Function(FriendsDataSearchEvent value)? search,
     TResult? Function(DeleteFriendEvent value)? removeFriend,
     TResult? Function(FriendsDataDisposeEvent value)? dispose,
   }) {
@@ -353,6 +530,7 @@ class _$DeleteFriendEventImpl implements DeleteFriendEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FriendsDataInitializeEvent value)? initialize,
+    TResult Function(FriendsDataSearchEvent value)? search,
     TResult Function(DeleteFriendEvent value)? removeFriend,
     TResult Function(FriendsDataDisposeEvent value)? dispose,
     required TResult orElse(),
@@ -417,6 +595,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
+    required TResult Function(String userId, String username) search,
     required TResult Function(String userId, String friendId) removeFriend,
     required TResult Function() dispose,
   }) {
@@ -427,6 +606,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
+    TResult? Function(String userId, String username)? search,
     TResult? Function(String userId, String friendId)? removeFriend,
     TResult? Function()? dispose,
   }) {
@@ -437,6 +617,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
+    TResult Function(String userId, String username)? search,
     TResult Function(String userId, String friendId)? removeFriend,
     TResult Function()? dispose,
     required TResult orElse(),
@@ -451,6 +632,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FriendsDataInitializeEvent value) initialize,
+    required TResult Function(FriendsDataSearchEvent value) search,
     required TResult Function(DeleteFriendEvent value) removeFriend,
     required TResult Function(FriendsDataDisposeEvent value) dispose,
   }) {
@@ -461,6 +643,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FriendsDataInitializeEvent value)? initialize,
+    TResult? Function(FriendsDataSearchEvent value)? search,
     TResult? Function(DeleteFriendEvent value)? removeFriend,
     TResult? Function(FriendsDataDisposeEvent value)? dispose,
   }) {
@@ -471,6 +654,7 @@ class _$FriendsDataDisposeEventImpl implements FriendsDataDisposeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FriendsDataInitializeEvent value)? initialize,
+    TResult Function(FriendsDataSearchEvent value)? search,
     TResult Function(DeleteFriendEvent value)? removeFriend,
     TResult Function(FriendsDataDisposeEvent value)? dispose,
     required TResult orElse(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
-import 'package:rave_flock/data/repositories/friends_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
@@ -26,7 +25,7 @@ class _AddNewFriendWidgetState extends State<AddNewFriendWidget> {
             controller: _usernameController,
             decoration: const InputDecoration(label: Text('Имя нового друга')),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 40,),
           fetching? const CircularProgressIndicator() :ElevatedButton(
               onPressed: () async {
                 try{

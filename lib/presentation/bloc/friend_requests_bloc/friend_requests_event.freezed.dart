@@ -19,24 +19,24 @@ mixin _$FriendRequestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
-    required TResult Function(int id) acceptRequest,
-    required TResult Function(int id) denyRequest,
+    required TResult Function(String userId, String friendId) acceptRequest,
+    required TResult Function(String userId, String friendId) denyRequest,
     required TResult Function() dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
-    TResult? Function(int id)? acceptRequest,
-    TResult? Function(int id)? denyRequest,
+    TResult? Function(String userId, String friendId)? acceptRequest,
+    TResult? Function(String userId, String friendId)? denyRequest,
     TResult? Function()? dispose,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
-    TResult Function(int id)? acceptRequest,
-    TResult Function(int id)? denyRequest,
+    TResult Function(String userId, String friendId)? acceptRequest,
+    TResult Function(String userId, String friendId)? denyRequest,
     TResult Function()? dispose,
     required TResult orElse(),
   }) =>
@@ -157,8 +157,8 @@ class _$FriendRequestsInitializeEventImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
-    required TResult Function(int id) acceptRequest,
-    required TResult Function(int id) denyRequest,
+    required TResult Function(String userId, String friendId) acceptRequest,
+    required TResult Function(String userId, String friendId) denyRequest,
     required TResult Function() dispose,
   }) {
     return initialize(userId);
@@ -168,8 +168,8 @@ class _$FriendRequestsInitializeEventImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
-    TResult? Function(int id)? acceptRequest,
-    TResult? Function(int id)? denyRequest,
+    TResult? Function(String userId, String friendId)? acceptRequest,
+    TResult? Function(String userId, String friendId)? denyRequest,
     TResult? Function()? dispose,
   }) {
     return initialize?.call(userId);
@@ -179,8 +179,8 @@ class _$FriendRequestsInitializeEventImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
-    TResult Function(int id)? acceptRequest,
-    TResult Function(int id)? denyRequest,
+    TResult Function(String userId, String friendId)? acceptRequest,
+    TResult Function(String userId, String friendId)? denyRequest,
     TResult Function()? dispose,
     required TResult orElse(),
   }) {
@@ -246,7 +246,7 @@ abstract class _$$FriendRequestsAcceptEventImplCopyWith<$Res> {
           $Res Function(_$FriendRequestsAcceptEventImpl) then) =
       __$$FriendRequestsAcceptEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id});
+  $Res call({String userId, String friendId});
 }
 
 /// @nodoc
@@ -262,13 +262,18 @@ class __$$FriendRequestsAcceptEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
+    Object? friendId = null,
   }) {
     return _then(_$FriendRequestsAcceptEventImpl(
-      null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == friendId
+          ? _value.friendId
+          : friendId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -276,14 +281,16 @@ class __$$FriendRequestsAcceptEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
-  const _$FriendRequestsAcceptEventImpl(this.id);
+  const _$FriendRequestsAcceptEventImpl(this.userId, this.friendId);
 
   @override
-  final int id;
+  final String userId;
+  @override
+  final String friendId;
 
   @override
   String toString() {
-    return 'FriendRequestsEvent.acceptRequest(id: $id)';
+    return 'FriendRequestsEvent.acceptRequest(userId: $userId, friendId: $friendId)';
   }
 
   @override
@@ -291,11 +298,13 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FriendRequestsAcceptEventImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.friendId, friendId) ||
+                other.friendId == friendId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, userId, friendId);
 
   @JsonKey(ignore: true)
   @override
@@ -308,35 +317,35 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
-    required TResult Function(int id) acceptRequest,
-    required TResult Function(int id) denyRequest,
+    required TResult Function(String userId, String friendId) acceptRequest,
+    required TResult Function(String userId, String friendId) denyRequest,
     required TResult Function() dispose,
   }) {
-    return acceptRequest(id);
+    return acceptRequest(userId, friendId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
-    TResult? Function(int id)? acceptRequest,
-    TResult? Function(int id)? denyRequest,
+    TResult? Function(String userId, String friendId)? acceptRequest,
+    TResult? Function(String userId, String friendId)? denyRequest,
     TResult? Function()? dispose,
   }) {
-    return acceptRequest?.call(id);
+    return acceptRequest?.call(userId, friendId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
-    TResult Function(int id)? acceptRequest,
-    TResult Function(int id)? denyRequest,
+    TResult Function(String userId, String friendId)? acceptRequest,
+    TResult Function(String userId, String friendId)? denyRequest,
     TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (acceptRequest != null) {
-      return acceptRequest(id);
+      return acceptRequest(userId, friendId);
     }
     return orElse();
   }
@@ -380,10 +389,12 @@ class _$FriendRequestsAcceptEventImpl implements FriendRequestsAcceptEvent {
 }
 
 abstract class FriendRequestsAcceptEvent implements FriendRequestsEvent {
-  const factory FriendRequestsAcceptEvent(final int id) =
+  const factory FriendRequestsAcceptEvent(
+          final String userId, final String friendId) =
       _$FriendRequestsAcceptEventImpl;
 
-  int get id;
+  String get userId;
+  String get friendId;
   @JsonKey(ignore: true)
   _$$FriendRequestsAcceptEventImplCopyWith<_$FriendRequestsAcceptEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -396,7 +407,7 @@ abstract class _$$FriendRequestsDenyEventImplCopyWith<$Res> {
           $Res Function(_$FriendRequestsDenyEventImpl) then) =
       __$$FriendRequestsDenyEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id});
+  $Res call({String userId, String friendId});
 }
 
 /// @nodoc
@@ -412,13 +423,18 @@ class __$$FriendRequestsDenyEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
+    Object? friendId = null,
   }) {
     return _then(_$FriendRequestsDenyEventImpl(
-      null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == friendId
+          ? _value.friendId
+          : friendId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -426,14 +442,16 @@ class __$$FriendRequestsDenyEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
-  const _$FriendRequestsDenyEventImpl(this.id);
+  const _$FriendRequestsDenyEventImpl(this.userId, this.friendId);
 
   @override
-  final int id;
+  final String userId;
+  @override
+  final String friendId;
 
   @override
   String toString() {
-    return 'FriendRequestsEvent.denyRequest(id: $id)';
+    return 'FriendRequestsEvent.denyRequest(userId: $userId, friendId: $friendId)';
   }
 
   @override
@@ -441,11 +459,13 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FriendRequestsDenyEventImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.friendId, friendId) ||
+                other.friendId == friendId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, userId, friendId);
 
   @JsonKey(ignore: true)
   @override
@@ -458,35 +478,35 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
-    required TResult Function(int id) acceptRequest,
-    required TResult Function(int id) denyRequest,
+    required TResult Function(String userId, String friendId) acceptRequest,
+    required TResult Function(String userId, String friendId) denyRequest,
     required TResult Function() dispose,
   }) {
-    return denyRequest(id);
+    return denyRequest(userId, friendId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
-    TResult? Function(int id)? acceptRequest,
-    TResult? Function(int id)? denyRequest,
+    TResult? Function(String userId, String friendId)? acceptRequest,
+    TResult? Function(String userId, String friendId)? denyRequest,
     TResult? Function()? dispose,
   }) {
-    return denyRequest?.call(id);
+    return denyRequest?.call(userId, friendId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
-    TResult Function(int id)? acceptRequest,
-    TResult Function(int id)? denyRequest,
+    TResult Function(String userId, String friendId)? acceptRequest,
+    TResult Function(String userId, String friendId)? denyRequest,
     TResult Function()? dispose,
     required TResult orElse(),
   }) {
     if (denyRequest != null) {
-      return denyRequest(id);
+      return denyRequest(userId, friendId);
     }
     return orElse();
   }
@@ -530,10 +550,12 @@ class _$FriendRequestsDenyEventImpl implements FriendRequestsDenyEvent {
 }
 
 abstract class FriendRequestsDenyEvent implements FriendRequestsEvent {
-  const factory FriendRequestsDenyEvent(final int id) =
+  const factory FriendRequestsDenyEvent(
+          final String userId, final String friendId) =
       _$FriendRequestsDenyEventImpl;
 
-  int get id;
+  String get userId;
+  String get friendId;
   @JsonKey(ignore: true)
   _$$FriendRequestsDenyEventImplCopyWith<_$FriendRequestsDenyEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -582,8 +604,8 @@ class _$FriendRequestsDisposeEventImpl implements FriendRequestsDisposeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
-    required TResult Function(int id) acceptRequest,
-    required TResult Function(int id) denyRequest,
+    required TResult Function(String userId, String friendId) acceptRequest,
+    required TResult Function(String userId, String friendId) denyRequest,
     required TResult Function() dispose,
   }) {
     return dispose();
@@ -593,8 +615,8 @@ class _$FriendRequestsDisposeEventImpl implements FriendRequestsDisposeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
-    TResult? Function(int id)? acceptRequest,
-    TResult? Function(int id)? denyRequest,
+    TResult? Function(String userId, String friendId)? acceptRequest,
+    TResult? Function(String userId, String friendId)? denyRequest,
     TResult? Function()? dispose,
   }) {
     return dispose?.call();
@@ -604,8 +626,8 @@ class _$FriendRequestsDisposeEventImpl implements FriendRequestsDisposeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
-    TResult Function(int id)? acceptRequest,
-    TResult Function(int id)? denyRequest,
+    TResult Function(String userId, String friendId)? acceptRequest,
+    TResult Function(String userId, String friendId)? denyRequest,
     TResult Function()? dispose,
     required TResult orElse(),
   }) {

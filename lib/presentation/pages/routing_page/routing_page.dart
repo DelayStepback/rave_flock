@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class RoutingPage extends StatelessWidget {
@@ -7,70 +8,104 @@ class RoutingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 56.0).w,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    context.pushNamed('homePage');
+    return Container(
+      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
 
-                  },
-                  child: Container(
-
-                    width: 476.w,
-                    height: 246.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(67.r),
-                    color: Color(0xFFF9DA9B),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 56.0).w,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  
+                    GestureDetector(
+                      onTap: (){
+                        context.pushNamed('homePage');
+          
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(16).r,
+          
+                        width: 476.w,
+                        height: 246.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(67.r),
+                        color: Color(0xFFF9DA9B),
+                        ),
+                        child: Center(child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                        'assets/images/cake.svg',height: 246.w,
+                      ),
+                                       Text('RAVES', style: TextStyle(color: Colors.black, fontSize: 36.sp)),
+                          ],
+                        )),
+                      ),
                     ),
-                    child: Center(child: Text('Meets', style: TextStyle(color: Colors.black),)),
-                  ),
-                ),
-                SizedBox(height: 46.h,),
+                    SizedBox(height: 46.h,),
+          
+          
+                    GestureDetector(
+                      onTap: (){
+                        context.pushNamed('friendsPage');
+          
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(left: 40, top: 0).r,
+          
+                        width: 476.w,
+                        height: 246.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(67.r),
+                          color: Color(0xFFF9DA9B),
+                        ),
+                        child: Center(child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-
-                GestureDetector(
-                  onTap: (){
-                    context.pushNamed('friendsPage');
-
-                  },
-                  child: Container(
-
-                    width: 476.w,
-                    height: 246.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(67.r),
-                      color: Color(0xFFF9DA9B),
+                          children: [
+                           Text('Friends', style: TextStyle(color: Colors.black, fontSize: 36.sp)),
+                            SvgPicture.asset(
+                        'assets/images/friendsCups.svg',height: 246.w,
+                      ),
+                          ],
+                        )),
+                      ),
                     ),
-                    child: Center(child: Text('friends', style: TextStyle(color: Colors.black))),
-                  ),
-                ),
-                SizedBox(height: 46.h,),
-
-                GestureDetector(
-                  onTap: (){
-                    context.pushNamed('profilePage');
-
-                  },
-                  child: Container(
-
-                    width: 476.w,
-                    height: 246.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(67.r),
-                      color: Color(0xFFF9DA9B),
+                    SizedBox(height: 46.h,),
+          
+                    GestureDetector(
+                      onTap: (){
+                        context.pushNamed('profilePage');
+          
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(16).r,
+                        width: 476.w,
+                        height: 246.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(67.r),
+                          color: Color(0xFFF9DA9B),
+                        ),
+                        child: Center(child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                             SvgPicture.asset(
+                        'assets/images/asian_person.svg',width: 160.w,
+                      ),
+                            Text('My profile', style: TextStyle(color: Colors.black, fontSize: 36.sp)),
+                          ],
+                        )),
+                      ),
                     ),
-                    child: Center(child: Text('profilePage', style: TextStyle(color: Colors.black))),
-                  ),
+          
+                  ],
                 ),
-
-              ],
+              ),
             ),
           ),
         ),

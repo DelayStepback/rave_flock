@@ -1,10 +1,8 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../common/constants/enums/meet_status_enum.dart';
-import '../../../common/constants/enums/user_privacy_enum.dart';
-
 part 'meet_model.freezed.dart';
-
 part 'meet_model.g.dart';
 
 @freezed

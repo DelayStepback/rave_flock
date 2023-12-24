@@ -3,10 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
-import 'package:rave_flock/data/repositories/meet_repository_supabase_impl.dart';
-import 'package:rave_flock/data/repositories/user_repository_supabase_impl.dart';
 import 'package:rave_flock/domain/repositories/user_repository.dart';
-import 'package:rave_flock/main.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
 class SetUsernameScreen extends StatefulWidget {

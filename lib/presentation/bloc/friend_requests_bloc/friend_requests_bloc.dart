@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:rave_flock/data/models/friendship/friendship_model.dart';
+import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 import '../../../../domain/repositories/user_repository.dart';
@@ -25,26 +26,13 @@ class FriendRequestsBloc
 
   Future<void> _onFriendRequestsInitializeEvent(
       FriendRequestsInitializeEvent event, emit) async {
+    emit(FriendRequestsState.init());
     try {
-      List<FriendshipModel> friendships =
+      List<UserModel> friends =
           await _friendsRepository.fetchActiveRequests(event.userId);
-      // TODO: DELETE THIS
-      await Future.delayed(Duration(seconds: 5));
-      print('BLOC: friends requests fetching');
-
-      List<FriendshipRequestEntity> friendshipRequestsEntities = [];
-      for (var friendship in friendships) {
-        final sourceUser =
-            await _userRepository.fetchUser(friendship.userSourceId);
-        friendshipRequestsEntities.add(FriendshipRequestEntity(
-            id: friendship.id,
-            currentUserId: friendship.userTargetId,
-            sourceUserUsername: sourceUser.username ?? '',
-            sourceAvatarUrl: sourceUser.avatarUrl ?? ''));
-      }
 
       emit(FriendRequestsState.loaded(
-          friendshipRequests: friendshipRequestsEntities));
+          friendsRequests: friends));
     } catch (e) {
       // emit(FriendRequestsState.error(error: e.toString()));
     }
@@ -52,34 +40,15 @@ class FriendRequestsBloc
 
   Future<void> _onFriendRequestsAcceptEvent(
       FriendRequestsAcceptEvent event, emit) async {
-    _friendsRepository.acceptRequest(event.id);
-    final state = this.state;
-    state.when(
-        init: () {},
-        loaded: (loaded) {
-          List<FriendshipRequestEntity> newLoaded = [];
-          for (var v in loaded) {
-            if (v.id != event.id) newLoaded.add(v);
-          }
-          emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
-        },
-        error: (e) {});
+    await _friendsRepository.acceptRequest(event.userId, event.friendId);
+    add(FriendRequestsInitializeEvent(event.userId));
   }
 
   Future<void> _onFriendRequestsDenyEvent(
       FriendRequestsDenyEvent event, emit) async {
-    _friendsRepository.denyRequest(event.id);
-    final state = this.state;
-    state.when(
-        init: () {},
-        loaded: (loaded) {
-          List<FriendshipRequestEntity> newLoaded = [];
-          for (var v in loaded) {
-            if (v.id != event.id) newLoaded.add(v);
-          }
-          emit(FriendRequestsState.loaded(friendshipRequests: newLoaded));
-        },
-        error: (e) {});
+    await _friendsRepository.denyRequest(event.userId, event.friendId);
+    add(FriendRequestsInitializeEvent(event.userId));
+
   }
 
   @override
