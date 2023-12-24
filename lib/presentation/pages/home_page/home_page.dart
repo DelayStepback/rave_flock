@@ -131,11 +131,14 @@ class _HomePageViewState extends State<_HomePageView> {
                       _buildMeetGroup(MeetRollWidgetEnum.allAccepted),
                       _buildMeetGroup(MeetRollWidgetEnum.invites),
                       _buildMeetGroup(MeetRollWidgetEnum.createdByUser),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.goNamed('createNewMeetScreen');
-                        },
-                        child: const Icon(Icons.add),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 50.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.goNamed('createNewMeetScreen');
+                          },
+                          child: const Icon(Icons.add),
+                        ),
                       ),
                     ],
                   ),

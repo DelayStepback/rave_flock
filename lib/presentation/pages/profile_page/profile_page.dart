@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart';
@@ -67,25 +68,27 @@ class _ProfilePageView extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                 init: () {
-                  return const CircularProgressIndicator(); // TODO:
+                  return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
                 },
                 loaded: (userModel) {
                   return Column(
                     children: [
                       userModel.avatarUrl != null
                           ? CircleAvatar(
+                            backgroundColor: Colors.transparent,
                               backgroundImage: NetworkImage(userModel.avatarUrl!),
                               radius: 130.r,
                             )
-                          : CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              radius: 130.r,
-                            ),
+                          : SvgPicture.asset(
+                                  'assets/images/star_flock.svg',
+                                  width: 160.w,
+                                ),
                       SizedBox(
                         height: 20.h,
                       ),
-                      Text(userModel.username.toString()),
-                      if (userModel.nickname != null) Text(userModel.nickname.toString()),
+                      Text(userModel.username.toString(), style: TextStyle(fontSize: 30.sp)),
+                      if (userModel.fullName != null) Text(userModel.fullName.toString(), style: TextStyle(fontSize: 24.sp),),
+                      if (userModel.profileDescription != null) Text(userModel.profileDescription.toString()),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -149,7 +152,7 @@ class _ProfilePageView extends StatelessWidget {
                        GestureDetector(
                         onTap: () {
                           AuthService.signOut();
-                          context.go('/splash');
+                          context.go('/');
                         },
                         child: Container(
                           width: 241.w,

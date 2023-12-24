@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import '../../../bloc/friend_requests_bloc/friend_requests_bloc.dart';
@@ -12,38 +13,41 @@ class NotificationButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 12.0),
-      child: Align(
-        alignment: Alignment.topRight,
-        child: UnconstrainedBox(
-          child: ElevatedButton(
-            onPressed: () {
+    return Align(
+      alignment: Alignment.topRight,
+      child: GestureDetector(
+        onTap: (){
               context.pushNamed('friendRequestsScreen');
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Icon(Icons.notifications_active_outlined),
-                const SizedBox(
-                  width: 10,
-                ),
-                BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
-                  builder: (context, state) {
-                    return state.when(
-                      init: () {
-                        return const Text('loading');
-                      },
-                      loaded: (List<UserModel> friendships) {
-                        return Text(friendships.length.toString());
-                      },
-                      error: (e) {
-                        return Text('$e');
-                      },
-                    );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+          color: Color(0xFF480E11),
+          ),
+          width: 60.r,
+          height: 60.r,
+          child: Center(
+            child: BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
+              builder: (context, state) {
+                return state.when(
+                  init: () {
+                    return CircularProgressIndicator(strokeWidth: 2,color: Colors.white,);
                   },
-                )
-              ],
+                  loaded: (List<UserModel> friendships) {
+                    final count = friendships.length;
+                    final text;
+                    if (count > 0) {
+                      text = '+ $count';
+                    } else {
+                      text = '0';
+                    }
+                    return Text(text, style: TextStyle(fontSize: 24.sp),);
+                  },
+                  error: (e) {
+                    return Text('##');
+                  },
+                );
+              },
             ),
           ),
         ),

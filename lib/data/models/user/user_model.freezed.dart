@@ -25,7 +25,8 @@ mixin _$UserModel {
   int? get token => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
-  String? get nickname => throw _privateConstructorUsedError;
+  @JsonKey(name: 'full_name')
+  String? get fullName => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get mobile => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_description')
@@ -54,7 +55,7 @@ abstract class $UserModelCopyWith<$Res> {
       int? token,
       String? email,
       String? username,
-      String? nickname,
+      @JsonKey(name: 'full_name') String? fullName,
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
@@ -81,7 +82,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? token = freezed,
     Object? email = freezed,
     Object? username = freezed,
-    Object? nickname = freezed,
+    Object? fullName = freezed,
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
@@ -107,9 +108,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      nickname: freezed == nickname
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       location: freezed == location
           ? _value.location
@@ -156,7 +157,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int? token,
       String? email,
       String? username,
-      String? nickname,
+      @JsonKey(name: 'full_name') String? fullName,
       String? location,
       String? mobile,
       @JsonKey(name: 'profile_description') String? profileDescription,
@@ -181,7 +182,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? token = freezed,
     Object? email = freezed,
     Object? username = freezed,
-    Object? nickname = freezed,
+    Object? fullName = freezed,
     Object? location = freezed,
     Object? mobile = freezed,
     Object? profileDescription = freezed,
@@ -207,9 +208,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      nickname: freezed == nickname
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       location: freezed == location
           ? _value.location
@@ -251,7 +252,7 @@ class _$UserModelImpl extends _UserModel {
       this.token,
       this.email,
       this.username,
-      this.nickname,
+      @JsonKey(name: 'full_name') this.fullName,
       this.location,
       this.mobile,
       @JsonKey(name: 'profile_description') this.profileDescription,
@@ -274,7 +275,8 @@ class _$UserModelImpl extends _UserModel {
   @override
   final String? username;
   @override
-  final String? nickname;
+  @JsonKey(name: 'full_name')
+  final String? fullName;
   @override
   final String? location;
   @override
@@ -296,7 +298,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, token: $token, email: $email, username: $username, nickname: $nickname, location: $location, mobile: $mobile, profileDescription: $profileDescription, avatarUrl: $avatarUrl, userPrivacy: $userPrivacy, createdAt: $createdAt, permission: $permission)';
+    return 'UserModel(userId: $userId, token: $token, email: $email, username: $username, fullName: $fullName, location: $location, mobile: $mobile, profileDescription: $profileDescription, avatarUrl: $avatarUrl, userPrivacy: $userPrivacy, createdAt: $createdAt, permission: $permission)';
   }
 
   @override
@@ -309,8 +311,8 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.nickname, nickname) ||
-                other.nickname == nickname) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.mobile, mobile) || other.mobile == mobile) &&
@@ -334,7 +336,7 @@ class _$UserModelImpl extends _UserModel {
       token,
       email,
       username,
-      nickname,
+      fullName,
       location,
       mobile,
       profileDescription,
@@ -363,7 +365,7 @@ abstract class _UserModel extends UserModel {
       final int? token,
       final String? email,
       final String? username,
-      final String? nickname,
+      @JsonKey(name: 'full_name') final String? fullName,
       final String? location,
       final String? mobile,
       @JsonKey(name: 'profile_description') final String? profileDescription,
@@ -386,7 +388,8 @@ abstract class _UserModel extends UserModel {
   @override
   String? get username;
   @override
-  String? get nickname;
+  @JsonKey(name: 'full_name')
+  String? get fullName;
   @override
   String? get location;
   @override

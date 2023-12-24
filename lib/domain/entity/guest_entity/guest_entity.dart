@@ -3,13 +3,13 @@ class GuestEntity {
       {
         required this.userId,
         required this.username,
-      required this.nickname,
+      required this.fullName,
       required this.avatarUrl,
       required this.status});
 
   String userId;
   String? username;
-  String? nickname;
+  String? fullName;
   String? avatarUrl;
   String? status;
 }

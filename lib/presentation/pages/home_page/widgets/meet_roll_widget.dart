@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/domain/entity/guest_entity/guest_entity.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 
 enum MeetRollWidgetEnum { allAccepted, createdByUser, invites }
@@ -74,19 +75,19 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
   }
 
   Stack _buildMeetPanel(BuildContext context, int index) {
-    // String? meetOwnerUsername = widget.meetsEntities[index].usersGuests
-    //     ?.firstWhere(
-    //         (element) =>
-    //             element.userId ==
-    //             widget.meetsEntities[index].meetModel.meetOwnerId,
-    //         orElse: () => GuestEntity(
-    //               userId: '',
-    //               username: '',
-    //               nickname: '',
-    //               avatarUrl: '',
-    //               status: '',
-    //             ))
-    //     .username;
+    String? meetOwnerUsername = widget.meetsEntities[index].usersGuests
+        ?.firstWhere(
+            (element) =>
+                element.userId ==
+                widget.meetsEntities[index].meetModel.meetOwnerId,
+            orElse: () => GuestEntity(
+                  userId: '',
+                  username: '',
+                  fullName: '',
+                  avatarUrl: '',
+                  status: '',
+                ))
+        .username;
     return Stack(
       children: [
         Align(
@@ -134,12 +135,17 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
                           child: Center(
                             child: Text(
                               '${widget.meetsEntities[index].meetModel.meetAt.day}.${widget.meetsEntities[index].meetModel.meetAt.month}.${widget.meetsEntities[index].meetModel.meetAt.year}',
-                              maxLines: 1,
+                              maxLines:1 ,
                               style: TextStyle(color: Colors.white, fontSize: 24.sp),
                             ),
                           ),
                         ),
                       ),
+                    ),
+                    Center(
+                      child: Text('${meetOwnerUsername}', 
+                      
+                                         style: const TextStyle(fontSize: 12, color: Colors.white38),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 30).w,

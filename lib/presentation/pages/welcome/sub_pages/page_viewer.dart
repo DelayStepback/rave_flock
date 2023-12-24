@@ -50,10 +50,10 @@ class PageViewerState extends State<PageViewer> {
                       curve: Curves.easeIn,
                       duration: const Duration(milliseconds: 300),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.white.withOpacity(0.1)),
                         onPressed: () {
                           pageController.animateToPage(2,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeIn);
+                              duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
                           setState(() {
                             page = 2;
                           });
@@ -64,6 +64,7 @@ class PageViewerState extends State<PageViewer> {
                           child: const Center(
                             child: Text(
                               'Пропустить',
+                              style: TextStyle(color: Colors.white38),
                             ),
                           ),
                         ),
@@ -75,9 +76,7 @@ class PageViewerState extends State<PageViewer> {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: _indicators(context, 3, page)),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: _indicators(context, 3, page)),
                   ),
                 ],
               ),
@@ -96,25 +95,18 @@ List<Widget> _indicators(context, imagesLength, currentIndex) {
       return AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
-        margin: EdgeInsets.only(
-                left: 12.5.r,
-                right: 12.5.r,
-                top: currentIndex == index ? 0 : 20.h)
-            .w,
+        margin: EdgeInsets.only(left: 12.5.r, right: 12.5.r, top: currentIndex == index ? 0 : 20.h).w,
         width: 28.w,
         height: 28.h,
         //currentIndex == index ? 30.h : 25.h,
         decoration: BoxDecoration(
-            color: index == currentIndex
-                ? Theme.of(context).primaryColor
-                : Colors.white,
+            color: index == currentIndex ? Color.fromARGB(255, 91, 24, 40) : Colors.white60,
             borderRadius: const BorderRadius.all(Radius.circular(51)).w),
         child: Visibility(
           visible: index == 2,
           child: Icon(
             Icons.lock_open,
             size: 18.r,
-
             color: index == currentIndex ? Colors.white : Colors.black,
           ),
         ),

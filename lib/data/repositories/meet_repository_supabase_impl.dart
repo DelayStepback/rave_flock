@@ -123,7 +123,7 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
       guestsOfMeet.add(GuestEntity(
           userId: userData.userId,
           username: userData.username,
-          nickname: userData.nickname,
+          fullName: userData.fullName,
           avatarUrl: userData.avatarUrl,
           status: json['status']));
     }

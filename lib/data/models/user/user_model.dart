@@ -18,7 +18,7 @@ class UserModel with _$UserModel {
     int? token,
     String? email,
     String? username,
-    String? nickname,
+    @JsonKey(name: 'full_name') String? fullName,
     String? location,
     String? mobile,
     @JsonKey(name: 'profile_description') String? profileDescription,

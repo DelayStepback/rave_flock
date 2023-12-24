@@ -47,115 +47,134 @@ class _FriendScreen extends StatelessWidget {
             builder: (context, state) {
               return state.when(
                 init: () {
-                  return const CircularProgressIndicator(); // TODO:
+                  return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
                 },
                 loaded: (friends) {
                   UserModel friendUserModel = friends.firstWhere((element) => element.userId == friendId);
-                  return Column(
-                    children: [
-                      friendUserModel.avatarUrl != null
-                          ? CircleAvatar(
-                              backgroundImage: NetworkImage(friendUserModel.avatarUrl!),
-                              radius: 130.r,
-                            )
-                          : SvgPicture.asset(
-                        'assets/images/star_flock.svg',width: 160.w,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(friendUserModel.username.toString()),
-                      if (friendUserModel.nickname != null) Text(friendUserModel.nickname.toString()),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Container(
-                                width: 66.w,
-                                height: 51.h,
-                                decoration: ShapeDecoration(
-                                  color: Color(0x1EB71B1B),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(28),
-                                  ),
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          friendUserModel.avatarUrl != null
+                              ? CircleAvatar(
+                                  backgroundImage: NetworkImage(friendUserModel.avatarUrl!),
+                                  radius: 130.r,
+                                )
+                              : SvgPicture.asset(
+                                  'assets/images/star_flock.svg',
+                                  width: 160.w,
                                 ),
-                                child: const Center(child: Text('##')),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Text(friendUserModel.username.toString(), style: TextStyle(fontSize: 30.sp)),
+                    
+                          if (friendUserModel.fullName != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12.0),
+                              child: Text(
+                                friendUserModel.fullName.toString(),
+                                style: TextStyle(fontSize: 24.sp),
                               ),
-                              Text('FRIENDS')
+                            ),
+                          if (friendUserModel.profileDescription != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12.0),
+                              child: Text(friendUserModel.profileDescription.toString()),
+                            ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 66.w,
+                                    height: 51.h,
+                                    decoration: ShapeDecoration(
+                                      color: Color(0x1EB71B1B),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(28),
+                                      ),
+                                    ),
+                                    child: const Center(child: Text('##')),
+                                  ),
+                                  Text('FRIENDS')
+                                ],
+                              ),
+                              SizedBox(
+                                width: 190.w,
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 66.w,
+                                    height: 51.h,
+                                    decoration: ShapeDecoration(
+                                      color: Color(0x1EB71B1B),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(28),
+                                      ),
+                                    ),
+                                    child: const Center(child: Text('##')),
+                                  ),
+                                  Text('RAVES')
+                                ],
+                              ),
                             ],
                           ),
                           SizedBox(
-                            width: 190.w,
+                            height: 28.h,
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                width: 66.w,
-                                height: 51.h,
-                                decoration: ShapeDecoration(
-                                  color: Color(0x1EB71B1B),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(28),
-                                  ),
+                    
+                          GestureDetector(
+                            onTap: () {
+                              // TODO:
+                            },
+                            child: Container(
+                              width: 241.w,
+                              height: 40.h,
+                              decoration: ShapeDecoration(
+                                color: Color(0x1EB71B1B),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(28),
                                 ),
-                                child: const Center(child: Text('##')),
                               ),
-                              Text('RAVES')
-                            ],
+                              child: const Center(child: Text('INVITE TO RAVE')),
+                            ),
                           ),
+                          SizedBox(
+                            height: 28.h,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              context.pop();
+                              GetIt.I<FriendsDataBloc>()
+                                  .add(FriendsDataEvent.removeFriend(AuthService.getUserId() ?? '', friendId));
+                            },
+                            child: Container(
+                              width: 241.w,
+                              height: 40.h,
+                              decoration: ShapeDecoration(
+                                color: Color(0x1EB71B1B),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(28),
+                                ),
+                              ),
+                              child: const Center(child: Text('DELETE')),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 28.h,
+                          ),
+                    
+                          // Center(child: Text('$friendUserModel'))
                         ],
                       ),
-                      SizedBox(
-                        height: 28.h,
-                      ),
-
-                      GestureDetector(
-                        onTap: () {
-                          // TODO:
-                        },
-                        child: Container(
-                          width: 241.w,
-                          height: 40.h,
-                          decoration: ShapeDecoration(
-                            color: Color(0x1EB71B1B),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                          ),
-                          child: const Center(child: Text('INVITE TO RAVE')),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 28.h,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          context.pop();
-                          GetIt.I<FriendsDataBloc>()
-                              .add(FriendsDataEvent.removeFriend(AuthService.getUserId() ?? '', friendId));
-                        },
-                        child: Container(
-                          width: 241.w,
-                          height: 40.h,
-                          decoration: ShapeDecoration(
-                            color: Color(0x1EB71B1B),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                          ),
-                          child: const Center(child: Text('DELETE')),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 28.h,
-                      ),
-
-                      // Center(child: Text('$friendUserModel'))
-                    ],
+                    ),
                   );
                 },
                 error: (e) => ErrorScreen(error: e),

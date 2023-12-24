@@ -38,7 +38,7 @@ class _FriendRequestsScreen extends StatelessWidget {
           builder: (context, state) {
             return state.when(
                 init: () {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
                 },
                 loaded: (friendRequestsEntities) {
                   return _FriendRequestsLoadedBody(

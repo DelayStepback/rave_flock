@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/widget/text_input.dart';
+import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
@@ -43,9 +44,10 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
   void initState() {
     BlocProvider.of<FriendsDataBloc>(context).add(FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
     BlocProvider.of<FriendRequestsBloc>(context).add(FriendRequestsEvent.initialize(AuthService.getUserId() ?? ''));
-    
+
     super.initState();
   }
+
   @override
   void dispose() {
     titleDebounceTimer?.cancel();
@@ -81,13 +83,14 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
+      decoration:
+          BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [const Color(0xFF5B1828), Colors.black])),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: RefreshIndicator(
             color: Colors.white,
-            backgroundColor: Color(0xFF5B1828),
+            backgroundColor: const Color(0xFF5B1828),
             triggerMode: RefreshIndicatorTriggerMode.onEdge,
             onRefresh: () async {
               await _refresh();
@@ -95,20 +98,29 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
             child: Center(
                 child: CustomScrollView(
               slivers: [
-                   SliverAppBar(
-                  leading: GestureDetector(onTap: () => context.pop(), child: Icon(Icons.arrow_back_ios)),
+                SliverAppBar(
+                  leading: GestureDetector(onTap: () => context.pop(), child: const Icon(Icons.arrow_back_ios)),
                   // title: Text('R A V E  F L O C K'),
                   expandedHeight: 20.h,
                   backgroundColor: Colors.transparent,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Container(
-                      color: Colors.transparent,
-                      child: Center(child: Text('FRIENDS')),
-                    ),
-                    centerTitle: true
-                  ),
+                      background: Container(
+                        color: Colors.transparent,
+                        child: const Center(child: Text('FRIENDS')),
+                      ),
+                      centerTitle: true),
                 ),
-                SliverToBoxAdapter(child: NotificationButtonWidget()),
+                SliverToBoxAdapter(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40).w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('A MAN IS KNOWN BY HIS FRIENDS'),
+                      NotificationButtonWidget(),
+                    ],
+                  ),
+                )),
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20).r,
@@ -125,193 +137,301 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
                           onChanged: _onChangeTitle,
                         ),
                         ElevatedButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context, builder: (context) => AddNewFriendWidget());
-                    },
-                    child: const Icon(Icons.add),
-                  ),
+                          onPressed: () {
+                            showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) => const AddNewFriendWidget());
+                          },
+                          child: const Icon(Icons.add),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                
-          
                 BlocBuilder<FriendsDataBloc, FriendsDataState>(
                   builder: (context, state) {
                     return state.when(init: () {
-                      return SliverToBoxAdapter(child: const Text('LOADING'));
+                      return SliverToBoxAdapter(child: FriendsRollLoadingWidget());
                     }, loaded: (friends) {
-                      return SliverList.builder(
-                        // separatorBuilder: (_, index) => SizedBox(
-                        //   height: 10,
-                        // ),
-                        // padding: EdgeInsets.only(left: 20, right: 20),
-                        itemCount: friends.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              context.goNamed('friendScreen', pathParameters: {
-                                'friendId': friends[index].userId,
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Container(
-                                padding: const EdgeInsets.all(30).r,
-                                decoration: const BoxDecoration(
-                                    color: Color(0xFFFBD6AA), borderRadius: BorderRadius.all(Radius.circular(20))),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Имя пользователя: ${friends[index].username}',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                        Text(
-                                          'Местоположение: ${friends[index].location ?? 'скрыто'}',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                        Text(
-                                          'Кличка: ${friends[index].nickname ?? 'не задана'}',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                    friends[index].avatarUrl == null
-                                        ? SvgPicture.asset(
-                        'assets/images/star_flock.svg',width: 120.w,
-                      )
-                                        : CircleAvatar(
-                                          backgroundColor: Colors.transparent,
-                                            minRadius: 60.r,
-                                            backgroundImage: NetworkImage(friends[index].avatarUrl!),
-                                          )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                      return SliverToBoxAdapter(child: FriendsRollWidget(friends: friends));
                     }, error: (e) {
                       return ErrorScreen(error: e); // TODO: navigate
                     });
                   },
                 ),
-                
               ],
             )),
           ),
         ),
       ),
     );
-    // return Container(
-    //   decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Colors.red, Colors.black])),
-    //   child: Scaffold(
-    //     backgroundColor: Colors.transparent,
-    //     body: RefreshIndicator(
-    //       color: Colors.white,
-    //       backgroundColor: Color(0xFF5B1828),
-    //       triggerMode: RefreshIndicatorTriggerMode.onEdge,
-    //       onRefresh: () async {
-    //         await _refresh();
-    //       },
-    //       child: Center(
-    //           child: Column(
-    //         children: [
-    //           Row(
-    //             children: [
-    //               IconButton(
-    //                   onPressed: () {
-    //                     context.read<FriendsDataBloc>().add(FriendsDataEvent.initialize(userId!));
-    //                   },
-    //                   icon: const Icon(Icons.refresh)),
-    //               NotificationButtonWidget(),
-    //             ],
-    //           ),
-    //           ElevatedButton(
-    //             onPressed: () {
-    //               showModalBottomSheet(context: context, builder: (context) => AddNewFriendWidget());
-    //             },
-    //             child: const Icon(Icons.add),
-    //           ),
-    //           BlocBuilder<FriendsDataBloc, FriendsDataState>(
-    //             builder: (context, state) {
-    //               return state.when(init: () {
-    //                 context.read<FriendsDataBloc>().add(FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
-    //                 return const Text('LOADING');
-    //               }, loaded: (friends) {
-    //                 return Expanded(
-    //                   child: ListView.separated(
-    //                     separatorBuilder: (_, index) => SizedBox(
-    //                       height: 10,
-    //                     ),
-    //                     padding: EdgeInsets.only(left: 20, right: 20),
-    //                     itemCount: friends.length,
-    //                     itemBuilder: (context, index) {
-    //                       return GestureDetector(
-    //                         onTap: () {
-    //                           context.goNamed('friendScreen', pathParameters: {
-    //                             'friendId': friends[index].userId,
-    //                           });
-    //                         },
-    //                         child: Container(
-    //                           padding: const EdgeInsets.all(20),
-    //                           decoration: const BoxDecoration(
-    //                               color: Colors.indigo, borderRadius: BorderRadius.all(Radius.circular(20))),
-    //                           child: Row(
-    //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                             children: [
-    //                               Column(
-    //                                 mainAxisAlignment: MainAxisAlignment.start,
-    //                                 crossAxisAlignment: CrossAxisAlignment.start,
-    //                                 children: [
-    //                                   Text(
-    //                                     'Имя пользователя: ${friends[index].username}',
-    //                                     style: TextStyle(color: Colors.white),
-    //                                   ),
-    //                                   Text(
-    //                                     'Местоположение: ${friends[index].location ?? 'скрыто'}',
-    //                                     style: TextStyle(color: Colors.white),
-    //                                   ),
-    //                                   Text(
-    //                                     'Кличка: ${friends[index].nickname ?? 'не задана'}',
-    //                                     style: TextStyle(color: Colors.white),
-    //                                   ),
-    //                                 ],
-    //                               ),
-    //                               friends[index].avatarUrl == null
-    //                                   ? CircleAvatar(
-    //                                       minRadius: 40,
-    //                                       backgroundColor: Colors.blue,
-    //                                     )
-    //                                   : CircleAvatar(
-    //                                       minRadius: 40,
-    //                                       backgroundColor: Colors.red,
-    //                                       backgroundImage: NetworkImage(friends[index].avatarUrl!),
-    //                                     )
-    //                             ],
-    //                           ),
-    //                         ),
-    //                       );
-    //                     },
-    //                   ),
-    //                 );
-    //               }, error: (e) {
-    //                 return ErrorScreen(error: e);
-    //               });
-    //             },
-    //           ),
-    //         ],
-    //       )),
-    //     ),
-    //   ),
-    // );
+  }
+}
+
+class FriendsRollWidget extends StatefulWidget {
+  const FriendsRollWidget({
+    super.key,
+    required this.friends,
+  });
+
+  final List<UserModel> friends;
+
+  @override
+  State<FriendsRollWidget> createState() => FriendsRollWidgetState();
+}
+
+class FriendsRollWidgetState extends State<FriendsRollWidget> {
+  int _index = 0;
+
+  @override
+  void initState() {
+    _index = 0;
+    heightContainer = 370.h;
+
+    super.initState();
+  }
+
+  late final heightContainer;
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.friends.length > 0) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 40.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: heightContainer,
+              child: PageView.builder(
+                controller: PageController(initialPage: 0, viewportFraction: 0.7.r),
+                onPageChanged: (val) {
+                  setState(() {
+                    _index = val;
+                  });
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.friends.length,
+                itemBuilder: (context, index) {
+                  return _buildFriendPanel(context, index);
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+
+  Stack _buildFriendPanel(BuildContext context, int index) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: GestureDetector(
+            onTap: () {
+              context.goNamed('friendScreen', pathParameters: {
+                'friendId': widget.friends[index].userId,
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomRight, stops: [
+                    0.0,
+                    1
+                  ], colors: [
+                    Color(0xFFFBD6AA),
+                    const Color(0xFFFFCCCC),
+                  ]),
+                  borderRadius: BorderRadius.circular(30).r),
+              child: AnimatedContainer(
+                width: 250.r,
+                height: index == _index ? heightContainer : heightContainer - 50.r,
+                curve: Curves.easeInOutQuad,
+                duration: const Duration(seconds: 1),
+                padding: EdgeInsets.all(20).r,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: AnimatedContainer(
+                            curve: Curves.easeInQuad,
+                            duration: const Duration(milliseconds: 900),
+                            height: index == _index ? 150.w : 120.w,
+                            width: index == _index ? 150.w : 120.w,
+                            decoration: BoxDecoration(
+                                borderRadius: index == _index
+                                    ? const BorderRadius.only(
+                                            topLeft: Radius.circular(30),
+                                            topRight: Radius.circular(30),
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10))
+                                        .r
+                                    : BorderRadius.circular(70).r),
+                            child: Center(
+                              child: widget.friends[index].avatarUrl != null
+                                  ? CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                      backgroundImage: NetworkImage(widget.friends[index].avatarUrl!),
+                                      radius: 150.r,
+                                    )
+                                  : SvgPicture.asset(
+                                  'assets/images/star_flock.svg',
+                                  width: 160.w,
+                                ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Text(
+                          '${widget.friends[index].username}',
+                          style: TextStyle(color: Color(0xFF4B1017), fontSize: 34.sp),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        if (widget.friends[index].profileDescription != null)
+                          Text(
+                            '${widget.friends[index].profileDescription}',
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Color(0xFF4B1017),
+                            ),
+                          ),
+                      ],
+                    ),
+                    if (widget.friends[index].location != null) Text(widget.friends[index].location.toString(),  maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Color(0xFF4B1017),
+                            ),)
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+class FriendsRollLoadingWidget extends StatefulWidget {
+  const FriendsRollLoadingWidget({
+    super.key,
+  });
+
+  @override
+  State<FriendsRollLoadingWidget> createState() => FriendsRollLoadingWidgetState();
+}
+
+class FriendsRollLoadingWidgetState extends State<FriendsRollLoadingWidget> {
+  int _index = 0;
+
+  @override
+  void initState() {
+    _index = 0;
+    heightContainer = 370.h;
+
+    super.initState();
+  }
+
+  late final heightContainer;
+
+  @override
+  Widget build(BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 40.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: heightContainer,
+              child: PageView.builder(
+                controller: PageController(initialPage: 0, viewportFraction: 0.7.r),
+                onPageChanged: (val) {
+                  setState(() {
+                    _index = val;
+                  });
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return _buildFriendPanel(context, index);
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+  }
+
+  Stack _buildFriendPanel(BuildContext context, int index) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomRight, stops: [
+                  0.0,
+                  1
+                ], colors: [
+                 Colors.grey,
+                 Colors.white24
+                ]),
+                borderRadius: BorderRadius.circular(30).r),
+            child: AnimatedContainer(
+              width: 250.r,
+              height: index == _index ? heightContainer : heightContainer - 50.r,
+              curve: Curves.easeInOutQuad,
+              duration: const Duration(seconds: 1),
+              padding: EdgeInsets.all(20).r,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: AnimatedContainer(
+                          curve: Curves.easeInQuad,
+                          duration: const Duration(milliseconds: 900),
+                          height: index == _index ? 150.w : 120.w,
+                          width: index == _index ? 150.w : 120.w,
+                          decoration: BoxDecoration(
+                              borderRadius: index == _index
+                                  ? const BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))
+                                      .r
+                                  : BorderRadius.circular(70).r),
+                        
+                        ),
+                      ),
+                  
+                    ],
+                  ),
+                 
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

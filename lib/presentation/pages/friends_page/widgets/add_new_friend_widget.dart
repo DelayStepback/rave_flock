@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 import 'package:rave_flock/services/auth_service.dart';
@@ -26,6 +27,7 @@ class _AddNewFriendWidgetState extends State<AddNewFriendWidget> {
             decoration: const InputDecoration(label: Text('Имя нового друга')),
           ),
           SizedBox(height: 40,),
+                        // TODO: изменить на реальный скрин
           fetching? const CircularProgressIndicator() :ElevatedButton(
               onPressed: () async {
                 try{
@@ -36,11 +38,14 @@ class _AddNewFriendWidgetState extends State<AddNewFriendWidget> {
                       .sendARequest(AuthService.getUserId() ?? '',
                       _usernameController.text.trim())
                       .then((value) {
+                      
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('заявка отправлена'),
                       ),
                     );
+                      context.pop();
+
                     setState(() {
                       fetching = false;
                     });

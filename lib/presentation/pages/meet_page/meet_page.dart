@@ -40,7 +40,7 @@ class _MeetPageView extends StatelessWidget {
     return BlocBuilder<MeetDataBloc, MeetDataState>(
       builder: (context, state) {
         return state.when(init: () {
-          return const CircularProgressIndicator();
+          return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
         }, loaded: (List<MeetEntity> meetsEntities) {
           return _loadedMeetsEntities(meetsEntities, context);
         }, error: (e) {
