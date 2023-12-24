@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 
 class MeetRollLoading extends StatefulWidget {
-  MeetRollLoading({super.key, required this.meetRollWidgetEnum});
-  MeetRollWidgetEnum meetRollWidgetEnum;
+  const MeetRollLoading({super.key, required this.meetRollWidgetEnum});
+  final MeetRollWidgetEnum meetRollWidgetEnum;
   @override
   State<MeetRollLoading> createState() => _MeetRollLoadingState();
 }
@@ -24,7 +24,7 @@ class _MeetRollLoadingState extends State<MeetRollLoading> {
               // physics: ScrollPhysics(),
               // physics: const RangeMaintainingScrollPhysics(),
               controller: PageController(
-                  initialPage: 2,
+                  initialPage: 0,
                   viewportFraction: 0.76.r),
               scrollDirection: Axis.horizontal,
               itemCount: 6,
@@ -46,7 +46,7 @@ class _MeetRollLoadingState extends State<MeetRollLoading> {
           child: UnconstrainedBox(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 56, 56, 56),
                     borderRadius: BorderRadius.circular(30)),
                 child: AnimatedContainer(
                   width: 286.r,

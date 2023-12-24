@@ -19,8 +19,8 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<MeetRepository>(MeetRepositorySupabaseImpl());
 
   // blocs
-  sl.registerSingleton<FriendRequestsBloc>(FriendRequestsBloc(sl(), sl()));
-  sl.registerSingleton<FriendsDataBloc>(FriendsDataBloc(sl(), sl()));
+  sl.registerSingleton<FriendRequestsBloc>(FriendRequestsBloc(sl()));
+  sl.registerSingleton<FriendsDataBloc>(FriendsDataBloc(sl()));
   sl.registerSingleton<MeetDataBloc>(MeetDataBloc(sl()));
   sl.registerSingleton<UserDataBloc>(UserDataBloc(sl()));
 }

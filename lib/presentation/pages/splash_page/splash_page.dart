@@ -79,16 +79,12 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
     }
   }
 
-  void checkLoadingThenRouteHome(bool friendsRequestAreInitState, bool friendsDataAreInitState,
-      bool meetDataAreInitState, bool userDataAreInitState) {
-    if (!friendsRequestAreInitState && !friendsDataAreInitState && !meetDataAreInitState && !userDataAreInitState) {
+  void checkLoadingThenRouteHome(bool userDataAreInitState) {
+    if (!userDataAreInitState) {
       context.go("/routingPage");
     }
   }
 
-  bool friendsRequestAreInitState = true;
-  bool friendsDataAreInitState = true;
-  bool meetDataAreInitState = true;
   bool userDataAreInitState = true;
 
   String processTitle = '';
@@ -103,9 +99,6 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        listenerLoadingFriendRequestsBloc(),
-        listenerLoadingFriendsDataBloc(),
-        listenerLoadingMeetDataBloc(),
         listenerLoadingUserDataBloc(),
       ],
       child: Scaffold(
@@ -129,12 +122,6 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
                   ),
                 ),
               ),
-              Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    processTitle,
-                    style: TextStyle(fontSize: 20.sp),
-                  )),
             ],
           ),
         ),
@@ -156,7 +143,7 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
               } else {
                 userDataAreInitState = false;
                 checkLoadingThenRouteHome(
-                    friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
+                    userDataAreInitState);
               }
             },
             error: (e) => context.go('/errorScreen', extra: {'error': e}));
@@ -164,56 +151,5 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
     );
   }
 
-  BlocListener<MeetDataBloc, MeetDataState> listenerLoadingMeetDataBloc() {
-    return BlocListener<MeetDataBloc, MeetDataState>(
-      bloc: GetIt.I<MeetDataBloc>(),
-      listener: (BuildContext context, state) {
-        setProcessTitle(AppStrings.splashLoadedMeetData);
-
-        state.when(
-          init: () {},
-          loaded: (_) {
-            meetDataAreInitState = false;
-            checkLoadingThenRouteHome(
-                friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-          },
-          error: (e) => context.go('/errorScreen', extra: {'error': e}),
-        );
-      },
-    );
-  }
-
-  BlocListener<FriendsDataBloc, FriendsDataState> listenerLoadingFriendsDataBloc() {
-    return BlocListener<FriendsDataBloc, FriendsDataState>(
-      bloc: GetIt.I<FriendsDataBloc>(),
-      listener: (BuildContext context, state) {
-        setProcessTitle(AppStrings.splashLoadedFriendsData);
-        state.when(
-            init: () {},
-            loaded: (_) {
-              friendsDataAreInitState = false;
-              checkLoadingThenRouteHome(
-                  friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            },
-            error: (e) => context.go('/errorScreen', extra: {'error': e}));
-      },
-    );
-  }
-
-  BlocListener<FriendRequestsBloc, FriendRequestsState> listenerLoadingFriendRequestsBloc() {
-    return BlocListener<FriendRequestsBloc, FriendRequestsState>(
-      bloc: GetIt.I<FriendRequestsBloc>(),
-      listener: (BuildContext context, state) {
-        setProcessTitle(AppStrings.splashLoadedFriendRequests);
-        state.when(
-            init: () {},
-            loaded: (_) {
-              friendsRequestAreInitState = false;
-              checkLoadingThenRouteHome(
-                  friendsRequestAreInitState, friendsDataAreInitState, meetDataAreInitState, userDataAreInitState);
-            },
-            error: (e) => context.go('/errorScreen', extra: {'error': e}));
-      },
-    );
-  }
+  
 }

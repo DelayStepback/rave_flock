@@ -1,6 +1,5 @@
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
 import 'package:rave_flock/common/constants/enums/friendship_status_enum.dart';
-import 'package:rave_flock/data/models/friendship/friendship_model.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 

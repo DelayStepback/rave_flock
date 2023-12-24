@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
-import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 part 'friend_requests_state.freezed.dart';
 
 @freezed
