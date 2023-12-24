@@ -30,11 +30,13 @@ dependencies:
 
 
 flutter_native_splash:
-  color: "#42a5f5"
-  image: "assets/phone.png"
+  android: true
+  ios: true
+  color: "#1B0B0B"
+  image: "assets/asian_person.png"
   android_12:
-    color: "#42a5f5"
-    image: "assets/phone.png"
+    color: "#1B0B0B"
+    image: "assets/asian_person_android_12.png"
 
 dev_dependencies:
   flutter_test:

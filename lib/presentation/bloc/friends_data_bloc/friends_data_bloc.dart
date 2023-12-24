@@ -1,17 +1,13 @@
 import 'package:bloc/bloc.dart';
-import 'package:rave_flock/data/models/friendship/friendship_model.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../../../domain/repositories/user_repository.dart';
 import 'friends_data_event.dart';
 import 'friends_data_state.dart';
 
 class FriendsDataBloc extends Bloc<FriendsDataEvent, FriendsDataState> {
   final FriendsRepository _friendsRepository;
-  final UserRepository _userRepository;
 
-  FriendsDataBloc(this._friendsRepository, this._userRepository) : super(const FriendsDataState.init()) {
+  FriendsDataBloc(this._friendsRepository) : super(const FriendsDataState.init()) {
     on<FriendsDataInitializeEvent>(_onFriendsDataInitializeEvent);
     on<DeleteFriendEvent>(_onDeleteFriendEvent);
     on<FriendsDataDisposeEvent>(_onFriendsDataDisposeEvent);

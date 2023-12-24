@@ -1,18 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:rave_flock/data/models/friendship/friendship_model.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
-import 'package:rave_flock/domain/entity/friendship_request_entity/friendship_request_entity.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
-import '../../../../domain/repositories/user_repository.dart';
 import 'friend_requests_event.dart';
 import 'friend_requests_state.dart';
 
 class FriendRequestsBloc
     extends Bloc<FriendRequestsEvent, FriendRequestsState> {
   final FriendsRepository _friendsRepository;
-  final UserRepository _userRepository;
 
-  FriendRequestsBloc(this._friendsRepository, this._userRepository)
+  FriendRequestsBloc(this._friendsRepository)
       : super(const FriendRequestsState.init()) {
     on<FriendRequestsInitializeEvent>(_onFriendRequestsInitializeEvent);
     on<FriendRequestsAcceptEvent>(_onFriendRequestsAcceptEvent);

@@ -14,9 +14,6 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider.value(value: GetIt.I<FriendRequestsBloc>()),
-      BlocProvider.value(value: GetIt.I<FriendsDataBloc>()),
-      BlocProvider.value(value: GetIt.I<MeetDataBloc>()),
       BlocProvider.value(value: GetIt.I<UserDataBloc>()),
     ], child: const PageViewer());
   }

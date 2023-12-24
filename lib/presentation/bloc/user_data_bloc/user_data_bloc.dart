@@ -17,9 +17,6 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState> {
     emit(const UserDataState.init());
   }
   Future<void> _onUserDataInitializeEvent(UserDataInitializeEvent event, emit) async {
-    // TODO: delete delay
-    await Future.delayed(const Duration(seconds: 5));
-    print('BLOC: user data fetching');
     try{
       final currentUser = await _userRepository.fetchUser(event.userId);
       emit(UserDataState.loaded(currentUser: currentUser));

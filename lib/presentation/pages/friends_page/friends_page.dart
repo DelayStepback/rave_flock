@@ -40,10 +40,17 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
   final _titleController = TextEditingController();
 
   @override
+  void initState() {
+    BlocProvider.of<FriendsDataBloc>(context).add(FriendsDataEvent.initialize(AuthService.getUserId() ?? ''));
+    BlocProvider.of<FriendRequestsBloc>(context).add(FriendRequestsEvent.initialize(AuthService.getUserId() ?? ''));
+    
+    super.initState();
+  }
+  @override
   void dispose() {
     titleDebounceTimer?.cancel();
-
     _titleController.dispose();
+
     super.dispose();
   }
 
@@ -154,7 +161,7 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
                               child: Container(
                                 padding: const EdgeInsets.all(30).r,
                                 decoration: const BoxDecoration(
-                                    color: Colors.indigo, borderRadius: BorderRadius.all(Radius.circular(20))),
+                                    color: Color(0xFFFBD6AA), borderRadius: BorderRadius.all(Radius.circular(20))),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -164,15 +171,15 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
                                       children: [
                                         Text(
                                           'Имя пользователя: ${friends[index].username}',
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                         Text(
                                           'Местоположение: ${friends[index].location ?? 'скрыто'}',
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                         Text(
                                           'Кличка: ${friends[index].nickname ?? 'не задана'}',
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                       ],
                                     ),

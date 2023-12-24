@@ -10,7 +10,6 @@ import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_stat
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_bloc.dart';
-import 'package:rave_flock/presentation/bloc/user_data_bloc/user_data_event.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 
 import '../../../services/auth_service.dart';
@@ -147,8 +146,23 @@ class _ProfilePageView extends StatelessWidget {
                       SizedBox(
                         height: 28.h,
                       ),
-
-                      // Center(child: Text('$friendUserModel'))
+                       GestureDetector(
+                        onTap: () {
+                          AuthService.signOut();
+                          context.go('/splash');
+                        },
+                        child: Container(
+                          width: 241.w,
+                          height: 40.h,
+                          decoration: ShapeDecoration(
+                            color: Color(0x1EB71B1B),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(28),
+                            ),
+                          ),
+                          child: const Center(child: Text('LogOut')),
+                        ),
+                      ),
                     ],
                   );
                 },

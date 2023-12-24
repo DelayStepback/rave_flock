@@ -46,6 +46,13 @@ class _HomePageViewState extends State<_HomePageView> {
   final _titleController = TextEditingController();
 
   @override
+  void initState() {
+    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
+    
+    super.initState();
+  }
+
+  @override
   void dispose() {
     titleDebounceTimer?.cancel();
 
