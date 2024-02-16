@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
+import 'package:rave_flock/presentation/pages/friends_page/widgets/add_new_friend_widget.dart';
 import 'package:rave_flock/presentation/pages/routing_page/routing_page.dart';
 import 'package:rave_flock/presentation/pages/welcome/welcome_page.dart';
 import 'package:rave_flock/presentation/pages/welcome/set_username_screen.dart';
@@ -16,6 +17,21 @@ import 'package:rave_flock/presentation/screens/friend_requests_screen/friend_re
 import 'package:rave_flock/presentation/screens/friend_screen/friend_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
+
+CustomTransitionPage transitionSlideWrapperForPage(Widget page, GoRouterState state) {
+  return CustomTransitionPage(
+    child: page,
+    key: state.pageKey,
+    transitionDuration: Duration(milliseconds: 200),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: Offset.zero,
+      ).animate(animation),
+      child: child,
+    ),
+  );
+}
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -42,42 +58,38 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-
     GoRoute(
       name: 'routingPage',
       path: "/routingPage",
-      builder: (context, state) => const RoutingPage(),
+      pageBuilder: (context, state) => transitionSlideWrapperForPage(const RoutingPage(), state),
       routes: [
-
         GoRoute(
           name: 'homePage',
           path: "homePage",
-          builder: (context, state) => const HomePage(),
+          pageBuilder: (context, state) => transitionSlideWrapperForPage(const HomePage(), state),
           routes: [
             GoRoute(
-              name: 'createNewMeetScreen',
-              path: "createNewMeetScreen",
-              //TODO: для update meet
-              builder: (context, state) => CreateNewMeetScreen(
-                meetModel:
-                    state.extra == null ? null : state.extra! as MeetModel,
-              ),
-            ),
+                name: 'createNewMeetScreen',
+                path: "createNewMeetScreen",
+                pageBuilder: (context, state) => transitionSlideWrapperForPage(
+                    CreateNewMeetScreen(
+                      meetModel: state.extra == null ? null : state.extra! as MeetModel,
+                    ),
+                    state)),
             GoRoute(
               name: 'meetPage',
               path: "meetPage/:meetId",
-              builder: (context, state) => MeetPage(
-                  meetId: int.tryParse(state.pathParameters['meetId']!) ??
-                      0 // TODO 0 не есть хорошо
-              ),
+              pageBuilder: (context, state) => transitionSlideWrapperForPage(
+                  MeetPage(meetId: int.tryParse(state.pathParameters['meetId']!) ?? 0), state),
               routes: [
                 GoRoute(
                   name: 'basketPage',
                   path: "basketPage/:meetIdBasket",
-                  builder: (context, state) => BasketPage(
-                      meetId: int.tryParse(state.pathParameters['meetIdBasket']!) ??
-                          0 // TODO 0 не есть хорошо
-                  ),
+                  pageBuilder: (context, state) => transitionSlideWrapperForPage(
+                      BasketPage(
+                          meetId: int.tryParse(state.pathParameters['meetIdBasket']!) ?? 0 // TODO 0 не есть хорошо
+                          ),
+                      state),
                 ),
               ],
             ),
@@ -86,29 +98,34 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: "friendsPage",
           name: "friendsPage",
-          builder: (context, state) => const FriendsPage(),
+          pageBuilder: (context, state) => transitionSlideWrapperForPage(const FriendsPage(), state),
           routes: [
+            GoRoute(
+              name: "addNewFriendScreen",
+              path: "addNewFriendScreen",
+              pageBuilder: (context, state) => transitionSlideWrapperForPage(const AddNewFriendScreen(), state),
+            ),
             GoRoute(
               name: "friendScreen",
               path: "friendScreen/:friendId",
-              builder: (context, state) => FriendScreen(
-                  friendId: state.pathParameters['friendId'] ??
-                      '' // TODO: '' - не есть хорошо
-              ),
+              pageBuilder: (context, state) => transitionSlideWrapperForPage(
+                  FriendScreen(friendId: state.pathParameters['friendId'] ?? '' // TODO: '' - не есть хорошо
+                      ),
+                  state),
             ),
-          ],),
+          ],
+        ),
         GoRoute(
           path: "profilePage",
           name: "profilePage",
-          builder: (context, state) => const ProfilePage(),
+          pageBuilder: (context, state) => transitionSlideWrapperForPage(const ProfilePage(), state),
         ),
       ],
     ),
     GoRoute(
       name: "friendRequestsScreen",
       path: "/friendRequestsScreen",
-      builder: (context, state) => const FriendRequestsScreen(),
+      pageBuilder: (context, state) => transitionSlideWrapperForPage(const FriendRequestsScreen(), state),
     ),
-
   ],
 );

@@ -138,10 +138,7 @@ class _FriendsPageViewState extends State<_FriendsPageView> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (context) => const AddNewFriendWidget());
+                            context.pushNamed('addNewFriendScreen');
                           },
                           child: const Icon(Icons.add),
                         ),
@@ -277,44 +274,54 @@ class FriendsRollWidgetState extends State<FriendsRollWidget> {
                             child: Center(
                               child: widget.friends[index].avatarUrl != null
                                   ? CircleAvatar(
-                                    backgroundColor: Colors.transparent,
+                                      backgroundColor: Colors.transparent,
                                       backgroundImage: NetworkImage(widget.friends[index].avatarUrl!),
                                       radius: 150.r,
                                     )
                                   : SvgPicture.asset(
-                                  'assets/images/star_flock.svg',
-                                  width: 160.w,
-                                ),
+                                      'assets/images/star_flock.svg',
+                                      width: 160.w,
+                                    ),
                             ),
                           ),
                         ),
                         SizedBox(
                           height: 20.h,
                         ),
-                        Text(
-                          '${widget.friends[index].username}',
-                          style: TextStyle(color: Color(0xFF4B1017), fontSize: 34.sp),
-                          overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 40.h,
+                          child: Text(
+                            '${widget.friends[index].username}',
+                            style: TextStyle(color: Color(0xFF4B1017), fontSize: 34.sp),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         SizedBox(
                           height: 20.h,
                         ),
                         if (widget.friends[index].profileDescription != null)
-                          Text(
-                            '${widget.friends[index].profileDescription}',
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Color(0xFF4B1017),
+                          SizedBox(
+                            height: 60.h,
+                            child: Text(
+                              '${widget.friends[index].profileDescription}',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Color(0xFF4B1017),
+                              ),
                             ),
                           ),
                       ],
                     ),
-                    if (widget.friends[index].location != null) Text(widget.friends[index].location.toString(),  maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Color(0xFF4B1017),
-                            ),)
+                    if (widget.friends[index].location != null)
+                      Text(
+                        widget.friends[index].location.toString(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Color(0xFF4B1017),
+                        ),
+                      )
                   ],
                 ),
               ),
@@ -325,7 +332,6 @@ class FriendsRollWidgetState extends State<FriendsRollWidget> {
     );
   }
 }
-
 
 class FriendsRollLoadingWidget extends StatefulWidget {
   const FriendsRollLoadingWidget({
@@ -351,29 +357,29 @@ class FriendsRollLoadingWidgetState extends State<FriendsRollLoadingWidget> {
 
   @override
   Widget build(BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 40.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: heightContainer,
-              child: PageView.builder(
-                controller: PageController(initialPage: 0, viewportFraction: 0.7.r),
-                onPageChanged: (val) {
-                  setState(() {
-                    _index = val;
-                  });
-                },
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return _buildFriendPanel(context, index);
-                },
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: heightContainer,
+            child: PageView.builder(
+              controller: PageController(initialPage: 0, viewportFraction: 0.7.r),
+              onPageChanged: (val) {
+                setState(() {
+                  _index = val;
+                });
+              },
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return _buildFriendPanel(context, index);
+              },
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 
   Stack _buildFriendPanel(BuildContext context, int index) {
@@ -383,13 +389,11 @@ class FriendsRollLoadingWidgetState extends State<FriendsRollLoadingWidget> {
           alignment: Alignment.center,
           child: Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomRight, stops: [
-                  0.0,
-                  1
-                ], colors: [
-                 Colors.grey,
-                 Colors.white24
-                ]),
+                gradient: LinearGradient(
+                    begin: Alignment.center,
+                    end: Alignment.bottomRight,
+                    stops: [0.0, 1],
+                    colors: [Colors.grey, Colors.white24]),
                 borderRadius: BorderRadius.circular(30).r),
             child: AnimatedContainer(
               width: 250.r,
@@ -419,13 +423,10 @@ class FriendsRollLoadingWidgetState extends State<FriendsRollLoadingWidget> {
                                           bottomRight: Radius.circular(10))
                                       .r
                                   : BorderRadius.circular(70).r),
-                        
                         ),
                       ),
-                  
                     ],
                   ),
-                 
                 ],
               ),
             ),

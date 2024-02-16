@@ -47,8 +47,7 @@ class _HomePageViewState extends State<_HomePageView> {
 
   @override
   void initState() {
-    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
-    
+    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));    
     super.initState();
   }
 

@@ -7,6 +7,7 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart'
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
+import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
 import '../home_page/widgets/create_new_meet_screen.dart';
@@ -40,7 +41,7 @@ class _MeetPageView extends StatelessWidget {
     return BlocBuilder<MeetDataBloc, MeetDataState>(
       builder: (context, state) {
         return state.when(init: () {
-          return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
+          return const LoadingScreen(); // TODO: изменить на реальный скрин
         }, loaded: (List<MeetEntity> meetsEntities) {
           return _loadedMeetsEntities(meetsEntities, context);
         }, error: (e) {

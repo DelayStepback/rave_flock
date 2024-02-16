@@ -8,6 +8,7 @@ import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_request
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_state.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
+import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
 import 'package:rave_flock/services/auth_service.dart';
 import '../error_screen/error_screen.dart';
 
@@ -38,7 +39,7 @@ class _FriendRequestsScreen extends StatelessWidget {
           builder: (context, state) {
             return state.when(
                 init: () {
-                  return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
+                  return const LoadingScreen();
                 },
                 loaded: (friendRequestsEntities) {
                   return _FriendRequestsLoadedBody(

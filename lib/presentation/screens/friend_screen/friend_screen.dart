@@ -4,8 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
+import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
+import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
 import '../../../data/models/user/user_model.dart';
@@ -36,18 +42,19 @@ class _FriendScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
+      decoration:
+          BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [const Color(0xFF5B1828), Colors.black])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          leading: GestureDetector(onTap: () => context.pop(), child: Icon(Icons.arrow_back_ios)),
+          leading: GestureDetector(onTap: () => context.pop(), child: const Icon(Icons.arrow_back_ios)),
         ),
         body: SafeArea(
           child: BlocBuilder<FriendsDataBloc, FriendsDataState>(
             builder: (context, state) {
               return state.when(
                 init: () {
-                  return const CircularProgressIndicator(); // TODO: изменить на реальный скрин
+                  return const LoadingScreen();
                 },
                 loaded: (friends) {
                   UserModel friendUserModel = friends.firstWhere((element) => element.userId == friendId);
@@ -69,7 +76,7 @@ class _FriendScreen extends StatelessWidget {
                             height: 20.h,
                           ),
                           Text(friendUserModel.username.toString(), style: TextStyle(fontSize: 30.sp)),
-                    
+
                           if (friendUserModel.fullName != null)
                             Padding(
                               padding: const EdgeInsets.only(top: 12.0),
@@ -95,14 +102,14 @@ class _FriendScreen extends StatelessWidget {
                                     width: 66.w,
                                     height: 51.h,
                                     decoration: ShapeDecoration(
-                                      color: Color(0x1EB71B1B),
+                                      color: const Color(0x1EB71B1B),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(28),
                                       ),
                                     ),
                                     child: const Center(child: Text('##')),
                                   ),
-                                  Text('FRIENDS')
+                                  const Text('FRIENDS')
                                 ],
                               ),
                               SizedBox(
@@ -114,14 +121,14 @@ class _FriendScreen extends StatelessWidget {
                                     width: 66.w,
                                     height: 51.h,
                                     decoration: ShapeDecoration(
-                                      color: Color(0x1EB71B1B),
+                                      color: const Color(0x1EB71B1B),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(28),
                                       ),
                                     ),
                                     child: const Center(child: Text('##')),
                                   ),
-                                  Text('RAVES')
+                                  const Text('RAVES')
                                 ],
                               ),
                             ],
@@ -129,16 +136,25 @@ class _FriendScreen extends StatelessWidget {
                           SizedBox(
                             height: 28.h,
                           ),
-                    
+
                           GestureDetector(
                             onTap: () {
-                              // TODO:
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return SafeArea(
+                                      child: BlocProvider.value(
+                                          value: GetIt.I<MeetDataBloc>(),
+                                          child: _ModalBottomSelectMeet(friendID: friendId)));
+                                },
+                              );
                             },
                             child: Container(
                               width: 241.w,
                               height: 40.h,
                               decoration: ShapeDecoration(
-                                color: Color(0x1EB71B1B),
+                                color: const Color(0x1EB71B1B),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(28),
                                 ),
@@ -159,7 +175,7 @@ class _FriendScreen extends StatelessWidget {
                               width: 241.w,
                               height: 40.h,
                               decoration: ShapeDecoration(
-                                color: Color(0x1EB71B1B),
+                                color: const Color(0x1EB71B1B),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(28),
                                 ),
@@ -170,7 +186,7 @@ class _FriendScreen extends StatelessWidget {
                           SizedBox(
                             height: 28.h,
                           ),
-                    
+
                           // Center(child: Text('$friendUserModel'))
                         ],
                       ),
@@ -183,6 +199,36 @@ class _FriendScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ModalBottomSelectMeet extends StatelessWidget {
+  const _ModalBottomSelectMeet({super.key, required this.friendID});
+  final String friendID;
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      heightFactor: 0.5,
+      child: Center(child: BlocBuilder<MeetDataBloc, MeetDataState>(builder: (context, state) {
+        return state.when(
+          init: () {
+            BlocProvider.of<MeetDataBloc>(context).add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
+            return const LoadingScreen();
+          },
+          loaded: (List<MeetEntity> allMeetData) {
+            return MeetRollWidget(
+              friendID: friendID,
+              meetsEntities: allMeetData,
+              meetRollWidgetEnum: MeetRollWidgetEnum.createdByUser,
+              isInvitingButton: true,
+            );
+          },
+          error: (String error) {
+            return ErrorScreen(error: error);
+          },
+        );
+      })),
     );
   }
 }

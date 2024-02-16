@@ -23,8 +23,9 @@ abstract class MeetRepository {
 
   Future<void> createGuest(GuestModel guestModel);
 
-  Future<void> changeGuestStatus(
-      int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
+  Future<void> inviteToMeet(String friendID, int meetId);
+
+  Future<void> changeGuestStatus(int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
 
   Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId);
 

@@ -54,13 +54,13 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   @override
   Future<List<MeetModel>> fetchUserSearchMeets(String searchTitle, String userId) async {
     print(userId);
-    final data = await supabase.from('guests').select('meets(*)').ilike('meets.title', '%$searchTitle%').eq('user_id', userId);
+    final data =
+        await supabase.from('guests').select('meets(*)').ilike('meets.title', '%$searchTitle%').eq('user_id', userId);
     print(data.toString());
     List<MeetModel> userMeets = [];
     for (var json in data) {
-      if (json['meets'] != null){
-      userMeets.add(MeetModel.fromJson(json['meets']));
-
+      if (json['meets'] != null) {
+        userMeets.add(MeetModel.fromJson(json['meets']));
       }
     }
     return userMeets;
@@ -198,5 +198,14 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
     MeetModel meetModel = MeetModel.fromJson(data);
     print('meetFetched IN MEET_IMPL: $meetModel');
     return meetModel;
+  }
+
+  @override
+  Future<void> inviteToMeet(String friendID, int meetId) async {
+    print(friendID);
+    print(meetId.toString());
+    await supabase
+        .from('guests')
+        .insert({'status': GuestChooseAtMeetEnum.none.name, 'meet_id': meetId, 'user_id': friendID});
   }
 }

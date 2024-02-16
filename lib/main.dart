@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:rave_flock/injection_container.dart';
 import 'package:rave_flock/presentation/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -36,7 +37,7 @@ class ScreenUtilApp extends StatelessWidget {
       designSize: Size(587, 1176),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MyApp(),
+      child: OverlaySupport.global(child: MyApp()),
     );
   }
 }

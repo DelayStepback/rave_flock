@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/domain/entity/guest_entity/guest_entity.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/domain/repositories/meet_repository.dart';
+import 'package:rave_flock/presentation/widget/notification_toast.dart';
 import 'package:rave_flock/services/auth_service.dart';
 import 'meet_data_event.dart';
 import 'meet_data_state.dart';
@@ -22,6 +24,34 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     on<MeetDataUpdateCurrMeetBasket>(_onMeetDataUpdateCurrMeetBasket);
     on<MeetDataUpdateCurrMeetGuests>(_onMeetDataUpdateCurrMeetGuests);
     on<MeetDataSearchEvent>(_onMeetDataSearchEvent);
+    on<MeetDataSendInviteEvent>(_onMeetDataSendInviteEvent);
+  }
+
+  Future<void> _onMeetDataSendInviteEvent(MeetDataSendInviteEvent event, emit) async {
+    try {
+      await _meetRepository.inviteToMeet(event.userId, event.meetId);
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'Invite sended',
+            needShowSmile: true,
+            emoji: '👍',
+          );
+        },
+        duration: const Duration(seconds: 3),
+      );
+    } catch (e) {
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'It seems like you are already sending invite...',
+            needShowSmile: true,
+            emoji: '🤷‍♂️',
+          );
+        },
+        duration: const Duration(seconds: 2),
+      );
+    }
   }
 
   Future<void> _onMeetDataSearchEvent(MeetDataSearchEvent event, emit) async {
