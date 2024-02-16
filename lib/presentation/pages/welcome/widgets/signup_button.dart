@@ -35,7 +35,7 @@ class SignUpButton extends StatelessWidget {
         if (checkValid) {
           try {
             await AuthService.signUpWithEmail(email, password).then((value) => context.go("/setUsername"));
-          } on AuthException catch (error) {
+          } on AuthException {
             showOverlayNotification(
               (context) {
                 return const NotificationToast(
@@ -61,8 +61,8 @@ class SignUpButton extends StatelessWidget {
         }
       },
       child: !checkValid
-          ? Text('Далее')
-          : Text(
+          ? const Text('Далее')
+          : const Text(
               'Далее',
               style: TextStyle(color: Colors.white),
             ),

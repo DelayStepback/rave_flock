@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
-import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
 import 'package:rave_flock/presentation/widget/notification_toast.dart';
 import 'package:rave_flock/services/auth_service.dart';
 

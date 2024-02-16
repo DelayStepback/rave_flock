@@ -16,7 +16,6 @@ import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import '../../../services/auth_service.dart';
 import '../../bloc/friends_data_bloc/friends_data_bloc.dart';
 import '../../bloc/friends_data_bloc/friends_data_state.dart';
-import 'widgets/add_new_friend_widget.dart';
 
 class FriendsPage extends StatelessWidget {
   const FriendsPage({super.key});

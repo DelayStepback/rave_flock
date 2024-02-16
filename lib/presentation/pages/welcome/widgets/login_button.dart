@@ -56,7 +56,7 @@ class LoginButton extends StatelessWidget {
                 }
               },
             );
-          } on AuthException catch (error) {
+          } on AuthException {
             showOverlayNotification(
               (context) {
                 return const NotificationToast(
