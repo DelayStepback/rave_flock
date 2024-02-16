@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,10 +76,16 @@ class _ProfilePageView extends StatelessWidget {
                   return Column(
                     children: [
                       userModel.avatarUrl != null
-                          ? CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              backgroundImage: NetworkImage(userModel.avatarUrl!),
-                              radius: 130.r,
+                          ? SizedBox(
+                              width: 200.w,
+                              height: 200.h,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(120).r,
+                                child: CachedNetworkImage(
+                                  imageUrl: userModel.avatarUrl!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             )
                           : SvgPicture.asset(
                               'assets/images/star_flock.svg',

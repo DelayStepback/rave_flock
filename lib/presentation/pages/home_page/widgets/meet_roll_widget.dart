@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -206,10 +207,14 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
                                 itemBuilder: (_, indexGuest) {
                                   return widget.meetsEntities[index].usersGuests?[indexGuest].avatarUrl == null
                                       ? const Icon(Icons.person)
-                                      : CircleAvatar(
-                                          backgroundColor: Colors.white,
-                                          backgroundImage: NetworkImage(
-                                              widget.meetsEntities[index].usersGuests![indexGuest].avatarUrl!));
+                                      :
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(70).r,
+                                        child: CachedNetworkImage(
+                                          imageUrl: widget.meetsEntities[index].usersGuests![indexGuest].avatarUrl!,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
                                 },
                               )
                             : const SizedBox.shrink(),
