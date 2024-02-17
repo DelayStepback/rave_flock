@@ -23,4 +23,9 @@ class MeetDataEvent with _$MeetDataEvent {
   const factory MeetDataEvent.updateCurrMeetGuests(int meetId) = MeetDataUpdateCurrMeetGuests;
 
 
+  // Basket
+  const factory MeetDataEvent.takeThisItem(int meetId, int itemId, bool isTake) = MeetDataUserTakeThisItem;
+  const factory MeetDataEvent.useThisItem(int meetId, int itemId, bool isUse) = MeetDataUserUseThisItem;
+
+
 }

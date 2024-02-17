@@ -13,29 +13,22 @@ abstract class MeetRepository {
 
   Future<List<MeetModel>> fetchPublicMeets();
 
+  // Guests
   Future<List<GuestEntity>> fetchGuests(int meetId);
-
-  Future<MeetModel> addMeet(MeetModel meetModel);
-
-  Future<void> updateMeet(MeetModel meetModel);
-
-  Future<void> deleteMeet(int meetId);
-
   Future<void> createGuest(GuestModel guestModel);
-
   Future<void> inviteToMeet(String friendID, int meetId);
-
   Future<void> changeGuestStatus(int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
 
+  // Meets
+  Future<MeetModel> addMeet(MeetModel meetModel);
+  Future<void> updateMeet(MeetModel meetModel);
+  Future<void> deleteMeet(int meetId);
+
+  // Basket
   Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId);
-
   Future<void> createBasketToMeet(int meetId);
-
   Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel);
-
   Future<void> removeBasketItem(BasketItemModel basketItemModel);
-
   Future<void> userTakeThisItem(bool isTake, int basketItemId, String userId);
-
   Future<void> userUseThisItem(bool isTake, int basketItemId, String userId);
 }

@@ -25,6 +25,9 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     on<MeetDataUpdateCurrMeetGuests>(_onMeetDataUpdateCurrMeetGuests);
     on<MeetDataSearchEvent>(_onMeetDataSearchEvent);
     on<MeetDataSendInviteEvent>(_onMeetDataSendInviteEvent);
+
+    on<MeetDataUserTakeThisItem>(_onMeetDataUserTakeThisItem);
+    on<MeetDataUserUseThisItem>(_onMeetDataUserUseThisItem);
   }
 
   Future<void> _onMeetDataSendInviteEvent(MeetDataSendInviteEvent event, emit) async {
@@ -242,6 +245,58 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
           error: (e) {},
         )
         ?.whenComplete(() => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
+  }
+
+  Future<void> _onMeetDataUserTakeThisItem(MeetDataUserTakeThisItem event, emit) async {
+    useOrTakeThisItem(
+      isTake: event.isTake,
+      itemId: event.itemId,
+      meetId: event.meetId,
+      repositoryAction: (isTake, itemId, userId) => _meetRepository.userTakeThisItem(isTake, itemId, userId),
+    );
+  }
+
+  Future<void> _onMeetDataUserUseThisItem(MeetDataUserUseThisItem event, emit) async {
+    useOrTakeThisItem(
+      isTake: event.isUse,
+      itemId: event.itemId,
+      meetId: event.meetId,
+      repositoryAction: (isTake, itemId, userId) => _meetRepository.userUseThisItem(isTake, itemId, userId),
+    );
+  }
+
+  void useOrTakeThisItem(
+      {required bool isTake,
+      required int itemId,
+      required int meetId,
+      required Function(bool, int, String) repositoryAction}) async {
+    List<MeetEntity> newMeetEntities = [];
+    await state
+        .when(
+            init: () {},
+            loaded: (meetEntities) async {
+              int ind = meetEntities.indexWhere((element) => element.meetModel.meetId == meetId);
+              try {
+                await repositoryAction(isTake, itemId, AuthService.getUserId() ?? '');
+                newMeetEntities = [
+                  ...meetEntities.sublist(0, ind),
+                  meetEntities[ind].copyWith(allBasketData: await _meetRepository.fetchBasketItemsOfMeet(meetId)),
+                  ...meetEntities.sublist(ind + 1)
+                ];
+              } catch (e) {
+                emit(MeetDataState.error(error: e.toString()));
+              }
+            },
+            error: (error) async {})
+        ?.whenComplete(
+      () {
+        if (newMeetEntities.isNotEmpty) {
+          emit(
+            MeetDataState.loaded(allMeetData: newMeetEntities),
+          );
+        }
+      },
+    );
   }
 
   @override

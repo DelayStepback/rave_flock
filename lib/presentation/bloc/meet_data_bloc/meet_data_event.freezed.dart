@@ -28,6 +28,8 @@ mixin _$MeetDataEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,8 @@ mixin _$MeetDataEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,8 @@ mixin _$MeetDataEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +80,8 @@ mixin _$MeetDataEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +96,8 @@ mixin _$MeetDataEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,6 +112,8 @@ mixin _$MeetDataEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +214,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return initialize(userId);
   }
@@ -219,6 +233,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return initialize?.call(userId);
   }
@@ -236,6 +252,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -260,6 +278,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return initialize(this);
   }
@@ -277,6 +297,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return initialize?.call(this);
   }
@@ -294,6 +316,8 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -399,6 +423,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return add(meetModel);
   }
@@ -416,6 +442,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return add?.call(meetModel);
   }
@@ -433,6 +461,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -457,6 +487,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return add(this);
   }
@@ -474,6 +506,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return add?.call(this);
   }
@@ -491,6 +525,8 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -585,6 +621,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return delete(meetId);
   }
@@ -602,6 +640,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return delete?.call(meetId);
   }
@@ -619,6 +659,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -643,6 +685,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return delete(this);
   }
@@ -660,6 +704,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return delete?.call(this);
   }
@@ -677,6 +723,8 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -745,6 +793,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return dispose();
   }
@@ -762,6 +812,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return dispose?.call();
   }
@@ -779,6 +831,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -803,6 +857,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return dispose(this);
   }
@@ -820,6 +876,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return dispose?.call(this);
   }
@@ -837,6 +895,8 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -934,6 +994,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return search(userId, titleLike);
   }
@@ -951,6 +1013,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return search?.call(userId, titleLike);
   }
@@ -968,6 +1032,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -992,6 +1058,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return search(this);
   }
@@ -1009,6 +1077,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return search?.call(this);
   }
@@ -1026,6 +1096,8 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1096,6 +1168,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return unSearch();
   }
@@ -1113,6 +1187,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return unSearch?.call();
   }
@@ -1130,6 +1206,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (unSearch != null) {
@@ -1154,6 +1232,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return unSearch(this);
   }
@@ -1171,6 +1251,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return unSearch?.call(this);
   }
@@ -1188,6 +1270,8 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (unSearch != null) {
@@ -1286,6 +1370,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return sendInvite(userId, meetId);
   }
@@ -1303,6 +1389,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return sendInvite?.call(userId, meetId);
   }
@@ -1320,6 +1408,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (sendInvite != null) {
@@ -1344,6 +1434,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return sendInvite(this);
   }
@@ -1361,6 +1453,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return sendInvite?.call(this);
   }
@@ -1378,6 +1472,8 @@ class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (sendInvite != null) {
@@ -1475,6 +1571,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return updateCurrMeetInfo(meetId);
   }
@@ -1492,6 +1590,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return updateCurrMeetInfo?.call(meetId);
   }
@@ -1509,6 +1609,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -1533,6 +1635,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return updateCurrMeetInfo(this);
   }
@@ -1550,6 +1654,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return updateCurrMeetInfo?.call(this);
   }
@@ -1567,6 +1673,8 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -1666,6 +1774,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return updateCurrMeetBasket(meetId);
   }
@@ -1683,6 +1793,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return updateCurrMeetBasket?.call(meetId);
   }
@@ -1700,6 +1812,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1724,6 +1838,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return updateCurrMeetBasket(this);
   }
@@ -1741,6 +1857,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return updateCurrMeetBasket?.call(this);
   }
@@ -1758,6 +1876,8 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1858,6 +1978,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
   }) {
     return updateCurrMeetGuests(meetId);
   }
@@ -1875,6 +1997,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
   }) {
     return updateCurrMeetGuests?.call(meetId);
   }
@@ -1892,6 +2016,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetGuests != null) {
@@ -1916,6 +2042,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
   }) {
     return updateCurrMeetGuests(this);
   }
@@ -1933,6 +2061,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
   }) {
     return updateCurrMeetGuests?.call(this);
   }
@@ -1950,6 +2080,8 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetGuests != null) {
@@ -1967,5 +2099,443 @@ abstract class MeetDataUpdateCurrMeetGuests implements MeetDataEvent {
   @JsonKey(ignore: true)
   _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<
           _$MeetDataUpdateCurrMeetGuestsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUserTakeThisItemImplCopyWith<$Res> {
+  factory _$$MeetDataUserTakeThisItemImplCopyWith(
+          _$MeetDataUserTakeThisItemImpl value,
+          $Res Function(_$MeetDataUserTakeThisItemImpl) then) =
+      __$$MeetDataUserTakeThisItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int meetId, int itemId, bool isTake});
+}
+
+/// @nodoc
+class __$$MeetDataUserTakeThisItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUserTakeThisItemImpl>
+    implements _$$MeetDataUserTakeThisItemImplCopyWith<$Res> {
+  __$$MeetDataUserTakeThisItemImplCopyWithImpl(
+      _$MeetDataUserTakeThisItemImpl _value,
+      $Res Function(_$MeetDataUserTakeThisItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meetId = null,
+    Object? itemId = null,
+    Object? isTake = null,
+  }) {
+    return _then(_$MeetDataUserTakeThisItemImpl(
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == isTake
+          ? _value.isTake
+          : isTake // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUserTakeThisItemImpl implements MeetDataUserTakeThisItem {
+  const _$MeetDataUserTakeThisItemImpl(this.meetId, this.itemId, this.isTake);
+
+  @override
+  final int meetId;
+  @override
+  final int itemId;
+  @override
+  final bool isTake;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.takeThisItem(meetId: $meetId, itemId: $itemId, isTake: $isTake)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUserTakeThisItemImpl &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
+            (identical(other.itemId, itemId) || other.itemId == itemId) &&
+            (identical(other.isTake, isTake) || other.isTake == isTake));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, meetId, itemId, isTake);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUserTakeThisItemImplCopyWith<_$MeetDataUserTakeThisItemImpl>
+      get copyWith => __$$MeetDataUserTakeThisItemImplCopyWithImpl<
+          _$MeetDataUserTakeThisItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
+  }) {
+    return takeThisItem(meetId, itemId, isTake);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
+  }) {
+    return takeThisItem?.call(meetId, itemId, isTake);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
+    required TResult orElse(),
+  }) {
+    if (takeThisItem != null) {
+      return takeThisItem(meetId, itemId, isTake);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
+  }) {
+    return takeThisItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
+  }) {
+    return takeThisItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
+    required TResult orElse(),
+  }) {
+    if (takeThisItem != null) {
+      return takeThisItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUserTakeThisItem implements MeetDataEvent {
+  const factory MeetDataUserTakeThisItem(
+          final int meetId, final int itemId, final bool isTake) =
+      _$MeetDataUserTakeThisItemImpl;
+
+  int get meetId;
+  int get itemId;
+  bool get isTake;
+  @JsonKey(ignore: true)
+  _$$MeetDataUserTakeThisItemImplCopyWith<_$MeetDataUserTakeThisItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUserUseThisItemImplCopyWith<$Res> {
+  factory _$$MeetDataUserUseThisItemImplCopyWith(
+          _$MeetDataUserUseThisItemImpl value,
+          $Res Function(_$MeetDataUserUseThisItemImpl) then) =
+      __$$MeetDataUserUseThisItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int meetId, int itemId, bool isUse});
+}
+
+/// @nodoc
+class __$$MeetDataUserUseThisItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUserUseThisItemImpl>
+    implements _$$MeetDataUserUseThisItemImplCopyWith<$Res> {
+  __$$MeetDataUserUseThisItemImplCopyWithImpl(
+      _$MeetDataUserUseThisItemImpl _value,
+      $Res Function(_$MeetDataUserUseThisItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? meetId = null,
+    Object? itemId = null,
+    Object? isUse = null,
+  }) {
+    return _then(_$MeetDataUserUseThisItemImpl(
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == isUse
+          ? _value.isUse
+          : isUse // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUserUseThisItemImpl implements MeetDataUserUseThisItem {
+  const _$MeetDataUserUseThisItemImpl(this.meetId, this.itemId, this.isUse);
+
+  @override
+  final int meetId;
+  @override
+  final int itemId;
+  @override
+  final bool isUse;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.useThisItem(meetId: $meetId, itemId: $itemId, isUse: $isUse)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUserUseThisItemImpl &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
+            (identical(other.itemId, itemId) || other.itemId == itemId) &&
+            (identical(other.isUse, isUse) || other.isUse == isUse));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, meetId, itemId, isUse);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUserUseThisItemImplCopyWith<_$MeetDataUserUseThisItemImpl>
+      get copyWith => __$$MeetDataUserUseThisItemImplCopyWithImpl<
+          _$MeetDataUserUseThisItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(int meetId, int itemId, bool isTake) takeThisItem,
+    required TResult Function(int meetId, int itemId, bool isUse) useThisItem,
+  }) {
+    return useThisItem(meetId, itemId, isUse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult? Function(int meetId, int itemId, bool isUse)? useThisItem,
+  }) {
+    return useThisItem?.call(meetId, itemId, isUse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(int meetId, int itemId, bool isTake)? takeThisItem,
+    TResult Function(int meetId, int itemId, bool isUse)? useThisItem,
+    required TResult orElse(),
+  }) {
+    if (useThisItem != null) {
+      return useThisItem(meetId, itemId, isUse);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataUserTakeThisItem value) takeThisItem,
+    required TResult Function(MeetDataUserUseThisItem value) useThisItem,
+  }) {
+    return useThisItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult? Function(MeetDataUserUseThisItem value)? useThisItem,
+  }) {
+    return useThisItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataUserTakeThisItem value)? takeThisItem,
+    TResult Function(MeetDataUserUseThisItem value)? useThisItem,
+    required TResult orElse(),
+  }) {
+    if (useThisItem != null) {
+      return useThisItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUserUseThisItem implements MeetDataEvent {
+  const factory MeetDataUserUseThisItem(
+          final int meetId, final int itemId, final bool isUse) =
+      _$MeetDataUserUseThisItemImpl;
+
+  int get meetId;
+  int get itemId;
+  bool get isUse;
+  @JsonKey(ignore: true)
+  _$$MeetDataUserUseThisItemImplCopyWith<_$MeetDataUserUseThisItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

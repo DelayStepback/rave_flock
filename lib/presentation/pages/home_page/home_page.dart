@@ -104,10 +104,8 @@ class _HomePageViewState extends State<_HomePageView> {
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
                       color: Colors.transparent,
-                      child: Center(child: Text('RAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\n')),
+                      child: Center(child: Text('RAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK')),
                     ),
-                    title: Text('RAVE FLOCK'),
-                    centerTitle: true
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -162,7 +160,7 @@ class _HomePageViewState extends State<_HomePageView> {
               meetRollWidgetEnum: meetRollWidgetEnum,
             );
           }
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         },
         error: (String error) {
           return Container();

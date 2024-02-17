@@ -51,7 +51,7 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
   Widget build(BuildContext context) {
     if (widget.meetsEntities.length > 0) {
       return Padding(
-        padding: const EdgeInsets.only(top: 40.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: Column(
           children: [
             Text(
@@ -59,7 +59,7 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
               style: TextStyle(fontSize: 28.sp),
             ),
             SizedBox(
-              height: 286,
+              height: 220,
               child: PageView.builder(
                 // physics: const RangeMaintainingScrollPhysics(),
                 controller: PageController(initialPage: 0, viewportFraction: 0.76.r),
