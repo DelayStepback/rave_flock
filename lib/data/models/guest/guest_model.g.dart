@@ -23,5 +23,6 @@ Map<String, dynamic> _$$GuestModelImplToJson(_$GuestModelImpl instance) =>
 const _$GuestChooseAtMeetEnumEnumMap = {
   GuestChooseAtMeetEnum.none: 'none',
   GuestChooseAtMeetEnum.accepted: 'accepted',
+  GuestChooseAtMeetEnum.organizator: 'organizator',
   GuestChooseAtMeetEnum.denied: 'denied',
 };

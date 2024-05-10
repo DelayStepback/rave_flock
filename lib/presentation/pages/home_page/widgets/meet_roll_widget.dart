@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/entity/guest_entity/guest_entity.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
@@ -9,14 +10,14 @@ import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart
 
 enum MeetRollWidgetEnum { allAccepted, createdByUser, invites }
 
-String makeMeetRollGroupName(MeetRollWidgetEnum meetRollWidgetEnum) {
+String makeMeetRollGroupName(BuildContext context, MeetRollWidgetEnum meetRollWidgetEnum) {
   switch (meetRollWidgetEnum) {
     case MeetRollWidgetEnum.allAccepted:
-      return 'Принятые мероприятия';
+      return context.S.accepted;
     case MeetRollWidgetEnum.createdByUser:
-      return 'Созданные вами';
+      return context.S.created_by_you;
     case MeetRollWidgetEnum.invites:
-      return 'Приглашения';
+      return context.S.invitations;
   }
 }
 
@@ -54,7 +55,7 @@ class MeetRollWidgetState extends State<MeetRollWidget> {
         child: Column(
           children: [
             Text(
-              makeMeetRollGroupName(widget.meetRollWidgetEnum),
+              makeMeetRollGroupName(context, widget.meetRollWidgetEnum),
               style: TextStyle(fontSize: 28.sp),
             ),
             SizedBox(

@@ -81,27 +81,43 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
         .eq('meet_id', meetId);
   }
 
+    @override
+  Future<void> deleteGuest(int meetId, String userId) async {
+     await supabase
+        .from('guests')
+        .delete()
+        .eq('user_id', userId)
+        .eq('meet_id', meetId).select();
+  }
+
   @override
   Future<void> createBasketToMeet(int meetId) async {
     await supabase.from('meets').update({'contains_basket': true}).eq('meet_id', meetId);
   }
 
   @override
-  Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel) async {
-    final json = basketItemModel.toJson();
+  Future<BasketItemModel?> addToBasketItem(BasketItemModel basketItemModel) async {
+    try {
+      final json = basketItemModel.toJson();
 
-    if (json['id'] == null) {
-      json.remove('id');
+      if (json['id'] == null) {
+        json.remove('id');
+      }
+      final newBasketItemJson = await supabase.from('basket_items').insert(json).select();
+      final newBasketItem = BasketItemModel.fromJson(newBasketItemJson[0]);
+      return _formBasketModelWithWhoWillUse(newBasketItem);
+    } catch (e) {
+      return null;
     }
-
-    final newBasketItemJson = await supabase.from('basket_items').insert(json).select();
-    final newBasketItem = BasketItemModel.fromJson(newBasketItemJson[0]);
-    return newBasketItem;
   }
 
   @override
   Future<void> deleteMeet(int meetId) async {
-    await supabase.from('meets').delete().eq('meet_id', meetId);
+    try {
+      await supabase.from('meets').delete().eq('meet_id', meetId);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -109,7 +125,8 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
     final data = await supabase.from('basket_items').select().eq('meet_id', meetId);
     List<BasketItemModel> basketItems = [];
     for (var json in data) {
-      basketItems.add(BasketItemModel.fromJson(json));
+      final basketItem = BasketItemModel.fromJson(json);
+      basketItems.add(await _formBasketModelWithWhoWillUse(basketItem));
     }
     return basketItems;
   }
@@ -149,16 +166,67 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   }
 
   @override
-  Future<void> userTakeThisItem(bool isTake, int basketItemId, String userId) async {
+  Future<BasketItemModel?> userTakeThisItem(bool isTake, int basketItemId, String userId) async {
     final data = await supabase.from('basket_items').select('grabbed_by_user_id').eq('id', basketItemId).single();
+
     final whoAlreadyGrab = data['grabbed_by_user_id'];
+
     if (whoAlreadyGrab == null && isTake) {
-      await supabase.from('basket_items').update({'grabbed_by_user_id': userId}).eq('id', basketItemId);
+      final data =
+          await supabase.from('basket_items').update({'grabbed_by_user_id': userId}).eq('id', basketItemId).select();
+      final basketItemModel = BasketItemModel.fromJson(data[0]);
+      return _formBasketModelWithWhoWillUse(basketItemModel);
     } else {
       if (whoAlreadyGrab == userId && !isTake) {
-        await supabase.from('basket_items').update({'grabbed_by_user_id': null}).eq('id', basketItemId);
+        final data =
+            await supabase.from('basket_items').update({'grabbed_by_user_id': null}).eq('id', basketItemId).select();
+        final basketItemModel = BasketItemModel.fromJson(data[0]);
+        return _formBasketModelWithWhoWillUse(basketItemModel);
       }
     }
+    return null;
+  }
+
+  @override
+  Future<BasketItemModel?> userUseThisItem(bool isTake, int basketItemId, String userId) async {
+    if (isTake) {
+      final data = await supabase
+          .from('basket_using_item_user_relationship')
+          .upsert({'item_id': basketItemId, 'user_id': userId}).select();
+
+      // select basket item
+
+      final basketItemModel = await supabase.from('basket_items').select().eq('id', basketItemId).single();
+      final parsedBasketItem = BasketItemModel.fromJson(basketItemModel);
+      return _formBasketModelWithWhoWillUse(parsedBasketItem);
+    } else {
+      final data = await supabase
+          .from('basket_using_item_user_relationship')
+          .delete()
+          .eq('user_id', userId)
+          .eq('item_id', basketItemId)
+          .select();
+      final basketItemModel = await supabase.from('basket_items').select().eq('id', basketItemId).single();
+      final parsedBasketItem = BasketItemModel.fromJson(basketItemModel);
+      return _formBasketModelWithWhoWillUse(parsedBasketItem);
+    }
+  }
+
+  Future<BasketItemModel> _formBasketModelWithWhoWillUse(BasketItemModel basketItem) async {
+    final usersIds = await _takeAllWhoWillUseThisItemUsersIds(basketItem.id ?? -1);
+    final basketItemModel = basketItem.copyWith(whoWillUseIds: usersIds);
+
+    return basketItemModel;
+  }
+
+  Future<List<String>> _takeAllWhoWillUseThisItemUsersIds(int basketItemId) async {
+    final data =
+        await supabase.from('basket_using_item_user_relationship').select('user_id').eq('item_id', basketItemId);
+    List<String> usersIds = [];
+    for (var json in data) {
+      usersIds.add(json['user_id']);
+    }
+    return usersIds;
   }
 
   String makeStringForIdArray(List<String> array) {
@@ -173,23 +241,12 @@ class MeetRepositorySupabaseImpl implements MeetRepository {
   }
 
   @override
-  Future<void> userUseThisItem(bool isTake, int basketItemId, String userId) async {
-    if (isTake) {
-      await supabase.from('basket_using_item_user_relationship').upsert({'item_id': basketItemId, 'user_id': userId});
-    } else {
-      if (isTake) {
-        await supabase
-            .from('basket_using_item_user_relationship')
-            .delete()
-            .eq('item_id', basketItemId)
-            .eq('user_id', userId);
-      }
-    }
-  }
-
-  @override
   Future<void> removeBasketItem(BasketItemModel basketItemModel) async {
-    await supabase.from('basket_items').delete().eq('id', basketItemModel.id);
+    try {
+      await supabase.from('basket_items').delete().eq('id', basketItemModel.id);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

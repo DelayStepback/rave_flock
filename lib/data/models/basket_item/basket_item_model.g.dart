@@ -30,6 +30,5 @@ Map<String, dynamic> _$$BasketItemModelImplToJson(
       'cost': instance.cost,
       'created_by_user_id': instance.createdByUserId,
       'grabbed_by_user_id': instance.grabbedByUserId,
-      'who_will_use_ids': instance.whoWillUseIds,
       'image_url': instance.imageUrl,
     };

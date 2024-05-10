@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:rave_flock/common/constants/enums/guest_choose_at_meet_enum.dart';
 import 'package:rave_flock/data/models/basket_item/basket_item_model.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/domain/entity/guest_entity/guest_entity.dart';
@@ -25,6 +26,212 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
     on<MeetDataUpdateCurrMeetGuests>(_onMeetDataUpdateCurrMeetGuests);
     on<MeetDataSearchEvent>(_onMeetDataSearchEvent);
     on<MeetDataSendInviteEvent>(_onMeetDataSendInviteEvent);
+
+    on<MeetDataAddBasketItem>(_onMeetDataAddBasketItem);
+    on<MeetDataDeleteBasketItem>(_onMeetDataDeleteBasketItem);
+
+    on<MeetDataUserUseThisBasketItem>(_onMeetDataUserUseThisBasketItem);
+    on<MeetDataUserTakeThisBasketItem>(_onMeetDataUserTakeThisBasketItem);
+    on<MeetDataUpdateGuestStatus>(_onMeetDataUpdateGuestStatus);
+    on<MeetDataUpdateRemoveGuestInvite>(_onMeetDataUpdateRemoveGuestInvite);
+    on<MeetDataMakeOrganizator>(_onMeetDataMakeOrganizator);
+    on<MeetDataUnMakeOrganizator>(_onMeetDataUnMakeOrganizator);
+  }
+
+  Future<void> _onMeetDataMakeOrganizator(MeetDataMakeOrganizator event, emit) async {
+    try {
+      if (event.currentChooseStatus == GuestChooseAtMeetEnum.accepted.name) {
+        await _meetRepository.changeGuestStatus(event.meetId, event.userId, GuestChooseAtMeetEnum.organizator);
+        add(MeetDataUpdateCurrMeetInfo(event.meetId));
+      } else {
+        showOverlayNotification(
+          (context) {
+            return const NotificationToast(
+              message: 'Нельзя сделать организатором, пока гость не принял приглашение',
+            );
+          },
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _onMeetDataUnMakeOrganizator(MeetDataUnMakeOrganizator event, emit) async {
+    try {
+      if (event.currentChooseStatus == GuestChooseAtMeetEnum.organizator.name) {
+        await _meetRepository.changeGuestStatus(event.meetId, event.userId, GuestChooseAtMeetEnum.accepted);
+        add(MeetDataUpdateCurrMeetInfo(event.meetId));
+      } else {
+        showOverlayNotification(
+          (context) {
+            return const NotificationToast(
+              message: 'Это не организатор.',
+            );
+          },
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _onMeetDataUpdateGuestStatus(MeetDataUpdateGuestStatus event, emit) async {
+    try {
+      await _meetRepository.changeGuestStatus(event.meetId, event.userId, event.guestChoose);
+      add(MeetDataUpdateCurrMeetInfo(event.meetId));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _onMeetDataUpdateRemoveGuestInvite(MeetDataUpdateRemoveGuestInvite event, emit) async {
+    try {
+      await _meetRepository.deleteGuest(event.meetId, event.userId);
+      add(MeetDataUpdateCurrMeetInfo(event.meetId));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _onMeetDataUserUseThisBasketItem(MeetDataUserUseThisBasketItem event, emit) async {
+    try {
+      print('asdfas');
+
+      final updatedBasketItem =
+          await _meetRepository.userUseThisItem(event.isTake, event.basketItem.id!, AuthService.getUserId() ?? '');
+
+      if (updatedBasketItem != null) {
+        print('$updatedBasketItem in use');
+        _changeCurrentMeetBasketItem(updatedBasketItem);
+      }
+    } catch (e) {
+      print(e);
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'Нельзя использовать это в корзине.',
+            needShowSmile: true,
+          );
+        },
+      );
+    }
+  }
+
+  Future<void> _onMeetDataUserTakeThisBasketItem(MeetDataUserTakeThisBasketItem event, emit) async {
+    try {
+      final updatedBasketItem =
+          await _meetRepository.userTakeThisItem(event.isTake, event.basketItem.id!, AuthService.getUserId() ?? '');
+
+      if (updatedBasketItem != null) {
+        _changeCurrentMeetBasketItem(updatedBasketItem);
+      }
+    } catch (e) {
+      print(e);
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'Нельзя использовать это в корзине.',
+            needShowSmile: true,
+          );
+        },
+      );
+    }
+  }
+
+  void _changeCurrentMeetBasketItem(BasketItemModel basketItem) {
+    state.maybeWhen(
+      loaded: (List<MeetEntity> allMeetData) {
+        int meetIndex = allMeetData.indexWhere((element) => element.meetModel.meetId == basketItem.meetId);
+
+        int? basketItemIndex =
+            allMeetData[meetIndex].allBasketData?.indexWhere((element) => element.id == basketItem.id);
+        if (basketItemIndex == null) {
+          return;
+        }
+
+        final newMeetEntity = allMeetData[meetIndex].copyWith(allBasketData: [
+          ...?allMeetData[meetIndex].allBasketData?.sublist(0, basketItemIndex),
+          basketItem,
+          ...?allMeetData[meetIndex].allBasketData?.sublist(basketItemIndex + 1)
+        ]);
+        emit(MeetDataState.loaded(
+            allMeetData: [...allMeetData.sublist(0, meetIndex), newMeetEntity, ...allMeetData.sublist(meetIndex + 1)]));
+      },
+      orElse: () {},
+    );
+  }
+
+  Future<void> _onMeetDataAddBasketItem(MeetDataAddBasketItem event, emit) async {
+    try {
+      final basketItem = await _meetRepository.addToBasketItem(event.basketItemModel);
+      if (basketItem != null) {
+        state.maybeWhen(
+          loaded: (List<MeetEntity> allMeetData) {
+            int meetIndex =
+                allMeetData.indexWhere((element) => element.meetModel.meetId == event.basketItemModel.meetId);
+            final newMeetEntity =
+                allMeetData[meetIndex].copyWith(allBasketData: [...?allMeetData[meetIndex].allBasketData, basketItem]);
+
+            emit(MeetDataState.loaded(allMeetData: [
+              ...allMeetData.sublist(0, meetIndex),
+              newMeetEntity,
+              ...allMeetData.sublist(meetIndex + 1)
+            ]));
+          },
+          orElse: () {},
+        );
+      }
+    } catch (e) {
+      print(e);
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'Нельзя добавить это в корзину.',
+            needShowSmile: true,
+            emoji: '🤷‍♂️',
+          );
+        },
+        duration: const Duration(seconds: 2),
+      );
+    }
+  }
+
+  Future<void> _onMeetDataDeleteBasketItem(MeetDataDeleteBasketItem event, emit) async {
+    try {
+      await _meetRepository.removeBasketItem(event.basketItemModel);
+      state.maybeWhen(
+        loaded: (List<MeetEntity> allMeetData) {
+          int meetIndex = allMeetData.indexWhere((element) => element.meetModel.meetId == event.basketItemModel.meetId);
+
+          final basketItemIndexForRemove =
+              allMeetData[meetIndex].allBasketData?.indexWhere((element) => element.id == event.basketItemModel.id);
+
+          final newMeetEntity = allMeetData[meetIndex].copyWith(allBasketData: [
+            ...?allMeetData[meetIndex].allBasketData?.sublist(0, basketItemIndexForRemove),
+            ...?allMeetData[meetIndex].allBasketData?.sublist(basketItemIndexForRemove ?? 0 + 1)
+          ]);
+
+          emit(MeetDataState.loaded(allMeetData: [
+            ...allMeetData.sublist(0, meetIndex),
+            newMeetEntity,
+            ...allMeetData.sublist(meetIndex + 1)
+          ]));
+        },
+        orElse: () {},
+      );
+    } catch (e) {
+      showOverlayNotification(
+        (context) {
+          return const NotificationToast(
+            message: 'Нельзя удалить это из корзины.',
+            needShowSmile: true,
+            emoji: '🤷‍♂️',
+          );
+        },
+        duration: const Duration(seconds: 2),
+      );
+    }
   }
 
   Future<void> _onMeetDataSendInviteEvent(MeetDataSendInviteEvent event, emit) async {
@@ -197,18 +404,22 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
 
   Future<void> _onMeetDataUpdateCurrMeetInfo(MeetDataUpdateCurrMeetInfo event, emit) async {
     List<MeetEntity> newMeetEntities = [];
-    await state
-        .when(
-          init: () {},
-          loaded: (meetEntities) async {
-            int ind = meetEntities.indexWhere((element) => element.meetModel.meetId == event.meetId);
-            final newMeet = await _meetRepository.fetchMeet(event.meetId);
-            newMeetEntities.addAll(meetEntities);
-            newMeetEntities[ind] = newMeetEntities[ind].copyWith(meetModel: newMeet);
-          },
-          error: (e) {},
-        )
-        ?.whenComplete(() => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
+    try {
+      await state
+          .when(
+            init: () {},
+            loaded: (meetEntities) async {
+              int ind = meetEntities.indexWhere((element) => element.meetModel.meetId == event.meetId);
+              final newMeet = await _meetRepository.fetchMeet(event.meetId);
+              final newGuests = await _meetRepository.fetchGuests(event.meetId);
+
+              newMeetEntities.addAll(meetEntities);
+              newMeetEntities[ind] = newMeetEntities[ind].copyWith(meetModel: newMeet, usersGuests: newGuests);
+            },
+            error: (e) {},
+          )
+          ?.whenComplete(() => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
+    } catch (e) {}
   }
 
   Future<void> _onMeetDataUpdateCurrMeetBasket(MeetDataUpdateCurrMeetBasket event, emit) async {
@@ -242,11 +453,5 @@ class MeetDataBloc extends Bloc<MeetDataEvent, MeetDataState> {
           error: (e) {},
         )
         ?.whenComplete(() => emit(MeetDataState.loaded(allMeetData: newMeetEntities)));
-  }
-
-  @override
-  Future<void> close() {
-    debugPrint('meet bloc closed');
-    return super.close();
   }
 }

@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/friends_data_bloc/friends_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/presentation/dialogs/are_you_sure_dialog.dart';
 import 'package:rave_flock/presentation/pages/home_page/widgets/meet_roll_widget.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
@@ -46,9 +48,7 @@ class _FriendScreen extends StatelessWidget {
           BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [const Color(0xFF5B1828), Colors.black])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: GestureDetector(onTap: () => context.pop(), child: const Icon(Icons.arrow_back_ios)),
-        ),
+        appBar: AppBar(),
         body: SafeArea(
           child: BlocBuilder<FriendsDataBloc, FriendsDataState>(
             builder: (context, state) {
@@ -109,7 +109,7 @@ class _FriendScreen extends StatelessWidget {
                                     ),
                                     child: const Center(child: Text('##')),
                                   ),
-                                  const Text('FRIENDS')
+                                  Text(context.S.friends)
                                 ],
                               ),
                               SizedBox(
@@ -128,7 +128,7 @@ class _FriendScreen extends StatelessWidget {
                                     ),
                                     child: const Center(child: Text('##')),
                                   ),
-                                  const Text('RAVES')
+                                  Text(context.S.raves)
                                 ],
                               ),
                             ],
@@ -159,7 +159,7 @@ class _FriendScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(28),
                                 ),
                               ),
-                              child: const Center(child: Text('INVITE TO RAVE')),
+                              child: Center(child: Text(context.S.invite_to_rave)),
                             ),
                           ),
                           SizedBox(
@@ -167,9 +167,19 @@ class _FriendScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              context.pop();
-                              GetIt.I<FriendsDataBloc>()
-                                  .add(FriendsDataEvent.removeFriend(AuthService.getUserId() ?? '', friendId));
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AreYouSureDialog(
+                                    onConfirm: () => {
+                                      context.goNamed('friendsPage'),
+                                      GetIt.I<FriendsDataBloc>()
+                                          .add(FriendsDataEvent.removeFriend(AuthService.getUserId() ?? '', friendId))
+                                    },
+                                    textContent: '${context.S.are_you_sure_delete} ${friendUserModel.username}?',
+                                  );
+                                },
+                              );
                             },
                             child: Container(
                               width: 241.w,
@@ -180,14 +190,12 @@ class _FriendScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(28),
                                 ),
                               ),
-                              child: const Center(child: Text('DELETE')),
+                              child: Center(child: Text(context.S.delete)),
                             ),
                           ),
                           SizedBox(
                             height: 28.h,
                           ),
-
-                          // Center(child: Text('$friendUserModel'))
                         ],
                       ),
                     ),

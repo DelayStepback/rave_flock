@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rave_flock/common/localization.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key, required this.error});
@@ -11,8 +12,8 @@ class ErrorScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('чтото пошло не так('),
-          Text('$error'),
+          Text(context.S.something_went_wrong),
+          // Text('$error'),
         ],
       )),
     );

@@ -18,7 +18,7 @@ class _MeetRollLoadingState extends State<MeetRollLoading> {
       child: Column(
         children: [
           Text(
-            makeMeetRollGroupName(widget.meetRollWidgetEnum),
+            makeMeetRollGroupName(context, widget.meetRollWidgetEnum),
             style: TextStyle(fontSize: 28.sp),
           ),
           SizedBox(

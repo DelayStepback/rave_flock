@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 
 import '../../../../../common/validation/validation.dart';
 import '../../../../../common/widget/text_input.dart';
@@ -99,8 +100,8 @@ class _InputWindowWidgetState extends State<InputWindowWidget> {
                   padding: const EdgeInsets.symmetric(vertical: 60.0).h,
                   child: Text(
                     widget.inputWindowWidgetType == InputWindowWidgetType.signUp
-                        ? 'Регистрация'
-                        : 'Вход',
+                        ? context.S.registration
+                        : context.S.login,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
@@ -110,10 +111,10 @@ class _InputWindowWidgetState extends State<InputWindowWidget> {
                     shrinkWrap: true,
                     children: [
                       TextInput(
-                        label: 'Почта',
+                        label: context.S.email,
                         controller: _emailController,
                         valid: _emailValid,
-                        errorText: "Пожалуйста, введите, корректную почту",
+                        errorText: context.S.please_enter_correct_email,
                         //Please enter a valid email
                         onChanged: _onChangeEmail,
                         keyboardType: TextInputType.emailAddress,
@@ -123,10 +124,10 @@ class _InputWindowWidgetState extends State<InputWindowWidget> {
                         height: 12,
                       ),
                       TextInput(
-                        label: 'Пароль',
+                        label: context.S.password,
                         controller: _passwordController,
                         valid: _passwordValid,
-                        errorText: "Пароль должен быть от 6 символов",
+                        errorText: context.S.password_must_be_greater_than_6_characters,
                         // Password must be greater than 5 symbols
                         onChanged: _onChangePassword,
                         keyboardType: TextInputType.visiblePassword,

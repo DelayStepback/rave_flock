@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/repositories/user_repository.dart';
 import 'package:rave_flock/services/auth_service.dart';
 
@@ -30,13 +31,13 @@ class _SetUsernameScreenState extends State<SetUsernameScreen> {
             children: [
               Visibility(
                   visible: usernameExists,
-                  child: Text('Кажется такое имя уже есть, попробуем ещё раз?')),
+                  child: Text(context.S.name_exists_retry)),
               SizedBox(
                 height: 20.h,
               ),
               TextFormField(
                 controller: _usernameController,
-                decoration: const InputDecoration(label: Text('Меня зовут...')),
+                decoration:  InputDecoration(label: Text('${context.S.my_name_is}...')),
                 onChanged: (value) {
                   setState(() {
                     usernameText = value;
@@ -73,7 +74,7 @@ class _SetUsernameScreenState extends State<SetUsernameScreen> {
                     child: SizedBox(
                       width: 150.w,
                       height: 43.h,
-                      child: Icon(Icons.home),
+                      child: const Icon(Icons.home),
                     )),
               ),
               SizedBox(

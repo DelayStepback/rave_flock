@@ -63,6 +63,8 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
   }
 
   Future<void> _redirect() async {
+    // Wait for splash screen animation to finish before redirecting
+    // Makes the transition feel more smooth
     await Future.delayed(const Duration(seconds: 2));
 
     final session = supabase.auth.currentSession;
@@ -77,7 +79,7 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
 
   void checkLoadingThenRouteHome(bool userDataAreInitState) {
     if (!userDataAreInitState) {
-      context.go("/routingPage");
+      context.goNamed("homePage");
     }
   }
 
@@ -138,14 +140,11 @@ class _SplashPageState extends State<_SplashPage> with SingleTickerProviderState
                 context.go("/setUsername");
               } else {
                 userDataAreInitState = false;
-                checkLoadingThenRouteHome(
-                    userDataAreInitState);
+                checkLoadingThenRouteHome(userDataAreInitState);
               }
             },
             error: (e) => context.go('/errorScreen', extra: {'error': e}));
       },
     );
   }
-
-  
 }

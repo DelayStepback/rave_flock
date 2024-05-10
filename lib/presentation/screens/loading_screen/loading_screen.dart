@@ -7,9 +7,9 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
-      child: Center(child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFFEEF140))),
-
+      decoration:
+          BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: const [Color(0xFF5B1828), Colors.black])),
+      child: const Center(child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFFEEF140))),
     );
   }
 }

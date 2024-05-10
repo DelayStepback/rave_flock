@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/common/themes/theme_constants.dart';
 import 'package:rave_flock/presentation/widget/notification_toast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -38,8 +39,8 @@ class SignUpButton extends StatelessWidget {
           } on AuthException {
             showOverlayNotification(
               (context) {
-                return const NotificationToast(
-                  message: 'Wrong email or password',
+                return NotificationToast(
+                  message: context.S.wrong_email_or_passwor,
                   needShowSmile: true,
                   emoji: '❌',
                 );
@@ -49,8 +50,8 @@ class SignUpButton extends StatelessWidget {
           } catch (e) {
             showOverlayNotification(
               (context) {
-                return const NotificationToast(
-                  message: 'Something went wrong. Try again',
+                return NotificationToast(
+                  message: context.S.something_went_wrong,
                   needShowSmile: true,
                   emoji: '❌',
                 );
@@ -61,10 +62,10 @@ class SignUpButton extends StatelessWidget {
         }
       },
       child: !checkValid
-          ? const Text('Далее')
-          : const Text(
-              'Далее',
-              style: TextStyle(color: Colors.white),
+          ? Text(context.S.next)
+          : Text(
+              context.S.next,
+              style: const TextStyle(color: Colors.white),
             ),
     );
   }

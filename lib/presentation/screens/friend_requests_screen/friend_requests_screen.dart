@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/data/models/user/user_model.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_event.dart';
@@ -33,6 +33,9 @@ class _FriendRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(context.S.friend_requests),
+      ),
       body: SafeArea(
         child: BlocBuilder<FriendRequestsBloc, FriendRequestsState>(
           bloc: context.read<FriendRequestsBloc>(),
@@ -62,12 +65,7 @@ class _FriendRequestsLoadedBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            context.pop();
-          },
-          child: const Text('back'),
-        ),
+       
         ListView.builder(
           shrinkWrap: true,
           itemCount: friendRequestsEntities.length,
@@ -85,14 +83,14 @@ class _FriendRequestsLoadedBody extends StatelessWidget {
                             AuthService.getUserId() ?? ''),
                       );
                     },
-                    child: const Text('Accept')),
+                    child: Text(context.S.accept)),
                 ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<FriendRequestsBloc>(context).add(
                       FriendRequestsDenyEvent(AuthService.getUserId()??'', friendUserModel.userId),
                     );
                   },
-                  child: const Text('Deny'),
+                  child: Text(context.S.deny),
                 ),
               ],
             );

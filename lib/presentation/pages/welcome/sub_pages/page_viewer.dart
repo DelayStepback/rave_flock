@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/presentation/pages/welcome/sub_pages/welcome_page_1.dart';
 import 'package:rave_flock/presentation/pages/welcome/sub_pages/welcome_page_2.dart';
 
@@ -61,10 +62,10 @@ class PageViewerState extends State<PageViewer> {
                         child: SizedBox(
                           width: 150.w,
                           height: 43.h,
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              'Пропустить',
-                              style: TextStyle(color: Colors.white38),
+                              context.S.skip,
+                              style: const TextStyle(color: Colors.white38),
                             ),
                           ),
                         ),

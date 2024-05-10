@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/friend_requests_bloc/friend_requests_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
@@ -47,7 +48,7 @@ class _HomePageViewState extends State<_HomePageView> {
 
   @override
   void initState() {
-    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));    
+    GetIt.I<MeetDataBloc>().add(MeetDataEvent.initialize(AuthService.getUserId() ?? ''));
     super.initState();
   }
 
@@ -70,7 +71,7 @@ class _HomePageViewState extends State<_HomePageView> {
     titleDebounceTimer = Timer(
       const Duration(milliseconds: 500),
       () {
-          BlocProvider.of<MeetDataBloc>(context).add(MeetDataEvent.search(AuthService.getUserId() ?? '', value));
+        BlocProvider.of<MeetDataBloc>(context).add(MeetDataEvent.search(AuthService.getUserId() ?? '', value));
       },
     );
   }
@@ -97,26 +98,23 @@ class _HomePageViewState extends State<_HomePageView> {
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
-                  leading: GestureDetector(onTap: () => context.pop(), child: Icon(Icons.arrow_back_ios)),
                   // title: Text('R A V E  F L O C K'),
                   expandedHeight: 140,
                   backgroundColor: Colors.transparent,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
                       color: Colors.transparent,
-                      child: Center(child: Text('RAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\nRAVE FLOCK\n')),
+                      child: Center(child: Text(context.S.raves)),
                     ),
-                    title: Text('RAVE FLOCK'),
-                    centerTitle: true
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20, left: 40, right: 40).r,
                     child: TextInput(
-                      label: 'Поиск',
+                      label: context.S.search,
                       valid: _titleValid,
-                      errorText: 'Слишком короткое название',
+                      errorText: context.S.name_is_too_short,
                       controller: _titleController,
                       readOnly: false,
                       maxLine: 1,
@@ -127,12 +125,15 @@ class _HomePageViewState extends State<_HomePageView> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
+                      // TODO: INDEXED STACK
+TripleToggleSwitch(),
                       _buildMeetGroup(MeetRollWidgetEnum.allAccepted),
                       _buildMeetGroup(MeetRollWidgetEnum.invites),
                       _buildMeetGroup(MeetRollWidgetEnum.createdByUser),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 50.0),
+                        padding: const EdgeInsets.symmetric(vertical: 25.0),
                         child: ElevatedButton(
+                          // TODO: move button up or stack
                           onPressed: () {
                             context.goNamed('createNewMeetScreen');
                           },
@@ -199,5 +200,138 @@ class _HomePageViewState extends State<_HomePageView> {
       }
     }
     return meetsEntities;
+  }
+}
+
+class TripleToggleSwitch extends StatefulWidget {
+  @override
+  _TripleToggleSwitchState createState() => _TripleToggleSwitchState();
+}
+
+class _TripleToggleSwitchState extends State<TripleToggleSwitch> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<Offset> _animation1;
+  late Animation<Offset> _animation2;
+  late Animation<Offset> _animation3;
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _animation1 = Tween<Offset>(
+      begin: Offset(0, 0),
+      end: Offset(2, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Interval(0, 0.5, curve: Curves.easeInOut),
+      ),
+    );
+    _animation2 = Tween<Offset>(
+      begin: Offset(2, 0),
+      end: Offset(1, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
+      ),
+    );
+    _animation3 = Tween<Offset>(
+      begin: Offset(1, 0),
+      end: Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Interval(0.75, 1, curve: Curves.easeInOut),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _toggleSelection(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _animationController.reset();
+      _animationController.forward();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () => _toggleSelection(0),
+          child: SlideTransition(
+            position: _selectedIndex == 0 ? _animation1 : _animation3,
+            child: Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                color: _selectedIndex == 0 ? Colors.blue : Colors.grey,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Center(
+                child: Text(
+                  'Option 1',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(width: 20),
+        GestureDetector(
+          onTap: () => _toggleSelection(1),
+          child: SlideTransition(
+            position: _selectedIndex == 1 ? _animation2 : _animation3,
+            child: Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                color: _selectedIndex == 1 ? Colors.green : Colors.grey,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Center(
+                child: Text(
+                  'Option 2',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(width: 20),
+        GestureDetector(
+          onTap: () => _toggleSelection(2),
+          child: SlideTransition(
+            position: _selectedIndex == 2 ? _animation3 : _animation1,
+            child: Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                color: _selectedIndex == 2 ? Colors.red : Colors.grey,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Center(
+                child: Text(
+                  'Option 3',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

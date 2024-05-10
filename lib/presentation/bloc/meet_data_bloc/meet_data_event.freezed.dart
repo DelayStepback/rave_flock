@@ -24,10 +24,28 @@ mixin _$MeetDataEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,10 +56,24 @@ mixin _$MeetDataEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,10 +84,24 @@ mixin _$MeetDataEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,13 +113,26 @@ mixin _$MeetDataEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,10 +143,20 @@ mixin _$MeetDataEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,10 +167,20 @@ mixin _$MeetDataEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,10 +277,28 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return initialize(userId);
   }
@@ -215,10 +312,24 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return initialize?.call(userId);
   }
@@ -232,10 +343,24 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -253,13 +378,26 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return initialize(this);
   }
@@ -273,10 +411,20 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return initialize?.call(this);
   }
@@ -290,10 +438,20 @@ class _$MeetDataInitializeEventImpl implements MeetDataInitializeEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -395,10 +553,28 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return add(meetModel);
   }
@@ -412,10 +588,24 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return add?.call(meetModel);
   }
@@ -429,10 +619,24 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -450,13 +654,26 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return add(this);
   }
@@ -470,10 +687,20 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return add?.call(this);
   }
@@ -487,10 +714,20 @@ class _$MeetDataAddEventImpl implements MeetDataAddEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -581,10 +818,28 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return delete(meetId);
   }
@@ -598,10 +853,24 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return delete?.call(meetId);
   }
@@ -615,10 +884,24 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -636,13 +919,26 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return delete(this);
   }
@@ -656,10 +952,20 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return delete?.call(this);
   }
@@ -673,10 +979,20 @@ class _$MeetDataDeleteEventImpl implements MeetDataDeleteEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -741,10 +1057,28 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return dispose();
   }
@@ -758,10 +1092,24 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return dispose?.call();
   }
@@ -775,10 +1123,24 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -796,13 +1158,26 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return dispose(this);
   }
@@ -816,10 +1191,20 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return dispose?.call(this);
   }
@@ -833,10 +1218,20 @@ class _$MeetDataDisposeEventImpl implements MeetDataDisposeEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -930,10 +1325,28 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return search(userId, titleLike);
   }
@@ -947,10 +1360,24 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return search?.call(userId, titleLike);
   }
@@ -964,10 +1391,24 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -985,13 +1426,26 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return search(this);
   }
@@ -1005,10 +1459,20 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return search?.call(this);
   }
@@ -1022,10 +1486,20 @@ class _$MeetDataSearchEventImpl implements MeetDataSearchEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1092,10 +1566,28 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return unSearch();
   }
@@ -1109,10 +1601,24 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return unSearch?.call();
   }
@@ -1126,10 +1632,24 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (unSearch != null) {
@@ -1147,13 +1667,26 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return unSearch(this);
   }
@@ -1167,10 +1700,20 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return unSearch?.call(this);
   }
@@ -1184,10 +1727,20 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (unSearch != null) {
@@ -1199,203 +1752,6 @@ class _$MeetDataUnSearchEventImpl implements MeetDataUnSearchEvent {
 
 abstract class MeetDataUnSearchEvent implements MeetDataEvent {
   const factory MeetDataUnSearchEvent() = _$MeetDataUnSearchEventImpl;
-}
-
-/// @nodoc
-abstract class _$$MeetDataSendInviteEventImplCopyWith<$Res> {
-  factory _$$MeetDataSendInviteEventImplCopyWith(
-          _$MeetDataSendInviteEventImpl value,
-          $Res Function(_$MeetDataSendInviteEventImpl) then) =
-      __$$MeetDataSendInviteEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String userId, int meetId});
-}
-
-/// @nodoc
-class __$$MeetDataSendInviteEventImplCopyWithImpl<$Res>
-    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataSendInviteEventImpl>
-    implements _$$MeetDataSendInviteEventImplCopyWith<$Res> {
-  __$$MeetDataSendInviteEventImplCopyWithImpl(
-      _$MeetDataSendInviteEventImpl _value,
-      $Res Function(_$MeetDataSendInviteEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-    Object? meetId = null,
-  }) {
-    return _then(_$MeetDataSendInviteEventImpl(
-      null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == meetId
-          ? _value.meetId
-          : meetId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
-  const _$MeetDataSendInviteEventImpl(this.userId, this.meetId);
-
-  @override
-  final String userId;
-  @override
-  final int meetId;
-
-  @override
-  String toString() {
-    return 'MeetDataEvent.sendInvite(userId: $userId, meetId: $meetId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MeetDataSendInviteEventImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.meetId, meetId) || other.meetId == meetId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userId, meetId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MeetDataSendInviteEventImplCopyWith<_$MeetDataSendInviteEventImpl>
-      get copyWith => __$$MeetDataSendInviteEventImplCopyWithImpl<
-          _$MeetDataSendInviteEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String userId) initialize,
-    required TResult Function(MeetModel meetModel) add,
-    required TResult Function(int meetId) delete,
-    required TResult Function() dispose,
-    required TResult Function(String userId, String titleLike) search,
-    required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
-    required TResult Function(int meetId) updateCurrMeetInfo,
-    required TResult Function(int meetId) updateCurrMeetBasket,
-    required TResult Function(int meetId) updateCurrMeetGuests,
-  }) {
-    return sendInvite(userId, meetId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userId)? initialize,
-    TResult? Function(MeetModel meetModel)? add,
-    TResult? Function(int meetId)? delete,
-    TResult? Function()? dispose,
-    TResult? Function(String userId, String titleLike)? search,
-    TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
-    TResult? Function(int meetId)? updateCurrMeetInfo,
-    TResult? Function(int meetId)? updateCurrMeetBasket,
-    TResult? Function(int meetId)? updateCurrMeetGuests,
-  }) {
-    return sendInvite?.call(userId, meetId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? initialize,
-    TResult Function(MeetModel meetModel)? add,
-    TResult Function(int meetId)? delete,
-    TResult Function()? dispose,
-    TResult Function(String userId, String titleLike)? search,
-    TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
-    TResult Function(int meetId)? updateCurrMeetInfo,
-    TResult Function(int meetId)? updateCurrMeetBasket,
-    TResult Function(int meetId)? updateCurrMeetGuests,
-    required TResult orElse(),
-  }) {
-    if (sendInvite != null) {
-      return sendInvite(userId, meetId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MeetDataInitializeEvent value) initialize,
-    required TResult Function(MeetDataAddEvent value) add,
-    required TResult Function(MeetDataDeleteEvent value) delete,
-    required TResult Function(MeetDataDisposeEvent value) dispose,
-    required TResult Function(MeetDataSearchEvent value) search,
-    required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
-    required TResult Function(MeetDataUpdateCurrMeetInfo value)
-        updateCurrMeetInfo,
-    required TResult Function(MeetDataUpdateCurrMeetBasket value)
-        updateCurrMeetBasket,
-    required TResult Function(MeetDataUpdateCurrMeetGuests value)
-        updateCurrMeetGuests,
-  }) {
-    return sendInvite(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MeetDataInitializeEvent value)? initialize,
-    TResult? Function(MeetDataAddEvent value)? add,
-    TResult? Function(MeetDataDeleteEvent value)? delete,
-    TResult? Function(MeetDataDisposeEvent value)? dispose,
-    TResult? Function(MeetDataSearchEvent value)? search,
-    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
-    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
-    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
-    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
-  }) {
-    return sendInvite?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(MeetDataInitializeEvent value)? initialize,
-    TResult Function(MeetDataAddEvent value)? add,
-    TResult Function(MeetDataDeleteEvent value)? delete,
-    TResult Function(MeetDataDisposeEvent value)? dispose,
-    TResult Function(MeetDataSearchEvent value)? search,
-    TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
-    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
-    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
-    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
-    required TResult orElse(),
-  }) {
-    if (sendInvite != null) {
-      return sendInvite(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class MeetDataSendInviteEvent implements MeetDataEvent {
-  const factory MeetDataSendInviteEvent(final String userId, final int meetId) =
-      _$MeetDataSendInviteEventImpl;
-
-  String get userId;
-  int get meetId;
-  @JsonKey(ignore: true)
-  _$$MeetDataSendInviteEventImplCopyWith<_$MeetDataSendInviteEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1471,10 +1827,28 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetInfo(meetId);
   }
@@ -1488,10 +1862,24 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetInfo?.call(meetId);
   }
@@ -1505,10 +1893,24 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -1526,13 +1928,26 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetInfo(this);
   }
@@ -1546,10 +1961,20 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetInfo?.call(this);
   }
@@ -1563,10 +1988,20 @@ class _$MeetDataUpdateCurrMeetInfoImpl implements MeetDataUpdateCurrMeetInfo {
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetInfo != null) {
@@ -1662,10 +2097,28 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetBasket(meetId);
   }
@@ -1679,10 +2132,24 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetBasket?.call(meetId);
   }
@@ -1696,10 +2163,24 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1717,13 +2198,26 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetBasket(this);
   }
@@ -1737,10 +2231,20 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetBasket?.call(this);
   }
@@ -1754,10 +2258,20 @@ class _$MeetDataUpdateCurrMeetBasketImpl
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetBasket != null) {
@@ -1854,10 +2368,28 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     required TResult Function() dispose,
     required TResult Function(String userId, String titleLike) search,
     required TResult Function() unSearch,
-    required TResult Function(String userId, int meetId) sendInvite,
     required TResult Function(int meetId) updateCurrMeetInfo,
     required TResult Function(int meetId) updateCurrMeetBasket,
     required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetGuests(meetId);
   }
@@ -1871,10 +2403,24 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function()? dispose,
     TResult? Function(String userId, String titleLike)? search,
     TResult? Function()? unSearch,
-    TResult? Function(String userId, int meetId)? sendInvite,
     TResult? Function(int meetId)? updateCurrMeetInfo,
     TResult? Function(int meetId)? updateCurrMeetBasket,
     TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetGuests?.call(meetId);
   }
@@ -1888,10 +2434,24 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function()? dispose,
     TResult Function(String userId, String titleLike)? search,
     TResult Function()? unSearch,
-    TResult Function(String userId, int meetId)? sendInvite,
     TResult Function(int meetId)? updateCurrMeetInfo,
     TResult Function(int meetId)? updateCurrMeetBasket,
     TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetGuests != null) {
@@ -1909,13 +2469,26 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     required TResult Function(MeetDataDisposeEvent value) dispose,
     required TResult Function(MeetDataSearchEvent value) search,
     required TResult Function(MeetDataUnSearchEvent value) unSearch,
-    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
     required TResult Function(MeetDataUpdateCurrMeetInfo value)
         updateCurrMeetInfo,
     required TResult Function(MeetDataUpdateCurrMeetBasket value)
         updateCurrMeetBasket,
     required TResult Function(MeetDataUpdateCurrMeetGuests value)
         updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetGuests(this);
   }
@@ -1929,10 +2502,20 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult? Function(MeetDataDisposeEvent value)? dispose,
     TResult? Function(MeetDataSearchEvent value)? search,
     TResult? Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
   }) {
     return updateCurrMeetGuests?.call(this);
   }
@@ -1946,10 +2529,20 @@ class _$MeetDataUpdateCurrMeetGuestsImpl
     TResult Function(MeetDataDisposeEvent value)? dispose,
     TResult Function(MeetDataSearchEvent value)? search,
     TResult Function(MeetDataUnSearchEvent value)? unSearch,
-    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
     TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
     TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
     TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
     required TResult orElse(),
   }) {
     if (updateCurrMeetGuests != null) {
@@ -1967,5 +2560,2587 @@ abstract class MeetDataUpdateCurrMeetGuests implements MeetDataEvent {
   @JsonKey(ignore: true)
   _$$MeetDataUpdateCurrMeetGuestsImplCopyWith<
           _$MeetDataUpdateCurrMeetGuestsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataSendInviteEventImplCopyWith<$Res> {
+  factory _$$MeetDataSendInviteEventImplCopyWith(
+          _$MeetDataSendInviteEventImpl value,
+          $Res Function(_$MeetDataSendInviteEventImpl) then) =
+      __$$MeetDataSendInviteEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, int meetId});
+}
+
+/// @nodoc
+class __$$MeetDataSendInviteEventImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataSendInviteEventImpl>
+    implements _$$MeetDataSendInviteEventImplCopyWith<$Res> {
+  __$$MeetDataSendInviteEventImplCopyWithImpl(
+      _$MeetDataSendInviteEventImpl _value,
+      $Res Function(_$MeetDataSendInviteEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? meetId = null,
+  }) {
+    return _then(_$MeetDataSendInviteEventImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataSendInviteEventImpl implements MeetDataSendInviteEvent {
+  const _$MeetDataSendInviteEventImpl(this.userId, this.meetId);
+
+  @override
+  final String userId;
+  @override
+  final int meetId;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.sendInvite(userId: $userId, meetId: $meetId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataSendInviteEventImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, meetId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataSendInviteEventImplCopyWith<_$MeetDataSendInviteEventImpl>
+      get copyWith => __$$MeetDataSendInviteEventImplCopyWithImpl<
+          _$MeetDataSendInviteEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return sendInvite(userId, meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return sendInvite?.call(userId, meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (sendInvite != null) {
+      return sendInvite(userId, meetId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return sendInvite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return sendInvite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (sendInvite != null) {
+      return sendInvite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataSendInviteEvent implements MeetDataEvent {
+  const factory MeetDataSendInviteEvent(final String userId, final int meetId) =
+      _$MeetDataSendInviteEventImpl;
+
+  String get userId;
+  int get meetId;
+  @JsonKey(ignore: true)
+  _$$MeetDataSendInviteEventImplCopyWith<_$MeetDataSendInviteEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUpdateGuestStatusImplCopyWith<$Res> {
+  factory _$$MeetDataUpdateGuestStatusImplCopyWith(
+          _$MeetDataUpdateGuestStatusImpl value,
+          $Res Function(_$MeetDataUpdateGuestStatusImpl) then) =
+      __$$MeetDataUpdateGuestStatusImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, int meetId, GuestChooseAtMeetEnum guestChoose});
+}
+
+/// @nodoc
+class __$$MeetDataUpdateGuestStatusImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUpdateGuestStatusImpl>
+    implements _$$MeetDataUpdateGuestStatusImplCopyWith<$Res> {
+  __$$MeetDataUpdateGuestStatusImplCopyWithImpl(
+      _$MeetDataUpdateGuestStatusImpl _value,
+      $Res Function(_$MeetDataUpdateGuestStatusImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? meetId = null,
+    Object? guestChoose = null,
+  }) {
+    return _then(_$MeetDataUpdateGuestStatusImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == guestChoose
+          ? _value.guestChoose
+          : guestChoose // ignore: cast_nullable_to_non_nullable
+              as GuestChooseAtMeetEnum,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUpdateGuestStatusImpl implements MeetDataUpdateGuestStatus {
+  const _$MeetDataUpdateGuestStatusImpl(
+      this.userId, this.meetId, this.guestChoose);
+
+  @override
+  final String userId;
+  @override
+  final int meetId;
+  @override
+  final GuestChooseAtMeetEnum guestChoose;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.updateGuestStatus(userId: $userId, meetId: $meetId, guestChoose: $guestChoose)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUpdateGuestStatusImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
+            (identical(other.guestChoose, guestChoose) ||
+                other.guestChoose == guestChoose));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, meetId, guestChoose);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUpdateGuestStatusImplCopyWith<_$MeetDataUpdateGuestStatusImpl>
+      get copyWith => __$$MeetDataUpdateGuestStatusImplCopyWithImpl<
+          _$MeetDataUpdateGuestStatusImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return updateGuestStatus(userId, meetId, guestChoose);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return updateGuestStatus?.call(userId, meetId, guestChoose);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (updateGuestStatus != null) {
+      return updateGuestStatus(userId, meetId, guestChoose);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return updateGuestStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return updateGuestStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (updateGuestStatus != null) {
+      return updateGuestStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUpdateGuestStatus implements MeetDataEvent {
+  const factory MeetDataUpdateGuestStatus(final String userId, final int meetId,
+          final GuestChooseAtMeetEnum guestChoose) =
+      _$MeetDataUpdateGuestStatusImpl;
+
+  String get userId;
+  int get meetId;
+  GuestChooseAtMeetEnum get guestChoose;
+  @JsonKey(ignore: true)
+  _$$MeetDataUpdateGuestStatusImplCopyWith<_$MeetDataUpdateGuestStatusImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUpdateRemoveGuestInviteImplCopyWith<$Res> {
+  factory _$$MeetDataUpdateRemoveGuestInviteImplCopyWith(
+          _$MeetDataUpdateRemoveGuestInviteImpl value,
+          $Res Function(_$MeetDataUpdateRemoveGuestInviteImpl) then) =
+      __$$MeetDataUpdateRemoveGuestInviteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, int meetId});
+}
+
+/// @nodoc
+class __$$MeetDataUpdateRemoveGuestInviteImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res,
+        _$MeetDataUpdateRemoveGuestInviteImpl>
+    implements _$$MeetDataUpdateRemoveGuestInviteImplCopyWith<$Res> {
+  __$$MeetDataUpdateRemoveGuestInviteImplCopyWithImpl(
+      _$MeetDataUpdateRemoveGuestInviteImpl _value,
+      $Res Function(_$MeetDataUpdateRemoveGuestInviteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? meetId = null,
+  }) {
+    return _then(_$MeetDataUpdateRemoveGuestInviteImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUpdateRemoveGuestInviteImpl
+    implements MeetDataUpdateRemoveGuestInvite {
+  const _$MeetDataUpdateRemoveGuestInviteImpl(this.userId, this.meetId);
+
+  @override
+  final String userId;
+  @override
+  final int meetId;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.removeGuestInvite(userId: $userId, meetId: $meetId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUpdateRemoveGuestInviteImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, meetId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUpdateRemoveGuestInviteImplCopyWith<
+          _$MeetDataUpdateRemoveGuestInviteImpl>
+      get copyWith => __$$MeetDataUpdateRemoveGuestInviteImplCopyWithImpl<
+          _$MeetDataUpdateRemoveGuestInviteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return removeGuestInvite(userId, meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return removeGuestInvite?.call(userId, meetId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (removeGuestInvite != null) {
+      return removeGuestInvite(userId, meetId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return removeGuestInvite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return removeGuestInvite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (removeGuestInvite != null) {
+      return removeGuestInvite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUpdateRemoveGuestInvite implements MeetDataEvent {
+  const factory MeetDataUpdateRemoveGuestInvite(
+          final String userId, final int meetId) =
+      _$MeetDataUpdateRemoveGuestInviteImpl;
+
+  String get userId;
+  int get meetId;
+  @JsonKey(ignore: true)
+  _$$MeetDataUpdateRemoveGuestInviteImplCopyWith<
+          _$MeetDataUpdateRemoveGuestInviteImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataMakeOrganizatorImplCopyWith<$Res> {
+  factory _$$MeetDataMakeOrganizatorImplCopyWith(
+          _$MeetDataMakeOrganizatorImpl value,
+          $Res Function(_$MeetDataMakeOrganizatorImpl) then) =
+      __$$MeetDataMakeOrganizatorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, int meetId, String currentChooseStatus});
+}
+
+/// @nodoc
+class __$$MeetDataMakeOrganizatorImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataMakeOrganizatorImpl>
+    implements _$$MeetDataMakeOrganizatorImplCopyWith<$Res> {
+  __$$MeetDataMakeOrganizatorImplCopyWithImpl(
+      _$MeetDataMakeOrganizatorImpl _value,
+      $Res Function(_$MeetDataMakeOrganizatorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? meetId = null,
+    Object? currentChooseStatus = null,
+  }) {
+    return _then(_$MeetDataMakeOrganizatorImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == currentChooseStatus
+          ? _value.currentChooseStatus
+          : currentChooseStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataMakeOrganizatorImpl implements MeetDataMakeOrganizator {
+  const _$MeetDataMakeOrganizatorImpl(
+      this.userId, this.meetId, this.currentChooseStatus);
+
+  @override
+  final String userId;
+  @override
+  final int meetId;
+  @override
+  final String currentChooseStatus;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.makeOrganizator(userId: $userId, meetId: $meetId, currentChooseStatus: $currentChooseStatus)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataMakeOrganizatorImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
+            (identical(other.currentChooseStatus, currentChooseStatus) ||
+                other.currentChooseStatus == currentChooseStatus));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, userId, meetId, currentChooseStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataMakeOrganizatorImplCopyWith<_$MeetDataMakeOrganizatorImpl>
+      get copyWith => __$$MeetDataMakeOrganizatorImplCopyWithImpl<
+          _$MeetDataMakeOrganizatorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return makeOrganizator(userId, meetId, currentChooseStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return makeOrganizator?.call(userId, meetId, currentChooseStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (makeOrganizator != null) {
+      return makeOrganizator(userId, meetId, currentChooseStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return makeOrganizator(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return makeOrganizator?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (makeOrganizator != null) {
+      return makeOrganizator(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataMakeOrganizator implements MeetDataEvent {
+  const factory MeetDataMakeOrganizator(final String userId, final int meetId,
+      final String currentChooseStatus) = _$MeetDataMakeOrganizatorImpl;
+
+  String get userId;
+  int get meetId;
+  String get currentChooseStatus;
+  @JsonKey(ignore: true)
+  _$$MeetDataMakeOrganizatorImplCopyWith<_$MeetDataMakeOrganizatorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUnMakeOrganizatorImplCopyWith<$Res> {
+  factory _$$MeetDataUnMakeOrganizatorImplCopyWith(
+          _$MeetDataUnMakeOrganizatorImpl value,
+          $Res Function(_$MeetDataUnMakeOrganizatorImpl) then) =
+      __$$MeetDataUnMakeOrganizatorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, int meetId, String currentChooseStatus});
+}
+
+/// @nodoc
+class __$$MeetDataUnMakeOrganizatorImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataUnMakeOrganizatorImpl>
+    implements _$$MeetDataUnMakeOrganizatorImplCopyWith<$Res> {
+  __$$MeetDataUnMakeOrganizatorImplCopyWithImpl(
+      _$MeetDataUnMakeOrganizatorImpl _value,
+      $Res Function(_$MeetDataUnMakeOrganizatorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? meetId = null,
+    Object? currentChooseStatus = null,
+  }) {
+    return _then(_$MeetDataUnMakeOrganizatorImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == meetId
+          ? _value.meetId
+          : meetId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == currentChooseStatus
+          ? _value.currentChooseStatus
+          : currentChooseStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUnMakeOrganizatorImpl implements MeetDataUnMakeOrganizator {
+  const _$MeetDataUnMakeOrganizatorImpl(
+      this.userId, this.meetId, this.currentChooseStatus);
+
+  @override
+  final String userId;
+  @override
+  final int meetId;
+  @override
+  final String currentChooseStatus;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.unMakeOrganizator(userId: $userId, meetId: $meetId, currentChooseStatus: $currentChooseStatus)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUnMakeOrganizatorImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.meetId, meetId) || other.meetId == meetId) &&
+            (identical(other.currentChooseStatus, currentChooseStatus) ||
+                other.currentChooseStatus == currentChooseStatus));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, userId, meetId, currentChooseStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUnMakeOrganizatorImplCopyWith<_$MeetDataUnMakeOrganizatorImpl>
+      get copyWith => __$$MeetDataUnMakeOrganizatorImplCopyWithImpl<
+          _$MeetDataUnMakeOrganizatorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return unMakeOrganizator(userId, meetId, currentChooseStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return unMakeOrganizator?.call(userId, meetId, currentChooseStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (unMakeOrganizator != null) {
+      return unMakeOrganizator(userId, meetId, currentChooseStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return unMakeOrganizator(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return unMakeOrganizator?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (unMakeOrganizator != null) {
+      return unMakeOrganizator(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUnMakeOrganizator implements MeetDataEvent {
+  const factory MeetDataUnMakeOrganizator(final String userId, final int meetId,
+      final String currentChooseStatus) = _$MeetDataUnMakeOrganizatorImpl;
+
+  String get userId;
+  int get meetId;
+  String get currentChooseStatus;
+  @JsonKey(ignore: true)
+  _$$MeetDataUnMakeOrganizatorImplCopyWith<_$MeetDataUnMakeOrganizatorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataAddBasketItemImplCopyWith<$Res> {
+  factory _$$MeetDataAddBasketItemImplCopyWith(
+          _$MeetDataAddBasketItemImpl value,
+          $Res Function(_$MeetDataAddBasketItemImpl) then) =
+      __$$MeetDataAddBasketItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BasketItemModel basketItemModel});
+
+  $BasketItemModelCopyWith<$Res> get basketItemModel;
+}
+
+/// @nodoc
+class __$$MeetDataAddBasketItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataAddBasketItemImpl>
+    implements _$$MeetDataAddBasketItemImplCopyWith<$Res> {
+  __$$MeetDataAddBasketItemImplCopyWithImpl(_$MeetDataAddBasketItemImpl _value,
+      $Res Function(_$MeetDataAddBasketItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? basketItemModel = null,
+  }) {
+    return _then(_$MeetDataAddBasketItemImpl(
+      null == basketItemModel
+          ? _value.basketItemModel
+          : basketItemModel // ignore: cast_nullable_to_non_nullable
+              as BasketItemModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasketItemModelCopyWith<$Res> get basketItemModel {
+    return $BasketItemModelCopyWith<$Res>(_value.basketItemModel, (value) {
+      return _then(_value.copyWith(basketItemModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataAddBasketItemImpl implements MeetDataAddBasketItem {
+  const _$MeetDataAddBasketItemImpl(this.basketItemModel);
+
+  @override
+  final BasketItemModel basketItemModel;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.addBasketItem(basketItemModel: $basketItemModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataAddBasketItemImpl &&
+            (identical(other.basketItemModel, basketItemModel) ||
+                other.basketItemModel == basketItemModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, basketItemModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataAddBasketItemImplCopyWith<_$MeetDataAddBasketItemImpl>
+      get copyWith => __$$MeetDataAddBasketItemImplCopyWithImpl<
+          _$MeetDataAddBasketItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return addBasketItem(basketItemModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return addBasketItem?.call(basketItemModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (addBasketItem != null) {
+      return addBasketItem(basketItemModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return addBasketItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return addBasketItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (addBasketItem != null) {
+      return addBasketItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataAddBasketItem implements MeetDataEvent {
+  const factory MeetDataAddBasketItem(final BasketItemModel basketItemModel) =
+      _$MeetDataAddBasketItemImpl;
+
+  BasketItemModel get basketItemModel;
+  @JsonKey(ignore: true)
+  _$$MeetDataAddBasketItemImplCopyWith<_$MeetDataAddBasketItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataDeleteBasketItemImplCopyWith<$Res> {
+  factory _$$MeetDataDeleteBasketItemImplCopyWith(
+          _$MeetDataDeleteBasketItemImpl value,
+          $Res Function(_$MeetDataDeleteBasketItemImpl) then) =
+      __$$MeetDataDeleteBasketItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BasketItemModel basketItemModel});
+
+  $BasketItemModelCopyWith<$Res> get basketItemModel;
+}
+
+/// @nodoc
+class __$$MeetDataDeleteBasketItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res, _$MeetDataDeleteBasketItemImpl>
+    implements _$$MeetDataDeleteBasketItemImplCopyWith<$Res> {
+  __$$MeetDataDeleteBasketItemImplCopyWithImpl(
+      _$MeetDataDeleteBasketItemImpl _value,
+      $Res Function(_$MeetDataDeleteBasketItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? basketItemModel = null,
+  }) {
+    return _then(_$MeetDataDeleteBasketItemImpl(
+      null == basketItemModel
+          ? _value.basketItemModel
+          : basketItemModel // ignore: cast_nullable_to_non_nullable
+              as BasketItemModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasketItemModelCopyWith<$Res> get basketItemModel {
+    return $BasketItemModelCopyWith<$Res>(_value.basketItemModel, (value) {
+      return _then(_value.copyWith(basketItemModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataDeleteBasketItemImpl implements MeetDataDeleteBasketItem {
+  const _$MeetDataDeleteBasketItemImpl(this.basketItemModel);
+
+  @override
+  final BasketItemModel basketItemModel;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.deleteBasketItem(basketItemModel: $basketItemModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataDeleteBasketItemImpl &&
+            (identical(other.basketItemModel, basketItemModel) ||
+                other.basketItemModel == basketItemModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, basketItemModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataDeleteBasketItemImplCopyWith<_$MeetDataDeleteBasketItemImpl>
+      get copyWith => __$$MeetDataDeleteBasketItemImplCopyWithImpl<
+          _$MeetDataDeleteBasketItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return deleteBasketItem(basketItemModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return deleteBasketItem?.call(basketItemModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (deleteBasketItem != null) {
+      return deleteBasketItem(basketItemModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return deleteBasketItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return deleteBasketItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (deleteBasketItem != null) {
+      return deleteBasketItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataDeleteBasketItem implements MeetDataEvent {
+  const factory MeetDataDeleteBasketItem(
+      final BasketItemModel basketItemModel) = _$MeetDataDeleteBasketItemImpl;
+
+  BasketItemModel get basketItemModel;
+  @JsonKey(ignore: true)
+  _$$MeetDataDeleteBasketItemImplCopyWith<_$MeetDataDeleteBasketItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUserTakeThisBasketItemImplCopyWith<$Res> {
+  factory _$$MeetDataUserTakeThisBasketItemImplCopyWith(
+          _$MeetDataUserTakeThisBasketItemImpl value,
+          $Res Function(_$MeetDataUserTakeThisBasketItemImpl) then) =
+      __$$MeetDataUserTakeThisBasketItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isTake, BasketItemModel basketItem, String userId});
+
+  $BasketItemModelCopyWith<$Res> get basketItem;
+}
+
+/// @nodoc
+class __$$MeetDataUserTakeThisBasketItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res,
+        _$MeetDataUserTakeThisBasketItemImpl>
+    implements _$$MeetDataUserTakeThisBasketItemImplCopyWith<$Res> {
+  __$$MeetDataUserTakeThisBasketItemImplCopyWithImpl(
+      _$MeetDataUserTakeThisBasketItemImpl _value,
+      $Res Function(_$MeetDataUserTakeThisBasketItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTake = null,
+    Object? basketItem = null,
+    Object? userId = null,
+  }) {
+    return _then(_$MeetDataUserTakeThisBasketItemImpl(
+      null == isTake
+          ? _value.isTake
+          : isTake // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == basketItem
+          ? _value.basketItem
+          : basketItem // ignore: cast_nullable_to_non_nullable
+              as BasketItemModel,
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasketItemModelCopyWith<$Res> get basketItem {
+    return $BasketItemModelCopyWith<$Res>(_value.basketItem, (value) {
+      return _then(_value.copyWith(basketItem: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUserTakeThisBasketItemImpl
+    implements MeetDataUserTakeThisBasketItem {
+  const _$MeetDataUserTakeThisBasketItemImpl(
+      this.isTake, this.basketItem, this.userId);
+
+  @override
+  final bool isTake;
+  @override
+  final BasketItemModel basketItem;
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.userTakeThisBasketItem(isTake: $isTake, basketItem: $basketItem, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUserTakeThisBasketItemImpl &&
+            (identical(other.isTake, isTake) || other.isTake == isTake) &&
+            (identical(other.basketItem, basketItem) ||
+                other.basketItem == basketItem) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isTake, basketItem, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUserTakeThisBasketItemImplCopyWith<
+          _$MeetDataUserTakeThisBasketItemImpl>
+      get copyWith => __$$MeetDataUserTakeThisBasketItemImplCopyWithImpl<
+          _$MeetDataUserTakeThisBasketItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return userTakeThisBasketItem(isTake, basketItem, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return userTakeThisBasketItem?.call(isTake, basketItem, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (userTakeThisBasketItem != null) {
+      return userTakeThisBasketItem(isTake, basketItem, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return userTakeThisBasketItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return userTakeThisBasketItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (userTakeThisBasketItem != null) {
+      return userTakeThisBasketItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUserTakeThisBasketItem implements MeetDataEvent {
+  const factory MeetDataUserTakeThisBasketItem(
+      final bool isTake,
+      final BasketItemModel basketItem,
+      final String userId) = _$MeetDataUserTakeThisBasketItemImpl;
+
+  bool get isTake;
+  BasketItemModel get basketItem;
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$MeetDataUserTakeThisBasketItemImplCopyWith<
+          _$MeetDataUserTakeThisBasketItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MeetDataUserUseThisBasketItemImplCopyWith<$Res> {
+  factory _$$MeetDataUserUseThisBasketItemImplCopyWith(
+          _$MeetDataUserUseThisBasketItemImpl value,
+          $Res Function(_$MeetDataUserUseThisBasketItemImpl) then) =
+      __$$MeetDataUserUseThisBasketItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isTake, BasketItemModel basketItem, String userId});
+
+  $BasketItemModelCopyWith<$Res> get basketItem;
+}
+
+/// @nodoc
+class __$$MeetDataUserUseThisBasketItemImplCopyWithImpl<$Res>
+    extends _$MeetDataEventCopyWithImpl<$Res,
+        _$MeetDataUserUseThisBasketItemImpl>
+    implements _$$MeetDataUserUseThisBasketItemImplCopyWith<$Res> {
+  __$$MeetDataUserUseThisBasketItemImplCopyWithImpl(
+      _$MeetDataUserUseThisBasketItemImpl _value,
+      $Res Function(_$MeetDataUserUseThisBasketItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTake = null,
+    Object? basketItem = null,
+    Object? userId = null,
+  }) {
+    return _then(_$MeetDataUserUseThisBasketItemImpl(
+      null == isTake
+          ? _value.isTake
+          : isTake // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == basketItem
+          ? _value.basketItem
+          : basketItem // ignore: cast_nullable_to_non_nullable
+              as BasketItemModel,
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BasketItemModelCopyWith<$Res> get basketItem {
+    return $BasketItemModelCopyWith<$Res>(_value.basketItem, (value) {
+      return _then(_value.copyWith(basketItem: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$MeetDataUserUseThisBasketItemImpl
+    implements MeetDataUserUseThisBasketItem {
+  const _$MeetDataUserUseThisBasketItemImpl(
+      this.isTake, this.basketItem, this.userId);
+
+  @override
+  final bool isTake;
+  @override
+  final BasketItemModel basketItem;
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'MeetDataEvent.userUseThisBasketItem(isTake: $isTake, basketItem: $basketItem, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeetDataUserUseThisBasketItemImpl &&
+            (identical(other.isTake, isTake) || other.isTake == isTake) &&
+            (identical(other.basketItem, basketItem) ||
+                other.basketItem == basketItem) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isTake, basketItem, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeetDataUserUseThisBasketItemImplCopyWith<
+          _$MeetDataUserUseThisBasketItemImpl>
+      get copyWith => __$$MeetDataUserUseThisBasketItemImplCopyWithImpl<
+          _$MeetDataUserUseThisBasketItemImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function(MeetModel meetModel) add,
+    required TResult Function(int meetId) delete,
+    required TResult Function() dispose,
+    required TResult Function(String userId, String titleLike) search,
+    required TResult Function() unSearch,
+    required TResult Function(int meetId) updateCurrMeetInfo,
+    required TResult Function(int meetId) updateCurrMeetBasket,
+    required TResult Function(int meetId) updateCurrMeetGuests,
+    required TResult Function(String userId, int meetId) sendInvite,
+    required TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)
+        updateGuestStatus,
+    required TResult Function(String userId, int meetId) removeGuestInvite,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        makeOrganizator,
+    required TResult Function(
+            String userId, int meetId, String currentChooseStatus)
+        unMakeOrganizator,
+    required TResult Function(BasketItemModel basketItemModel) addBasketItem,
+    required TResult Function(BasketItemModel basketItemModel) deleteBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userTakeThisBasketItem,
+    required TResult Function(
+            bool isTake, BasketItemModel basketItem, String userId)
+        userUseThisBasketItem,
+  }) {
+    return userUseThisBasketItem(isTake, basketItem, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function(MeetModel meetModel)? add,
+    TResult? Function(int meetId)? delete,
+    TResult? Function()? dispose,
+    TResult? Function(String userId, String titleLike)? search,
+    TResult? Function()? unSearch,
+    TResult? Function(int meetId)? updateCurrMeetInfo,
+    TResult? Function(int meetId)? updateCurrMeetBasket,
+    TResult? Function(int meetId)? updateCurrMeetGuests,
+    TResult? Function(String userId, int meetId)? sendInvite,
+    TResult? Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult? Function(String userId, int meetId)? removeGuestInvite,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult? Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult? Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult? Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult? Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+  }) {
+    return userUseThisBasketItem?.call(isTake, basketItem, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function(MeetModel meetModel)? add,
+    TResult Function(int meetId)? delete,
+    TResult Function()? dispose,
+    TResult Function(String userId, String titleLike)? search,
+    TResult Function()? unSearch,
+    TResult Function(int meetId)? updateCurrMeetInfo,
+    TResult Function(int meetId)? updateCurrMeetBasket,
+    TResult Function(int meetId)? updateCurrMeetGuests,
+    TResult Function(String userId, int meetId)? sendInvite,
+    TResult Function(
+            String userId, int meetId, GuestChooseAtMeetEnum guestChoose)?
+        updateGuestStatus,
+    TResult Function(String userId, int meetId)? removeGuestInvite,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        makeOrganizator,
+    TResult Function(String userId, int meetId, String currentChooseStatus)?
+        unMakeOrganizator,
+    TResult Function(BasketItemModel basketItemModel)? addBasketItem,
+    TResult Function(BasketItemModel basketItemModel)? deleteBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userTakeThisBasketItem,
+    TResult Function(bool isTake, BasketItemModel basketItem, String userId)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (userUseThisBasketItem != null) {
+      return userUseThisBasketItem(isTake, basketItem, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeetDataInitializeEvent value) initialize,
+    required TResult Function(MeetDataAddEvent value) add,
+    required TResult Function(MeetDataDeleteEvent value) delete,
+    required TResult Function(MeetDataDisposeEvent value) dispose,
+    required TResult Function(MeetDataSearchEvent value) search,
+    required TResult Function(MeetDataUnSearchEvent value) unSearch,
+    required TResult Function(MeetDataUpdateCurrMeetInfo value)
+        updateCurrMeetInfo,
+    required TResult Function(MeetDataUpdateCurrMeetBasket value)
+        updateCurrMeetBasket,
+    required TResult Function(MeetDataUpdateCurrMeetGuests value)
+        updateCurrMeetGuests,
+    required TResult Function(MeetDataSendInviteEvent value) sendInvite,
+    required TResult Function(MeetDataUpdateGuestStatus value)
+        updateGuestStatus,
+    required TResult Function(MeetDataUpdateRemoveGuestInvite value)
+        removeGuestInvite,
+    required TResult Function(MeetDataMakeOrganizator value) makeOrganizator,
+    required TResult Function(MeetDataUnMakeOrganizator value)
+        unMakeOrganizator,
+    required TResult Function(MeetDataAddBasketItem value) addBasketItem,
+    required TResult Function(MeetDataDeleteBasketItem value) deleteBasketItem,
+    required TResult Function(MeetDataUserTakeThisBasketItem value)
+        userTakeThisBasketItem,
+    required TResult Function(MeetDataUserUseThisBasketItem value)
+        userUseThisBasketItem,
+  }) {
+    return userUseThisBasketItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeetDataInitializeEvent value)? initialize,
+    TResult? Function(MeetDataAddEvent value)? add,
+    TResult? Function(MeetDataDeleteEvent value)? delete,
+    TResult? Function(MeetDataDisposeEvent value)? dispose,
+    TResult? Function(MeetDataSearchEvent value)? search,
+    TResult? Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult? Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult? Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult? Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult? Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult? Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult? Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult? Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult? Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult? Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult? Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult? Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult? Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+  }) {
+    return userUseThisBasketItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeetDataInitializeEvent value)? initialize,
+    TResult Function(MeetDataAddEvent value)? add,
+    TResult Function(MeetDataDeleteEvent value)? delete,
+    TResult Function(MeetDataDisposeEvent value)? dispose,
+    TResult Function(MeetDataSearchEvent value)? search,
+    TResult Function(MeetDataUnSearchEvent value)? unSearch,
+    TResult Function(MeetDataUpdateCurrMeetInfo value)? updateCurrMeetInfo,
+    TResult Function(MeetDataUpdateCurrMeetBasket value)? updateCurrMeetBasket,
+    TResult Function(MeetDataUpdateCurrMeetGuests value)? updateCurrMeetGuests,
+    TResult Function(MeetDataSendInviteEvent value)? sendInvite,
+    TResult Function(MeetDataUpdateGuestStatus value)? updateGuestStatus,
+    TResult Function(MeetDataUpdateRemoveGuestInvite value)? removeGuestInvite,
+    TResult Function(MeetDataMakeOrganizator value)? makeOrganizator,
+    TResult Function(MeetDataUnMakeOrganizator value)? unMakeOrganizator,
+    TResult Function(MeetDataAddBasketItem value)? addBasketItem,
+    TResult Function(MeetDataDeleteBasketItem value)? deleteBasketItem,
+    TResult Function(MeetDataUserTakeThisBasketItem value)?
+        userTakeThisBasketItem,
+    TResult Function(MeetDataUserUseThisBasketItem value)?
+        userUseThisBasketItem,
+    required TResult orElse(),
+  }) {
+    if (userUseThisBasketItem != null) {
+      return userUseThisBasketItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeetDataUserUseThisBasketItem implements MeetDataEvent {
+  const factory MeetDataUserUseThisBasketItem(
+      final bool isTake,
+      final BasketItemModel basketItem,
+      final String userId) = _$MeetDataUserUseThisBasketItemImpl;
+
+  bool get isTake;
+  BasketItemModel get basketItem;
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$MeetDataUserUseThisBasketItemImplCopyWith<
+          _$MeetDataUserUseThisBasketItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

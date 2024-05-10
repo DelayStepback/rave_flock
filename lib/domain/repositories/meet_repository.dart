@@ -27,15 +27,17 @@ abstract class MeetRepository {
 
   Future<void> changeGuestStatus(int meetId, String userId, GuestChooseAtMeetEnum guestChooseAtMeetEnum);
 
+  Future<void> deleteGuest(int meetId, String userId);
+
   Future<List<BasketItemModel>> fetchBasketItemsOfMeet(int meetId);
 
   Future<void> createBasketToMeet(int meetId);
 
-  Future<BasketItemModel> addToBasketItem(BasketItemModel basketItemModel);
+  Future<BasketItemModel?> addToBasketItem(BasketItemModel basketItemModel);
 
   Future<void> removeBasketItem(BasketItemModel basketItemModel);
 
-  Future<void> userTakeThisItem(bool isTake, int basketItemId, String userId);
+  Future<BasketItemModel?> userTakeThisItem(bool isTake, int basketItemId, String userId);
 
-  Future<void> userUseThisItem(bool isTake, int basketItemId, String userId);
+  Future<BasketItemModel?> userUseThisItem(bool isTake, int basketItemId, String userId);
 }

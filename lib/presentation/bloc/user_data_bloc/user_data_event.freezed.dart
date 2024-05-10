@@ -20,18 +20,24 @@ mixin _$UserDataEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
     required TResult Function() dispose,
+    required TResult Function(UserFieldsEnum userEnum, String fieldValue)
+        updateUserField,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
     TResult? Function()? dispose,
+    TResult? Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
     TResult Function()? dispose,
+    TResult Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,21 @@ mixin _$UserDataEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(UserDataInitializeEvent value) initialize,
     required TResult Function(UserDataDisposeEvent value) dispose,
+    required TResult Function(UserDataUpdateField value) updateUserField,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserDataInitializeEvent value)? initialize,
     TResult? Function(UserDataDisposeEvent value)? dispose,
+    TResult? Function(UserDataUpdateField value)? updateUserField,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserDataInitializeEvent value)? initialize,
     TResult Function(UserDataDisposeEvent value)? dispose,
+    TResult Function(UserDataUpdateField value)? updateUserField,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +152,8 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
     required TResult Function() dispose,
+    required TResult Function(UserFieldsEnum userEnum, String fieldValue)
+        updateUserField,
   }) {
     return initialize(userId);
   }
@@ -152,6 +163,8 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
     TResult? Function()? dispose,
+    TResult? Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
   }) {
     return initialize?.call(userId);
   }
@@ -161,6 +174,8 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
     TResult Function()? dispose,
+    TResult Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -174,6 +189,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(UserDataInitializeEvent value) initialize,
     required TResult Function(UserDataDisposeEvent value) dispose,
+    required TResult Function(UserDataUpdateField value) updateUserField,
   }) {
     return initialize(this);
   }
@@ -183,6 +199,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserDataInitializeEvent value)? initialize,
     TResult? Function(UserDataDisposeEvent value)? dispose,
+    TResult? Function(UserDataUpdateField value)? updateUserField,
   }) {
     return initialize?.call(this);
   }
@@ -192,6 +209,7 @@ class _$UserDataInitializeEventImpl implements UserDataInitializeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserDataInitializeEvent value)? initialize,
     TResult Function(UserDataDisposeEvent value)? dispose,
+    TResult Function(UserDataUpdateField value)? updateUserField,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -252,6 +270,8 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) initialize,
     required TResult Function() dispose,
+    required TResult Function(UserFieldsEnum userEnum, String fieldValue)
+        updateUserField,
   }) {
     return dispose();
   }
@@ -261,6 +281,8 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? initialize,
     TResult? Function()? dispose,
+    TResult? Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
   }) {
     return dispose?.call();
   }
@@ -270,6 +292,8 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? initialize,
     TResult Function()? dispose,
+    TResult Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -283,6 +307,7 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(UserDataInitializeEvent value) initialize,
     required TResult Function(UserDataDisposeEvent value) dispose,
+    required TResult Function(UserDataUpdateField value) updateUserField,
   }) {
     return dispose(this);
   }
@@ -292,6 +317,7 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserDataInitializeEvent value)? initialize,
     TResult? Function(UserDataDisposeEvent value)? dispose,
+    TResult? Function(UserDataUpdateField value)? updateUserField,
   }) {
     return dispose?.call(this);
   }
@@ -301,6 +327,7 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserDataInitializeEvent value)? initialize,
     TResult Function(UserDataDisposeEvent value)? dispose,
+    TResult Function(UserDataUpdateField value)? updateUserField,
     required TResult orElse(),
   }) {
     if (dispose != null) {
@@ -312,4 +339,160 @@ class _$UserDataDisposeEventImpl implements UserDataDisposeEvent {
 
 abstract class UserDataDisposeEvent implements UserDataEvent {
   const factory UserDataDisposeEvent() = _$UserDataDisposeEventImpl;
+}
+
+/// @nodoc
+abstract class _$$UserDataUpdateFieldImplCopyWith<$Res> {
+  factory _$$UserDataUpdateFieldImplCopyWith(_$UserDataUpdateFieldImpl value,
+          $Res Function(_$UserDataUpdateFieldImpl) then) =
+      __$$UserDataUpdateFieldImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserFieldsEnum userEnum, String fieldValue});
+}
+
+/// @nodoc
+class __$$UserDataUpdateFieldImplCopyWithImpl<$Res>
+    extends _$UserDataEventCopyWithImpl<$Res, _$UserDataUpdateFieldImpl>
+    implements _$$UserDataUpdateFieldImplCopyWith<$Res> {
+  __$$UserDataUpdateFieldImplCopyWithImpl(_$UserDataUpdateFieldImpl _value,
+      $Res Function(_$UserDataUpdateFieldImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userEnum = null,
+    Object? fieldValue = null,
+  }) {
+    return _then(_$UserDataUpdateFieldImpl(
+      null == userEnum
+          ? _value.userEnum
+          : userEnum // ignore: cast_nullable_to_non_nullable
+              as UserFieldsEnum,
+      null == fieldValue
+          ? _value.fieldValue
+          : fieldValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserDataUpdateFieldImpl implements UserDataUpdateField {
+  const _$UserDataUpdateFieldImpl(this.userEnum, this.fieldValue);
+
+  @override
+  final UserFieldsEnum userEnum;
+  @override
+  final String fieldValue;
+
+  @override
+  String toString() {
+    return 'UserDataEvent.updateUserField(userEnum: $userEnum, fieldValue: $fieldValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserDataUpdateFieldImpl &&
+            (identical(other.userEnum, userEnum) ||
+                other.userEnum == userEnum) &&
+            (identical(other.fieldValue, fieldValue) ||
+                other.fieldValue == fieldValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userEnum, fieldValue);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserDataUpdateFieldImplCopyWith<_$UserDataUpdateFieldImpl> get copyWith =>
+      __$$UserDataUpdateFieldImplCopyWithImpl<_$UserDataUpdateFieldImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) initialize,
+    required TResult Function() dispose,
+    required TResult Function(UserFieldsEnum userEnum, String fieldValue)
+        updateUserField,
+  }) {
+    return updateUserField(userEnum, fieldValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? initialize,
+    TResult? Function()? dispose,
+    TResult? Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
+  }) {
+    return updateUserField?.call(userEnum, fieldValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? initialize,
+    TResult Function()? dispose,
+    TResult Function(UserFieldsEnum userEnum, String fieldValue)?
+        updateUserField,
+    required TResult orElse(),
+  }) {
+    if (updateUserField != null) {
+      return updateUserField(userEnum, fieldValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserDataInitializeEvent value) initialize,
+    required TResult Function(UserDataDisposeEvent value) dispose,
+    required TResult Function(UserDataUpdateField value) updateUserField,
+  }) {
+    return updateUserField(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserDataInitializeEvent value)? initialize,
+    TResult? Function(UserDataDisposeEvent value)? dispose,
+    TResult? Function(UserDataUpdateField value)? updateUserField,
+  }) {
+    return updateUserField?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserDataInitializeEvent value)? initialize,
+    TResult Function(UserDataDisposeEvent value)? dispose,
+    TResult Function(UserDataUpdateField value)? updateUserField,
+    required TResult orElse(),
+  }) {
+    if (updateUserField != null) {
+      return updateUserField(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserDataUpdateField implements UserDataEvent {
+  const factory UserDataUpdateField(
+          final UserFieldsEnum userEnum, final String fieldValue) =
+      _$UserDataUpdateFieldImpl;
+
+  UserFieldsEnum get userEnum;
+  String get fieldValue;
+  @JsonKey(ignore: true)
+  _$$UserDataUpdateFieldImplCopyWith<_$UserDataUpdateFieldImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

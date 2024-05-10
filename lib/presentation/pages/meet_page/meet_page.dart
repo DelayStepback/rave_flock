@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/entity/meet_entity/meet_entity.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_event.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_state.dart';
+import 'package:rave_flock/presentation/dialogs/are_you_sure_dialog.dart';
 import 'package:rave_flock/presentation/screens/error_screen/error_screen.dart';
 import 'package:rave_flock/presentation/screens/loading_screen/loading_screen.dart';
 import 'package:rave_flock/services/auth_service.dart';
-
-import '../home_page/widgets/create_new_meet_screen.dart';
 
 class MeetPage extends StatelessWidget {
   const MeetPage({super.key, required this.meetId});
@@ -71,8 +71,8 @@ class _MeetPageView extends StatelessWidget {
             },
           ),
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(20),
+        body: Column(
+          // padding: const EdgeInsets.all(20),
           children: [
             Text("#${currMeetEntity.meetModel.meetId}"),
             Text("Owner: ${currMeetEntity.meetModel.meetOwnerId}"),
@@ -87,41 +87,39 @@ class _MeetPageView extends StatelessWidget {
                         'meetIdBasket': currMeetEntity.meetModel.meetId.toString()
                       });
                     },
-                    child: const Text('go to basket'),
+                    child: Text(context.S.go_to_basket),
                   )
                 : const SizedBox.shrink(),
+            ElevatedButton(
+              onPressed: () {
+                context.pushNamed('guestsOfMeetScreen', pathParameters: {
+                  'meetId': currMeetEntity!.meetModel.meetId.toString(),
+                });
+              },
+              child: Text(context.S.see_guests),
+            ),
             currMeetEntity.meetModel.meetOwnerId == AuthService.getUserId()
                 ? ElevatedButton(
                     onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (context) {
-                          return SafeArea(
-                            child: FractionallySizedBox(
-                              heightFactor: 1,
-                              child: CreateNewMeetScreen(
-                                meetModel: currMeetEntity!.meetModel,
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                      context.pushNamed('createNewMeetScreen', extra: currMeetEntity?.meetModel);
                     },
-                    child: const Text('update this meet'))
+                    child: Text(context.S.update_this_meet))
                 : const SizedBox.shrink(),
             ElevatedButton(
-                onPressed: () {
-                  GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
-                  context.goNamed('homePage');
-                },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.remove_circle_outline_outlined),
-                    Text('delete this meet'),
-                  ],
-                ))
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AreYouSureDialog(
+                    textContent: context.S.are_you_sure_delete_meet,
+                    onConfirm: () {
+                      GetIt.I<MeetDataBloc>().add(MeetDataEvent.delete(meetId));
+                      context.goNamed('homePage');
+                    },
+                  ),
+                );
+              },
+              child: const Icon(Icons.delete),
+            ),
           ],
         ),
       );

@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:rave_flock/common/constants/enums/exceptions/exceptions_enum.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/domain/repositories/friends_repository.dart';
 import 'package:rave_flock/presentation/widget/notification_toast.dart';
 import 'package:rave_flock/services/auth_service.dart';
@@ -27,7 +28,7 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
           children: [
             TextFormField(
               controller: _usernameController,
-              decoration: const InputDecoration(label: Text('Имя нового друга')),
+              decoration: InputDecoration(label: Text(context.S.friend_name)),
             ),
             const SizedBox(
               height: 40,
@@ -46,11 +47,15 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                             .sendARequest(AuthService.getUserId() ?? '', _usernameController.text.trim())
                             .then((value) {
                           showOverlayNotification(
-                              (context) {
-                                return const NotificationToast(message: 'Request sended', needShowSmile: true, emoji: '👍',);
-                              },
-                              duration: const Duration(seconds: 3),
-                            );
+                            (context) {
+                              return NotificationToast(
+                                message: context.S.request_sended,
+                                needShowSmile: true,
+                                emoji: '👍',
+                              );
+                            },
+                            duration: const Duration(seconds: 3),
+                          );
                           context.pop();
 
                           setState(() {
@@ -65,7 +70,7 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                           case ExceptionsEnum.usernameNotFound:
                             showOverlayNotification(
                               (context) {
-                                return const NotificationToast(message: 'Username not found');
+                                return NotificationToast(message: context.S.username_not_found);
                               },
                               duration: const Duration(seconds: 3),
                             );
@@ -73,7 +78,11 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                           case ExceptionsEnum.requestAlreadySend:
                             showOverlayNotification(
                               (context) {
-                                return const NotificationToast(message: 'Request already sended', needShowSmile: true, emoji: '👍',);
+                                return NotificationToast(
+                                  message: context.S.request_already_sended,
+                                  needShowSmile: true,
+                                  emoji: '👍',
+                                );
                               },
                               duration: const Duration(seconds: 3),
                             );
@@ -81,15 +90,23 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                           case ExceptionsEnum.alreadyYourFriend:
                             showOverlayNotification(
                               (context) {
-                                return const NotificationToast(message: 'Already your friend', needShowSmile: true, emoji: '👍',);
+                                return  NotificationToast(
+                                  message: context.S.already_your_friend,
+                                  needShowSmile: true,
+                                  emoji: '👍',
+                                );
                               },
                               duration: const Duration(seconds: 2),
                             );
                             break;
                           case ExceptionsEnum.cannotAddYourself:
-                           showOverlayNotification(
+                            showOverlayNotification(
                               (context) {
-                                return const NotificationToast(message: 'What? You cannot add yourself. Lol', needShowSmile: true, emoji: '🤡',);
+                                return  NotificationToast(
+                                  message: context.S.cannot_add_yourself,
+                                  needShowSmile: true,
+                                  emoji: '🤡',
+                                );
                               },
                               duration: const Duration(seconds: 3),
                             );
@@ -97,7 +114,8 @@ class _AddNewFriendScreenState extends State<AddNewFriendScreen> {
                         }
                       }
                     },
-                    child: const Text('добавить в друзья'))
+                    child: Text(context.S.add_to_friends),
+                  )
           ],
         ),
       ),

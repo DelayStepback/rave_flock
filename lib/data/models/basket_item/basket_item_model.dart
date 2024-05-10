@@ -16,11 +16,10 @@ class BasketItemModel with _$BasketItemModel {
     String? cost,
     @JsonKey(name: 'created_by_user_id') required String createdByUserId,
     @JsonKey(name: 'grabbed_by_user_id') String? grabbedByUserId,
-    @JsonKey(name: 'who_will_use_ids') List<String>? whoWillUseIds,
+    // DTO
+    @JsonKey(name: 'who_will_use_ids', includeToJson: false, includeIfNull: false) List<String>? whoWillUseIds,
     @JsonKey(name: 'image_url') String? imageUrl,
   }) = _BasketItemModel;
 
-
-  factory BasketItemModel.fromJson(Map<String, dynamic> json) =>
-      _$BasketItemModelFromJson(json);
+  factory BasketItemModel.fromJson(Map<String, dynamic> json) => _$BasketItemModelFromJson(json);
 }

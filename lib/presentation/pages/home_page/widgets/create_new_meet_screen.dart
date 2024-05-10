@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/common/widget/text_input.dart';
 import 'package:rave_flock/data/models/meet/meet_model.dart';
 import 'package:rave_flock/presentation/bloc/meet_data_bloc/meet_data_bloc.dart';
@@ -95,8 +97,8 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
       decoration: BoxDecoration(gradient: RadialGradient(radius: 1.2.r, colors: [Color(0xFF5B1828), Colors.black])),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.transparent,
           appBar: AppBar(),
+          backgroundColor: Colors.transparent,
           body: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -104,9 +106,9 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
                 children: [
                   SizedBox(height: 100.h),
                   TextInput(
-                    label: 'Тайтл',
+                    label: context.S.title,
                     valid: _titleValid,
-                    errorText: 'Слишком короткое название',
+                    errorText: context.S.too_short_title,
                     controller: _titleController,
                     readOnly: meetModel == null ? false : true,
                     maxLine: 1,
@@ -116,84 +118,87 @@ class _CreateNewMeetScreenState extends State<CreateNewMeetScreen> {
                     height: 25,
                   ),
                   TextInput(
-                    label: 'Описание',
+                    label: context.S.description,
                     controller: _descriptionController,
                   ),
                   const SizedBox(
                     height: 25,
                   ),
                   TextInput(
-                    label: 'Локация',
+                    label: context.S.location,
                     controller: _locationController,
                     maxLine: 1,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'PRIVATE',
-                        style: TextStyle(
-                            color: !_meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          context.S.private,
+                          style: TextStyle(color: !_meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                        ),
                       ),
                       Switch(
-                        activeTrackColor: Color(0xFFEEF140),
+                          activeTrackColor: Color(0xFFEEF140),
                           value: _meetIsPublic,
                           onChanged: (value) {
                             setState(() {
                               _meetIsPublic = value;
                             });
                           }),
-                      Text(
-                        'PUBLIC',
-                        style: TextStyle(
-                            color: _meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          context.S.public,
+                          style: TextStyle(color: _meetIsPublic ? Color(0xFFEEF140) : Colors.transparent),
+                        ),
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'ADD A CART',
-                        style: TextStyle(
-                            color: !_containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          context.S.contains_basket,
+                          style: TextStyle(color: !_containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                        ),
                       ),
                       Switch(
-                        activeTrackColor: Color(0xFFEEF140),
+                          activeTrackColor: Color(0xFFEEF140),
                           value: _containsBasket,
                           onChanged: (value) {
                             setState(() {
                               _containsBasket = value;
                             });
                           }),
-                      Text(
-                        'CART ADDED',
-                        style: TextStyle(
-                            color: _containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          context.S.cart_added,
+                          style: TextStyle(color: _containsBasket ? Color(0xFFEEF140) : Colors.transparent),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 25.h,
+                  const SizedBox(
+                    height: 40,
                   ),
                   UnconstrainedBox(
                     child: SizedBox(
                       height: 40,
-                      width: 100,
+                      width: 120,
                       child: ElevatedButton(
-                        
                           onPressed: () {
                             createOrUpdateMeetAction(context);
                           },
-                          child: meetModel == null ? const Text('create') : const Text('update')),
+                          child: meetModel == null ? Text(context.S.create) : Text(context.S.update)),
                     ),
-                  ),
-                  SizedBox(
-                    height: 100.h,
                   ),
                 ],
               ),

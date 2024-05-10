@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/presentation/pages/welcome/sub_pages/widgets/input_window_widget.dart';
 import 'dart:math';
 class AuthPage extends StatefulWidget {
@@ -32,7 +33,7 @@ class AuthPageState extends State<AuthPage> {
                     alignment: Alignment.topCenter,
                     padding: EdgeInsets.all(40.r),
                     child: Text(
-                      'Рейв.. Флак? Нет. Флок',
+                      context.S.rave_flack_no_flock,
                       style: Theme.of(context).textTheme.titleLarge,
                     )),
                     Align(
@@ -57,10 +58,10 @@ class AuthPageState extends State<AuthPage> {
                           child: SizedBox(
                             width: 327.w,
                             height: 39.h,
-                            child: const Center(
+                            child:  Center(
                               child: Text(
-                                'Регистрация',
-                                style: TextStyle(color: Colors.white),
+                                context.S.registration,
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
@@ -75,10 +76,10 @@ class AuthPageState extends State<AuthPage> {
                           child: SizedBox(
                             width: 327.w,
                             height: 39.h,
-                            child: const Center(
+                            child:  Center(
                               child: Text(
-                                'Вход',
-                                style: TextStyle(color: Colors.black),
+                                context.S.login,
+                                style: const TextStyle(color: Colors.black),
                               ),
                             ),
                           ),
@@ -95,8 +96,8 @@ class AuthPageState extends State<AuthPage> {
     );
   }
 
-  PersistentBottomSheetController<dynamic> _buildShowBottomSheet(
-      BuildContext context, InputWindowWidgetType inputWindowWidgetType) {
+  Future<PersistentBottomSheetController> _buildShowBottomSheet(
+      BuildContext context, InputWindowWidgetType inputWindowWidgetType) async {
     return showBottomSheet(
         enableDrag: false,
         context: context,

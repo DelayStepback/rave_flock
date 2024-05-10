@@ -7,5 +7,5 @@ abstract class UserRepository{
     Future<bool> checkUsernameIsFree(String username);
     Future<UserModel> fetchUser(String userId);
     Future<bool> isUserHaveUsername(String userId);
-    Future<void> updateUserField(UserFieldsEnum userEnum, String fieldValue,String userId);
+    Future<UserModel?> updateUserField(UserFieldsEnum userEnum, String fieldValue,String userId);
 }

@@ -32,7 +32,7 @@ class NotificationToast extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 22),
           decoration: BoxDecoration(
-            color: color ?? Color.fromARGB(255, 122, 23, 46),
+            color: color ?? const Color.fromARGB(255, 122, 23, 46),
             borderRadius: BorderRadius.circular(20),
           ),
           child: InkWell(
@@ -46,7 +46,7 @@ class NotificationToast extends StatelessWidget {
                 Flexible(
                   child: Text(
                     message,
-                    style: TextStyle(
+                    style: const TextStyle(
                           fontFamily: 'Gotham Pro',
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -58,7 +58,7 @@ class NotificationToast extends StatelessWidget {
                   RichText(
                     text: TextSpan(
                       text: emoji,
-                      style: TextStyle(
+                      style: const TextStyle(
                             // fontFamily: 'Gotham Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,

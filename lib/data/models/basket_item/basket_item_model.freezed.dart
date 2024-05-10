@@ -28,8 +28,8 @@ mixin _$BasketItemModel {
   @JsonKey(name: 'created_by_user_id')
   String get createdByUserId => throw _privateConstructorUsedError;
   @JsonKey(name: 'grabbed_by_user_id')
-  String? get grabbedByUserId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'who_will_use_ids')
+  String? get grabbedByUserId => throw _privateConstructorUsedError; // DTO
+  @JsonKey(name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
   List<String>? get whoWillUseIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
@@ -53,7 +53,9 @@ abstract class $BasketItemModelCopyWith<$Res> {
       String? cost,
       @JsonKey(name: 'created_by_user_id') String createdByUserId,
       @JsonKey(name: 'grabbed_by_user_id') String? grabbedByUserId,
-      @JsonKey(name: 'who_will_use_ids') List<String>? whoWillUseIds,
+      @JsonKey(
+          name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
+      List<String>? whoWillUseIds,
       @JsonKey(name: 'image_url') String? imageUrl});
 }
 
@@ -131,7 +133,9 @@ abstract class _$$BasketItemModelImplCopyWith<$Res>
       String? cost,
       @JsonKey(name: 'created_by_user_id') String createdByUserId,
       @JsonKey(name: 'grabbed_by_user_id') String? grabbedByUserId,
-      @JsonKey(name: 'who_will_use_ids') List<String>? whoWillUseIds,
+      @JsonKey(
+          name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
+      List<String>? whoWillUseIds,
       @JsonKey(name: 'image_url') String? imageUrl});
 }
 
@@ -202,7 +206,9 @@ class _$BasketItemModelImpl extends _BasketItemModel {
       this.cost,
       @JsonKey(name: 'created_by_user_id') required this.createdByUserId,
       @JsonKey(name: 'grabbed_by_user_id') this.grabbedByUserId,
-      @JsonKey(name: 'who_will_use_ids') final List<String>? whoWillUseIds,
+      @JsonKey(
+          name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
+      final List<String>? whoWillUseIds,
       @JsonKey(name: 'image_url') this.imageUrl})
       : _whoWillUseIds = whoWillUseIds,
         super._();
@@ -225,9 +231,11 @@ class _$BasketItemModelImpl extends _BasketItemModel {
   @override
   @JsonKey(name: 'grabbed_by_user_id')
   final String? grabbedByUserId;
+// DTO
   final List<String>? _whoWillUseIds;
+// DTO
   @override
-  @JsonKey(name: 'who_will_use_ids')
+  @JsonKey(name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
   List<String>? get whoWillUseIds {
     final value = _whoWillUseIds;
     if (value == null) return null;
@@ -294,16 +302,18 @@ class _$BasketItemModelImpl extends _BasketItemModel {
 
 abstract class _BasketItemModel extends BasketItemModel {
   factory _BasketItemModel(
-          {final int? id,
-          @JsonKey(name: 'meet_id') required final int meetId,
-          required final String title,
-          final String? cost,
-          @JsonKey(name: 'created_by_user_id')
-          required final String createdByUserId,
-          @JsonKey(name: 'grabbed_by_user_id') final String? grabbedByUserId,
-          @JsonKey(name: 'who_will_use_ids') final List<String>? whoWillUseIds,
-          @JsonKey(name: 'image_url') final String? imageUrl}) =
-      _$BasketItemModelImpl;
+      {final int? id,
+      @JsonKey(name: 'meet_id') required final int meetId,
+      required final String title,
+      final String? cost,
+      @JsonKey(name: 'created_by_user_id')
+      required final String createdByUserId,
+      @JsonKey(name: 'grabbed_by_user_id') final String? grabbedByUserId,
+      @JsonKey(
+          name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
+      final List<String>? whoWillUseIds,
+      @JsonKey(name: 'image_url')
+      final String? imageUrl}) = _$BasketItemModelImpl;
   _BasketItemModel._() : super._();
 
   factory _BasketItemModel.fromJson(Map<String, dynamic> json) =
@@ -324,8 +334,8 @@ abstract class _BasketItemModel extends BasketItemModel {
   @override
   @JsonKey(name: 'grabbed_by_user_id')
   String? get grabbedByUserId;
-  @override
-  @JsonKey(name: 'who_will_use_ids')
+  @override // DTO
+  @JsonKey(name: 'who_will_use_ids', includeToJson: false, includeIfNull: false)
   List<String>? get whoWillUseIds;
   @override
   @JsonKey(name: 'image_url')

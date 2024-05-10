@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:rave_flock/common/localization.dart';
 import 'package:rave_flock/presentation/widget/notification_toast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../common/themes/theme_constants.dart';
@@ -59,8 +60,8 @@ class LoginButton extends StatelessWidget {
           } on AuthException {
             showOverlayNotification(
               (context) {
-                return const NotificationToast(
-                  message: 'Wrong email or password',
+                return NotificationToast(
+                  message: context.S.wrong_email_or_passwor,
                   needShowSmile: true,
                   emoji: '❌',
                 );
@@ -70,8 +71,8 @@ class LoginButton extends StatelessWidget {
           } catch (e) {
             showOverlayNotification(
               (context) {
-                return const NotificationToast(
-                  message: 'Something went wrong. Try again',
+                return NotificationToast(
+                  message: context.S.something_went_wrong,
                   needShowSmile: true,
                   emoji: '❌',
                 );
@@ -82,10 +83,10 @@ class LoginButton extends StatelessWidget {
         }
       },
       child: !checkValid
-          ? Text('Continue')
+          ? Text(context.S.next)
           : Text(
-              'Continue',
-              style: TextStyle(color: Colors.white),
+              context.S.next,
+              style: const TextStyle(color: Colors.white),
             ),
     );
   }

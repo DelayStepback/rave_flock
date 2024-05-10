@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:rave_flock/common/localization.dart';
 
 class WelcomePage1 extends StatelessWidget {
   const WelcomePage1({super.key});
@@ -17,7 +18,7 @@ class WelcomePage1 extends StatelessWidget {
         )),
       child: Center(
         child: Text(
-          'Привет. Рейв?',
+          '${context.S.hi_rave}?',
           style: Theme.of(context).textTheme.displayLarge?.copyWith(color: Colors.white),
         ),
       ),
