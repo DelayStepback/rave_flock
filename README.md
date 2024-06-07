@@ -18,9 +18,14 @@
 ## Установка проекта и сборка
 
 Note: by default only mocked data is provided. To enable actual data you should provide your AmbeeApi key and enable networking using the following dart-defines:
-```
-AMBEE_KEY=<YOUR_KEY_HERE>
-PROD_NETWORK=true //false by default
+```dart
+
+  await Supabase.initialize(
+    url: '<SUPABASE_URL>',
+    anonKey:
+        '<YOUR_KEY>',
+    authFlowType: AuthFlowType.pkce,
+  );
 ```
 
 To build and run this project:
